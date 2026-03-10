@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quote / Unquote List | DevFormat</title>
+  <meta name="description" content="Quote every line with single quotes, double quotes, or backticks. Undo quoted lists and convert them back into clean values.">
+  <meta name="keywords" content="quote lines online, unquote list, quote each line, wrap text in quotes, remove quotes from list">
+  <meta property="og:title" content="Quote / Unquote List | DevFormat">
+  <meta property="og:description" content="Wrap values with quotes or remove quotes from an existing list in the browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/quote/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/quote/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Quote / Unquote List",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "url": "https://gurioh.github.io/devformat/quote/",
+    "description": "Quote every line or remove quotes from a list in the browser.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body data-page="quote">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark">DF</div>
+        <div class="brand-copy">
+          <strong>DevFormat</strong>
+          <span>Preset-driven text tools for developers</span>
+        </div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero compact">
+      <span class="hero-kicker">String Format</span>
+      <h1>Quote every line, or strip quotes back out.</h1>
+      <p>This page is useful when you already have a clean list of values but need to wrap them for SQL, code, or markdown. It also works in reverse when you receive a quoted list and want plain values again.</p>
+      <div class="chip-row">
+        <span class="chip">Single quotes</span>
+        <span class="chip">Double quotes</span>
+        <span class="chip">Backticks</span>
+        <span class="chip">CSV output</span>
+      </div>
+    </section>
+
+    <section class="tool-shell">
+      <div class="tool-meta">
+        Choose whether you are quoting or unquoting, then pick the quote character and output delimiter that fits your workflow.
+      </div>
+      <div class="toolbar">
+        <div class="toolbar-row segmented">
+          <button class="active" type="button" data-mode="quote">Quote lines</button>
+          <button type="button" data-mode="unquote">Unquote lines</button>
+        </div>
+        <div class="toolbar-row" id="presetBar">
+          <button class="preset-chip active" type="button" data-preset="single-lines">' quoted lines</button>
+          <button class="preset-chip" type="button" data-preset="double-lines">" quoted lines</button>
+          <button class="preset-chip" type="button" data-preset="csv-single">CSV single quotes</button>
+          <button class="preset-chip" type="button" data-preset="csv-double">CSV double quotes</button>
+          <button class="preset-chip" type="button" data-preset="backticks">Backticks</button>
+          <button class="preset-chip" type="button" data-preset="custom">Custom</button>
+        </div>
+        <div class="toolbar-grid">
+          <div class="field">
+            <label for="quoteChar">Quote character</label>
+            <input class="input" id="quoteChar" value="'">
+          </div>
+          <div class="field">
+            <label for="delimiter">Output delimiter</label>
+            <input class="input" id="delimiter" value="\n">
+          </div>
+        </div>
+        <div class="toolbar-row">
+          <label class="chip"><input id="trimLines" type="checkbox" checked> Trim values</label>
+          <label class="chip"><input id="skipEmpty" type="checkbox" checked> Skip empty lines</label>
+        </div>
+        <div class="example-actions">
+          <button type="button" data-example="env">Environment keys</button>
+          <button type="button" data-example="emails">Email values</button>
+          <button type="button" data-example="quoted">Quoted CSV</button>
+        </div>
+      </div>
+
+      <div class="tool-panels">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <strong id="inputLabel">Input</strong>
+              <span id="inputHint">Multiline values</span>
+            </div>
+            <button class="copy-button" type="button" id="clearButton">Clear</button>
+          </div>
+          <textarea class="textarea" id="input" placeholder="API_KEY&#10;API_SECRET&#10;API_HOST"></textarea>
+        </section>
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <strong>Output</strong>
+              <span>Formatted list</span>
+            </div>
+            <button class="copy-button" type="button" id="copyButton">Copy</button>
+          </div>
+          <textarea class="textarea" id="output" readonly></textarea>
+        </section>
+      </div>
+
+      <div class="stat-grid">
+        <article class="stat-card"><span>Mode</span><strong id="modeStat">Quote</strong></article>
+        <article class="stat-card"><span>Items</span><strong id="itemStat">0</strong></article>
+        <article class="stat-card"><span>Characters</span><strong id="charStat">0</strong></article>
+      </div>
+    </section>
+
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>Useful outputs</h2>
+        <ul>
+          <li><code>'API_KEY'</code> per line for SQL or config reviews</li>
+          <li><code>'API_KEY', 'API_SECRET'</code> for inline lists</li>
+          <li><code>`component-name`</code> for markdown-style inline code examples</li>
+        </ul>
+      </article>
+      <article class="content-card">
+        <h2>Why this page exists</h2>
+        <p>Quoting looks trivial until you repeat it across 30 or 300 values. This page keeps it consistent and reversible so you do not bounce between editor macros, spreadsheet formulas, and shell snippets.</p>
+      </article>
+    </section>
+
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>Can I switch between single quotes and double quotes?</h3>
+          <p>Yes. Use the presets for common output or change the quote character directly for custom wrapping.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Will it remove quotes from comma-separated input?</h3>
+          <p>Yes. Pick the matching CSV preset, switch to unquote mode, and the tool will split on the configured delimiter before stripping the quote character.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can I output one quoted item per line instead of CSV?</h3>
+          <p>Yes. Use the line-based presets or set the delimiter field to <code>\n</code> for a vertical output list.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <p>Common next steps after quoting: join the list, turn it into a SQL IN clause, or encode it for a request.</p>
+      <nav>
+        <a href="../multiline/">Multiline</a>
+        <a href="../split-join/">Split / Join</a>
+        <a href="../url-encode/">URL Encode</a>
+      </nav>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+  <script>
+    const presets = {
+      'single-lines': { quoteChar: "'", delimiter: '\\n' },
+      'double-lines': { quoteChar: '"', delimiter: '\\n' },
+      'csv-single': { quoteChar: "'", delimiter: ', ' },
+      'csv-double': { quoteChar: '"', delimiter: ', ' },
+      'backticks': { quoteChar: '`', delimiter: '\\n' },
+      'custom': null
+    };
+
+    const examples = {
+      env: 'API_KEY\nAPI_SECRET\nAPI_HOST',
+      emails: 'hello@example.com\nops@example.com\nsupport@example.com',
+      quoted: '"apple", "banana", "cherry"'
+    };
+
+    const input = document.getElementById('input');
+    const output = document.getElementById('output');
+    const quoteChar = document.getElementById('quoteChar');
+    const delimiter = document.getElementById('delimiter');
+    const trimLines = document.getElementById('trimLines');
+    const skipEmpty = document.getElementById('skipEmpty');
+    let mode = 'quote';
+    let activePreset = 'single-lines';
+
+    function parseEscapes(value) {
+      return value.replace(/\\t/g, '\t').replace(/\\n/g, '\n');
+    }
+
+    function markPreset(key) {
+      activePreset = key;
+      document.querySelectorAll('[data-preset]').forEach(function (button) {
+        button.classList.toggle('active', button.dataset.preset === key);
+      });
+    }
+
+    function applyPreset(key) {
+      const preset = presets[key];
+      markPreset(key);
+      if (!preset) return;
+      quoteChar.value = preset.quoteChar;
+      delimiter.value = preset.delimiter;
+      convert();
+    }
+
+    function markCustomIfNeeded() {
+      const preset = presets[activePreset];
+      if (!preset) return;
+      if (quoteChar.value !== preset.quoteChar || delimiter.value !== preset.delimiter) {
+        markPreset('custom');
+      }
+    }
+
+    function updateStats(items, chars) {
+      document.getElementById('modeStat').textContent = mode === 'quote' ? 'Quote' : 'Unquote';
+      document.getElementById('itemStat').textContent = String(items);
+      document.getElementById('charStat').textContent = String(chars);
+    }
+
+    function quoteLines(raw) {
+      let lines = raw.split('\n');
+      if (trimLines.checked) lines = lines.map(function (line) { return line.trim(); });
+      if (skipEmpty.checked) lines = lines.filter(function (line) { return line.length > 0; });
+      const result = lines.map(function (line) { return quoteChar.value + line + quoteChar.value; }).join(parseEscapes(delimiter.value));
+      output.value = result;
+      updateStats(lines.length, result.length);
+    }
+
+    function unquoteLines(raw) {
+      let parts = raw.split(parseEscapes(delimiter.value));
+      parts = parts.map(function (part) {
+        let next = trimLines.checked ? part.trim() : part;
+        if (quoteChar.value && next.startsWith(quoteChar.value) && next.endsWith(quoteChar.value)) {
+          next = next.slice(quoteChar.value.length, next.length - quoteChar.value.length);
+        }
+        return next;
+      });
+      if (skipEmpty.checked) parts = parts.filter(function (part) { return part.length > 0; });
+      const result = parts.join('\n');
+      output.value = result;
+      updateStats(parts.length, result.length);
+    }
+
+    function convert() {
+      const raw = input.value;
+      if (!raw.trim()) {
+        output.value = '';
+        updateStats(0, 0);
+        return;
+      }
+      if (mode === 'quote') {
+        quoteLines(raw);
+      } else {
+        unquoteLines(raw);
+      }
+      DevFormat.trackEvent('tool_convert', { tool: 'quote', mode: mode, preset: activePreset });
+    }
+
+    document.querySelectorAll('[data-mode]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        mode = button.dataset.mode;
+        document.querySelectorAll('[data-mode]').forEach(function (node) {
+          node.classList.toggle('active', node === button);
+        });
+        document.getElementById('inputHint').textContent = mode === 'quote' ? 'Multiline values' : 'Quoted list or quoted rows';
+        input.value = output.value;
+        output.value = '';
+        convert();
+      });
+    });
+
+    document.querySelectorAll('[data-preset]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        applyPreset(button.dataset.preset);
+        DevFormat.trackEvent('preset_select', { tool: 'quote', preset: button.dataset.preset });
+      });
+    });
+
+    [quoteChar, delimiter].forEach(function (field) {
+      field.addEventListener('input', function () {
+        markCustomIfNeeded();
+        convert();
+      });
+    });
+
+    [trimLines, skipEmpty].forEach(function (field) {
+      field.addEventListener('change', convert);
+    });
+    input.addEventListener('input', convert);
+
+    document.getElementById('copyButton').addEventListener('click', function () {
+      DevFormat.copyText(output.value, 'Quoted output copied.');
+    });
+
+    document.getElementById('clearButton').addEventListener('click', function () {
+      input.value = '';
+      output.value = '';
+      updateStats(0, 0);
+      input.focus();
+    });
+
+    DevFormat.wireExampleButtons(function (key) {
+      input.value = examples[key] || '';
+      if (key === 'quoted') {
+        mode = 'unquote';
+        document.querySelectorAll('[data-mode]').forEach(function (node) {
+          node.classList.toggle('active', node.dataset.mode === 'unquote');
+        });
+        applyPreset('csv-double');
+      } else {
+        mode = 'quote';
+        document.querySelectorAll('[data-mode]').forEach(function (node) {
+          node.classList.toggle('active', node.dataset.mode === 'quote');
+        });
+        applyPreset('single-lines');
+      }
+      convert();
+    });
+
+    input.value = examples.env;
+    applyPreset('single-lines');
+  </script>
+</body>
+</html>

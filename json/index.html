@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Minify / Prettify | DevFormat</title>
+  <meta name="description" content="Validate, prettify, and minify JSON in the browser. Quick formatting for payload inspection without leaving your current workflow.">
+  <meta name="keywords" content="json formatter online, json prettify, json minify, json validate tool">
+  <meta property="og:title" content="JSON Minify / Prettify | DevFormat">
+  <meta property="og:description" content="Validate and format JSON directly in the browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/json/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/json/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JSON Minify / Prettify",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "url": "https://gurioh.github.io/devformat/json/",
+    "description": "Validate, prettify, and minify JSON directly in the browser.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body data-page="json">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark">DF</div>
+        <div class="brand-copy">
+          <strong>DevFormat</strong>
+          <span>Preset-driven text tools for developers</span>
+        </div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero compact">
+      <span class="hero-kicker">Structured Text</span>
+      <h1>Validate, prettify, and minify JSON in one page.</h1>
+      <p>Use this page when you need readable formatting, a compact payload, or a quick parse check before pushing JSON into an API client or config file.</p>
+      <div class="chip-row">
+        <span class="chip">Validate</span>
+        <span class="chip">Prettify</span>
+        <span class="chip">Minify</span>
+      </div>
+    </section>
+
+    <section class="tool-shell">
+      <div class="tool-meta">
+        Paste raw JSON, then choose whether you want a prettified result, a minified output, or simply a validation pass.
+      </div>
+      <div class="toolbar">
+        <div class="toolbar-row segmented">
+          <button class="active" type="button" data-action="prettify">Prettify</button>
+          <button type="button" data-action="minify">Minify</button>
+          <button type="button" data-action="validate">Validate</button>
+        </div>
+        <div class="example-actions">
+          <button type="button" data-example="payload">API payload</button>
+          <button type="button" data-example="config">Config</button>
+          <button type="button" data-example="invalid">Invalid example</button>
+        </div>
+      </div>
+      <div class="tool-panels">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <strong>Input JSON</strong>
+              <span>Paste raw JSON</span>
+            </div>
+            <button class="copy-button" type="button" id="clearButton">Clear</button>
+          </div>
+          <textarea class="textarea" id="input"></textarea>
+        </section>
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <strong>Output</strong>
+              <span id="outputHint">Formatted result</span>
+            </div>
+            <button class="copy-button" type="button" id="copyButton">Copy</button>
+          </div>
+          <textarea class="textarea" id="output" readonly></textarea>
+        </section>
+      </div>
+      <div class="stat-grid">
+        <article class="stat-card"><span>Status</span><strong id="statusStat">Ready</strong></article>
+        <article class="stat-card"><span>Action</span><strong id="actionStat">Prettify</strong></article>
+        <article class="stat-card"><span>Output chars</span><strong id="outputStat">0</strong></article>
+      </div>
+    </section>
+
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>Does this validate JSON as well as format it?</h3>
+          <p>Yes. The validate action parses the input and tells you whether the JSON is valid without changing the structure.</p>
+        </article>
+        <article class="faq-item">
+          <h3>What happens to invalid JSON?</h3>
+          <p>The output panel shows the parsing error message so you can identify where the payload broke.</p>
+        </article>
+        <article class="faq-item">
+          <h3>When should I use minify instead of prettify?</h3>
+          <p>Use minify when you need a compact payload for transport or storage, and prettify when you need to inspect or review the structure.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <p>JSON pages often lead to Base64 or URL inspection next, especially while debugging request and response payloads.</p>
+      <nav>
+        <a href="../base64/">Base64</a>
+        <a href="../url-encode/">URL Encode</a>
+      </nav>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+  <script>
+    const input = document.getElementById('input');
+    const output = document.getElementById('output');
+    let action = 'prettify';
+
+    const examples = {
+      payload: '{"user":"devformat","roles":["editor","viewer"],"flags":{"beta":true}}',
+      config: '{"featureA":true,"refreshInterval":30,"endpoints":["/users","/reports"]}',
+      invalid: '{"featureA":true,,"broken":false}'
+    };
+
+    function updateStats(status) {
+      document.getElementById('statusStat').textContent = status;
+      document.getElementById('actionStat').textContent = action.charAt(0).toUpperCase() + action.slice(1);
+      document.getElementById('outputStat').textContent = String(output.value.length);
+      document.getElementById('outputHint').textContent = action === 'validate' ? 'Validation result' : 'Formatted result';
+    }
+
+    function run() {
+      if (!input.value.trim()) {
+        output.value = '';
+        updateStats('Ready');
+        return;
+      }
+
+      try {
+        const parsed = JSON.parse(input.value);
+        if (action === 'prettify') {
+          output.value = JSON.stringify(parsed, null, 2);
+        } else if (action === 'minify') {
+          output.value = JSON.stringify(parsed);
+        } else {
+          output.value = 'Valid JSON.';
+        }
+        updateStats('Success');
+        DevFormat.trackEvent('tool_convert', { tool: 'json', action: action });
+      } catch (error) {
+        output.value = 'Invalid JSON: ' + error.message;
+        updateStats('Error');
+      }
+    }
+
+    document.querySelectorAll('[data-action]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        action = button.dataset.action;
+        document.querySelectorAll('[data-action]').forEach(function (node) {
+          node.classList.toggle('active', node === button);
+        });
+        run();
+      });
+    });
+
+    input.addEventListener('input', run);
+    document.getElementById('copyButton').addEventListener('click', function () {
+      DevFormat.copyText(output.value, 'JSON output copied.');
+    });
+    document.getElementById('clearButton').addEventListener('click', function () {
+      input.value = '';
+      output.value = '';
+      updateStats('Ready');
+      input.focus();
+    });
+
+    DevFormat.wireExampleButtons(function (key) {
+      input.value = examples[key] || '';
+      run();
+    });
+
+    input.value = examples.payload;
+    run();
+  </script>
+</body>
+</html>

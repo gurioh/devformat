@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiline to Single Line Converter | DevFormat</title>
+  <meta name="description" content="Convert multiline text into SQL IN clauses, JS arrays, Python lists, CSV rows, or custom single-line output with preset-driven formatting.">
+  <meta name="keywords" content="multiline to single line, text to sql in clause, text to javascript array, python list converter, newline to comma separated list">
+  <meta property="og:title" content="Multiline to Single Line Converter | DevFormat">
+  <meta property="og:description" content="Preset-driven multiline conversion for SQL, JavaScript, Python, CSV, and custom output.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/multiline/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/multiline/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Multiline to Single Line Converter",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "url": "https://gurioh.github.io/devformat/multiline/",
+    "description": "Convert multiline text into code-ready single-line output with workflow presets.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body data-page="multiline">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark">DF</div>
+        <div class="brand-copy">
+          <strong>DevFormat</strong>
+          <span>Preset-driven text tools for developers</span>
+        </div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero compact">
+      <span class="hero-kicker">Text Transform</span>
+      <h1>Multiline to single-line output with code-ready presets.</h1>
+      <p>Paste line-based text and turn it into SQL IN clauses, JavaScript arrays, Python lists, CSV rows, or a custom wrapped format. This page also works in reverse when you need to explode a single line back into separate entries.</p>
+      <div class="chip-row">
+        <span class="chip">SQL IN</span>
+        <span class="chip">JS Array</span>
+        <span class="chip">Python List</span>
+        <span class="chip">Custom delimiter</span>
+      </div>
+    </section>
+
+    <section class="tool-shell">
+      <div class="tool-meta">
+        Fast path: choose a preset, paste values, copy the result. If you need to reverse the workflow, toggle the direction and split the string back into lines.
+      </div>
+      <div class="toolbar">
+        <div class="toolbar-row segmented">
+          <button class="active" type="button" data-direction="forward">Multi -> Single</button>
+          <button type="button" data-direction="reverse">Single -> Multi</button>
+        </div>
+        <div class="toolbar-row" id="presetBar">
+          <button class="preset-chip active" type="button" data-preset="sql-in">SQL IN</button>
+          <button class="preset-chip" type="button" data-preset="js-array">JS Array</button>
+          <button class="preset-chip" type="button" data-preset="python-list">Python List</button>
+          <button class="preset-chip" type="button" data-preset="csv">CSV Row</button>
+          <button class="preset-chip" type="button" data-preset="comma">Comma Join</button>
+          <button class="preset-chip" type="button" data-preset="pipe">Pipe</button>
+          <button class="preset-chip" type="button" data-preset="tab">Tab</button>
+          <button class="preset-chip" type="button" data-preset="custom">Custom</button>
+        </div>
+        <div class="toolbar-grid">
+          <div class="field">
+            <label for="delimiter">Delimiter</label>
+            <input class="input" id="delimiter" value=", ">
+          </div>
+          <div class="field">
+            <label for="quoteChar">Quote</label>
+            <input class="input" id="quoteChar" value="'">
+          </div>
+          <div class="field">
+            <label for="wrapStart">Wrap start</label>
+            <input class="input" id="wrapStart" value="(">
+          </div>
+          <div class="field">
+            <label for="wrapEnd">Wrap end</label>
+            <input class="input" id="wrapEnd" value=")">
+          </div>
+        </div>
+        <div class="toolbar-row">
+          <label class="chip"><input id="trimLines" type="checkbox" checked> Trim lines</label>
+          <label class="chip"><input id="skipEmpty" type="checkbox" checked> Skip empty lines</label>
+        </div>
+        <div class="example-actions">
+          <button type="button" data-example="fruit">Fruit values</button>
+          <button type="button" data-example="ids">Record IDs</button>
+          <button type="button" data-example="emails">Email list</button>
+        </div>
+      </div>
+
+      <div class="tool-panels">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <strong id="inputLabel">Input</strong>
+              <span id="inputHint">Paste multiline text</span>
+            </div>
+            <button class="copy-button" type="button" id="clearButton">Clear</button>
+          </div>
+          <textarea class="textarea" id="input" placeholder="apple&#10;banana&#10;cherry"></textarea>
+        </section>
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <strong id="outputLabel">Output</strong>
+              <span id="outputHint">Copy ready result</span>
+            </div>
+            <button class="copy-button" type="button" id="copyButton">Copy</button>
+          </div>
+          <textarea class="textarea" id="output" readonly></textarea>
+        </section>
+      </div>
+
+      <div class="stat-grid">
+        <article class="stat-card"><span>Mode</span><strong id="modeStat">Forward</strong></article>
+        <article class="stat-card"><span>Items</span><strong id="itemStat">0</strong></article>
+        <article class="stat-card"><span>Characters</span><strong id="charStat">0</strong></article>
+      </div>
+    </section>
+
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>Typical output presets</h2>
+        <ul>
+          <li><code>SQL IN</code>: <code>('apple', 'banana', 'cherry')</code></li>
+          <li><code>JS Array</code>: <code>["apple", "banana", "cherry"]</code></li>
+          <li><code>Python List</code>: <code>['apple', 'banana', 'cherry']</code></li>
+          <li><code>CSV Row</code>: <code>apple,banana,cherry</code></li>
+        </ul>
+      </article>
+      <article class="content-card">
+        <h2>When to use this page</h2>
+        <p>Use this when you already have raw values on separate lines but need them reshaped to match a code block, query, or copy target. It is also useful when debugging payloads that arrive as one long line and need to be inspected item by item.</p>
+      </article>
+    </section>
+
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>Does it work both directions?</h3>
+          <p>Yes. Switch the mode to split a single-line string back into separate rows using the configured delimiter, quote character, and wrapper.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can I use a custom delimiter?</h3>
+          <p>Yes. Choose the custom preset and set the delimiter, quote character, and wrapper fields directly.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Does it handle tabs and newlines?</h3>
+          <p>Yes. You can type <code>\t</code> or <code>\n</code> in the delimiter field and the tool will interpret the escape sequence.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <p>Related next steps: quoting values, joining by a delimiter, or encoding a payload before it leaves your editor.</p>
+      <nav>
+        <a href="../quote/">Quote / Unquote</a>
+        <a href="../split-join/">Split / Join</a>
+        <a href="../url-encode/">URL Encode</a>
+      </nav>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+  <script>
+    const presets = {
+      'sql-in': { delimiter: ', ', quoteChar: "'", wrapStart: '(', wrapEnd: ')' },
+      'js-array': { delimiter: ', ', quoteChar: '"', wrapStart: '[', wrapEnd: ']' },
+      'python-list': { delimiter: ', ', quoteChar: "'", wrapStart: '[', wrapEnd: ']' },
+      'csv': { delimiter: ',', quoteChar: '', wrapStart: '', wrapEnd: '' },
+      'comma': { delimiter: ', ', quoteChar: '', wrapStart: '', wrapEnd: '' },
+      'pipe': { delimiter: ' | ', quoteChar: '', wrapStart: '', wrapEnd: '' },
+      'tab': { delimiter: '\\t', quoteChar: '', wrapStart: '', wrapEnd: '' },
+      'custom': null
+    };
+
+    const examples = {
+      fruit: 'apple\nbanana\ncherry\ndragonfruit',
+      ids: '1001\n1002\n1003\n1004',
+      emails: 'hello@example.com\nops@example.com\nsupport@example.com'
+    };
+
+    const state = {
+      reversed: false,
+      activePreset: 'sql-in'
+    };
+
+    const input = document.getElementById('input');
+    const output = document.getElementById('output');
+    const delimiter = document.getElementById('delimiter');
+    const quoteChar = document.getElementById('quoteChar');
+    const wrapStart = document.getElementById('wrapStart');
+    const wrapEnd = document.getElementById('wrapEnd');
+    const trimLines = document.getElementById('trimLines');
+    const skipEmpty = document.getElementById('skipEmpty');
+
+    function parseEscapes(value) {
+      return value.replace(/\\t/g, '\t').replace(/\\n/g, '\n');
+    }
+
+    function markActivePreset(key) {
+      state.activePreset = key;
+      document.querySelectorAll('[data-preset]').forEach(function (button) {
+        button.classList.toggle('active', button.dataset.preset === key);
+      });
+    }
+
+    function applyPreset(key) {
+      const preset = presets[key];
+      markActivePreset(key);
+      if (!preset) return;
+      delimiter.value = preset.delimiter;
+      quoteChar.value = preset.quoteChar;
+      wrapStart.value = preset.wrapStart;
+      wrapEnd.value = preset.wrapEnd;
+      convert();
+    }
+
+    function markCustomIfNeeded() {
+      const active = presets[state.activePreset];
+      if (!active) return;
+      const current = {
+        delimiter: delimiter.value,
+        quoteChar: quoteChar.value,
+        wrapStart: wrapStart.value,
+        wrapEnd: wrapEnd.value
+      };
+      if (
+        current.delimiter !== active.delimiter ||
+        current.quoteChar !== active.quoteChar ||
+        current.wrapStart !== active.wrapStart ||
+        current.wrapEnd !== active.wrapEnd
+      ) {
+        markActivePreset('custom');
+      }
+    }
+
+    function updateStats(items, chars) {
+      document.getElementById('modeStat').textContent = state.reversed ? 'Reverse' : 'Forward';
+      document.getElementById('itemStat').textContent = String(items);
+      document.getElementById('charStat').textContent = String(chars);
+    }
+
+    function convertForward(raw) {
+      let lines = raw.split('\n');
+      if (trimLines.checked) lines = lines.map(function (line) { return line.trim(); });
+      if (skipEmpty.checked) lines = lines.filter(function (line) { return line.length > 0; });
+      const result = wrapStart.value + lines.map(function (line) {
+        return quoteChar.value + line + quoteChar.value;
+      }).join(parseEscapes(delimiter.value)) + wrapEnd.value;
+      output.value = result;
+      updateStats(lines.length, result.length);
+    }
+
+    function convertReverse(raw) {
+      let value = raw.trim();
+      if (wrapStart.value && wrapEnd.value && value.startsWith(wrapStart.value) && value.endsWith(wrapEnd.value)) {
+        value = value.slice(wrapStart.value.length, value.length - wrapEnd.value.length);
+      }
+      let parts = value ? value.split(parseEscapes(delimiter.value)) : [];
+      parts = parts.map(function (part) {
+        let next = trimLines.checked ? part.trim() : part;
+        if (quoteChar.value && next.startsWith(quoteChar.value) && next.endsWith(quoteChar.value)) {
+          next = next.slice(quoteChar.value.length, next.length - quoteChar.value.length);
+        }
+        return next;
+      });
+      if (skipEmpty.checked) parts = parts.filter(function (part) { return part.length > 0; });
+      const result = parts.join('\n');
+      output.value = result;
+      updateStats(parts.length, result.length);
+    }
+
+    function convert() {
+      const raw = input.value;
+      if (!raw.trim()) {
+        output.value = '';
+        updateStats(0, 0);
+        return;
+      }
+      if (state.reversed) {
+        convertReverse(raw);
+      } else {
+        convertForward(raw);
+      }
+      DevFormat.trackEvent('tool_convert', {
+        tool: 'multiline',
+        mode: state.reversed ? 'reverse' : 'forward',
+        preset: state.activePreset
+      });
+    }
+
+    document.querySelectorAll('[data-direction]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        state.reversed = button.dataset.direction === 'reverse';
+        document.querySelectorAll('[data-direction]').forEach(function (node) {
+          node.classList.toggle('active', node === button);
+        });
+        document.getElementById('inputHint').textContent = state.reversed ? 'Paste a joined string' : 'Paste multiline text';
+        document.getElementById('outputHint').textContent = state.reversed ? 'Rows split by delimiter' : 'Copy ready result';
+        input.value = output.value;
+        output.value = '';
+        convert();
+      });
+    });
+
+    document.querySelectorAll('[data-preset]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        applyPreset(button.dataset.preset);
+        DevFormat.trackEvent('preset_select', { tool: 'multiline', preset: button.dataset.preset });
+      });
+    });
+
+    [delimiter, quoteChar, wrapStart, wrapEnd].forEach(function (field) {
+      field.addEventListener('input', function () {
+        markCustomIfNeeded();
+        convert();
+      });
+    });
+
+    [trimLines, skipEmpty, input].forEach(function (field) {
+      field.addEventListener(field === input ? 'input' : 'change', convert);
+    });
+
+    document.getElementById('copyButton').addEventListener('click', function () {
+      DevFormat.copyText(output.value, 'Output copied.');
+    });
+
+    document.getElementById('clearButton').addEventListener('click', function () {
+      input.value = '';
+      output.value = '';
+      updateStats(0, 0);
+      input.focus();
+    });
+
+    DevFormat.wireExampleButtons(function (key) {
+      input.value = examples[key] || '';
+      convert();
+    });
+
+    input.value = examples.fruit;
+    applyPreset('sql-in');
+  </script>
+</body>
+</html>

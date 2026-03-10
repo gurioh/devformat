@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Split / Join Text | DevFormat</title>
+  <meta name="description" content="Split a delimited string into lines or join lines into comma, pipe, tab, space, or newline-separated output.">
+  <meta name="keywords" content="split text online, join text online, comma separated list tool, pipe separated list, tab delimited text converter">
+  <meta property="og:title" content="Split / Join Text | DevFormat">
+  <meta property="og:description" content="Move between line-based text and delimited strings with preset separators.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/split-join/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/split-join/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Split / Join Text",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "url": "https://gurioh.github.io/devformat/split-join/",
+    "description": "Split a delimited string into lines or join lines using common separators.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body data-page="split-join">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark">DF</div>
+        <div class="brand-copy">
+          <strong>DevFormat</strong>
+          <span>Preset-driven text tools for developers</span>
+        </div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero compact">
+      <span class="hero-kicker">Text Transform</span>
+      <h1>Split a delimited string or join lines into the separator you need.</h1>
+      <p>Use this tool when the values are already clean and you only need to reshape the delimiter. It covers comma, pipe, tab, space, newline, and custom separators, with reverse mode for quick cleanup.</p>
+      <div class="chip-row">
+        <span class="chip">Comma</span>
+        <span class="chip">Pipe</span>
+        <span class="chip">Tab</span>
+        <span class="chip">Custom separator</span>
+      </div>
+    </section>
+
+    <section class="tool-shell">
+      <div class="tool-meta">
+        This page is lighter than the multiline preset tool. It focuses on delimiter changes without quoting or wrapper rules.
+      </div>
+      <div class="toolbar">
+        <div class="toolbar-row segmented">
+          <button class="active" type="button" data-mode="join">Join lines</button>
+          <button type="button" data-mode="split">Split string</button>
+        </div>
+        <div class="toolbar-row" id="presetBar">
+          <button class="preset-chip active" type="button" data-preset="comma">Comma</button>
+          <button class="preset-chip" type="button" data-preset="pipe">Pipe</button>
+          <button class="preset-chip" type="button" data-preset="tab">Tab</button>
+          <button class="preset-chip" type="button" data-preset="space">Space</button>
+          <button class="preset-chip" type="button" data-preset="newline">Newline</button>
+          <button class="preset-chip" type="button" data-preset="custom">Custom</button>
+        </div>
+        <div class="toolbar-grid">
+          <div class="field">
+            <label for="separator">Separator</label>
+            <input class="input" id="separator" value=", ">
+          </div>
+        </div>
+        <div class="toolbar-row">
+          <label class="chip"><input id="trimValues" type="checkbox" checked> Trim values</label>
+          <label class="chip"><input id="skipEmpty" type="checkbox" checked> Skip empty values</label>
+        </div>
+        <div class="example-actions">
+          <button type="button" data-example="names">Team names</button>
+          <button type="button" data-example="pipes">Pipe separated</button>
+          <button type="button" data-example="tabs">Tab separated</button>
+        </div>
+      </div>
+
+      <div class="tool-panels">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <strong>Input</strong>
+              <span id="inputHint">Multiline text</span>
+            </div>
+            <button class="copy-button" type="button" id="clearButton">Clear</button>
+          </div>
+          <textarea class="textarea" id="input" placeholder="apple&#10;banana&#10;cherry"></textarea>
+        </section>
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <strong>Output</strong>
+              <span id="outputHint">Joined string</span>
+            </div>
+            <button class="copy-button" type="button" id="copyButton">Copy</button>
+          </div>
+          <textarea class="textarea" id="output" readonly></textarea>
+        </section>
+      </div>
+
+      <div class="stat-grid">
+        <article class="stat-card"><span>Mode</span><strong id="modeStat">Join</strong></article>
+        <article class="stat-card"><span>Values</span><strong id="itemStat">0</strong></article>
+        <article class="stat-card"><span>Characters</span><strong id="charStat">0</strong></article>
+      </div>
+    </section>
+
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>Best for clean values</h2>
+        <p>If you do not need quote characters or wrappers, this page is faster than the multiline formatter. Use it for delimiter-only changes like CSV cleanup, pipe-separated logs, or tab-delimited exports.</p>
+      </article>
+      <article class="content-card">
+        <h2>Related tools</h2>
+        <ul>
+          <li>Use <a href="../multiline/" class="text-accent">Multiline</a> when you need quotes and wrappers too.</li>
+          <li>Use <a href="../quote/" class="text-accent">Quote / Unquote</a> when only the quote character is changing.</li>
+          <li>Use <a href="../json/" class="text-accent">JSON</a> when the text becomes structured payload data.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>How is this different from the multiline formatter?</h3>
+          <p>This page only changes delimiters. It does not add quote characters or wrapper tokens like brackets or parentheses.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can I split pipe-separated or tab-separated strings?</h3>
+          <p>Yes. Use the matching preset or type a custom separator. Escape sequences like <code>\t</code> and <code>\n</code> are supported.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Will it trim extra spaces?</h3>
+          <p>Yes. Keep the trim option enabled and the tool will normalize values before joining or splitting them.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <p>This page handles delimiter changes. For wrapping and quoting, move to the multiline or quote tools.</p>
+      <nav>
+        <a href="../multiline/">Multiline</a>
+        <a href="../quote/">Quote</a>
+        <a href="../json/">JSON</a>
+      </nav>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+  <script>
+    const presets = {
+      comma: ', ',
+      pipe: ' | ',
+      tab: '\\t',
+      space: ' ',
+      newline: '\\n',
+      custom: null
+    };
+
+    const examples = {
+      names: 'alpha\nbeta\ngamma\ndelta',
+      pipes: 'alpha | beta | gamma | delta',
+      tabs: 'alpha\tbeta\tgamma\tdelta'
+    };
+
+    const input = document.getElementById('input');
+    const output = document.getElementById('output');
+    const separator = document.getElementById('separator');
+    const trimValues = document.getElementById('trimValues');
+    const skipEmpty = document.getElementById('skipEmpty');
+    let mode = 'join';
+    let activePreset = 'comma';
+
+    function parseEscapes(value) {
+      return value.replace(/\\t/g, '\t').replace(/\\n/g, '\n');
+    }
+
+    function markPreset(key) {
+      activePreset = key;
+      document.querySelectorAll('[data-preset]').forEach(function (button) {
+        button.classList.toggle('active', button.dataset.preset === key);
+      });
+    }
+
+    function applyPreset(key) {
+      markPreset(key);
+      if (presets[key] !== null) {
+        separator.value = presets[key];
+      }
+      convert();
+    }
+
+    function markCustomIfNeeded() {
+      if (presets[activePreset] !== null && separator.value !== presets[activePreset]) {
+        markPreset('custom');
+      }
+    }
+
+    function normalize(parts) {
+      let values = parts;
+      if (trimValues.checked) values = values.map(function (part) { return part.trim(); });
+      if (skipEmpty.checked) values = values.filter(function (part) { return part.length > 0; });
+      return values;
+    }
+
+    function updateStats(items, chars) {
+      document.getElementById('modeStat').textContent = mode === 'join' ? 'Join' : 'Split';
+      document.getElementById('itemStat').textContent = String(items);
+      document.getElementById('charStat').textContent = String(chars);
+    }
+
+    function convert() {
+      const raw = input.value;
+      if (!raw.trim()) {
+        output.value = '';
+        updateStats(0, 0);
+        return;
+      }
+      const delimiter = parseEscapes(separator.value);
+      let values;
+      let result;
+      if (mode === 'join') {
+        values = normalize(raw.split('\n'));
+        result = values.join(delimiter);
+      } else {
+        values = normalize(raw.split(delimiter));
+        result = values.join('\n');
+      }
+      output.value = result;
+      updateStats(values.length, result.length);
+      DevFormat.trackEvent('tool_convert', { tool: 'split_join', mode: mode, preset: activePreset });
+    }
+
+    document.querySelectorAll('[data-mode]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        mode = button.dataset.mode;
+        document.querySelectorAll('[data-mode]').forEach(function (node) {
+          node.classList.toggle('active', node === button);
+        });
+        document.getElementById('inputHint').textContent = mode === 'join' ? 'Multiline text' : 'Delimited string';
+        document.getElementById('outputHint').textContent = mode === 'join' ? 'Joined string' : 'One value per line';
+        input.value = output.value;
+        output.value = '';
+        convert();
+      });
+    });
+
+    document.querySelectorAll('[data-preset]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        applyPreset(button.dataset.preset);
+        DevFormat.trackEvent('preset_select', { tool: 'split_join', preset: button.dataset.preset });
+      });
+    });
+
+    separator.addEventListener('input', function () {
+      markCustomIfNeeded();
+      convert();
+    });
+
+    [trimValues, skipEmpty].forEach(function (field) {
+      field.addEventListener('change', convert);
+    });
+    input.addEventListener('input', convert);
+
+    document.getElementById('copyButton').addEventListener('click', function () {
+      DevFormat.copyText(output.value, 'Output copied.');
+    });
+
+    document.getElementById('clearButton').addEventListener('click', function () {
+      input.value = '';
+      output.value = '';
+      updateStats(0, 0);
+      input.focus();
+    });
+
+    DevFormat.wireExampleButtons(function (key) {
+      input.value = examples[key] || '';
+      if (key === 'pipes') {
+        mode = 'split';
+        document.querySelectorAll('[data-mode]').forEach(function (node) {
+          node.classList.toggle('active', node.dataset.mode === 'split');
+        });
+        applyPreset('pipe');
+      } else if (key === 'tabs') {
+        mode = 'split';
+        document.querySelectorAll('[data-mode]').forEach(function (node) {
+          node.classList.toggle('active', node.dataset.mode === 'split');
+        });
+        applyPreset('tab');
+      } else {
+        mode = 'join';
+        document.querySelectorAll('[data-mode]').forEach(function (node) {
+          node.classList.toggle('active', node.dataset.mode === 'join');
+        });
+        applyPreset('comma');
+      }
+      convert();
+    });
+
+    input.value = examples.names;
+    applyPreset('comma');
+  </script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base64 Encode / Decode | DevFormat</title>
+  <meta name="description" content="Encode and decode UTF-8 text in Base64 directly in the browser. Useful for payload inspection, debugging, and quick conversions.">
+  <meta name="keywords" content="base64 encode online, base64 decode online, utf8 base64 converter, base64 text tool">
+  <meta property="og:title" content="Base64 Encode / Decode | DevFormat">
+  <meta property="og:description" content="Encode and decode Base64 safely in the browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/base64/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/base64/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Base64 Encode / Decode",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "url": "https://gurioh.github.io/devformat/base64/",
+    "description": "Encode and decode Base64 safely in the browser with UTF-8 support.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body data-page="base64">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark">DF</div>
+        <div class="brand-copy">
+          <strong>DevFormat</strong>
+          <span>Preset-driven text tools for developers</span>
+        </div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero compact">
+      <span class="hero-kicker">Encoding</span>
+      <h1>Base64 encode and decode UTF-8 text without leaving the browser.</h1>
+      <p>Inspect payloads, test auth headers, or decode copied tokens fast. The converter handles UTF-8 text safely so you can work with more than simple ASCII strings.</p>
+      <div class="chip-row">
+        <span class="chip">UTF-8 safe</span>
+        <span class="chip">Encode / decode</span>
+        <span class="chip">Local processing</span>
+      </div>
+    </section>
+
+    <section class="tool-shell">
+      <div class="tool-meta">
+        Switch direction depending on whether you start with plain text or Base64. The page uses the browser only and does not submit input to a backend service.
+      </div>
+      <div class="toolbar">
+        <div class="toolbar-row segmented">
+          <button class="active" type="button" data-mode="encode">Encode to Base64</button>
+          <button type="button" data-mode="decode">Decode from Base64</button>
+        </div>
+        <div class="example-actions">
+          <button type="button" data-example="json">JSON payload</button>
+          <button type="button" data-example="url">URL value</button>
+          <button type="button" data-example="base64">Encoded sample</button>
+        </div>
+      </div>
+      <div class="tool-panels">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <strong>Input</strong>
+              <span id="inputHint">Plain text</span>
+            </div>
+            <button class="copy-button" type="button" id="clearButton">Clear</button>
+          </div>
+          <textarea class="textarea" id="input"></textarea>
+        </section>
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <strong>Output</strong>
+              <span>Converted result</span>
+            </div>
+            <button class="copy-button" type="button" id="copyButton">Copy</button>
+          </div>
+          <textarea class="textarea" id="output" readonly></textarea>
+        </section>
+      </div>
+      <div class="stat-grid">
+        <article class="stat-card"><span>Status</span><strong id="statusStat">Ready</strong></article>
+        <article class="stat-card"><span>Input chars</span><strong id="inputStat">0</strong></article>
+        <article class="stat-card"><span>Output chars</span><strong id="outputStat">0</strong></article>
+      </div>
+    </section>
+
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>Does it support UTF-8 text?</h3>
+          <p>Yes. The page uses <code>TextEncoder</code> and <code>TextDecoder</code> so multi-byte characters survive the encode and decode cycle.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can I decode a copied token safely?</h3>
+          <p>Yes, as long as the input is valid Base64. Invalid strings are caught and shown as an error instead of crashing the page.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Why use this instead of a CLI?</h3>
+          <p>It is faster for quick inspection when you are already in the browser and only need to convert a small payload or header value.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <p>Useful alongside URL encoding and JSON formatting when debugging payloads end-to-end.</p>
+      <nav>
+        <a href="../url-encode/">URL Encode</a>
+        <a href="../json/">JSON</a>
+      </nav>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+  <script>
+    const input = document.getElementById('input');
+    const output = document.getElementById('output');
+    let mode = 'encode';
+
+    const examples = {
+      json: '{"user":"devformat","roles":["admin","editor"]}',
+      url: 'https://example.com/path?q=hello world&lang=en',
+      base64: 'eyJ1c2VyIjoiZGV2Zm9ybWF0Iiwicm9sZXMiOlsiYWRtaW4iLCJlZGl0b3IiXX0='
+    };
+
+    function utf8ToBase64(value) {
+      const bytes = new TextEncoder().encode(value);
+      let binary = '';
+      bytes.forEach(function (byte) { binary += String.fromCharCode(byte); });
+      return btoa(binary);
+    }
+
+    function base64ToUtf8(value) {
+      const binary = atob(value);
+      const bytes = Uint8Array.from(binary, function (char) { return char.charCodeAt(0); });
+      return new TextDecoder().decode(bytes);
+    }
+
+    function updateStats(status) {
+      document.getElementById('statusStat').textContent = status;
+      document.getElementById('inputStat').textContent = String(input.value.length);
+      document.getElementById('outputStat').textContent = String(output.value.length);
+    }
+
+    function convert() {
+      if (!input.value) {
+        output.value = '';
+        updateStats('Ready');
+        return;
+      }
+
+      try {
+        output.value = mode === 'encode' ? utf8ToBase64(input.value) : base64ToUtf8(input.value.trim());
+        updateStats('Success');
+        DevFormat.trackEvent('tool_convert', { tool: 'base64', mode: mode });
+      } catch (error) {
+        output.value = 'Invalid input for ' + mode + '.';
+        updateStats('Error');
+      }
+    }
+
+    document.querySelectorAll('[data-mode]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        mode = button.dataset.mode;
+        document.querySelectorAll('[data-mode]').forEach(function (node) {
+          node.classList.toggle('active', node === button);
+        });
+        document.getElementById('inputHint').textContent = mode === 'encode' ? 'Plain text' : 'Base64 string';
+        input.value = output.value;
+        output.value = '';
+        convert();
+      });
+    });
+
+    input.addEventListener('input', convert);
+    document.getElementById('copyButton').addEventListener('click', function () {
+      DevFormat.copyText(output.value, 'Base64 result copied.');
+    });
+    document.getElementById('clearButton').addEventListener('click', function () {
+      input.value = '';
+      output.value = '';
+      updateStats('Ready');
+      input.focus();
+    });
+
+    DevFormat.wireExampleButtons(function (key) {
+      input.value = examples[key] || '';
+      if (key === 'base64') {
+        mode = 'decode';
+        document.querySelectorAll('[data-mode]').forEach(function (node) {
+          node.classList.toggle('active', node.dataset.mode === 'decode');
+        });
+      } else {
+        mode = 'encode';
+        document.querySelectorAll('[data-mode]').forEach(function (node) {
+          node.classList.toggle('active', node.dataset.mode === 'encode');
+        });
+      }
+      convert();
+    });
+
+    input.value = examples.json;
+    convert();
+  </script>
+</body>
+</html>
