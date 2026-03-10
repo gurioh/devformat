@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escape String for JSON Online | DevFormat</title>
+  <meta name="description" content="Escape a string for JSON, JavaScript, or regex use. Unescape common sequences back into raw text directly in the browser.">
+  <meta name="keywords" content="escape string for json online, unescape string online, javascript string escape, regex escape tool">
+  <meta property="og:title" content="Escape String for JSON Online | DevFormat">
+  <meta property="og:description" content="Escape or unescape raw text for JSON strings, JavaScript strings, or regex-safe output.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/escape/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/escape/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Escape String for JSON Online",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "url": "https://gurioh.github.io/devformat/escape/",
+    "description": "Escape or unescape strings for JSON, JavaScript, and regex-safe output.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "DevFormat Tools", "item": "https://gurioh.github.io/devformat/"},
+      {"@type": "ListItem", "position": 2, "name": "Escape String for JSON", "item": "https://gurioh.github.io/devformat/escape/"}
+    ]
+  }
+  </script>
+</head>
+<body data-page="escape">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
+        <div class="brand-copy">
+          <strong>DevFormat</strong>
+          <span>Preset-driven text tools for developers</span>
+        </div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <span aria-current="page">Escape String for JSON</span>
+    </nav>
+
+    <section class="hero compact">
+      <span class="hero-kicker">String Format</span>
+      <h1>Escape a string for JSON, JavaScript, or regex-safe output.</h1>
+      <p>Use this page when raw text needs newline escapes, quote escaping, slash escaping, or regex-safe output before it moves into code, config, or payload fields.</p>
+      <div class="chip-row">
+        <span class="chip">Escape string for JSON</span>
+        <span class="chip">JavaScript string escapes</span>
+        <span class="chip">Regex-safe output</span>
+      </div>
+    </section>
+
+    <section class="tool-shell">
+      <div class="tool-meta">
+        Pick an escape preset, then switch between escape and unescape depending on whether you start with raw text or an already escaped value.
+      </div>
+      <div class="toolbar">
+        <div class="toolbar-row segmented">
+          <button class="active" type="button" data-mode="escape">Escape text</button>
+          <button type="button" data-mode="unescape">Unescape text</button>
+        </div>
+        <div class="toolbar-row" id="presetBar">
+          <button class="preset-chip active" type="button" data-preset="json">JSON string</button>
+          <button class="preset-chip" type="button" data-preset="javascript">JavaScript string</button>
+          <button class="preset-chip" type="button" data-preset="regex">Regex safe</button>
+        </div>
+        <div class="example-actions">
+          <button type="button" data-example="json">JSON payload text</button>
+          <button type="button" data-example="javascript">JavaScript string</button>
+          <button type="button" data-example="regex">Regex characters</button>
+        </div>
+      </div>
+
+      <div class="tool-panels">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <strong>Input</strong>
+              <span id="inputHint">Raw string</span>
+            </div>
+            <button class="copy-button" type="button" id="clearButton">Clear</button>
+          </div>
+          <textarea class="textarea" id="input"></textarea>
+        </section>
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <strong>Output</strong>
+              <span>Escaped result</span>
+            </div>
+            <button class="copy-button" type="button" id="copyButton">Copy</button>
+          </div>
+          <textarea class="textarea" id="output" readonly></textarea>
+        </section>
+      </div>
+
+      <div class="stat-grid">
+        <article class="stat-card"><span>Mode</span><strong id="modeStat">Escape</strong></article>
+        <article class="stat-card"><span>Preset</span><strong id="presetStat">JSON</strong></article>
+        <article class="stat-card"><span>Output chars</span><strong id="charStat">0</strong></article>
+      </div>
+    </section>
+
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>Common use cases</h2>
+        <ul>
+          <li>Escape a raw message before storing it as a JSON string value</li>
+          <li>Prepare text for a JavaScript literal without manual slash edits</li>
+          <li>Make a copied string safe for regex matching</li>
+        </ul>
+      </article>
+      <article class="content-card">
+        <h2>Related workflows</h2>
+        <p>Escaping often comes right before URL encoding, JSON formatting, or Base64 conversion when payloads pass through multiple layers.</p>
+      </article>
+    </section>
+
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>What does JSON string escaping do?</h3>
+          <p>It converts quotes, backslashes, tabs, carriage returns, and newlines into escape sequences so the value can be embedded safely inside a JSON string.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can this reverse common escape sequences?</h3>
+          <p>Yes. Unescape mode handles common sequences such as <code>\n</code>, <code>\t</code>, <code>\r</code>, quotes, and backslashes.</p>
+        </article>
+        <article class="faq-item">
+          <h3>When should I use regex-safe mode?</h3>
+          <p>Use it when you need to escape regex metacharacters before matching user-provided text inside a pattern.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <p>Escaping usually leads to URL encoding, JSON formatting, or payload inspection in the next step.</p>
+      <nav>
+        <a href="../url-encode/">URL Encode</a>
+        <a href="../json/">JSON</a>
+        <a href="../base64/">Base64</a>
+        <a href="../quote/">Quote</a>
+      </nav>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+  <script>
+    const input = document.getElementById('input');
+    const output = document.getElementById('output');
+    let mode = 'escape';
+    let preset = 'json';
+
+    const examples = {
+      json: 'Line one\nLine "two" with a tab\tand slash \\',
+      javascript: "const label = 'hello world';",
+      regex: 'price+(usd)? [2026]'
+    };
+
+    function escapeJson(value) {
+      return value
+        .replace(/\\/g, '\\\\')
+        .replace(/"/g, '\\"')
+        .replace(/\u0008/g, '\\b')
+        .replace(/\f/g, '\\f')
+        .replace(/\n/g, '\\n')
+        .replace(/\r/g, '\\r')
+        .replace(/\t/g, '\\t');
+    }
+
+    function escapeJavascript(value) {
+      return value
+        .replace(/\\/g, '\\\\')
+        .replace(/'/g, "\\'")
+        .replace(/"/g, '\\"')
+        .replace(/\u0008/g, '\\b')
+        .replace(/\f/g, '\\f')
+        .replace(/\n/g, '\\n')
+        .replace(/\r/g, '\\r')
+        .replace(/\t/g, '\\t');
+    }
+
+    function escapeRegex(value) {
+      return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    function unescapeCommon(value) {
+      return value
+        .replace(/\\n/g, '\n')
+        .replace(/\\r/g, '\r')
+        .replace(/\\t/g, '\t')
+        .replace(/\\f/g, '\f')
+        .replace(/\\b/g, '\b')
+        .replace(/\\"/g, '"')
+        .replace(/\\'/g, "'")
+        .replace(/\\\\/g, '\\');
+    }
+
+    function unescapeRegex(value) {
+      return value.replace(/\\([.*+?^${}()|[\]\\])/g, '$1');
+    }
+
+    function updateStats() {
+      document.getElementById('modeStat').textContent = mode === 'escape' ? 'Escape' : 'Unescape';
+      document.getElementById('presetStat').textContent = preset.charAt(0).toUpperCase() + preset.slice(1);
+      document.getElementById('charStat').textContent = String(output.value.length);
+    }
+
+    function convert() {
+      if (!input.value) {
+        output.value = '';
+        updateStats();
+        return;
+      }
+
+      if (mode === 'escape') {
+        if (preset === 'json') {
+          output.value = escapeJson(input.value);
+        } else if (preset === 'javascript') {
+          output.value = escapeJavascript(input.value);
+        } else {
+          output.value = escapeRegex(input.value);
+        }
+      } else {
+        if (preset === 'regex') {
+          output.value = unescapeRegex(input.value);
+        } else {
+          output.value = unescapeCommon(input.value);
+        }
+      }
+
+      updateStats();
+      DevFormat.trackEvent('tool_convert', { tool: 'escape', mode: mode, preset: preset });
+    }
+
+    document.querySelectorAll('[data-mode]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        mode = button.dataset.mode;
+        document.querySelectorAll('[data-mode]').forEach(function (node) {
+          node.classList.toggle('active', node === button);
+        });
+        document.getElementById('inputHint').textContent = mode === 'escape' ? 'Raw string' : 'Escaped string';
+        input.value = output.value;
+        output.value = '';
+        convert();
+      });
+    });
+
+    document.querySelectorAll('[data-preset]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        preset = button.dataset.preset;
+        document.querySelectorAll('[data-preset]').forEach(function (node) {
+          node.classList.toggle('active', node === button);
+        });
+        convert();
+        DevFormat.trackEvent('preset_select', { tool: 'escape', preset: preset });
+      });
+    });
+
+    input.addEventListener('input', convert);
+    document.getElementById('copyButton').addEventListener('click', function () {
+      DevFormat.copyText(output.value, 'Escaped output copied.');
+    });
+    document.getElementById('clearButton').addEventListener('click', function () {
+      input.value = '';
+      output.value = '';
+      updateStats();
+      input.focus();
+    });
+
+    DevFormat.wireExampleButtons(function (key) {
+      input.value = examples[key] || '';
+      convert();
+    });
+
+    input.value = examples.json;
+    convert();
+  </script>
+</body>
+</html>

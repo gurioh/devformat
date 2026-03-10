@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Split / Join Text | DevFormat</title>
-  <meta name="description" content="Split a delimited string into lines or join lines into comma, pipe, tab, space, or newline-separated output.">
-  <meta name="keywords" content="split text online, join text online, comma separated list tool, pipe separated list, tab delimited text converter">
-  <meta property="og:title" content="Split / Join Text | DevFormat">
-  <meta property="og:description" content="Move between line-based text and delimited strings with preset separators.">
+  <title>Newline to Comma Separated List | DevFormat</title>
+  <meta name="description" content="Join newline text into comma-separated, pipe-separated, tab-delimited, or custom output. Split delimited strings back into lines.">
+  <meta name="keywords" content="newline to comma separated list, split text online, join text online, comma separated list tool, pipe separated list">
+  <meta property="og:title" content="Newline to Comma Separated List | DevFormat">
+  <meta property="og:description" content="Turn newline text into comma-separated, pipe-separated, tab-delimited, or custom output.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gurioh.github.io/devformat/split-join/">
   <link rel="canonical" href="https://gurioh.github.io/devformat/split-join/">
@@ -17,12 +17,22 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Split / Join Text",
+    "name": "Newline to Comma Separated List",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
     "url": "https://gurioh.github.io/devformat/split-join/",
-    "description": "Split a delimited string into lines or join lines using common separators.",
+    "description": "Join newline text into comma-separated, pipe-separated, tab-delimited, or custom output and split it back into rows.",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "DevFormat Tools", "item": "https://gurioh.github.io/devformat/"},
+      {"@type": "ListItem", "position": 2, "name": "Newline to Comma Separated List", "item": "https://gurioh.github.io/devformat/split-join/"}
+    ]
   }
   </script>
 </head>
@@ -41,17 +51,24 @@
         <a data-page-link="multiline" href="../multiline/">Multiline</a>
         <a data-page-link="quote" href="../quote/">Quote</a>
         <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
         <a data-page-link="base64" href="../base64/">Base64</a>
         <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
         <a data-page-link="json" href="../json/">JSON</a>
       </nav>
     </div>
   </header>
 
   <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <span aria-current="page">Newline to Comma Separated List</span>
+    </nav>
     <section class="hero compact">
       <span class="hero-kicker">Text Transform</span>
-      <h1>Split a delimited string or join lines into the separator you need.</h1>
+      <h1>Turn newline text into a comma-separated list or split it back.</h1>
       <p>Use this tool when the values are already clean and you only need to reshape the delimiter. It covers comma, pipe, tab, space, newline, and custom separators, with reverse mode for quick cleanup.</p>
       <div class="chip-row">
         <span class="chip">Comma</span>
@@ -163,6 +180,7 @@
       <nav>
         <a href="../multiline/">Multiline</a>
         <a href="../quote/">Quote</a>
+        <a href="../slugify/">Slugify</a>
         <a href="../json/">JSON</a>
       </nav>
     </footer>

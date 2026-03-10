@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>URL Encode / Decode | DevFormat</title>
-  <meta name="description" content="Encode query parameters and decode URL-encoded text in the browser. Useful for API debugging, query strings, and payload cleanup.">
-  <meta name="keywords" content="url encode online, url decode online, encode query parameter, decode query string">
-  <meta property="og:title" content="URL Encode / Decode | DevFormat">
-  <meta property="og:description" content="Encode or decode URL-safe text directly in the browser.">
+  <title>URL Encode Query Parameter Online | DevFormat</title>
+  <meta name="description" content="URL encode a query parameter online or decode URL-encoded text in the browser for request debugging.">
+  <meta name="keywords" content="url encode query parameter online, url encode online, url decode online, encode query parameter, decode query string">
+  <meta property="og:title" content="URL Encode Query Parameter Online | DevFormat">
+  <meta property="og:description" content="Encode query parameter values and decode URL-encoded text directly in the browser.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gurioh.github.io/devformat/url-encode/">
   <link rel="canonical" href="https://gurioh.github.io/devformat/url-encode/">
@@ -17,12 +17,22 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "URL Encode / Decode",
+    "name": "URL Encode Query Parameter Online",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
     "url": "https://gurioh.github.io/devformat/url-encode/",
-    "description": "Encode query parameters and decode URL-encoded strings directly in the browser.",
+    "description": "Encode query parameter values and decode URL-encoded text directly in the browser.",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "DevFormat Tools", "item": "https://gurioh.github.io/devformat/"},
+      {"@type": "ListItem", "position": 2, "name": "URL Encode Query Parameter Online", "item": "https://gurioh.github.io/devformat/url-encode/"}
+    ]
   }
   </script>
 </head>
@@ -41,17 +51,24 @@
         <a data-page-link="multiline" href="../multiline/">Multiline</a>
         <a data-page-link="quote" href="../quote/">Quote</a>
         <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
         <a data-page-link="base64" href="../base64/">Base64</a>
         <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
         <a data-page-link="json" href="../json/">JSON</a>
       </nav>
     </div>
   </header>
 
   <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <span aria-current="page">URL Encode Query Parameter Online</span>
+    </nav>
     <section class="hero compact">
       <span class="hero-kicker">Encoding</span>
-      <h1>URL encode query parameters and decode broken payloads.</h1>
+      <h1>Encode a query parameter or decode URL-encoded text.</h1>
       <p>Paste the part of a URL that needs cleanup, then switch direction depending on whether you are preparing a request or inspecting an encoded value you already received.</p>
       <div class="chip-row">
         <span class="chip">Query parameter safe</span>
@@ -125,6 +142,7 @@
     <footer class="page-footer">
       <p>URL encoding pairs naturally with JSON formatting and Base64 inspection when you are debugging requests across layers.</p>
       <nav>
+        <a href="../escape/">Escape</a>
         <a href="../base64/">Base64</a>
         <a href="../json/">JSON</a>
       </nav>

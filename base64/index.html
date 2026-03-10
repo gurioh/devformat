@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Base64 Encode / Decode | DevFormat</title>
-  <meta name="description" content="Encode and decode UTF-8 text in Base64 directly in the browser. Useful for payload inspection, debugging, and quick conversions.">
-  <meta name="keywords" content="base64 encode online, base64 decode online, utf8 base64 converter, base64 text tool">
-  <meta property="og:title" content="Base64 Encode / Decode | DevFormat">
-  <meta property="og:description" content="Encode and decode Base64 safely in the browser.">
+  <title>Base64 Decode String Online | DevFormat</title>
+  <meta name="description" content="Decode a Base64 string online or encode UTF-8 text in the browser for payload inspection and debugging.">
+  <meta name="keywords" content="base64 decode string online, base64 encode online, utf8 base64 converter, base64 text tool">
+  <meta property="og:title" content="Base64 Decode String Online | DevFormat">
+  <meta property="og:description" content="Decode Base64 strings and encode UTF-8 text directly in the browser.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gurioh.github.io/devformat/base64/">
   <link rel="canonical" href="https://gurioh.github.io/devformat/base64/">
@@ -17,12 +17,22 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Base64 Encode / Decode",
+    "name": "Base64 Decode String Online",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
     "url": "https://gurioh.github.io/devformat/base64/",
-    "description": "Encode and decode Base64 safely in the browser with UTF-8 support.",
+    "description": "Decode Base64 strings and encode UTF-8 text directly in the browser for payload inspection.",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "DevFormat Tools", "item": "https://gurioh.github.io/devformat/"},
+      {"@type": "ListItem", "position": 2, "name": "Base64 Decode String Online", "item": "https://gurioh.github.io/devformat/base64/"}
+    ]
   }
   </script>
 </head>
@@ -41,17 +51,24 @@
         <a data-page-link="multiline" href="../multiline/">Multiline</a>
         <a data-page-link="quote" href="../quote/">Quote</a>
         <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
         <a data-page-link="base64" href="../base64/">Base64</a>
         <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
         <a data-page-link="json" href="../json/">JSON</a>
       </nav>
     </div>
   </header>
 
   <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <span aria-current="page">Base64 Decode String Online</span>
+    </nav>
     <section class="hero compact">
       <span class="hero-kicker">Encoding</span>
-      <h1>Base64 encode and decode UTF-8 text without leaving the browser.</h1>
+      <h1>Decode a Base64 string online or encode text back.</h1>
       <p>Inspect payloads, test auth headers, or decode copied tokens fast. The converter handles UTF-8 text safely so you can work with more than simple ASCII strings.</p>
       <div class="chip-row">
         <span class="chip">UTF-8 safe</span>
@@ -125,6 +142,7 @@
     <footer class="page-footer">
       <p>Useful alongside URL encoding and JSON formatting when debugging payloads end-to-end.</p>
       <nav>
+        <a href="../escape/">Escape</a>
         <a href="../url-encode/">URL Encode</a>
         <a href="../json/">JSON</a>
       </nav>

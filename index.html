@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DevFormat | Preset-Driven Text Tools for Developers</title>
-  <meta name="description" content="Fast text workflow tools for developers. Convert multiline lists, quote strings, split and join values, encode URLs, decode Base64, and format JSON without leaving the browser.">
-  <meta name="keywords" content="developer text tools, multiline converter, quote lines, split join text, base64 decode online, url encode online, json prettify">
-  <meta property="og:title" content="DevFormat | Preset-Driven Text Tools for Developers">
-  <meta property="og:description" content="A focused toolkit for text transforms, encoding, and workflow presets used by developers every day.">
+  <title>Developer Text Tools Online | DevFormat</title>
+  <meta name="description" content="Developer text tools for SQL lists, quoted strings, delimiter cleanup, Base64 decoding, URL encoding, JSON formatting, escaping, and slug generation.">
+  <meta name="keywords" content="developer text tools online, newline to comma separated list, quote each line online, base64 decode string online, url encode query parameter online, json formatter online">
+  <meta property="og:title" content="Developer Text Tools Online | DevFormat">
+  <meta property="og:description" content="Search-friendly text workflow tools for developers: SQL IN clause conversion, quoting, escaping, encoding, slugify, and JSON formatting.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gurioh.github.io/devformat/">
   <link rel="canonical" href="https://gurioh.github.io/devformat/">
@@ -19,7 +19,7 @@
     "@type": "WebSite",
     "name": "DevFormat",
     "url": "https://gurioh.github.io/devformat/",
-    "description": "Preset-driven text tools for developers.",
+    "description": "Search-friendly developer text tools for formatting, escaping, encoding, and cleanup.",
     "inLanguage": "en"
   }
   </script>
@@ -39,8 +39,10 @@
         <a data-page-link="multiline" href="./multiline/">Multiline</a>
         <a data-page-link="quote" href="./quote/">Quote</a>
         <a data-page-link="split-join" href="./split-join/">Split / Join</a>
+        <a data-page-link="escape" href="./escape/">Escape</a>
         <a data-page-link="base64" href="./base64/">Base64</a>
         <a data-page-link="url-encode" href="./url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="./slugify/">Slugify</a>
         <a data-page-link="json" href="./json/">JSON</a>
         <a data-page-link="about" href="./about/">About</a>
       </nav>
@@ -49,136 +51,184 @@
 
   <main class="page-shell">
     <section class="hero">
-      <span class="hero-kicker">Focused product scope</span>
-      <h1>Tools for messy text workflows, not a random bucket of utilities.</h1>
-      <p>DevFormat starts with the tasks developers repeat every day: turning lists into code-ready values, quoting lines, joining text with the right delimiter, and cleaning payloads without touching a spreadsheet or shell snippet.</p>
+      <span class="hero-kicker">Search-ready tool cluster</span>
+      <h1>Developer text tools built for real copy-and-paste workflows.</h1>
+      <p>Use DevFormat to convert newline text into SQL IN clauses, quote each line for JavaScript arrays, escape strings for JSON, decode Base64 payloads, clean query parameters, and generate slugs without leaving the browser.</p>
       <div class="hero-actions">
-        <a class="button primary" href="./multiline/">Open multiline converter</a>
-        <a class="button" href="#tool-cluster">Browse the first tool cluster</a>
+        <a class="button primary" href="./multiline/">Convert text to SQL IN clause</a>
+        <a class="button" href="#popular-workflows">Browse popular workflows</a>
       </div>
       <div class="chip-row">
-        <span class="chip">Client-side only</span>
-        <span class="chip">Preset-first UX</span>
-        <span class="chip">Fast copy-and-paste workflows</span>
+        <span class="chip">Newline to comma-separated list</span>
+        <span class="chip">Quote each line online</span>
+        <span class="chip">Escape string for JSON</span>
       </div>
     </section>
 
     <section id="tool-cluster" class="catalog-grid">
       <article class="tool-card">
         <span class="hero-kicker">Text Transform</span>
-        <h3>Multiline to Single Line</h3>
-        <p>Turn line-based input into SQL IN clauses, JS arrays, Python lists, CSV rows, or custom delimiters with one click.</p>
+        <h3>Newline to SQL IN Clause</h3>
+        <p>Turn multiline values into SQL IN clauses, JavaScript arrays, Python lists, CSV rows, or custom joined output.</p>
         <ul>
-          <li>Two-way conversion</li>
-          <li>Preset examples</li>
-          <li>Copy-ready output</li>
+          <li>Popular intent: text to SQL IN clause</li>
+          <li>Preset examples for SQL, JS, Python</li>
+          <li>Reverse mode for joined strings</li>
         </ul>
         <div class="tool-card-footer">
-          <a class="tool-link" href="./multiline/">Open tool</a>
+          <a class="tool-link" href="./multiline/">Open multiline tool</a>
         </div>
       </article>
 
       <article class="tool-card">
         <span class="hero-kicker">String Format</span>
-        <h3>Quote / Unquote List</h3>
-        <p>Wrap every line with quotes, backticks, or custom characters, then undo it when you need raw values back.</p>
+        <h3>Quote Each Line Online</h3>
+        <p>Wrap every value with quotes, backticks, or CSV-friendly delimiters, then strip the quotes back out when needed.</p>
         <ul>
-          <li>Single or double quote modes</li>
-          <li>CSV-style output</li>
-          <li>Quick preset switching</li>
+          <li>Popular intent: quote each line online</li>
+          <li>Single quote, double quote, backtick presets</li>
+          <li>Unquote mode for cleanup</li>
         </ul>
         <div class="tool-card-footer">
-          <a class="tool-link" href="./quote/">Open tool</a>
+          <a class="tool-link" href="./quote/">Open quote tool</a>
         </div>
       </article>
 
       <article class="tool-card">
         <span class="hero-kicker">Text Transform</span>
-        <h3>Split / Join Text</h3>
-        <p>Move between line-based input and delimited strings for CSV rows, pipe lists, tab values, or custom separators.</p>
+        <h3>Newline to Comma-Separated List</h3>
+        <p>Join or split clean values with comma, pipe, tab, space, newline, or a custom separator.</p>
         <ul>
-          <li>Comma, pipe, tab, newline presets</li>
-          <li>Bidirectional conversion</li>
+          <li>Popular intent: newline to comma separated list</li>
+          <li>Delimiter-only conversion</li>
           <li>Trim and skip-empty options</li>
         </ul>
         <div class="tool-card-footer">
-          <a class="tool-link" href="./split-join/">Open tool</a>
+          <a class="tool-link" href="./split-join/">Open split/join tool</a>
         </div>
       </article>
 
       <article class="tool-card">
-        <span class="hero-kicker">Encoding</span>
-        <h3>Base64 Encode / Decode</h3>
-        <p>Encode or decode UTF-8 text in the browser without sending payloads to a server or touching a CLI utility.</p>
+        <span class="hero-kicker">String Format</span>
+        <h3>Escape String for JSON</h3>
+        <p>Escape quotes, slashes, tabs, and newlines for JSON or JavaScript strings, then unescape the result when you need raw text back.</p>
         <ul>
-          <li>UTF-8 safe</li>
-          <li>Encode and decode modes</li>
-          <li>Fast debugging workflow</li>
+          <li>Popular intent: escape string for JSON</li>
+          <li>JSON, JS, regex presets</li>
+          <li>Unescape mode included</li>
         </ul>
         <div class="tool-card-footer">
-          <a class="tool-link" href="./base64/">Open tool</a>
+          <a class="tool-link" href="./escape/">Open escape tool</a>
         </div>
       </article>
 
       <article class="tool-card">
         <span class="hero-kicker">Encoding</span>
-        <h3>URL Encode / Decode</h3>
-        <p>Encode query parameters, decode messy URLs, and inspect payloads safely without guessing which characters broke the request.</p>
+        <h3>Base64 Decode String Online</h3>
+        <p>Decode copied Base64 payloads or encode UTF-8 text directly in the browser while debugging tokens, headers, and payloads.</p>
         <ul>
-          <li>Query-safe output</li>
-          <li>Readable decode mode</li>
+          <li>Popular intent: base64 decode string online</li>
+          <li>UTF-8 safe conversion</li>
+          <li>Encode and decode modes</li>
+        </ul>
+        <div class="tool-card-footer">
+          <a class="tool-link" href="./base64/">Open Base64 tool</a>
+        </div>
+      </article>
+
+      <article class="tool-card">
+        <span class="hero-kicker">Encoding</span>
+        <h3>URL Encode Query Parameter</h3>
+        <p>Encode query parameter values, decode request fragments, and inspect URL-encoded payloads without touching a CLI utility.</p>
+        <ul>
+          <li>Popular intent: url encode query parameter online</li>
+          <li>Encode and decode modes</li>
           <li>Useful for API debugging</li>
         </ul>
         <div class="tool-card-footer">
-          <a class="tool-link" href="./url-encode/">Open tool</a>
+          <a class="tool-link" href="./url-encode/">Open URL encode tool</a>
+        </div>
+      </article>
+
+      <article class="tool-card">
+        <span class="hero-kicker">String Format</span>
+        <h3>Slugify Text and Convert Case</h3>
+        <p>Turn raw text into slugs, kebab-case, snake_case, camelCase, PascalCase, or CONSTANT_CASE with one input field.</p>
+        <ul>
+          <li>Popular intent: slugify text online</li>
+          <li>Case conversion presets</li>
+          <li>Useful for URLs and identifiers</li>
+        </ul>
+        <div class="tool-card-footer">
+          <a class="tool-link" href="./slugify/">Open slugify tool</a>
         </div>
       </article>
 
       <article class="tool-card">
         <span class="hero-kicker">Structured Text</span>
-        <h3>JSON Minify / Prettify</h3>
-        <p>Validate, prettify, and minify JSON quickly so the page doubles as a formatter and a parsing check.</p>
+        <h3>JSON Formatter and Validator</h3>
+        <p>Validate, prettify, and minify JSON to inspect payloads before they move into requests, configs, or logs.</p>
         <ul>
+          <li>Popular intent: json formatter and validator</li>
           <li>Validation feedback</li>
           <li>Pretty and minified output</li>
-          <li>No external API call</li>
         </ul>
         <div class="tool-card-footer">
-          <a class="tool-link" href="./json/">Open tool</a>
+          <a class="tool-link" href="./json/">Open JSON tool</a>
         </div>
       </article>
     </section>
 
+    <section id="popular-workflows" class="section-stack">
+      <article class="content-card">
+        <h2>Popular workflows</h2>
+        <p>Search traffic is usually tied to a concrete job. These are the strongest entry points for the current tool cluster.</p>
+      </article>
+      <div class="workflow-grid">
+        <article class="workflow-card">
+          <h3>Build a SQL IN clause from raw values</h3>
+          <p>Paste multiline values, apply the SQL preset, and copy a query-ready output.</p>
+          <div class="workflow-links">
+            <a class="tool-link" href="./multiline/">Multiline</a>
+            <a class="tool-link" href="./quote/">Quote</a>
+          </div>
+        </article>
+        <article class="workflow-card">
+          <h3>Prepare safe payload text for requests</h3>
+          <p>Escape a JSON string, URL encode a parameter, or inspect Base64 when request layers stack together.</p>
+          <div class="workflow-links">
+            <a class="tool-link" href="./escape/">Escape</a>
+            <a class="tool-link" href="./url-encode/">URL Encode</a>
+            <a class="tool-link" href="./base64/">Base64</a>
+          </div>
+        </article>
+        <article class="workflow-card">
+          <h3>Clean text for URLs, configs, and code</h3>
+          <p>Split a joined string, slugify a label, or format JSON before it lands in an API client or config file.</p>
+          <div class="workflow-links">
+            <a class="tool-link" href="./split-join/">Split / Join</a>
+            <a class="tool-link" href="./slugify/">Slugify</a>
+            <a class="tool-link" href="./json/">JSON</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section class="split-layout">
       <article class="content-card">
-        <h2>Why this product scope is narrow on purpose</h2>
-        <p>DevFormat is not trying to look like a 200-tool directory on day one. The site is built around text workflows that chain together naturally. That means each new page can link to the next likely action instead of adding isolated utilities that compete for attention and dilute the product.</p>
-      </article>
-      <article class="content-card">
-        <h2>Current build direction</h2>
+        <h2>Use cases people actually search for</h2>
         <ul>
-          <li>Keep every tool client-side and fast</li>
-          <li>Use presets as the primary UI differentiator</li>
-          <li>Ship one consistent page template per tool</li>
-          <li>Improve indexable pages before ad placement</li>
+          <li><a class="text-accent" href="./multiline/">Text to JavaScript array</a></li>
+          <li><a class="text-accent" href="./split-join/">Newline to comma-separated list</a></li>
+          <li><a class="text-accent" href="./quote/">Quote each line online</a></li>
+          <li><a class="text-accent" href="./escape/">Escape string for JSON</a></li>
+          <li><a class="text-accent" href="./url-encode/">URL encode query parameter online</a></li>
+          <li><a class="text-accent" href="./base64/">Base64 decode string online</a></li>
         </ul>
       </article>
-    </section>
-
-    <section class="split-layout">
-      <article class="info-card">
-        <h2>Initial tool cluster</h2>
-        <p>The first cluster is intentionally small and connected. Multiline conversion, quoting, splitting, URL encoding, Base64, and JSON cover a surprising amount of developer copy-and-paste work.</p>
-        <div class="chip-row" style="margin-top: 14px;">
-          <span class="chip">Text Transform</span>
-          <span class="chip">String Format</span>
-          <span class="chip">Encoding</span>
-          <span class="chip">Structured Text</span>
-        </div>
-      </article>
-      <article class="info-card">
-        <h2>What is intentionally missing</h2>
-        <p>Regex testers, diff checkers, JWT tools, and hash playgrounds are useful, but they are not part of the first product shape. The current focus is tighter: build a repeatable template around text transforms that developers actually revisit.</p>
+      <article class="content-card">
+        <h2>Related tools are the product</h2>
+        <p>Each page is designed to lead to the next likely task. If a user arrives for newline-to-comma conversion, the site should also make it obvious when quoting, escaping, URL encoding, or JSON formatting are natural next steps.</p>
       </article>
     </section>
 
@@ -191,21 +241,20 @@
         </article>
         <article class="faq-item">
           <h3>Why start with text tools instead of generic utilities?</h3>
-          <p>Because text workflows chain together. A user who quotes values may also need multiline conversion, delimiter cleanup, JSON validation, or URL decoding in the same session.</p>
+          <p>Because text workflows chain together. A user who quotes values may also need multiline conversion, delimiter cleanup, string escaping, JSON validation, or URL decoding in the same session.</p>
         </article>
         <article class="faq-item">
-          <h3>Are more tools coming?</h3>
-          <p>Yes, but only if they reinforce the text workflow cluster and fit the shared page template. Scope discipline is part of the product strategy.</p>
+          <h3>What should be indexed first?</h3>
+          <p>Index the home page and each tool page separately. The tool pages target concrete search intent, while the home page explains the cluster and routes users toward related tasks.</p>
         </article>
       </div>
     </section>
 
     <footer class="page-footer">
-      <p>DevFormat is a focused toolkit for text transforms, encoding, and structure cleanup used in everyday developer workflows.</p>
+      <p>DevFormat is a focused toolkit for developer text workflows: formatting, joining, quoting, escaping, encoding, and structured text cleanup.</p>
       <nav>
         <a href="./about/">About</a>
         <a href="./privacy/">Privacy</a>
-        <a href="./DEVFORMAT_STRATEGY_V2.md">Strategy v2</a>
       </nav>
     </footer>
   </main>

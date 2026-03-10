@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JSON Minify / Prettify | DevFormat</title>
-  <meta name="description" content="Validate, prettify, and minify JSON in the browser. Quick formatting for payload inspection without leaving your current workflow.">
-  <meta name="keywords" content="json formatter online, json prettify, json minify, json validate tool">
-  <meta property="og:title" content="JSON Minify / Prettify | DevFormat">
-  <meta property="og:description" content="Validate and format JSON directly in the browser.">
+  <title>JSON Formatter and Validator Online | DevFormat</title>
+  <meta name="description" content="Format and validate JSON online. Prettify JSON for inspection or minify it for transport.">
+  <meta name="keywords" content="json formatter and validator online, json formatter online, json prettify, json minify, json validate tool">
+  <meta property="og:title" content="JSON Formatter and Validator Online | DevFormat">
+  <meta property="og:description" content="Format, validate, prettify, and minify JSON directly in the browser.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gurioh.github.io/devformat/json/">
   <link rel="canonical" href="https://gurioh.github.io/devformat/json/">
@@ -17,12 +17,22 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "JSON Minify / Prettify",
+    "name": "JSON Formatter and Validator Online",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
     "url": "https://gurioh.github.io/devformat/json/",
-    "description": "Validate, prettify, and minify JSON directly in the browser.",
+    "description": "Format, validate, prettify, and minify JSON directly in the browser.",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "DevFormat Tools", "item": "https://gurioh.github.io/devformat/"},
+      {"@type": "ListItem", "position": 2, "name": "JSON Formatter and Validator Online", "item": "https://gurioh.github.io/devformat/json/"}
+    ]
   }
   </script>
 </head>
@@ -41,17 +51,24 @@
         <a data-page-link="multiline" href="../multiline/">Multiline</a>
         <a data-page-link="quote" href="../quote/">Quote</a>
         <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
         <a data-page-link="base64" href="../base64/">Base64</a>
         <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
         <a data-page-link="json" href="../json/">JSON</a>
       </nav>
     </div>
   </header>
 
   <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <span aria-current="page">JSON Formatter and Validator Online</span>
+    </nav>
     <section class="hero compact">
       <span class="hero-kicker">Structured Text</span>
-      <h1>Validate, prettify, and minify JSON in one page.</h1>
+      <h1>Format, validate, and minify JSON online.</h1>
       <p>Use this page when you need readable formatting, a compact payload, or a quick parse check before pushing JSON into an API client or config file.</p>
       <div class="chip-row">
         <span class="chip">Validate</span>
@@ -126,6 +143,7 @@
     <footer class="page-footer">
       <p>JSON pages often lead to Base64 or URL inspection next, especially while debugging request and response payloads.</p>
       <nav>
+        <a href="../escape/">Escape</a>
         <a href="../base64/">Base64</a>
         <a href="../url-encode/">URL Encode</a>
       </nav>
