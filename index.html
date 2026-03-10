@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevFormat — 멀티라인 ↔ 싱글라인 텍스트 변환기 | Multiline to Single Line Converter</title>
+  <meta name="description" content="멀티라인 텍스트를 SQL IN절, JS 배열, Python 리스트 등으로 즉시 변환. 실시간 미리보기, 프리셋, 양방향 변환 지원. Free online multiline to single line converter.">
+  <meta name="keywords" content="multiline to single line, string one line, SQL IN clause generator, text converter, 멀티라인 싱글라인 변환, 개발자 도구, online text formatter, join lines, comma separated">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="DevFormat — Multiline ↔ Single Line Converter">
+  <meta property="og:description" content="Convert multiline text to SQL IN, JS Array, Python List and more. Real-time preview, presets, bidirectional.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+
+  <!-- Canonical (배포 후 실제 URL로 교체) -->
+  <!-- <link rel="canonical" href="https://your-domain.com"> -->
+
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e1e4ed;
+      --text-dim: #8b8fa3;
+      --accent: #6c5ce7;
+      --accent-hover: #7c6ef7;
+      --success: #00b894;
+      --preset-bg: #232636;
+      --preset-active: #6c5ce7;
+      --radius: 8px;
+      --ad-width: 160px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Layout Wrapper ── */
+    .page-layout {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .ad-sidebar {
+      width: var(--ad-width);
+      min-width: var(--ad-width);
+      padding: 16px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .ad-slot {
+      width: 160px;
+      min-height: 600px;
+      position: sticky;
+      top: 16px;
+      /* 광고 활성화 시 이 아래 주석 해제 */
+      /* background: var(--surface); */
+    }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    /* ── Header ── */
+    header {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 12px;
+    }
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); background: var(--surface); }
+    .nav-links a.active { color: var(--accent); }
+    .direction-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 16px;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--text);
+      transition: border-color 0.2s;
+    }
+    .direction-toggle:hover { border-color: var(--accent); }
+    .direction-toggle .arrow { font-size: 16px; transition: transform 0.3s; }
+    .direction-toggle.reversed .arrow { transform: rotate(180deg); }
+
+    /* ── Presets ── */
+    .presets {
+      padding: 10px 24px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+    }
+    .preset-btn {
+      padding: 5px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--preset-bg);
+      color: var(--text-dim);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .preset-btn:hover { border-color: var(--accent); color: var(--text); }
+    .preset-btn.active {
+      background: var(--preset-active);
+      border-color: var(--preset-active);
+      color: #fff;
+    }
+
+    /* ── Options Bar ── */
+    .options-bar {
+      padding: 10px 24px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .option-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .option-group label { color: var(--text-dim); }
+    .option-group input[type="text"] {
+      width: 70px;
+      padding: 3px 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text);
+      font-size: 12px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+    .option-group input[type="text"]:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .option-group input[type="checkbox"] { accent-color: var(--accent); }
+
+    /* ── Banner Ad ── */
+    .ad-banner {
+      padding: 8px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ad-banner-slot {
+      width: 728px;
+      max-width: 100%;
+      height: 90px;
+      /* 광고 활성화 시 이 아래 주석 해제 */
+      /* background: var(--surface); */
+    }
+
+    /* ── Main Panels ── */
+    .panels {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+    }
+    .panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .panel:first-child { border-right: 1px solid var(--border); }
+    .panel-header {
+      padding: 8px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-dim);
+      background: var(--surface);
+    }
+    .panel-header .label { font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .copy-btn {
+      padding: 3px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-dim);
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .copy-btn:hover { border-color: var(--accent); color: var(--text); }
+    .copy-btn.copied { border-color: var(--success); color: var(--success); }
+
+    textarea {
+      flex: 1;
+      width: 100%;
+      padding: 16px;
+      background: var(--bg);
+      border: none;
+      color: var(--text);
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      resize: none;
+    }
+    textarea:focus { outline: none; }
+    textarea::placeholder { color: var(--text-dim); }
+    #output { background: var(--surface); cursor: text; }
+
+    /* ── Stats Bar ── */
+    .stats {
+      padding: 6px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 24px;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 12px 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1200px) {
+      .ad-sidebar { display: none; }
+      .ad-banner-slot { width: 100%; }
+    }
+    @media (max-width: 768px) {
+      .panels { flex-direction: column; }
+      .panel:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+      .panel { min-height: 180px; }
+      header, .presets, .options-bar, .stats { padding-left: 12px; padding-right: 12px; }
+      .nav-links { display: none; }
+      .ad-banner { display: none; }
+    }
+
+    /* ── Toast ── */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--success);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.3s;
+      pointer-events: none;
+      z-index: 100;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ 3-Column Layout: Ad | Main | Ad ═══ -->
+  <div class="page-layout">
+
+    <!-- Left Ad Sidebar -->
+    <aside class="ad-sidebar left">
+      <div class="ad-slot">
+        <!-- AdSense 160x600: 광고 코드 여기에 삽입 -->
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+      <header>
+        <div class="header-left">
+          <div class="logo">Dev<span>Format</span></div>
+          <nav class="nav-links">
+            <a href="/multiline" class="active">Multiline</a>
+            <a href="/json">JSON</a>
+            <a href="/base64">Base64</a>
+            <a href="/url">URL Encode</a>
+            <a href="/hash">Hash</a>
+          </nav>
+        </div>
+        <button class="direction-toggle" id="dirToggle" onclick="toggleDirection()">
+          <span>Multi → Single</span>
+          <span class="arrow">→</span>
+        </button>
+      </header>
+
+      <!-- Top Banner Ad -->
+      <div class="ad-banner">
+        <div class="ad-banner-slot">
+          <!-- AdSense 728x90: 광고 코드 여기에 삽입 -->
+        </div>
+      </div>
+
+      <!-- Presets -->
+      <div class="presets" id="presetBar">
+        <button class="preset-btn active" data-preset="sql-in">SQL IN</button>
+        <button class="preset-btn" data-preset="js-array">JS Array</button>
+        <button class="preset-btn" data-preset="python-list">Python List</button>
+        <button class="preset-btn" data-preset="csv">CSV</button>
+        <button class="preset-btn" data-preset="comma">Comma Join</button>
+        <button class="preset-btn" data-preset="pipe">Pipe |</button>
+        <button class="preset-btn" data-preset="tab">Tab</button>
+        <button class="preset-btn" data-preset="space">Space</button>
+        <button class="preset-btn" data-preset="newline-to-comma">Newline → Comma</button>
+        <button class="preset-btn" data-preset="custom">Custom</button>
+      </div>
+
+      <!-- Options -->
+      <div class="options-bar">
+        <div class="option-group">
+          <label for="delimiter">구분자:</label>
+          <input type="text" id="delimiter" value=", ">
+        </div>
+        <div class="option-group">
+          <label for="quoteChar">감싸기:</label>
+          <input type="text" id="quoteChar" value="'">
+        </div>
+        <div class="option-group">
+          <label for="wrapStart">시작:</label>
+          <input type="text" id="wrapStart" value="(">
+        </div>
+        <div class="option-group">
+          <label for="wrapEnd">끝:</label>
+          <input type="text" id="wrapEnd" value=")">
+        </div>
+        <div class="option-group">
+          <input type="checkbox" id="trimLines" checked>
+          <label for="trimLines">공백 트림</label>
+        </div>
+        <div class="option-group">
+          <input type="checkbox" id="skipEmpty" checked>
+          <label for="skipEmpty">빈 줄 무시</label>
+        </div>
+      </div>
+
+      <!-- Panels -->
+      <div class="panels">
+        <div class="panel">
+          <div class="panel-header">
+            <span class="label" id="inputLabel">INPUT — 멀티라인</span>
+            <button class="copy-btn" onclick="clearInput()">Clear</button>
+          </div>
+          <textarea id="input" placeholder="여기에 텍스트를 붙여넣으세요...&#10;&#10;예시:&#10;apple&#10;banana&#10;cherry"></textarea>
+        </div>
+        <div class="panel">
+          <div class="panel-header">
+            <span class="label" id="outputLabel">OUTPUT — 싱글라인</span>
+            <button class="copy-btn" id="copyBtn" onclick="copyOutput()">Copy</button>
+          </div>
+          <textarea id="output" readonly></textarea>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats">
+        <span id="statLines">줄: 0</span>
+        <span id="statItems">항목: 0</span>
+        <span id="statChars">문자: 0</span>
+      </div>
+
+      <!-- Bottom Banner Ad -->
+      <div class="ad-banner">
+        <div class="ad-banner-slot">
+          <!-- AdSense 728x90: 광고 코드 여기에 삽입 -->
+        </div>
+      </div>
+
+      <footer>
+        DevFormat — Free Online Multiline ↔ Single Line Text Converter for Developers
+      </footer>
+    </div>
+
+    <!-- Right Ad Sidebar -->
+    <aside class="ad-sidebar right">
+      <div class="ad-slot">
+        <!-- AdSense 160x600: 광고 코드 여기에 삽입 -->
+      </div>
+    </aside>
+
+  </div>
+
+  <div class="toast" id="toast">Copied!</div>
+
+  <script>
+    // ── State ──
+    let reversed = false;
+
+    const PRESETS = {
+      'sql-in':           { delimiter: ', ',  quoteChar: "'", wrapStart: '(', wrapEnd: ')' },
+      'js-array':         { delimiter: ', ',  quoteChar: '"', wrapStart: '[', wrapEnd: ']' },
+      'python-list':      { delimiter: ', ',  quoteChar: "'", wrapStart: '[', wrapEnd: ']' },
+      'csv':              { delimiter: ',',   quoteChar: '',  wrapStart: '',  wrapEnd: '' },
+      'comma':            { delimiter: ', ',  quoteChar: '',  wrapStart: '',  wrapEnd: '' },
+      'pipe':             { delimiter: ' | ', quoteChar: '',  wrapStart: '',  wrapEnd: '' },
+      'tab':              { delimiter: '\t',  quoteChar: '',  wrapStart: '',  wrapEnd: '' },
+      'space':            { delimiter: ' ',   quoteChar: '',  wrapStart: '',  wrapEnd: '' },
+      'newline-to-comma': { delimiter: ',',   quoteChar: '',  wrapStart: '',  wrapEnd: '' },
+      'custom':           null
+    };
+
+    // ── Elements ──
+    const inputEl     = document.getElementById('input');
+    const outputEl    = document.getElementById('output');
+    const delimiterEl = document.getElementById('delimiter');
+    const quoteCharEl = document.getElementById('quoteChar');
+    const wrapStartEl = document.getElementById('wrapStart');
+    const wrapEndEl   = document.getElementById('wrapEnd');
+    const trimEl      = document.getElementById('trimLines');
+    const skipEmptyEl = document.getElementById('skipEmpty');
+    const dirToggle   = document.getElementById('dirToggle');
+
+    // ── Preset buttons ──
+    document.getElementById('presetBar').addEventListener('click', (e) => {
+      const btn = e.target.closest('.preset-btn');
+      if (!btn) return;
+
+      document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const preset = PRESETS[btn.dataset.preset];
+      if (preset) {
+        delimiterEl.value = preset.delimiter;
+        quoteCharEl.value = preset.quoteChar;
+        wrapStartEl.value = preset.wrapStart;
+        wrapEndEl.value   = preset.wrapEnd;
+      }
+      convert();
+    });
+
+    // ── Real-time conversion ──
+    inputEl.addEventListener('input', convert);
+    delimiterEl.addEventListener('input', () => { markCustom(); convert(); });
+    quoteCharEl.addEventListener('input', () => { markCustom(); convert(); });
+    wrapStartEl.addEventListener('input', () => { markCustom(); convert(); });
+    wrapEndEl.addEventListener('input', () => { markCustom(); convert(); });
+    trimEl.addEventListener('change', convert);
+    skipEmptyEl.addEventListener('change', convert);
+
+    function markCustom() {
+      const current = document.querySelector('.preset-btn.active');
+      if (current && current.dataset.preset !== 'custom') {
+        const preset = PRESETS[current.dataset.preset];
+        if (preset &&
+            (delimiterEl.value !== preset.delimiter ||
+             quoteCharEl.value !== preset.quoteChar ||
+             wrapStartEl.value !== preset.wrapStart ||
+             wrapEndEl.value !== preset.wrapEnd)) {
+          document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+          document.querySelector('[data-preset="custom"]').classList.add('active');
+        }
+      }
+    }
+
+    function convert() {
+      const raw = inputEl.value;
+      if (!raw.trim()) {
+        outputEl.value = '';
+        updateStats(0, 0, 0);
+        return;
+      }
+
+      if (!reversed) {
+        multiToSingle(raw);
+      } else {
+        singleToMulti(raw);
+      }
+    }
+
+    function multiToSingle(raw) {
+      const delim  = parseEscapes(delimiterEl.value);
+      const quote  = quoteCharEl.value;
+      const wStart = wrapStartEl.value;
+      const wEnd   = wrapEndEl.value;
+      const doTrim = trimEl.checked;
+      const doSkip = skipEmptyEl.checked;
+
+      let lines = raw.split('\n');
+      if (doTrim) lines = lines.map(l => l.trim());
+      if (doSkip) lines = lines.filter(l => l.length > 0);
+
+      const items = lines.map(l => quote + l + quote);
+      const result = wStart + items.join(delim) + wEnd;
+
+      outputEl.value = result;
+      updateStats(raw.split('\n').length, lines.length, result.length);
+    }
+
+    function singleToMulti(raw) {
+      const delim  = parseEscapes(delimiterEl.value);
+      const quote  = quoteCharEl.value;
+      const wStart = wrapStartEl.value;
+      const wEnd   = wrapEndEl.value;
+
+      let str = raw.trim();
+      if (wStart && wEnd && str.startsWith(wStart) && str.endsWith(wEnd)) {
+        str = str.slice(wStart.length, -wEnd.length || undefined);
+      }
+
+      let parts = str.split(delim);
+
+      if (quote) {
+        parts = parts.map(p => {
+          p = p.trim();
+          if (p.startsWith(quote) && p.endsWith(quote)) {
+            p = p.slice(quote.length, -quote.length || undefined);
+          }
+          return p;
+        });
+      } else {
+        parts = parts.map(p => p.trim());
+      }
+
+      if (skipEmptyEl.checked) parts = parts.filter(p => p.length > 0);
+
+      const result = parts.join('\n');
+      outputEl.value = result;
+      updateStats(1, parts.length, result.length);
+    }
+
+    function parseEscapes(str) {
+      return str.replace(/\\t/g, '\t').replace(/\\n/g, '\n');
+    }
+
+    // ── Direction toggle ──
+    function toggleDirection() {
+      reversed = !reversed;
+      dirToggle.querySelector('span:first-child').textContent =
+        reversed ? 'Single → Multi' : 'Multi → Single';
+      dirToggle.classList.toggle('reversed', reversed);
+
+      document.getElementById('inputLabel').textContent =
+        reversed ? 'INPUT — 싱글라인' : 'INPUT — 멀티라인';
+      document.getElementById('outputLabel').textContent =
+        reversed ? 'OUTPUT — 멀티라인' : 'OUTPUT — 싱글라인';
+
+      const temp = inputEl.value;
+      inputEl.value = outputEl.value;
+      outputEl.value = '';
+      convert();
+    }
+
+    // ── Utils ──
+    function updateStats(lines, items, chars) {
+      document.getElementById('statLines').textContent = `줄: ${lines}`;
+      document.getElementById('statItems').textContent = `항목: ${items}`;
+      document.getElementById('statChars').textContent = `문자: ${chars}`;
+    }
+
+    function copyOutput() {
+      const text = outputEl.value;
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        showToast('클립보드에 복사됨!');
+        setTimeout(() => {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    function clearInput() {
+      inputEl.value = '';
+      outputEl.value = '';
+      updateStats(0, 0, 0);
+      inputEl.focus();
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2000);
+    }
+
+    // ── Keyboard shortcut ──
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') {
+        e.preventDefault();
+        copyOutput();
+      }
+    });
+
+    // ── Init ──
+    inputEl.value = 'apple\nbanana\ncherry\ndurian\nelderberry';
+    convert();
+  </script>
+</body>
+</html>
