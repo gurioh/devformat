@@ -135,6 +135,28 @@ a {
   font-size: 12px;
 }
 
+body[data-layout="tool"] .site-header-inner {
+  min-height: 60px;
+}
+
+body[data-layout="tool"] .brand {
+  gap: 10px;
+}
+
+body[data-layout="tool"] .brand-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+}
+
+body[data-layout="tool"] .brand-copy strong {
+  font-size: 16px;
+}
+
+body[data-layout="tool"] .brand-copy span {
+  display: none;
+}
+
 .site-nav {
   display: flex;
   flex-wrap: wrap;
@@ -147,6 +169,11 @@ a {
   border-radius: 999px;
   color: var(--text-dim);
   transition: 160ms ease;
+}
+
+body[data-layout="tool"] .site-nav a {
+  padding: 7px 11px;
+  font-size: 14px;
 }
 
 .site-nav a:hover,
@@ -180,6 +207,28 @@ a {
   line-height: 1.6;
 }
 
+body[data-layout="tool"] .hero.hero-slim {
+  gap: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+body[data-layout="tool"] .hero.hero-slim .hero-kicker {
+  padding: 6px 10px;
+  font-size: 11px;
+}
+
+body[data-layout="tool"] .hero.hero-slim h1 {
+  font-size: clamp(22px, 3vw, 34px);
+  max-width: 760px;
+}
+
+body[data-layout="tool"] .hero.hero-slim p {
+  max-width: 760px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
 .breadcrumb {
   display: inline-flex;
   align-items: center;
@@ -188,6 +237,11 @@ a {
   margin-top: 16px;
   color: var(--text-dim);
   font-size: 14px;
+}
+
+body[data-layout="tool"] .breadcrumb {
+  margin-top: 10px;
+  font-size: 12px;
 }
 
 .breadcrumb a {
@@ -382,6 +436,11 @@ a {
   border-bottom: 1px solid var(--border);
 }
 
+body[data-layout="tool"] .toolbar {
+  padding: 14px 16px;
+  gap: 10px;
+}
+
 .toolbar-primary {
   align-items: start;
   justify-content: space-between;
@@ -534,12 +593,22 @@ a {
   padding: 20px 24px 24px;
 }
 
+body[data-layout="tool"] .stat-grid {
+  padding: 14px 16px 16px;
+  gap: 12px;
+}
+
 .stat-card {
   display: grid;
   gap: 6px;
   padding: 18px;
   border-radius: var(--radius-md);
   background: var(--surface-soft);
+}
+
+body[data-layout="tool"] .stat-card {
+  padding: 14px 16px;
+  gap: 4px;
 }
 
 .stat-card span {
@@ -552,6 +621,10 @@ a {
 .stat-card strong {
   font-size: 24px;
   letter-spacing: -0.03em;
+}
+
+body[data-layout="tool"] .stat-card strong {
+  font-size: 20px;
 }
 
 .split-layout {
