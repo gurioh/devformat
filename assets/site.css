@@ -240,8 +240,7 @@ body[data-layout="tool"] .hero.hero-slim p {
 }
 
 body[data-layout="tool"] .breadcrumb {
-  margin-top: 10px;
-  font-size: 12px;
+  display: none;
 }
 
 .breadcrumb a {
@@ -439,6 +438,17 @@ body[data-layout="tool"] .breadcrumb {
 body[data-layout="tool"] .toolbar {
   padding: 14px 16px;
   gap: 10px;
+}
+
+body[data-layout="tool"] .segmented button,
+body[data-layout="tool"] .preset-chip,
+body[data-layout="tool"] .example-actions button {
+  padding: 8px 11px;
+  font-size: 13px;
+}
+
+body[data-layout="tool"] #presetBar {
+  gap: 6px;
 }
 
 .toolbar-primary {
@@ -663,6 +673,64 @@ body[data-layout="tool"] .stat-card span {
 
 body[data-layout="tool"] .stat-card strong {
   font-size: 18px;
+}
+
+body[data-layout="tool"] .tool-fold {
+  margin-top: 14px;
+  border: 1px solid rgba(143, 161, 181, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.02);
+  overflow: hidden;
+}
+
+body[data-layout="tool"] .tool-fold > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
+body[data-layout="tool"] .tool-fold > summary::-webkit-details-marker {
+  display: none;
+}
+
+body[data-layout="tool"] .tool-fold > summary::after {
+  content: "+";
+  font-size: 18px;
+  line-height: 1;
+  color: var(--text);
+}
+
+body[data-layout="tool"] .tool-fold[open] > summary {
+  border-bottom: 1px solid rgba(143, 161, 181, 0.12);
+}
+
+body[data-layout="tool"] .tool-fold[open] > summary::after {
+  content: "−";
+}
+
+body[data-layout="tool"] .tool-fold > .split-layout,
+body[data-layout="tool"] .tool-fold > .section-stack {
+  margin-top: 0;
+  padding: 12px;
+}
+
+body[data-layout="tool"] .tool-fold > .faq-card {
+  margin-top: 0;
+  padding: 12px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+body[data-layout="tool"] .tool-fold > .faq-card > h2 {
+  display: none;
 }
 
 .split-layout {

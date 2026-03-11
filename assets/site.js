@@ -67,10 +67,39 @@
     });
   };
 
+  namespace.collapseToolSections = function collapseToolSections() {
+    if (document.body.dataset.layout !== 'tool') return;
+
+    const sections = document.querySelectorAll('main.page-shell > .split-layout, main.page-shell > .section-stack, main.page-shell > .faq-card');
+    sections.forEach(function (section) {
+      if (section.parentElement && section.parentElement.classList.contains('tool-fold')) return;
+
+      const details = document.createElement('details');
+      details.className = 'tool-fold';
+
+      const summary = document.createElement('summary');
+      if (section.classList.contains('faq-card')) {
+        summary.textContent = 'FAQ';
+      } else {
+        const headings = Array.from(section.querySelectorAll('h2')).map(function (heading) {
+          return heading.textContent.trim();
+        }).filter(Boolean);
+        summary.textContent = headings.some(function (text) {
+          return /step|example/i.test(text);
+        }) ? 'Examples & notes' : 'Usage notes';
+      }
+
+      section.parentNode.insertBefore(details, section);
+      details.appendChild(summary);
+      details.appendChild(section);
+    });
+  };
+
   window.DevFormat = namespace;
 
   document.addEventListener('DOMContentLoaded', function () {
     namespace.initAnalytics();
     namespace.setActiveNav();
+    namespace.collapseToolSections();
   });
 })();
