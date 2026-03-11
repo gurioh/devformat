@@ -4,13 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Escape String for JSON Online | DevFormat</title>
-  <meta name="description" content="Escape a string for JSON, JavaScript, or regex use. Unescape common sequences back into raw text directly in the browser.">
+  <meta name="description" content="Escape quotes, tabs, newlines, and backslashes for JSON or JavaScript strings. Fast browser-based JSON string escape tool.">
   <meta name="keywords" content="escape string for json online, unescape string online, javascript string escape, regex escape tool">
   <meta property="og:title" content="Escape String for JSON Online | DevFormat">
   <meta property="og:description" content="Escape or unescape raw text for JSON strings, JavaScript strings, or regex-safe output.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gurioh.github.io/devformat/escape/">
   <link rel="canonical" href="https://gurioh.github.io/devformat/escape/">
+  <link rel="alternate" hreflang="en" href="https://gurioh.github.io/devformat/escape/">
+  <link rel="alternate" hreflang="ja" href="https://gurioh.github.io/devformat/ja/escape-json-string/">
+  <link rel="alternate" hreflang="ko" href="https://gurioh.github.io/devformat/ko/escape-json-string/">
+  <link rel="alternate" hreflang="x-default" href="https://gurioh.github.io/devformat/escape/">
   <link rel="stylesheet" href="../assets/site.css">
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
   <script type="application/ld+json">
@@ -31,7 +35,7 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       {"@type": "ListItem", "position": 1, "name": "DevFormat Tools", "item": "https://gurioh.github.io/devformat/"},
-      {"@type": "ListItem", "position": 2, "name": "Escape String for JSON", "item": "https://gurioh.github.io/devformat/escape/"}
+      {"@type": "ListItem", "position": 2, "name": "Escape String for JSON Online", "item": "https://gurioh.github.io/devformat/escape/"}
     ]
   }
   </script>
@@ -64,14 +68,20 @@
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="../">Tools</a>
       <span>/</span>
-      <span aria-current="page">Escape String for JSON</span>
+      <span aria-current="page">Escape String for JSON Online</span>
     </nav>
-
     <section class="hero compact hero-slim">
       <span class="hero-kicker">String Format</span>
-      <h1>Escape a string for JSON, JavaScript, or regex-safe output.</h1>
-      <p>Paste raw text, choose the target preset, and copy the escaped result. Switch direction only when you already start with escaped content.</p>
+      <h1>Escape String for JSON Online</h1>
+      <p>Escape quotes, tabs, newlines, and backslashes for JSON or JavaScript strings, then reverse common escape sequences when needed.</p>
     </section>
+
+    <nav class="language-switcher" aria-label="Language selector">
+      <span>Available in</span>
+      <a class="active" aria-current="page" href="../escape/">English</a>
+      <a href="../ja/escape-json-string/">日本語</a>
+      <a href="../ko/escape-json-string/">한국어</a>
+    </nav>
 
     <section class="tool-shell">
       <div class="toolbar">
@@ -129,31 +139,17 @@
         <ul>
           <li>Escape a raw message before storing it as a JSON string value</li>
           <li>Prepare text for a JavaScript literal without manual slash edits</li>
-          <li>Make a copied string safe for regex matching</li>
+          <li>Make copied input safe for regex matching</li>
         </ul>
       </article>
       <article class="content-card">
-        <h2>Related workflows</h2>
-        <p>Escaping often comes right before URL encoding, JSON formatting, or Base64 conversion when payloads pass through multiple layers.</p>
+        <h2>FAQ</h2>
+        <ul>
+          <li>This tool runs in the browser and does not send pasted text to a server.</li>
+          <li>Unescape mode handles common sequences such as <code>\n</code>, <code>\t</code>, <code>\r</code>, quotes, and backslashes.</li>
+          <li>Regex mode escapes metacharacters before user text is inserted into a pattern.</li>
+        </ul>
       </article>
-    </section>
-
-    <section class="faq-card">
-      <h2>FAQ</h2>
-      <div class="faq-list">
-        <article class="faq-item">
-          <h3>What does JSON string escaping do?</h3>
-          <p>It converts quotes, backslashes, tabs, carriage returns, and newlines into escape sequences so the value can be embedded safely inside a JSON string.</p>
-        </article>
-        <article class="faq-item">
-          <h3>Can this reverse common escape sequences?</h3>
-          <p>Yes. Unescape mode handles common sequences such as <code>\n</code>, <code>\t</code>, <code>\r</code>, quotes, and backslashes.</p>
-        </article>
-        <article class="faq-item">
-          <h3>When should I use regex-safe mode?</h3>
-          <p>Use it when you need to escape regex metacharacters before matching user-provided text inside a pattern.</p>
-        </article>
-      </div>
     </section>
 
     <footer class="page-footer">
@@ -171,142 +167,22 @@
   <div class="toast" id="toast">Ready.</div>
   <script src="../assets/site.js"></script>
   <script>
-    const input = document.getElementById('input');
-    const output = document.getElementById('output');
-    let mode = 'escape';
-    let preset = 'json';
-
-    const examples = {
-      json: 'Line one\nLine "two" with a tab\tand slash \\',
-      javascript: "const label = 'hello world';",
-      regex: 'price+(usd)? [2026]'
+    window.DevFormatEscapeConfig = {
+      defaultExample: 'json',
+      defaultMode: 'escape',
+      defaultPreset: 'json',
+      strings: {
+        modeEscape: 'Escape',
+        modeUnescape: 'Unescape',
+        presetJson: 'JSON',
+        presetJavascript: 'JavaScript',
+        presetRegex: 'Regex',
+        inputHintEscape: 'Raw string',
+        inputHintUnescape: 'Escaped string',
+        copySuccess: 'Escaped output copied.'
+      }
     };
-
-    function escapeJson(value) {
-      return value
-        .replace(/\\/g, '\\\\')
-        .replace(/"/g, '\\"')
-        .replace(/\u0008/g, '\\b')
-        .replace(/\f/g, '\\f')
-        .replace(/\n/g, '\\n')
-        .replace(/\r/g, '\\r')
-        .replace(/\t/g, '\\t');
-    }
-
-    function escapeJavascript(value) {
-      return value
-        .replace(/\\/g, '\\\\')
-        .replace(/'/g, "\\'")
-        .replace(/"/g, '\\"')
-        .replace(/\u0008/g, '\\b')
-        .replace(/\f/g, '\\f')
-        .replace(/\n/g, '\\n')
-        .replace(/\r/g, '\\r')
-        .replace(/\t/g, '\\t');
-    }
-
-    function escapeRegex(value) {
-      return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    }
-
-    function unescapeCommon(value) {
-      return value
-        .replace(/\\n/g, '\n')
-        .replace(/\\r/g, '\r')
-        .replace(/\\t/g, '\t')
-        .replace(/\\f/g, '\f')
-        .replace(/\\b/g, '\b')
-        .replace(/\\"/g, '"')
-        .replace(/\\'/g, "'")
-        .replace(/\\\\/g, '\\');
-    }
-
-    function unescapeRegex(value) {
-      return value.replace(/\\([.*+?^${}()|[\]\\])/g, '$1');
-    }
-
-    function updateStats() {
-      document.getElementById('modeStat').textContent = mode === 'escape' ? 'Escape' : 'Unescape';
-      document.getElementById('presetStat').textContent = preset.charAt(0).toUpperCase() + preset.slice(1);
-      document.getElementById('charStat').textContent = String(output.value.length);
-    }
-
-    function convert() {
-      if (!input.value) {
-        output.value = '';
-        updateStats();
-        return;
-      }
-
-      if (mode === 'escape') {
-        if (preset === 'json') {
-          output.value = escapeJson(input.value);
-        } else if (preset === 'javascript') {
-          output.value = escapeJavascript(input.value);
-        } else {
-          output.value = escapeRegex(input.value);
-        }
-      } else {
-        if (preset === 'regex') {
-          output.value = unescapeRegex(input.value);
-        } else {
-          output.value = unescapeCommon(input.value);
-        }
-      }
-
-      updateStats();
-      DevFormat.trackEvent('tool_convert', {
-        tool: 'escape',
-        mode: mode,
-        preset: preset,
-        input_chars: input.value.length,
-        output_chars: output.value.length,
-        line_count: input.value ? input.value.split('\n').length : 0
-      });
-    }
-
-    document.querySelectorAll('[data-mode]').forEach(function (button) {
-      button.addEventListener('click', function () {
-        mode = button.dataset.mode;
-        document.querySelectorAll('[data-mode]').forEach(function (node) {
-          node.classList.toggle('active', node === button);
-        });
-        document.getElementById('inputHint').textContent = mode === 'escape' ? 'Raw string' : 'Escaped string';
-        input.value = output.value;
-        output.value = '';
-        convert();
-      });
-    });
-
-    document.querySelectorAll('[data-preset]').forEach(function (button) {
-      button.addEventListener('click', function () {
-        preset = button.dataset.preset;
-        document.querySelectorAll('[data-preset]').forEach(function (node) {
-          node.classList.toggle('active', node === button);
-        });
-        convert();
-        DevFormat.trackEvent('preset_select', { tool: 'escape', preset: preset });
-      });
-    });
-
-    input.addEventListener('input', convert);
-    document.getElementById('copyButton').addEventListener('click', function () {
-      DevFormat.copyText(output.value, 'Escaped output copied.');
-    });
-    document.getElementById('clearButton').addEventListener('click', function () {
-      input.value = '';
-      output.value = '';
-      updateStats();
-      input.focus();
-    });
-
-    DevFormat.wireExampleButtons(function (key) {
-      input.value = examples[key] || '';
-      convert();
-    });
-
-    input.value = examples.json;
-    convert();
   </script>
+  <script src="../assets/escape-tool.js"></script>
 </body>
 </html>

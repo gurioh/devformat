@@ -6,6 +6,7 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
   <url>
     <loc>https://gurioh.github.io/devformat/multiline/</loc>
     <lastmod>2026-03-11</lastmod>
@@ -36,6 +37,69 @@
     <xhtml:link rel="alternate" hreflang="ko" href="https://gurioh.github.io/devformat/ko/sql-in-clause/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://gurioh.github.io/devformat/multiline/" />
   </url>
+
+  <url>
+    <loc>https://gurioh.github.io/devformat/escape/</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gurioh.github.io/devformat/escape/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gurioh.github.io/devformat/ja/escape-json-string/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gurioh.github.io/devformat/ko/escape-json-string/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gurioh.github.io/devformat/escape/" />
+  </url>
+  <url>
+    <loc>https://gurioh.github.io/devformat/ja/escape-json-string/</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gurioh.github.io/devformat/escape/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gurioh.github.io/devformat/ja/escape-json-string/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gurioh.github.io/devformat/ko/escape-json-string/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gurioh.github.io/devformat/escape/" />
+  </url>
+  <url>
+    <loc>https://gurioh.github.io/devformat/ko/escape-json-string/</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gurioh.github.io/devformat/escape/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gurioh.github.io/devformat/ja/escape-json-string/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gurioh.github.io/devformat/ko/escape-json-string/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gurioh.github.io/devformat/escape/" />
+  </url>
+
+  <url>
+    <loc>https://gurioh.github.io/devformat/base64/</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gurioh.github.io/devformat/base64/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gurioh.github.io/devformat/ja/base64-decode/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gurioh.github.io/devformat/ko/base64-decode/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gurioh.github.io/devformat/base64/" />
+  </url>
+  <url>
+    <loc>https://gurioh.github.io/devformat/ja/base64-decode/</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gurioh.github.io/devformat/base64/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gurioh.github.io/devformat/ja/base64-decode/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gurioh.github.io/devformat/ko/base64-decode/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gurioh.github.io/devformat/base64/" />
+  </url>
+  <url>
+    <loc>https://gurioh.github.io/devformat/ko/base64-decode/</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gurioh.github.io/devformat/base64/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://gurioh.github.io/devformat/ja/base64-decode/" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://gurioh.github.io/devformat/ko/base64-decode/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gurioh.github.io/devformat/base64/" />
+  </url>
+
   <url>
     <loc>https://gurioh.github.io/devformat/quote/</loc>
     <lastmod>2026-03-11</lastmod>
@@ -44,18 +108,6 @@
   </url>
   <url>
     <loc>https://gurioh.github.io/devformat/split-join/</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gurioh.github.io/devformat/escape/</loc>
-    <lastmod>2026-03-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://gurioh.github.io/devformat/base64/</loc>
     <lastmod>2026-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

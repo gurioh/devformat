@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base64文字列をデコード | DevFormat</title>
+  <meta name="description" content="Base64文字列をオンラインでデコード、またはUTF-8文字列をエンコードできます。APIデバッグやトークン確認に便利です。">
+  <meta name="keywords" content="Base64 デコード, Base64 エンコード, UTF-8 Base64 変換">
+  <meta property="og:title" content="Base64文字列をデコード | DevFormat">
+  <meta property="og:description" content="Base64文字列のデコードとUTF-8テキストのエンコードをブラウザで行えます。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/ja/base64-decode/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/ja/base64-decode/">
+  <link rel="alternate" hreflang="en" href="https://gurioh.github.io/devformat/base64/">
+  <link rel="alternate" hreflang="ja" href="https://gurioh.github.io/devformat/ja/base64-decode/">
+  <link rel="alternate" hreflang="ko" href="https://gurioh.github.io/devformat/ko/base64-decode/">
+  <link rel="alternate" hreflang="x-default" href="https://gurioh.github.io/devformat/base64/">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg?v=20260311">
+</head>
+<body data-page="base64" data-layout="tool">
+  <header class="site-header"><div class="site-header-inner"><a class="brand" href="../../"><div class="brand-mark"><img src="../../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div><div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div></a><nav class="site-nav"><a data-page-link="catalog" href="../../">Tools</a><a data-page-link="multiline" href="../../multiline/">Multiline</a><a data-page-link="quote" href="../../quote/">Quote</a><a data-page-link="split-join" href="../../split-join/">Split / Join</a><a data-page-link="escape" href="../../escape/">Escape</a><a data-page-link="base64" href="../../base64/">Base64</a><a data-page-link="url-encode" href="../../url-encode/">URL Encode</a><a data-page-link="slugify" href="../../slugify/">Slugify</a><a data-page-link="json" href="../../json/">JSON</a></nav></div></header>
+  <main class="page-shell">
+    <section class="hero compact hero-slim"><span class="hero-kicker">Encoding</span><h1>Base64文字列をデコード</h1><p>Base64文字列のデコードとUTF-8テキストのエンコードをブラウザで行い、トークンやpayloadをすばやく確認できます。</p></section>
+    <nav class="language-switcher" aria-label="Language selector"><span>言語</span><a href="../../base64/">English</a><a class="active" aria-current="page" href="../../ja/base64-decode/">日本語</a><a href="../../ko/base64-decode/">한국어</a></nav>
+    <section class="tool-shell"><div class="toolbar"><div class="toolbar-row toolbar-primary"><div class="segmented"><button class="active" type="button" data-mode="encode">Base64へ変換</button><button type="button" data-mode="decode">Base64から復元</button></div><div class="example-actions compact"><button type="button" data-example="json">JSON payload</button><button type="button" data-example="url">URL value</button><button type="button" data-example="base64">Encoded sample</button></div></div></div><div class="tool-panels"><section class="tool-panel"><div class="panel-head"><div><strong>入力</strong><span id="inputHint">通常テキスト</span></div><button class="copy-button" type="button" id="clearButton">クリア</button></div><textarea class="textarea" id="input"></textarea></section><section class="tool-panel"><div class="panel-head"><div><strong>出力</strong><span>変換結果</span></div><button class="copy-button" type="button" id="copyButton">コピー</button></div><textarea class="textarea" id="output" readonly></textarea></section></div><div class="stat-grid"><article class="stat-card"><span>状態</span><strong id="statusStat">Ready</strong></article><article class="stat-card"><span>入力文字数</span><strong id="inputStat">0</strong></article><article class="stat-card"><span>出力文字数</span><strong id="outputStat">0</strong></article></div></section>
+    <section class="split-layout"><article class="content-card"><h2>よく使う場面</h2><ul><li>コピーしたトークンやヘッダーの中身確認</li><li>小さなpayloadをターミナルなしでエンコード</li><li>UTF-8文字列が次の層に渡る前の確認</li></ul></article><article class="content-card"><h2>FAQ</h2><ul><li><code>TextEncoder</code> と <code>TextDecoder</code> を使うためUTF-8文字も扱えます。</li><li>不正なBase64はエラー表示になり、ページは壊れません。</li><li>ブラウザにいるまま素早く確認したいときに向いています。</li></ul></article></section>
+    <footer class="page-footer"><p>URLエンコードやJSON整形と合わせて使うと、payload全体の確認がしやすくなります。</p><nav><a href="../../escape/">Escape</a><a href="../../url-encode/">URL Encode</a><a href="../../json/">JSON</a></nav></footer>
+  </main>
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../../assets/site.js"></script>
+  <script>window.DevFormatBase64Config={defaultExample:'json',defaultMode:'encode',strings:{statusReady:'Ready',statusSuccess:'Success',statusError:'Error',inputHintEncode:'通常テキスト',inputHintDecode:'Base64文字列',copySuccess:'出力をコピーしました。',invalidPrefix:'無効な入力: '}};</script>
+  <script src="../../assets/base64-tool.js"></script>
+</body>
+</html>

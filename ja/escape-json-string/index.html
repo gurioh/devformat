@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON文字列をエスケープ | DevFormat</title>
+  <meta name="description" content="引用符、改行、タブ、バックスラッシュをJSON用に安全な文字列へ変換します。ブラウザだけで使えるJSONエスケープツールです。">
+  <meta name="keywords" content="JSON 文字列 エスケープ, JavaScript 文字列 エスケープ, 正規表現 エスケープ">
+  <meta property="og:title" content="JSON文字列をエスケープ | DevFormat">
+  <meta property="og:description" content="JSON、JavaScript、正規表現向けに文字列をエスケープまたはアンエスケープできます。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/ja/escape-json-string/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/ja/escape-json-string/">
+  <link rel="alternate" hreflang="en" href="https://gurioh.github.io/devformat/escape/">
+  <link rel="alternate" hreflang="ja" href="https://gurioh.github.io/devformat/ja/escape-json-string/">
+  <link rel="alternate" hreflang="ko" href="https://gurioh.github.io/devformat/ko/escape-json-string/">
+  <link rel="alternate" hreflang="x-default" href="https://gurioh.github.io/devformat/escape/">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"JSON文字列をエスケープ","applicationCategory":"DeveloperApplication","operatingSystem":"Any","url":"https://gurioh.github.io/devformat/ja/escape-json-string/","description":"JSON、JavaScript、正規表現向けに文字列をエスケープまたはアンエスケープできます。","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+  </script>
+</head>
+<body data-page="escape" data-layout="tool">
+  <header class="site-header"><div class="site-header-inner"><a class="brand" href="../../"><div class="brand-mark"><img src="../../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div><div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div></a><nav class="site-nav"><a data-page-link="catalog" href="../../">Tools</a><a data-page-link="multiline" href="../../multiline/">Multiline</a><a data-page-link="quote" href="../../quote/">Quote</a><a data-page-link="split-join" href="../../split-join/">Split / Join</a><a data-page-link="escape" href="../../escape/">Escape</a><a data-page-link="base64" href="../../base64/">Base64</a><a data-page-link="url-encode" href="../../url-encode/">URL Encode</a><a data-page-link="slugify" href="../../slugify/">Slugify</a><a data-page-link="json" href="../../json/">JSON</a></nav></div></header>
+  <main class="page-shell">
+    <section class="hero compact hero-slim"><span class="hero-kicker">String Format</span><h1>JSON文字列をエスケープ</h1><p>引用符、改行、タブ、バックスラッシュをJSONやJavaScriptに安全な文字列へ変換し、必要なら元のテキストへ戻せます。</p></section>
+    <nav class="language-switcher" aria-label="Language selector"><span>言語</span><a href="../../escape/">English</a><a class="active" aria-current="page" href="../../ja/escape-json-string/">日本語</a><a href="../../ko/escape-json-string/">한국어</a></nav>
+    <section class="tool-shell"><div class="toolbar"><div class="toolbar-row toolbar-primary"><div class="segmented"><button class="active" type="button" data-mode="escape">エスケープ</button><button type="button" data-mode="unescape">アンエスケープ</button></div><div class="example-actions compact"><button type="button" data-example="json">JSONテキスト</button><button type="button" data-example="javascript">JavaScript文字列</button><button type="button" data-example="regex">正規表現文字</button></div></div><div class="toolbar-row" id="presetBar"><button class="preset-chip active" type="button" data-preset="json">JSON</button><button class="preset-chip" type="button" data-preset="javascript">JavaScript</button><button class="preset-chip" type="button" data-preset="regex">Regex</button></div></div><div class="tool-panels"><section class="tool-panel"><div class="panel-head"><div><strong>入力</strong><span id="inputHint">生の文字列</span></div><button class="copy-button" type="button" id="clearButton">クリア</button></div><textarea class="textarea" id="input"></textarea></section><section class="tool-panel"><div class="panel-head"><div><strong>出力</strong><span>変換結果</span></div><button class="copy-button" type="button" id="copyButton">コピー</button></div><textarea class="textarea" id="output" readonly></textarea></section></div><div class="stat-grid"><article class="stat-card"><span>モード</span><strong id="modeStat">エスケープ</strong></article><article class="stat-card"><span>プリセット</span><strong id="presetStat">JSON</strong></article><article class="stat-card"><span>出力文字数</span><strong id="charStat">0</strong></article></div></section>
+    <section class="split-layout"><article class="content-card"><h2>よく使う場面</h2><ul><li>JSON文字列へ安全に埋め込みたいメッセージの整形</li><li>JavaScriptリテラル用のクイック変換</li><li>ユーザー入力を正規表現に入れる前の保護</li></ul></article><article class="content-card"><h2>FAQ</h2><ul><li>このツールはブラウザ内で動作し、入力テキストをサーバーに送信しません。</li><li>アンエスケープでは <code>\n</code>、<code>\t</code>、<code>\r</code>、引用符、バックスラッシュを戻せます。</li><li>Regexモードはメタ文字を安全にエスケープします。</li></ul></article></section>
+    <footer class="page-footer"><p>次の作業としてURLエンコード、JSON整形、Base64確認につながることが多いです。</p><nav><a href="../../url-encode/">URL Encode</a><a href="../../json/">JSON</a><a href="../../base64/">Base64</a></nav></footer>
+  </main>
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../../assets/site.js"></script>
+  <script>window.DevFormatEscapeConfig={defaultExample:'json',defaultMode:'escape',defaultPreset:'json',strings:{modeEscape:'エスケープ',modeUnescape:'アンエスケープ',presetJson:'JSON',presetJavascript:'JavaScript',presetRegex:'Regex',inputHintEscape:'生の文字列',inputHintUnescape:'エスケープ済み文字列',copySuccess:'出力をコピーしました。'}};</script>
+  <script src="../../assets/escape-tool.js"></script>
+</body>
+</html>
