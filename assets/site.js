@@ -1,6 +1,17 @@
 (function () {
   const GA_ID = 'G-VRRM1M4TJY';
   const namespace = {};
+  const eventTimers = {};
+
+  function emitEvent(eventName, params) {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, params || {});
+    }
+  }
+
+  function getPageName() {
+    return document.body.dataset.page || 'unknown';
+  }
 
   namespace.initAnalytics = function initAnalytics() {
     if (window.__dfAnalyticsLoaded) return;
@@ -20,9 +31,18 @@
   };
 
   namespace.trackEvent = function trackEvent(eventName, params) {
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', eventName, params || {});
+    const payload = Object.assign({ page: getPageName() }, params || {});
+
+    if (eventName === 'tool_convert') {
+      const key = eventName + ':' + (payload.tool || payload.page);
+      clearTimeout(eventTimers[key]);
+      eventTimers[key] = setTimeout(function () {
+        emitEvent(eventName, payload);
+      }, 700);
+      return;
     }
+
+    emitEvent(eventName, payload);
   };
 
   namespace.showToast = function showToast(message) {
@@ -41,7 +61,7 @@
     try {
       await navigator.clipboard.writeText(text);
       namespace.showToast(successMessage || 'Copied to clipboard.');
-      namespace.trackEvent('copy_output', { length: text.length });
+      namespace.trackEvent('copy_output', { tool: getPageName(), length: text.length });
       return true;
     } catch (error) {
       namespace.showToast('Clipboard access failed.');
@@ -62,6 +82,10 @@
   namespace.wireExampleButtons = function wireExampleButtons(handler) {
     document.querySelectorAll('[data-example]').forEach(function (button) {
       button.addEventListener('click', function () {
+        namespace.trackEvent('example_click', {
+          tool: getPageName(),
+          example: button.dataset.example
+        });
         handler(button.dataset.example);
       });
     });
@@ -92,6 +116,14 @@
       section.parentNode.insertBefore(details, section);
       details.appendChild(summary);
       details.appendChild(section);
+
+      details.addEventListener('toggle', function () {
+        if (!details.open) return;
+        namespace.trackEvent('fold_open', {
+          tool: getPageName(),
+          section: summary.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '_')
+        });
+      });
     });
   };
 

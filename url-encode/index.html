@@ -172,7 +172,14 @@
       try {
         output.value = mode === 'encode' ? encodeURIComponent(input.value) : decodeURIComponent(input.value);
         updateStats('Success');
-        DevFormat.trackEvent('tool_convert', { tool: 'url_encode', mode: mode });
+        DevFormat.trackEvent('tool_convert', {
+          tool: 'url_encode',
+          mode: mode,
+          status: 'success',
+          input_chars: input.value.length,
+          output_chars: output.value.length,
+          line_count: input.value ? input.value.split('\n').length : 0
+        });
       } catch (error) {
         output.value = 'Invalid input for ' + mode + '.';
         updateStats('Error');

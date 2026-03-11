@@ -140,6 +140,9 @@
       <div class="stat-grid">
         <article class="stat-card"><span>Mode</span><strong id="modeStat">Quote</strong></article>
         <article class="stat-card"><span>Items</span><strong id="itemStat">0</strong></article>
+        <article class="stat-card"><span>Input lines</span><strong id="lineStat">0</strong></article>
+        <article class="stat-card"><span>Unique</span><strong id="uniqueStat">0</strong></article>
+        <article class="stat-card"><span>Duplicates</span><strong id="duplicateStat">0</strong></article>
         <article class="stat-card"><span>Input chars</span><strong id="inputCharStat">0</strong></article>
         <article class="stat-card"><span>Output chars</span><strong id="charStat">0</strong></article>
         <article class="stat-card"><span>Delta</span><strong id="deltaStat">0</strong></article>
@@ -254,12 +257,28 @@
       return String(delta);
     }
 
-    function updateStats(items, inputChars, outputChars) {
+    function buildMetrics(values, raw, result) {
+      const uniqueCount = new Set(values).size;
+      return {
+        items: values.length,
+        inputLines: raw ? raw.split('\n').length : 0,
+        uniqueCount: uniqueCount,
+        duplicateCount: Math.max(0, values.length - uniqueCount),
+        inputChars: raw.length,
+        outputChars: result.length,
+        deltaChars: result.length - raw.length
+      };
+    }
+
+    function updateStats(metrics) {
       document.getElementById('modeStat').textContent = mode === 'quote' ? 'Quote' : 'Unquote';
-      document.getElementById('itemStat').textContent = String(items);
-      document.getElementById('inputCharStat').textContent = String(inputChars);
-      document.getElementById('charStat').textContent = String(outputChars);
-      document.getElementById('deltaStat').textContent = formatDelta(outputChars - inputChars);
+      document.getElementById('itemStat').textContent = String(metrics.items);
+      document.getElementById('lineStat').textContent = String(metrics.inputLines);
+      document.getElementById('uniqueStat').textContent = String(metrics.uniqueCount);
+      document.getElementById('duplicateStat').textContent = String(metrics.duplicateCount);
+      document.getElementById('inputCharStat').textContent = String(metrics.inputChars);
+      document.getElementById('charStat').textContent = String(metrics.outputChars);
+      document.getElementById('deltaStat').textContent = formatDelta(metrics.deltaChars);
     }
 
     function quoteLines(raw) {
@@ -268,7 +287,7 @@
       if (skipEmpty.checked) lines = lines.filter(function (line) { return line.length > 0; });
       const result = lines.map(function (line) { return quoteChar.value + line + quoteChar.value; }).join(parseEscapes(delimiter.value));
       output.value = result;
-      updateStats(lines.length, raw.length, result.length);
+      return buildMetrics(lines, raw, result);
     }
 
     function unquoteLines(raw) {
@@ -283,22 +302,35 @@
       if (skipEmpty.checked) parts = parts.filter(function (part) { return part.length > 0; });
       const result = parts.join('\n');
       output.value = result;
-      updateStats(parts.length, raw.length, result.length);
+      return buildMetrics(parts, raw, result);
     }
 
     function convert() {
       const raw = input.value;
       if (!raw.trim()) {
         output.value = '';
-        updateStats(0, 0, 0);
+        updateStats(buildMetrics([], '', ''));
         return;
       }
+      let metrics;
       if (mode === 'quote') {
-        quoteLines(raw);
+        metrics = quoteLines(raw);
       } else {
-        unquoteLines(raw);
+        metrics = unquoteLines(raw);
       }
-      DevFormat.trackEvent('tool_convert', { tool: 'quote', mode: mode, preset: activePreset });
+      updateStats(metrics);
+      DevFormat.trackEvent('tool_convert', {
+        tool: 'quote',
+        mode: mode,
+        preset: activePreset,
+        item_count: metrics.items,
+        line_count: metrics.inputLines,
+        unique_count: metrics.uniqueCount,
+        duplicate_count: metrics.duplicateCount,
+        input_chars: metrics.inputChars,
+        output_chars: metrics.outputChars,
+        delta_chars: metrics.deltaChars
+      });
     }
 
     document.querySelectorAll('[data-mode]').forEach(function (button) {
@@ -340,7 +372,7 @@
     document.getElementById('clearButton').addEventListener('click', function () {
       input.value = '';
       output.value = '';
-      updateStats(0, 0, 0);
+      updateStats(buildMetrics([], '', ''));
       input.focus();
     });
 

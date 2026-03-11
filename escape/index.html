@@ -255,7 +255,14 @@
       }
 
       updateStats();
-      DevFormat.trackEvent('tool_convert', { tool: 'escape', mode: mode, preset: preset });
+      DevFormat.trackEvent('tool_convert', {
+        tool: 'escape',
+        mode: mode,
+        preset: preset,
+        input_chars: input.value.length,
+        output_chars: output.value.length,
+        line_count: input.value ? input.value.split('\n').length : 0
+      });
     }
 
     document.querySelectorAll('[data-mode]').forEach(function (button) {

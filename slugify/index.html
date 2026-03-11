@@ -227,7 +227,13 @@
       }
       output.value = toCase(words, mode);
       updateStats(words);
-      DevFormat.trackEvent('tool_convert', { tool: 'slugify', mode: mode });
+      DevFormat.trackEvent('tool_convert', {
+        tool: 'slugify',
+        mode: mode,
+        word_count: words.length,
+        input_chars: input.value.length,
+        output_chars: output.value.length
+      });
     }
 
     document.querySelectorAll('[data-mode]').forEach(function (button) {

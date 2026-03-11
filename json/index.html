@@ -181,7 +181,14 @@
           output.value = 'Valid JSON.';
         }
         updateStats('Success');
-        DevFormat.trackEvent('tool_convert', { tool: 'json', action: action });
+        DevFormat.trackEvent('tool_convert', {
+          tool: 'json',
+          action: action,
+          status: 'success',
+          input_chars: input.value.length,
+          output_chars: output.value.length,
+          line_count: input.value ? input.value.split('\n').length : 0
+        });
       } catch (error) {
         output.value = 'Invalid JSON: ' + error.message;
         updateStats('Error');

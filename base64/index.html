@@ -185,7 +185,14 @@
       try {
         output.value = mode === 'encode' ? utf8ToBase64(input.value) : base64ToUtf8(input.value.trim());
         updateStats('Success');
-        DevFormat.trackEvent('tool_convert', { tool: 'base64', mode: mode });
+        DevFormat.trackEvent('tool_convert', {
+          tool: 'base64',
+          mode: mode,
+          status: 'success',
+          input_chars: input.value.length,
+          output_chars: output.value.length,
+          line_count: input.value ? input.value.split('\n').length : 0
+        });
       } catch (error) {
         output.value = 'Invalid input for ' + mode + '.';
         updateStats('Error');
