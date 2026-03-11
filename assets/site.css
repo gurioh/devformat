@@ -543,14 +543,26 @@ body[data-layout="tool"] .toolbar {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+body[data-layout="tool"] .tool-panels {
+  background: rgba(255, 255, 255, 0.015);
+}
+
 .tool-panel {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   min-height: 520px;
 }
 
+body[data-layout="tool"] .tool-panel {
+  min-height: 560px;
+}
+
 .tool-panel + .tool-panel {
   border-left: 1px solid var(--border);
+}
+
+body[data-layout="tool"] .tool-panel + .tool-panel {
+  border-left-color: rgba(143, 161, 181, 0.14);
 }
 
 .panel-head {
@@ -561,6 +573,11 @@ body[data-layout="tool"] .toolbar {
   gap: 12px;
   background: rgba(255, 255, 255, 0.04);
   border-bottom: 1px solid var(--border);
+}
+
+body[data-layout="tool"] .panel-head {
+  background: rgba(255, 255, 255, 0.025);
+  border-bottom-color: rgba(143, 161, 181, 0.14);
 }
 
 .panel-head > div {
@@ -595,14 +612,21 @@ body[data-layout="tool"] .toolbar {
   background: transparent;
 }
 
+body[data-layout="tool"] .tool-panel .textarea {
+  padding: 14px 16px 16px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
 .stat-grid {
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   padding: 20px 24px 24px;
 }
 
 body[data-layout="tool"] .stat-grid {
-  padding: 14px 16px 16px;
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  padding: 10px 12px 12px;
+  gap: 8px;
 }
 
 .stat-card {
@@ -614,8 +638,11 @@ body[data-layout="tool"] .stat-grid {
 }
 
 body[data-layout="tool"] .stat-card {
-  padding: 14px 16px;
-  gap: 4px;
+  padding: 10px 12px;
+  gap: 2px;
+  border-radius: 14px;
+  box-shadow: none;
+  background: rgba(255, 255, 255, 0.035);
 }
 
 .stat-card span {
@@ -625,13 +652,17 @@ body[data-layout="tool"] .stat-card {
   letter-spacing: 0.08em;
 }
 
+body[data-layout="tool"] .stat-card span {
+  font-size: 10px;
+}
+
 .stat-card strong {
   font-size: 24px;
   letter-spacing: -0.03em;
 }
 
 body[data-layout="tool"] .stat-card strong {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .split-layout {
@@ -814,6 +845,19 @@ code {
 
   .tool-panel {
     min-height: 360px;
+  }
+
+  body[data-layout="tool"] .tool-panel {
+    min-height: 320px;
+  }
+
+  body[data-layout="tool"] .stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body[data-layout="tool"] .tool-panel .textarea {
+    padding: 12px 14px 14px;
+    font-size: 14px;
   }
 
   .text-area,
