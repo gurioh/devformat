@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How to Escape String for JSON | DevFormat</title>
-  <meta name="description" content="Step-by-step guide to escape a string for JSON, with examples for quotes, newlines, and backslashes.">
-  <meta name="keywords" content="how to escape string for json, escape string for json, json string escape example">
-  <meta property="og:title" content="How to Escape String for JSON | DevFormat">
-  <meta property="og:description" content="Escape quotes, newlines, and backslashes for JSON with a short guide and a browser-based tool.">
+  <title>Escape String for JSON Guide | DevFormat</title>
+  <meta name="description" content="Escape a string for JSON with examples for quotes, newlines, tabs, and backslashes, plus a browser-based JSON string escape tool.">
+  <meta name="keywords" content="escape string for json, how to escape string for json, json string escape example, json escape online">
+  <meta property="og:title" content="Escape String for JSON Guide | DevFormat">
+  <meta property="og:description" content="Escape quotes, newlines, tabs, and backslashes for JSON with a short guide and a browser-based tool.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://gurioh.github.io/devformat/how-to-escape-string-for-json/">
   <link rel="canonical" href="https://gurioh.github.io/devformat/how-to-escape-string-for-json/">
@@ -17,8 +17,8 @@
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "How to Escape String for JSON",
-    "description": "Escape quotes, newlines, and backslashes for JSON with a short guide and a browser-based tool.",
+    "headline": "Escape String for JSON Guide",
+    "description": "Escape quotes, newlines, tabs, and backslashes for JSON with a short guide and a browser-based tool.",
     "author": {"@type": "Organization", "name": "DevFormat"},
     "publisher": {"@type": "Organization", "name": "DevFormat"},
     "mainEntityOfPage": "https://gurioh.github.io/devformat/how-to-escape-string-for-json/"
@@ -30,7 +30,7 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       {"@type": "ListItem", "position": 1, "name": "DevFormat Tools", "item": "https://gurioh.github.io/devformat/"},
-      {"@type": "ListItem", "position": 2, "name": "How to Escape String for JSON", "item": "https://gurioh.github.io/devformat/how-to-escape-string-for-json/"}
+      {"@type": "ListItem", "position": 2, "name": "Escape String for JSON Guide", "item": "https://gurioh.github.io/devformat/how-to-escape-string-for-json/"}
     ]
   }
   </script>
@@ -63,15 +63,15 @@
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="../">Tools</a>
       <span>/</span>
-      <span aria-current="page">How to Escape String for JSON</span>
+      <span aria-current="page">Escape String for JSON Guide</span>
     </nav>
 
     <section class="hero compact">
       <span class="hero-kicker">Guide</span>
-      <h1>How to escape a string for JSON</h1>
-      <p>If a raw string contains quotes, newlines, tabs, or backslashes, it cannot be dropped into a JSON string safely as-is. You need to convert those characters into escape sequences first.</p>
+      <h1>Escape a string for JSON</h1>
+      <p>Convert raw text with quotes, newlines, tabs, or backslashes into JSON-safe string content before pasting it into an API payload, config file, or fixture.</p>
       <div class="hero-actions">
-        <a class="button primary" href="../escape/">Open the escape tool</a>
+        <a class="button primary" href="../escape/">Open the JSON escape tool</a>
         <a class="button" href="../json/">Open JSON formatter</a>
       </div>
     </section>
@@ -101,7 +101,7 @@
         <h2>Common reasons strings break JSON</h2>
         <ul>
           <li>Unescaped double quotes</li>
-          <li>Literal newline characters</li>
+          <li>Literal newline or tab characters</li>
           <li>Backslashes copied from file paths or regexes</li>
         </ul>
       </article>
@@ -124,7 +124,7 @@
         </article>
         <article class="faq-item">
           <h3>Should I validate the final JSON too?</h3>
-          <p>Yes. After escaping the string, it is a good idea to run the full payload through the JSON formatter and validator.</p>
+          <p>Yes. After escaping the string, run the full payload through the JSON formatter and validator to catch missing commas or broken braces.</p>
         </article>
       </div>
     </section>
