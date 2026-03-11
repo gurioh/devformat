@@ -135,28 +135,6 @@ a {
   font-size: 12px;
 }
 
-body[data-layout="tool"] .site-header-inner {
-  min-height: 60px;
-}
-
-body[data-layout="tool"] .brand {
-  gap: 10px;
-}
-
-body[data-layout="tool"] .brand-mark {
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
-}
-
-body[data-layout="tool"] .brand-copy strong {
-  font-size: 16px;
-}
-
-body[data-layout="tool"] .brand-copy span {
-  display: none;
-}
-
 .site-nav {
   display: flex;
   flex-wrap: wrap;
@@ -169,11 +147,6 @@ body[data-layout="tool"] .brand-copy span {
   border-radius: 999px;
   color: var(--text-dim);
   transition: 160ms ease;
-}
-
-body[data-layout="tool"] .site-nav a {
-  padding: 7px 11px;
-  font-size: 14px;
 }
 
 .site-nav a:hover,
