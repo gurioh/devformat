@@ -4,230 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>URL Encode Query Parameter Online | DevFormat</title>
-  <meta name="description" content="URL encode a query parameter online or decode URL-encoded text in the browser for request debugging.">
+  <meta name="description" content="Encode query parameter values and decode URL-encoded text directly in the browser. Fast tool for request debugging.">
   <meta name="keywords" content="url encode query parameter online, url encode online, url decode online, encode query parameter, decode query string">
   <meta property="og:title" content="URL Encode Query Parameter Online | DevFormat">
   <meta property="og:description" content="Encode query parameter values and decode URL-encoded text directly in the browser.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gurioh.github.io/devformat/url-encode/">
   <link rel="canonical" href="https://gurioh.github.io/devformat/url-encode/">
+  <link rel="alternate" hreflang="en" href="https://gurioh.github.io/devformat/url-encode/">
+  <link rel="alternate" hreflang="ja" href="https://gurioh.github.io/devformat/ja/url-encode/">
+  <link rel="alternate" hreflang="ko" href="https://gurioh.github.io/devformat/ko/url-encode/">
+  <link rel="alternate" hreflang="x-default" href="https://gurioh.github.io/devformat/url-encode/">
   <link rel="stylesheet" href="../assets/site.css">
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "URL Encode Query Parameter Online",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Any",
-    "url": "https://gurioh.github.io/devformat/url-encode/",
-    "description": "Encode query parameter values and decode URL-encoded text directly in the browser.",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "DevFormat Tools", "item": "https://gurioh.github.io/devformat/"},
-      {"@type": "ListItem", "position": 2, "name": "URL Encode Query Parameter Online", "item": "https://gurioh.github.io/devformat/url-encode/"}
-    ]
-  }
-  </script>
 </head>
 <body data-page="url-encode" data-layout="tool">
-  <header class="site-header">
-    <div class="site-header-inner">
-      <a class="brand" href="../">
-        <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
-        <div class="brand-copy">
-          <strong>DevFormat</strong>
-          <span>Preset-driven text tools for developers</span>
-        </div>
-      </a>
-      <nav class="site-nav">
-        <a data-page-link="catalog" href="../">Tools</a>
-        <a data-page-link="multiline" href="../multiline/">Multiline</a>
-        <a data-page-link="quote" href="../quote/">Quote</a>
-        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
-        <a data-page-link="escape" href="../escape/">Escape</a>
-        <a data-page-link="base64" href="../base64/">Base64</a>
-        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
-        <a data-page-link="slugify" href="../slugify/">Slugify</a>
-        <a data-page-link="json" href="../json/">JSON</a>
-      </nav>
-    </div>
-  </header>
-
+  <header class="site-header"><div class="site-header-inner"><a class="brand" href="../"><div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div><div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div></a><nav class="site-nav"><a data-page-link="catalog" href="../">Tools</a><a data-page-link="multiline" href="../multiline/">Multiline</a><a data-page-link="quote" href="../quote/">Quote</a><a data-page-link="split-join" href="../split-join/">Split / Join</a><a data-page-link="escape" href="../escape/">Escape</a><a data-page-link="base64" href="../base64/">Base64</a><a data-page-link="url-encode" href="../url-encode/">URL Encode</a><a data-page-link="slugify" href="../slugify/">Slugify</a><a data-page-link="json" href="../json/">JSON</a></nav></div></header>
   <main class="page-shell">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="../">Tools</a>
-      <span>/</span>
-      <span aria-current="page">URL Encode Query Parameter Online</span>
-    </nav>
-    <section class="hero compact hero-slim">
-      <span class="hero-kicker">Encoding</span>
-      <h1>Encode a query parameter or decode URL-encoded text.</h1>
-      <p>Paste a raw value or encoded fragment, switch direction, and copy the cleaned result without leaving the browser.</p>
-    </section>
-
-    <section class="tool-shell">
-      <div class="toolbar">
-        <div class="toolbar-row toolbar-primary">
-          <div class="segmented">
-            <button class="active" type="button" data-mode="encode">Encode</button>
-            <button type="button" data-mode="decode">Decode</button>
-          </div>
-          <div class="example-actions compact">
-            <button type="button" data-example="query">Query value</button>
-            <button type="button" data-example="url">Full URL fragment</button>
-            <button type="button" data-example="encoded">Encoded sample</button>
-          </div>
-        </div>
-      </div>
-      <div class="tool-panels">
-        <section class="tool-panel">
-          <div class="panel-head">
-            <div>
-              <strong>Input</strong>
-              <span id="inputHint">Raw value</span>
-            </div>
-            <button class="copy-button" type="button" id="clearButton">Clear</button>
-          </div>
-          <textarea class="textarea" id="input"></textarea>
-        </section>
-        <section class="tool-panel">
-          <div class="panel-head">
-            <div>
-              <strong>Output</strong>
-              <span>Converted value</span>
-            </div>
-            <button class="copy-button" type="button" id="copyButton">Copy</button>
-          </div>
-          <textarea class="textarea" id="output" readonly></textarea>
-        </section>
-      </div>
-      <div class="stat-grid">
-        <article class="stat-card"><span>Status</span><strong id="statusStat">Ready</strong></article>
-        <article class="stat-card"><span>Input chars</span><strong id="inputStat">0</strong></article>
-        <article class="stat-card"><span>Output chars</span><strong id="outputStat">0</strong></article>
-      </div>
-    </section>
-
-    <section class="faq-card">
-      <h2>FAQ</h2>
-      <div class="faq-list">
-        <article class="faq-item">
-          <h3>Does this encode a full URL?</h3>
-          <p>This page uses <code>encodeURIComponent</code>, so it is best for query parameter values and partial URL payloads rather than full URLs.</p>
-        </article>
-        <article class="faq-item">
-          <h3>What happens if the encoded string is broken?</h3>
-          <p>The tool catches decoding errors and reports them in the output panel instead of failing silently.</p>
-        </article>
-        <article class="faq-item">
-          <h3>When should I use this with other tools?</h3>
-          <p>It pairs well with JSON and Base64 when a request payload moves through multiple encoding steps before it reaches an API.</p>
-        </article>
-      </div>
-    </section>
-
-    <footer class="page-footer">
-      <p>URL encoding pairs naturally with JSON formatting and Base64 inspection when you are debugging requests across layers.</p>
-      <nav>
-        <a href="../escape/">Escape</a>
-        <a href="../base64/">Base64</a>
-        <a href="../json/">JSON</a>
-      </nav>
-    </footer>
+    <section class="hero compact hero-slim"><span class="hero-kicker">Encoding</span><h1>URL Encode Query Parameter Online</h1><p>Encode query parameter values or decode URL-encoded text in the browser for request debugging and payload cleanup.</p></section>
+    <nav class="language-switcher" aria-label="Language selector"><span>Available in</span><a class="active" aria-current="page" href="../url-encode/">English</a><a href="../ja/url-encode/">日本語</a><a href="../ko/url-encode/">한국어</a></nav>
+    <section class="tool-shell"><div class="toolbar"><div class="toolbar-row toolbar-primary"><div class="segmented"><button class="active" type="button" data-mode="encode">Encode</button><button type="button" data-mode="decode">Decode</button></div><div class="example-actions compact"><button type="button" data-example="query">Query value</button><button type="button" data-example="url">Full URL fragment</button><button type="button" data-example="encoded">Encoded sample</button></div></div></div><div class="tool-panels"><section class="tool-panel"><div class="panel-head"><div><strong>Input</strong><span id="inputHint">Raw value</span></div><button class="copy-button" type="button" id="clearButton">Clear</button></div><textarea class="textarea" id="input"></textarea></section><section class="tool-panel"><div class="panel-head"><div><strong>Output</strong><span>Converted value</span></div><button class="copy-button" type="button" id="copyButton">Copy</button></div><textarea class="textarea" id="output" readonly></textarea></section></div><div class="stat-grid"><article class="stat-card"><span>Status</span><strong id="statusStat">Ready</strong></article><article class="stat-card"><span>Input chars</span><strong id="inputStat">0</strong></article><article class="stat-card"><span>Output chars</span><strong id="outputStat">0</strong></article></div></section>
+    <section class="split-layout"><article class="content-card"><h2>Common use cases</h2><ul><li>Encode a query parameter value before sending a request</li><li>Decode copied URL fragments while debugging</li><li>Check partial payloads that move between layers</li></ul></article><article class="content-card"><h2>FAQ</h2><ul><li>This tool uses <code>encodeURIComponent</code>, so it is best for query parameter values and partial URL fragments.</li><li>Broken encoded strings are caught and shown as errors instead of failing silently.</li><li>It pairs well with JSON and Base64 when payloads move through multiple encoding steps.</li></ul></article></section>
+    <footer class="page-footer"><p>URL encoding pairs naturally with JSON formatting and Base64 inspection when debugging requests across layers.</p><nav><a href="../escape/">Escape</a><a href="../base64/">Base64</a><a href="../json/">JSON</a></nav></footer>
   </main>
-
   <div class="toast" id="toast">Ready.</div>
   <script src="../assets/site.js"></script>
-  <script>
-    const input = document.getElementById('input');
-    const output = document.getElementById('output');
-    let mode = 'encode';
-
-    const examples = {
-      query: 'hello world & lang=en',
-      url: 'filter=status:open&sort=updated_at desc',
-      encoded: 'hello%20world%20%26%20lang%3Den'
-    };
-
-    function updateStats(status) {
-      document.getElementById('statusStat').textContent = status;
-      document.getElementById('inputStat').textContent = String(input.value.length);
-      document.getElementById('outputStat').textContent = String(output.value.length);
-    }
-
-    function convert() {
-      if (!input.value) {
-        output.value = '';
-        updateStats('Ready');
-        return;
-      }
-
-      try {
-        output.value = mode === 'encode' ? encodeURIComponent(input.value) : decodeURIComponent(input.value);
-        updateStats('Success');
-        DevFormat.trackEvent('tool_convert', {
-          tool: 'url_encode',
-          mode: mode,
-          status: 'success',
-          input_chars: input.value.length,
-          output_chars: output.value.length,
-          line_count: input.value ? input.value.split('\n').length : 0
-        });
-      } catch (error) {
-        output.value = 'Invalid input for ' + mode + '.';
-        updateStats('Error');
-      }
-    }
-
-    document.querySelectorAll('[data-mode]').forEach(function (button) {
-      button.addEventListener('click', function () {
-        mode = button.dataset.mode;
-        document.querySelectorAll('[data-mode]').forEach(function (node) {
-          node.classList.toggle('active', node === button);
-        });
-        document.getElementById('inputHint').textContent = mode === 'encode' ? 'Raw value' : 'URL-encoded value';
-        input.value = output.value;
-        output.value = '';
-        convert();
-      });
-    });
-
-    input.addEventListener('input', convert);
-    document.getElementById('copyButton').addEventListener('click', function () {
-      DevFormat.copyText(output.value, 'URL result copied.');
-    });
-    document.getElementById('clearButton').addEventListener('click', function () {
-      input.value = '';
-      output.value = '';
-      updateStats('Ready');
-      input.focus();
-    });
-
-    DevFormat.wireExampleButtons(function (key) {
-      input.value = examples[key] || '';
-      if (key === 'encoded') {
-        mode = 'decode';
-        document.querySelectorAll('[data-mode]').forEach(function (node) {
-          node.classList.toggle('active', node.dataset.mode === 'decode');
-        });
-      } else {
-        mode = 'encode';
-        document.querySelectorAll('[data-mode]').forEach(function (node) {
-          node.classList.toggle('active', node.dataset.mode === 'encode');
-        });
-      }
-      convert();
-    });
-
-    input.value = examples.query;
-    convert();
-  </script>
+  <script>window.DevFormatUrlEncodeConfig={defaultExample:'query',defaultMode:'encode',strings:{statusReady:'Ready',statusSuccess:'Success',statusError:'Error',inputHintEncode:'Raw value',inputHintDecode:'URL-encoded value',copySuccess:'URL result copied.',invalidPrefix:'Invalid input for '}};</script>
+  <script src="../assets/url-encode-tool.js"></script>
 </body>
 </html>
