@@ -66,26 +66,51 @@
       <span>/</span>
       <span aria-current="page">Newline to SQL IN Clause Converter</span>
     </nav>
-    <section class="hero compact">
+    <section class="hero compact hero-slim">
       <span class="hero-kicker">Text Transform</span>
       <h1>Convert newline text into a SQL IN clause, JS array, or Python list.</h1>
-      <p>Paste line-based text and turn it into SQL IN clauses, JavaScript arrays, Python lists, CSV rows, or a custom wrapped format. This page also works in reverse when you need to explode a single line back into separate entries.</p>
-      <div class="chip-row">
-        <span class="chip">SQL IN</span>
-        <span class="chip">JS Array</span>
-        <span class="chip">Python List</span>
-        <span class="chip">Custom delimiter</span>
-      </div>
+      <p>Paste values, choose a preset, and copy the result. Open advanced settings only when you need custom delimiters, quotes, or wrappers.</p>
     </section>
 
     <section class="tool-shell">
-      <div class="tool-meta">
-        Fast path: choose a preset, paste values, copy the result. If you need to reverse the workflow, toggle the direction and split the string back into lines.
-      </div>
       <div class="toolbar">
-        <div class="toolbar-row segmented">
-          <button class="active" type="button" data-direction="forward">Multi -> Single</button>
-          <button type="button" data-direction="reverse">Single -> Multi</button>
+        <div class="toolbar-row toolbar-primary">
+          <div class="segmented">
+            <button class="active" type="button" data-direction="forward">Multi -> Single</button>
+            <button type="button" data-direction="reverse">Single -> Multi</button>
+          </div>
+          <details class="toolbar-details" id="advancedPanel">
+            <summary>Advanced settings</summary>
+            <div class="toolbar-detail-body">
+              <div class="toolbar-grid compact">
+                <div class="field">
+                  <label for="delimiter">Delimiter</label>
+                  <input class="input" id="delimiter" value=", ">
+                </div>
+                <div class="field">
+                  <label for="quoteChar">Quote</label>
+                  <input class="input" id="quoteChar" value="'">
+                </div>
+                <div class="field">
+                  <label for="wrapStart">Wrap start</label>
+                  <input class="input" id="wrapStart" value="(">
+                </div>
+                <div class="field">
+                  <label for="wrapEnd">Wrap end</label>
+                  <input class="input" id="wrapEnd" value=")">
+                </div>
+              </div>
+              <div class="toolbar-row compact">
+                <label class="chip"><input id="trimLines" type="checkbox" checked> Trim lines</label>
+                <label class="chip"><input id="skipEmpty" type="checkbox" checked> Skip empty lines</label>
+              </div>
+              <div class="example-actions compact">
+                <button type="button" data-example="fruit">Fruit values</button>
+                <button type="button" data-example="ids">Record IDs</button>
+                <button type="button" data-example="emails">Email list</button>
+              </div>
+            </div>
+          </details>
         </div>
         <div class="toolbar-row" id="presetBar">
           <button class="preset-chip active" type="button" data-preset="sql-in">SQL IN</button>
@@ -96,33 +121,6 @@
           <button class="preset-chip" type="button" data-preset="pipe">Pipe</button>
           <button class="preset-chip" type="button" data-preset="tab">Tab</button>
           <button class="preset-chip" type="button" data-preset="custom">Custom</button>
-        </div>
-        <div class="toolbar-grid">
-          <div class="field">
-            <label for="delimiter">Delimiter</label>
-            <input class="input" id="delimiter" value=", ">
-          </div>
-          <div class="field">
-            <label for="quoteChar">Quote</label>
-            <input class="input" id="quoteChar" value="'">
-          </div>
-          <div class="field">
-            <label for="wrapStart">Wrap start</label>
-            <input class="input" id="wrapStart" value="(">
-          </div>
-          <div class="field">
-            <label for="wrapEnd">Wrap end</label>
-            <input class="input" id="wrapEnd" value=")">
-          </div>
-        </div>
-        <div class="toolbar-row">
-          <label class="chip"><input id="trimLines" type="checkbox" checked> Trim lines</label>
-          <label class="chip"><input id="skipEmpty" type="checkbox" checked> Skip empty lines</label>
-        </div>
-        <div class="example-actions">
-          <button type="button" data-example="fruit">Fruit values</button>
-          <button type="button" data-example="ids">Record IDs</button>
-          <button type="button" data-example="emails">Email list</button>
         </div>
       </div>
 
@@ -237,6 +235,7 @@
     const wrapEnd = document.getElementById('wrapEnd');
     const trimLines = document.getElementById('trimLines');
     const skipEmpty = document.getElementById('skipEmpty');
+    const advancedPanel = document.getElementById('advancedPanel');
 
     function parseEscapes(value) {
       return value.replace(/\\t/g, '\t').replace(/\\n/g, '\n');
@@ -252,6 +251,7 @@
     function applyPreset(key) {
       const preset = presets[key];
       markActivePreset(key);
+      if (key === 'custom') advancedPanel.open = true;
       if (!preset) return;
       delimiter.value = preset.delimiter;
       quoteChar.value = preset.quoteChar;
@@ -276,6 +276,7 @@
         current.wrapEnd !== active.wrapEnd
       ) {
         markActivePreset('custom');
+        advancedPanel.open = true;
       }
     }
 

@@ -165,6 +165,21 @@ a {
   padding-top: 40px;
 }
 
+.hero.hero-slim {
+  gap: 12px;
+  padding-top: 24px;
+  padding-bottom: 16px;
+}
+
+.hero.hero-slim h1 {
+  font-size: clamp(28px, 4vw, 46px);
+}
+
+.hero.hero-slim p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
 .breadcrumb {
   display: inline-flex;
   align-items: center;
@@ -367,10 +382,65 @@ a {
   border-bottom: 1px solid var(--border);
 }
 
+.toolbar-primary {
+  align-items: start;
+  justify-content: space-between;
+}
+
+.toolbar-row.compact,
+.example-actions.compact {
+  gap: 8px;
+}
+
 .toolbar-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 12px;
+}
+
+.toolbar-grid.compact {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.toolbar-details {
+  min-width: min(100%, 420px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.toolbar-details summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 12px 16px;
+  font-weight: 600;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.toolbar-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.toolbar-details summary::after {
+  content: "+";
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.toolbar-details[open] summary::after {
+  content: "−";
+}
+
+.toolbar-detail-body {
+  padding: 0 16px 16px;
+  display: grid;
+  gap: 12px;
+  border-top: 1px solid rgba(143, 161, 181, 0.12);
 }
 
 .field {
@@ -416,7 +486,7 @@ a {
 
 .tool-panel {
   display: grid;
-  min-height: 420px;
+  min-height: 520px;
 }
 
 .tool-panel + .tool-panel {
@@ -424,7 +494,7 @@ a {
 }
 
 .panel-head {
-  padding: 16px 18px;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -433,8 +503,15 @@ a {
   border-bottom: 1px solid var(--border);
 }
 
+.panel-head > div {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .panel-head strong {
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -442,6 +519,7 @@ a {
 .panel-head span {
   font-size: 12px;
   color: var(--text-dim);
+  line-height: 1.2;
 }
 
 .tool-panel .textarea {
@@ -608,6 +686,15 @@ code {
     border-top: 1px solid var(--border);
   }
 
+  .toolbar-primary {
+    grid-template-columns: 1fr;
+  }
+
+  .toolbar-details {
+    min-width: 0;
+    width: 100%;
+  }
+
   .page-footer {
     flex-direction: column;
   }
@@ -643,6 +730,10 @@ code {
   .faq-card {
     padding-left: 18px;
     padding-right: 18px;
+  }
+
+  .tool-panel {
+    min-height: 360px;
   }
 
   .text-area,
