@@ -545,6 +545,7 @@ body[data-layout="tool"] .toolbar {
 
 .tool-panel {
   display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
   min-height: 520px;
 }
 
@@ -553,11 +554,11 @@ body[data-layout="tool"] .toolbar {
 }
 
 .panel-head {
-  padding: 12px 16px;
+  padding: 8px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
   background: rgba(255, 255, 255, 0.04);
   border-bottom: 1px solid var(--border);
 }
@@ -570,19 +571,25 @@ body[data-layout="tool"] .toolbar {
 }
 
 .panel-head strong {
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .panel-head span {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-dim);
-  line-height: 1.2;
+  line-height: 1.1;
+}
+
+.panel-head .copy-button {
+  padding: 7px 12px;
+  font-size: 13px;
 }
 
 .tool-panel .textarea {
-  min-height: 100%;
+  min-height: 0;
+  height: 100%;
   border: 0;
   border-radius: 0;
   background: transparent;
