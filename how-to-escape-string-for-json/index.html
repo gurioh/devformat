@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Escape String for JSON | DevFormat</title>
+  <meta name="description" content="Step-by-step guide to escape a string for JSON, with examples for quotes, newlines, and backslashes.">
+  <meta name="keywords" content="how to escape string for json, escape string for json, json string escape example">
+  <meta property="og:title" content="How to Escape String for JSON | DevFormat">
+  <meta property="og:description" content="Escape quotes, newlines, and backslashes for JSON with a short guide and a browser-based tool.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/how-to-escape-string-for-json/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/how-to-escape-string-for-json/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Escape String for JSON",
+    "description": "Escape quotes, newlines, and backslashes for JSON with a short guide and a browser-based tool.",
+    "author": {"@type": "Organization", "name": "DevFormat"},
+    "publisher": {"@type": "Organization", "name": "DevFormat"},
+    "mainEntityOfPage": "https://gurioh.github.io/devformat/how-to-escape-string-for-json/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "DevFormat Tools", "item": "https://gurioh.github.io/devformat/"},
+      {"@type": "ListItem", "position": 2, "name": "How to Escape String for JSON", "item": "https://gurioh.github.io/devformat/how-to-escape-string-for-json/"}
+    ]
+  }
+  </script>
+</head>
+<body data-page="catalog">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
+        <div class="brand-copy">
+          <strong>DevFormat</strong>
+          <span>Preset-driven text tools for developers</span>
+        </div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <span aria-current="page">How to Escape String for JSON</span>
+    </nav>
+
+    <section class="hero compact">
+      <span class="hero-kicker">Guide</span>
+      <h1>How to escape a string for JSON</h1>
+      <p>If a raw string contains quotes, newlines, tabs, or backslashes, it cannot be dropped into a JSON string safely as-is. You need to convert those characters into escape sequences first.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="../escape/">Open the escape tool</a>
+        <a class="button" href="../json/">Open JSON formatter</a>
+      </div>
+    </section>
+
+    <section class="section-stack">
+      <article class="content-card">
+        <h2>Raw input</h2>
+        <p><code>Line "one"<br>Line two with tab</code></p>
+      </article>
+      <article class="content-card">
+        <h2>Escaped JSON string content</h2>
+        <p><code>Line \"one\"\nLine two with tab</code></p>
+      </article>
+      <article class="content-card">
+        <h2>Steps</h2>
+        <ol>
+          <li>Open <a class="text-accent" href="../escape/">Escape String for JSON Online</a>.</li>
+          <li>Paste the raw string.</li>
+          <li>Keep the <code>JSON string</code> preset selected.</li>
+          <li>Copy the escaped result and place it inside your JSON value.</li>
+        </ol>
+      </article>
+    </section>
+
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>Common reasons strings break JSON</h2>
+        <ul>
+          <li>Unescaped double quotes</li>
+          <li>Literal newline characters</li>
+          <li>Backslashes copied from file paths or regexes</li>
+        </ul>
+      </article>
+      <article class="content-card">
+        <h2>Related workflows</h2>
+        <p>After escaping a string, developers often format the surrounding payload with <a class="text-accent" href="../json/">JSON Formatter and Validator</a> or URL encode it for transport.</p>
+      </article>
+    </section>
+
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>Do I need to escape single quotes for JSON?</h3>
+          <p>No. JSON strings are delimited by double quotes, so single quotes usually do not need escaping unless another layer requires it.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can I reverse the escaped result back into raw text?</h3>
+          <p>Yes. The escape tool has an unescape mode for turning common escape sequences back into readable text.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Should I validate the final JSON too?</h3>
+          <p>Yes. After escaping the string, it is a good idea to run the full payload through the JSON formatter and validator.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <p>This guide explains the workflow. The actual escape and validation steps happen in the tool pages.</p>
+      <nav>
+        <a href="../escape/">Escape Tool</a>
+        <a href="../json/">JSON Tool</a>
+        <a href="../url-encode/">URL Encode Tool</a>
+      </nav>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

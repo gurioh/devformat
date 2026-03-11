@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Convert Newline Text to SQL IN Clause | DevFormat</title>
+  <meta name="description" content="Step-by-step guide to convert newline text into a SQL IN clause with examples and a browser-based tool.">
+  <meta name="keywords" content="how to convert newline text to sql in clause, newline to sql in clause, text to sql in clause">
+  <meta property="og:title" content="How to Convert Newline Text to SQL IN Clause | DevFormat">
+  <meta property="og:description" content="A short guide for turning newline text into a SQL IN clause with examples and a ready-to-use tool.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/newline-text-to-sql-in-clause/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/newline-text-to-sql-in-clause/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Convert Newline Text to SQL IN Clause",
+    "description": "A short guide for turning newline text into a SQL IN clause with examples and a ready-to-use tool.",
+    "author": {"@type": "Organization", "name": "DevFormat"},
+    "publisher": {"@type": "Organization", "name": "DevFormat"},
+    "mainEntityOfPage": "https://gurioh.github.io/devformat/newline-text-to-sql-in-clause/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "DevFormat Tools", "item": "https://gurioh.github.io/devformat/"},
+      {"@type": "ListItem", "position": 2, "name": "How to Convert Newline Text to SQL IN Clause", "item": "https://gurioh.github.io/devformat/newline-text-to-sql-in-clause/"}
+    ]
+  }
+  </script>
+</head>
+<body data-page="catalog">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
+        <div class="brand-copy">
+          <strong>DevFormat</strong>
+          <span>Preset-driven text tools for developers</span>
+        </div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <span aria-current="page">How to Convert Newline Text to SQL IN Clause</span>
+    </nav>
+
+    <section class="hero compact">
+      <span class="hero-kicker">Guide</span>
+      <h1>How to convert newline text to a SQL IN clause</h1>
+      <p>If you have one value per line and need a query-ready <code>IN (...)</code> list, the fastest path is to paste the values into a multiline formatter and apply a SQL preset.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="../multiline/">Open the multiline tool</a>
+        <a class="button" href="#steps">Jump to steps</a>
+      </div>
+    </section>
+
+    <section id="steps" class="section-stack">
+      <article class="content-card">
+        <h2>Example input</h2>
+        <p><code>apple<br>banana<br>cherry</code></p>
+      </article>
+      <article class="content-card">
+        <h2>Expected SQL output</h2>
+        <p><code>('apple', 'banana', 'cherry')</code></p>
+      </article>
+      <article class="content-card">
+        <h2>Steps</h2>
+        <ol>
+          <li>Open the <a class="text-accent" href="../multiline/">newline to SQL IN clause tool</a>.</li>
+          <li>Paste one value per line into the input area.</li>
+          <li>Select the <code>SQL IN</code> preset.</li>
+          <li>Copy the generated output and paste it into your query.</li>
+        </ol>
+      </article>
+    </section>
+
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>When this is useful</h2>
+        <ul>
+          <li>Ad hoc database queries</li>
+          <li>Checking a subset of IDs or emails</li>
+          <li>Converting copied spreadsheet values into SQL-ready input</li>
+        </ul>
+      </article>
+      <article class="content-card">
+        <h2>Related tools</h2>
+        <p>If you need quotes without parentheses, use <a class="text-accent" href="../quote/">Quote Each Line Online</a>. If you only need commas, use <a class="text-accent" href="../split-join/">Newline to Comma-Separated List</a>.</p>
+      </article>
+    </section>
+
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>Can I use numbers instead of strings?</h3>
+          <p>Yes. If you do not want quotes around numeric values, switch to a custom preset and clear the quote field.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can I turn the result back into rows?</h3>
+          <p>Yes. The multiline tool has a reverse mode for splitting a joined string back into separate lines.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Does this work for JavaScript arrays too?</h3>
+          <p>Yes. The same page also has JS Array and Python List presets for code-ready output.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <p>This guide is a lightweight landing page for one concrete workflow. The actual conversion happens in the tool page.</p>
+      <nav>
+        <a href="../multiline/">Multiline Tool</a>
+        <a href="../quote/">Quote Tool</a>
+        <a href="../split-join/">Split / Join Tool</a>
+      </nav>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>
