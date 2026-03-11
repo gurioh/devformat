@@ -224,6 +224,31 @@ body[data-layout="tool"] .breadcrumb {
   color: var(--text);
 }
 
+.language-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+.language-switcher a {
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  transition: 160ms ease;
+}
+
+.language-switcher a:hover,
+.language-switcher a.active {
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.07);
+}
+
 .hero-kicker {
   display: inline-flex;
   width: fit-content;
@@ -366,6 +391,7 @@ body[data-layout="tool"] .breadcrumb {
 .faq-card p,
 .tool-meta,
 .tool-card li,
+.content-card li,
 .info-card li,
 .faq-card li,
 .tool-shell p,
@@ -376,6 +402,7 @@ body[data-layout="tool"] .breadcrumb {
 }
 
 .tool-card ul,
+.content-card ol,
 .info-card ul,
 .faq-card ul,
 .content-card ul {
@@ -849,6 +876,10 @@ code {
 
   .page-footer {
     flex-direction: column;
+  }
+
+  .language-switcher {
+    margin-bottom: 12px;
   }
 }
 

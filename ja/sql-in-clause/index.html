@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>改行テキストをSQL IN句に変換 | DevFormat</title>
+  <meta name="description" content="複数行のテキストをSQL IN句に変換します。ID、メールアドレス、値の一覧を貼り付けて、そのまま使えるクエリ形式に変換できます。">
+  <meta name="keywords" content="SQL IN句 変換, 改行 SQL IN句, テキスト JavaScript 配列 変換, 改行 カンマ 変換">
+  <meta property="og:title" content="改行テキストをSQL IN句に変換 | DevFormat">
+  <meta property="og:description" content="複数行のテキストをSQL IN句、JavaScript配列、Pythonリスト、CSV行に変換できます。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/ja/sql-in-clause/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/ja/sql-in-clause/">
+  <link rel="alternate" hreflang="en" href="https://gurioh.github.io/devformat/multiline/">
+  <link rel="alternate" hreflang="ja" href="https://gurioh.github.io/devformat/ja/sql-in-clause/">
+  <link rel="alternate" hreflang="ko" href="https://gurioh.github.io/devformat/ko/sql-in-clause/">
+  <link rel="alternate" hreflang="x-default" href="https://gurioh.github.io/devformat/multiline/">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "改行テキストをSQL IN句に変換",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "url": "https://gurioh.github.io/devformat/ja/sql-in-clause/",
+    "description": "複数行のテキストをSQL IN句、JavaScript配列、Pythonリスト、CSV行に変換できます。",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "DevFormat Tools", "item": "https://gurioh.github.io/devformat/"},
+      {"@type": "ListItem", "position": 2, "name": "改行テキストをSQL IN句に変換", "item": "https://gurioh.github.io/devformat/ja/sql-in-clause/"}
+    ]
+  }
+  </script>
+</head>
+<body data-page="multiline" data-layout="tool">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../../">
+        <div class="brand-mark"><img src="../../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
+        <div class="brand-copy">
+          <strong>DevFormat</strong>
+          <span>Preset-driven text tools for developers</span>
+        </div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../../">Tools</a>
+        <a data-page-link="multiline" href="../../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../../quote/">Quote</a>
+        <a data-page-link="split-join" href="../../split-join/">Split / Join</a>
+        <a data-page-link="escape" href="../../escape/">Escape</a>
+        <a data-page-link="base64" href="../../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../../slugify/">Slugify</a>
+        <a data-page-link="json" href="../../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../../">Tools</a>
+      <span>/</span>
+      <span aria-current="page">改行テキストをSQL IN句に変換</span>
+    </nav>
+    <section class="hero compact hero-slim">
+      <span class="hero-kicker">Text Transform</span>
+      <h1>改行テキストをSQL IN句に変換</h1>
+      <p>1行に1つずつ値を貼り付けるだけで、SQL IN句、JavaScript配列、Pythonリスト、CSV行へすばやく変換できます。</p>
+    </section>
+
+    <nav class="language-switcher" aria-label="Language selector">
+      <span>言語</span>
+      <a href="../../multiline/">English</a>
+      <a class="active" aria-current="page" href="../../ja/sql-in-clause/">日本語</a>
+      <a href="../../ko/sql-in-clause/">한국어</a>
+    </nav>
+
+    <section class="tool-shell">
+      <div class="toolbar">
+        <div class="toolbar-row toolbar-primary">
+          <div class="segmented">
+            <button class="active" type="button" data-direction="forward">複数行 → 1行</button>
+            <button type="button" data-direction="reverse">1行 → 複数行</button>
+          </div>
+          <details class="toolbar-details" id="advancedPanel">
+            <summary>詳細設定</summary>
+            <div class="toolbar-detail-body">
+              <div class="toolbar-grid compact">
+                <div class="field">
+                  <label for="delimiter">区切り文字</label>
+                  <input class="input" id="delimiter" value=", ">
+                </div>
+                <div class="field">
+                  <label for="quoteChar">引用符</label>
+                  <input class="input" id="quoteChar" value="'">
+                </div>
+                <div class="field">
+                  <label for="wrapStart">前置ラッパー</label>
+                  <input class="input" id="wrapStart" value="(">
+                </div>
+                <div class="field">
+                  <label for="wrapEnd">後置ラッパー</label>
+                  <input class="input" id="wrapEnd" value=")">
+                </div>
+              </div>
+              <div class="toolbar-row compact">
+                <label class="chip"><input id="trimLines" type="checkbox" checked> 前後の空白を削除</label>
+                <label class="chip"><input id="skipEmpty" type="checkbox" checked> 空行を除外</label>
+              </div>
+              <div class="example-actions compact">
+                <button type="button" data-example="fruit">果物の一覧</button>
+                <button type="button" data-example="ids">ID一覧</button>
+                <button type="button" data-example="emails">メール一覧</button>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div class="toolbar-row" id="presetBar">
+          <button class="preset-chip active" type="button" data-preset="sql-in">SQL IN</button>
+          <button class="preset-chip" type="button" data-preset="js-array">JS Array</button>
+          <button class="preset-chip" type="button" data-preset="python-list">Python List</button>
+          <button class="preset-chip" type="button" data-preset="csv">CSV Row</button>
+          <button class="preset-chip" type="button" data-preset="comma">Comma Join</button>
+          <button class="preset-chip" type="button" data-preset="pipe">Pipe</button>
+          <button class="preset-chip" type="button" data-preset="tab">Tab</button>
+          <button class="preset-chip" type="button" data-preset="custom">Custom</button>
+        </div>
+      </div>
+
+      <div class="tool-panels">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <strong id="inputLabel">入力</strong>
+              <span id="inputHint">改行テキストを貼り付け</span>
+            </div>
+            <button class="copy-button" type="button" id="clearButton">クリア</button>
+          </div>
+          <textarea class="textarea" id="input" placeholder="1001&#10;1002&#10;1003"></textarea>
+        </section>
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <strong id="outputLabel">出力</strong>
+              <span id="outputHint">コピー可能な結果</span>
+            </div>
+            <button class="copy-button" type="button" id="copyButton">コピー</button>
+          </div>
+          <textarea class="textarea" id="output" readonly></textarea>
+        </section>
+      </div>
+
+      <div class="stat-grid">
+        <article class="stat-card"><span>モード</span><strong id="modeStat">変換</strong></article>
+        <article class="stat-card"><span>件数</span><strong id="itemStat">0</strong></article>
+        <article class="stat-card"><span>入力行数</span><strong id="lineStat">0</strong></article>
+        <article class="stat-card"><span>ユニーク</span><strong id="uniqueStat">0</strong></article>
+        <article class="stat-card"><span>重複</span><strong id="duplicateStat">0</strong></article>
+        <article class="stat-card"><span>入力文字数</span><strong id="inputCharStat">0</strong></article>
+        <article class="stat-card"><span>出力文字数</span><strong id="charStat">0</strong></article>
+        <article class="stat-card"><span>差分</span><strong id="deltaStat">0</strong></article>
+      </div>
+    </section>
+
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>使い方</h2>
+        <ol>
+          <li>改行区切りの値を入力欄に貼り付けます。</li>
+          <li>SQL IN句プリセット、または目的に合う出力形式を選びます。</li>
+          <li>生成された結果をコピーしてそのまま使います。</li>
+        </ol>
+      </article>
+      <article class="content-card">
+        <h2>よくある用途</h2>
+        <ul>
+          <li>表計算の行データをSQL IN句へ変換</li>
+          <li>IDやメールアドレスを引用符付きリストへ変換</li>
+          <li>JavaScript配列やPythonリストをすばやく作成</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>入力したテキストはサーバーに送信されますか？</h3>
+          <p>いいえ。処理はブラウザ内で完結し、貼り付けたテキストは端末の外に送信されません。</p>
+        </article>
+        <article class="faq-item">
+          <h3>空行を自動で除外できますか？</h3>
+          <p>はい。前後の空白削除と空行除外を有効にすると、不要な行を除いて出力できます。</p>
+        </article>
+        <article class="faq-item">
+          <h3>JavaScript配列やPythonリストにもできますか？</h3>
+          <p>はい。関連プリセットを選ぶと区切り文字、引用符、ラッパーが一括で切り替わります。</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <p>次の作業として、引用符の追加、区切り文字の変換、URLエンコードに進むケースがよくあります。</p>
+      <nav>
+        <a href="../../quote/">Quote / Unquote</a>
+        <a href="../../split-join/">Split / Join</a>
+        <a href="../../escape/">Escape</a>
+        <a href="../../url-encode/">URL Encode</a>
+      </nav>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../../assets/site.js"></script>
+  <script>
+    window.DevFormatMultilineConfig = {
+      defaultExample: 'ids',
+      defaultPreset: 'sql-in',
+      strings: {
+        modeForward: '変換',
+        modeReverse: '復元',
+        inputHintForward: '改行テキストを貼り付け',
+        inputHintReverse: '結合済みの文字列を貼り付け',
+        outputHintForward: 'コピー可能な結果',
+        outputHintReverse: '区切り文字で分割した行',
+        copySuccess: '出力をコピーしました。'
+      }
+    };
+  </script>
+  <script src="../../assets/multiline-tool.js"></script>
+</body>
+</html>

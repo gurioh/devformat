@@ -3,21 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Newline to SQL IN Clause Converter | DevFormat</title>
-  <meta name="description" content="Convert newline text into a SQL IN clause, JavaScript array, Python list, or CSV row with preset-driven formatting.">
+  <title>Newline to SQL IN Clause Online | DevFormat</title>
+  <meta name="description" content="Convert multiline text into a SQL IN clause online. Paste IDs, emails, or values and generate query-ready output in your browser.">
   <meta name="keywords" content="newline to sql in clause, text to sql in clause, text to javascript array, python list converter, newline to comma separated list">
-  <meta property="og:title" content="Newline to SQL IN Clause Converter | DevFormat">
-  <meta property="og:description" content="Convert newline text into SQL IN clauses, JS arrays, Python lists, and CSV rows.">
+  <meta property="og:title" content="Newline to SQL IN Clause Online | DevFormat">
+  <meta property="og:description" content="Convert multiline text into SQL IN clauses, JS arrays, Python lists, and CSV rows.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gurioh.github.io/devformat/multiline/">
   <link rel="canonical" href="https://gurioh.github.io/devformat/multiline/">
+  <link rel="alternate" hreflang="en" href="https://gurioh.github.io/devformat/multiline/">
+  <link rel="alternate" hreflang="ja" href="https://gurioh.github.io/devformat/ja/sql-in-clause/">
+  <link rel="alternate" hreflang="ko" href="https://gurioh.github.io/devformat/ko/sql-in-clause/">
+  <link rel="alternate" hreflang="x-default" href="https://gurioh.github.io/devformat/multiline/">
   <link rel="stylesheet" href="../assets/site.css">
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Newline to SQL IN Clause Converter",
+    "name": "Newline to SQL IN Clause Online",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
     "url": "https://gurioh.github.io/devformat/multiline/",
@@ -31,7 +35,7 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       {"@type": "ListItem", "position": 1, "name": "DevFormat Tools", "item": "https://gurioh.github.io/devformat/"},
-      {"@type": "ListItem", "position": 2, "name": "Newline to SQL IN Clause Converter", "item": "https://gurioh.github.io/devformat/multiline/"}
+      {"@type": "ListItem", "position": 2, "name": "Newline to SQL IN Clause Online", "item": "https://gurioh.github.io/devformat/multiline/"}
     ]
   }
   </script>
@@ -64,13 +68,20 @@
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="../">Tools</a>
       <span>/</span>
-      <span aria-current="page">Newline to SQL IN Clause Converter</span>
+      <span aria-current="page">Newline to SQL IN Clause Online</span>
     </nav>
     <section class="hero compact hero-slim">
       <span class="hero-kicker">Text Transform</span>
-      <h1>Convert newline text into a SQL IN clause, JS array, or Python list.</h1>
-      <p>Paste values, choose a preset, and copy the result. Open advanced settings only when you need custom delimiters, quotes, or wrappers.</p>
+      <h1>Newline to SQL IN Clause Online</h1>
+      <p>Paste one value per line and generate a query-ready SQL IN clause, JavaScript array, Python list, or CSV row without leaving the browser.</p>
     </section>
+
+    <nav class="language-switcher" aria-label="Language selector">
+      <span>Available in</span>
+      <a class="active" aria-current="page" href="../multiline/">English</a>
+      <a href="../ja/sql-in-clause/">日本語</a>
+      <a href="../ko/sql-in-clause/">한국어</a>
+    </nav>
 
     <section class="tool-shell">
       <div class="toolbar">
@@ -161,17 +172,20 @@
 
     <section class="split-layout">
       <article class="content-card">
-        <h2>Typical output presets</h2>
-        <ul>
-          <li><code>SQL IN</code>: <code>('apple', 'banana', 'cherry')</code></li>
-          <li><code>JS Array</code>: <code>["apple", "banana", "cherry"]</code></li>
-          <li><code>Python List</code>: <code>['apple', 'banana', 'cherry']</code></li>
-          <li><code>CSV Row</code>: <code>apple,banana,cherry</code></li>
-        </ul>
+        <h2>How to use</h2>
+        <ol>
+          <li>Paste your multiline values into the input box.</li>
+          <li>Select the SQL IN clause preset or another output format.</li>
+          <li>Copy the generated output.</li>
+        </ol>
       </article>
       <article class="content-card">
-        <h2>When to use this page</h2>
-        <p>Use this when you already have raw values on separate lines but need them reshaped to match a code block, query, or copy target. It is also useful when debugging payloads that arrive as one long line and need to be inspected item by item.</p>
+        <h2>Common use cases</h2>
+        <ul>
+          <li>Convert spreadsheet rows to a SQL IN clause</li>
+          <li>Wrap IDs or emails with single quotes</li>
+          <li>Build JavaScript arrays and Python lists for debugging</li>
+        </ul>
       </article>
     </section>
 
@@ -179,16 +193,16 @@
       <h2>FAQ</h2>
       <div class="faq-list">
         <article class="faq-item">
-          <h3>Does it work both directions?</h3>
-          <p>Yes. Switch the mode to split a single-line string back into separate rows using the configured delimiter, quote character, and wrapper.</p>
+          <h3>Does this tool send text to a server?</h3>
+          <p>No. This tool runs in the browser and keeps the pasted text on your device.</p>
         </article>
         <article class="faq-item">
-          <h3>Can I use a custom delimiter?</h3>
-          <p>Yes. Choose the custom preset and set the delimiter, quote character, and wrapper fields directly.</p>
+          <h3>Can I remove empty lines?</h3>
+          <p>Yes. Keep trim and skip-empty enabled before copying the output.</p>
         </article>
         <article class="faq-item">
-          <h3>Does it handle tabs and newlines?</h3>
-          <p>Yes. You can type <code>\t</code> or <code>\n</code> in the delimiter field and the tool will interpret the escape sequence.</p>
+          <h3>Can I output JavaScript arrays or Python lists?</h3>
+          <p>Yes. Use the related preset options to switch the delimiter, quote character, and wrapper.</p>
         </article>
       </div>
     </section>
@@ -208,218 +222,20 @@
   <div class="toast" id="toast">Ready.</div>
   <script src="../assets/site.js"></script>
   <script>
-    const presets = {
-      'sql-in': { delimiter: ', ', quoteChar: "'", wrapStart: '(', wrapEnd: ')' },
-      'js-array': { delimiter: ', ', quoteChar: '"', wrapStart: '[', wrapEnd: ']' },
-      'python-list': { delimiter: ', ', quoteChar: "'", wrapStart: '[', wrapEnd: ']' },
-      'csv': { delimiter: ',', quoteChar: '', wrapStart: '', wrapEnd: '' },
-      'comma': { delimiter: ', ', quoteChar: '', wrapStart: '', wrapEnd: '' },
-      'pipe': { delimiter: ' | ', quoteChar: '', wrapStart: '', wrapEnd: '' },
-      'tab': { delimiter: '\\t', quoteChar: '', wrapStart: '', wrapEnd: '' },
-      'custom': null
+    window.DevFormatMultilineConfig = {
+      defaultExample: 'fruit',
+      defaultPreset: 'sql-in',
+      strings: {
+        modeForward: 'Forward',
+        modeReverse: 'Reverse',
+        inputHintForward: 'Paste multiline text',
+        inputHintReverse: 'Paste a joined string',
+        outputHintForward: 'Copy ready result',
+        outputHintReverse: 'Rows split by delimiter',
+        copySuccess: 'Output copied.'
+      }
     };
-
-    const examples = {
-      fruit: 'apple\nbanana\ncherry\ndragonfruit',
-      ids: '1001\n1002\n1003\n1004',
-      emails: 'hello@example.com\nops@example.com\nsupport@example.com'
-    };
-
-    const state = {
-      reversed: false,
-      activePreset: 'sql-in'
-    };
-
-    const input = document.getElementById('input');
-    const output = document.getElementById('output');
-    const delimiter = document.getElementById('delimiter');
-    const quoteChar = document.getElementById('quoteChar');
-    const wrapStart = document.getElementById('wrapStart');
-    const wrapEnd = document.getElementById('wrapEnd');
-    const trimLines = document.getElementById('trimLines');
-    const skipEmpty = document.getElementById('skipEmpty');
-    const advancedPanel = document.getElementById('advancedPanel');
-
-    function parseEscapes(value) {
-      return value.replace(/\\t/g, '\t').replace(/\\n/g, '\n');
-    }
-
-    function markActivePreset(key) {
-      state.activePreset = key;
-      document.querySelectorAll('[data-preset]').forEach(function (button) {
-        button.classList.toggle('active', button.dataset.preset === key);
-      });
-    }
-
-    function applyPreset(key) {
-      const preset = presets[key];
-      markActivePreset(key);
-      if (key === 'custom') advancedPanel.open = true;
-      if (!preset) return;
-      delimiter.value = preset.delimiter;
-      quoteChar.value = preset.quoteChar;
-      wrapStart.value = preset.wrapStart;
-      wrapEnd.value = preset.wrapEnd;
-      convert();
-    }
-
-    function markCustomIfNeeded() {
-      const active = presets[state.activePreset];
-      if (!active) return;
-      const current = {
-        delimiter: delimiter.value,
-        quoteChar: quoteChar.value,
-        wrapStart: wrapStart.value,
-        wrapEnd: wrapEnd.value
-      };
-      if (
-        current.delimiter !== active.delimiter ||
-        current.quoteChar !== active.quoteChar ||
-        current.wrapStart !== active.wrapStart ||
-        current.wrapEnd !== active.wrapEnd
-      ) {
-        markActivePreset('custom');
-        advancedPanel.open = true;
-      }
-    }
-
-    function formatDelta(delta) {
-      if (delta > 0) return '+' + delta;
-      return String(delta);
-    }
-
-    function buildMetrics(values, raw, result) {
-      const uniqueCount = new Set(values).size;
-      return {
-        items: values.length,
-        inputLines: raw ? raw.split('\n').length : 0,
-        uniqueCount: uniqueCount,
-        duplicateCount: Math.max(0, values.length - uniqueCount),
-        inputChars: raw.length,
-        outputChars: result.length,
-        deltaChars: result.length - raw.length
-      };
-    }
-
-    function updateStats(metrics) {
-      document.getElementById('modeStat').textContent = state.reversed ? 'Reverse' : 'Forward';
-      document.getElementById('itemStat').textContent = String(metrics.items);
-      document.getElementById('lineStat').textContent = String(metrics.inputLines);
-      document.getElementById('uniqueStat').textContent = String(metrics.uniqueCount);
-      document.getElementById('duplicateStat').textContent = String(metrics.duplicateCount);
-      document.getElementById('inputCharStat').textContent = String(metrics.inputChars);
-      document.getElementById('charStat').textContent = String(metrics.outputChars);
-      document.getElementById('deltaStat').textContent = formatDelta(metrics.deltaChars);
-    }
-
-    function convertForward(raw) {
-      let lines = raw.split('\n');
-      if (trimLines.checked) lines = lines.map(function (line) { return line.trim(); });
-      if (skipEmpty.checked) lines = lines.filter(function (line) { return line.length > 0; });
-      const result = wrapStart.value + lines.map(function (line) {
-        return quoteChar.value + line + quoteChar.value;
-      }).join(parseEscapes(delimiter.value)) + wrapEnd.value;
-      output.value = result;
-      return buildMetrics(lines, raw, result);
-    }
-
-    function convertReverse(raw) {
-      let value = raw.trim();
-      if (wrapStart.value && wrapEnd.value && value.startsWith(wrapStart.value) && value.endsWith(wrapEnd.value)) {
-        value = value.slice(wrapStart.value.length, value.length - wrapEnd.value.length);
-      }
-      let parts = value ? value.split(parseEscapes(delimiter.value)) : [];
-      parts = parts.map(function (part) {
-        let next = trimLines.checked ? part.trim() : part;
-        if (quoteChar.value && next.startsWith(quoteChar.value) && next.endsWith(quoteChar.value)) {
-          next = next.slice(quoteChar.value.length, next.length - quoteChar.value.length);
-        }
-        return next;
-      });
-      if (skipEmpty.checked) parts = parts.filter(function (part) { return part.length > 0; });
-      const result = parts.join('\n');
-      output.value = result;
-      return buildMetrics(parts, raw, result);
-    }
-
-    function convert() {
-      const raw = input.value;
-      if (!raw.trim()) {
-        output.value = '';
-        updateStats(buildMetrics([], '', ''));
-        return;
-      }
-      let metrics;
-      if (state.reversed) {
-        metrics = convertReverse(raw);
-      } else {
-        metrics = convertForward(raw);
-      }
-      updateStats(metrics);
-      DevFormat.trackEvent('tool_convert', {
-        tool: 'multiline',
-        mode: state.reversed ? 'reverse' : 'forward',
-        preset: state.activePreset,
-        item_count: metrics.items,
-        line_count: metrics.inputLines,
-        unique_count: metrics.uniqueCount,
-        duplicate_count: metrics.duplicateCount,
-        input_chars: metrics.inputChars,
-        output_chars: metrics.outputChars,
-        delta_chars: metrics.deltaChars
-      });
-    }
-
-    document.querySelectorAll('[data-direction]').forEach(function (button) {
-      button.addEventListener('click', function () {
-        state.reversed = button.dataset.direction === 'reverse';
-        document.querySelectorAll('[data-direction]').forEach(function (node) {
-          node.classList.toggle('active', node === button);
-        });
-        document.getElementById('inputHint').textContent = state.reversed ? 'Paste a joined string' : 'Paste multiline text';
-        document.getElementById('outputHint').textContent = state.reversed ? 'Rows split by delimiter' : 'Copy ready result';
-        input.value = output.value;
-        output.value = '';
-        convert();
-      });
-    });
-
-    document.querySelectorAll('[data-preset]').forEach(function (button) {
-      button.addEventListener('click', function () {
-        applyPreset(button.dataset.preset);
-        DevFormat.trackEvent('preset_select', { tool: 'multiline', preset: button.dataset.preset });
-      });
-    });
-
-    [delimiter, quoteChar, wrapStart, wrapEnd].forEach(function (field) {
-      field.addEventListener('input', function () {
-        markCustomIfNeeded();
-        convert();
-      });
-    });
-
-    [trimLines, skipEmpty, input].forEach(function (field) {
-      field.addEventListener(field === input ? 'input' : 'change', convert);
-    });
-
-    document.getElementById('copyButton').addEventListener('click', function () {
-      DevFormat.copyText(output.value, 'Output copied.');
-    });
-
-    document.getElementById('clearButton').addEventListener('click', function () {
-      input.value = '';
-      output.value = '';
-      updateStats(buildMetrics([], '', ''));
-      input.focus();
-    });
-
-    DevFormat.wireExampleButtons(function (key) {
-      input.value = examples[key] || '';
-      convert();
-    });
-
-    input.value = examples.fruit;
-    applyPreset('sql-in');
   </script>
+  <script src="../assets/multiline-tool.js"></script>
 </body>
 </html>
