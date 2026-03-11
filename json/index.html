@@ -66,31 +66,25 @@
       <span>/</span>
       <span aria-current="page">JSON Formatter and Validator Online</span>
     </nav>
-    <section class="hero compact">
+    <section class="hero compact hero-slim">
       <span class="hero-kicker">Structured Text</span>
       <h1>Format, validate, and minify JSON online.</h1>
-      <p>Use this page when you need readable formatting, a compact payload, or a quick parse check before pushing JSON into an API client or config file.</p>
-      <div class="chip-row">
-        <span class="chip">Validate</span>
-        <span class="chip">Prettify</span>
-        <span class="chip">Minify</span>
-      </div>
+      <p>Paste JSON, choose the action, and inspect the result or validation message immediately.</p>
     </section>
 
     <section class="tool-shell">
-      <div class="tool-meta">
-        Paste raw JSON, then choose whether you want a prettified result, a minified output, or simply a validation pass.
-      </div>
       <div class="toolbar">
-        <div class="toolbar-row segmented">
-          <button class="active" type="button" data-action="prettify">Prettify</button>
-          <button type="button" data-action="minify">Minify</button>
-          <button type="button" data-action="validate">Validate</button>
-        </div>
-        <div class="example-actions">
-          <button type="button" data-example="payload">API payload</button>
-          <button type="button" data-example="config">Config</button>
-          <button type="button" data-example="invalid">Invalid example</button>
+        <div class="toolbar-row toolbar-primary">
+          <div class="segmented">
+            <button class="active" type="button" data-action="prettify">Prettify</button>
+            <button type="button" data-action="minify">Minify</button>
+            <button type="button" data-action="validate">Validate</button>
+          </div>
+          <div class="example-actions compact">
+            <button type="button" data-example="payload">API payload</button>
+            <button type="button" data-example="config">Config</button>
+            <button type="button" data-example="invalid">Invalid example</button>
+          </div>
         </div>
       </div>
       <div class="tool-panels">

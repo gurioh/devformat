@@ -66,30 +66,24 @@
       <span>/</span>
       <span aria-current="page">Base64 Decode String Online</span>
     </nav>
-    <section class="hero compact">
+    <section class="hero compact hero-slim">
       <span class="hero-kicker">Encoding</span>
       <h1>Decode a Base64 string online or encode text back.</h1>
-      <p>Inspect payloads, test auth headers, or decode copied tokens fast. The converter handles UTF-8 text safely so you can work with more than simple ASCII strings.</p>
-      <div class="chip-row">
-        <span class="chip">UTF-8 safe</span>
-        <span class="chip">Encode / decode</span>
-        <span class="chip">Local processing</span>
-      </div>
+      <p>Paste text or Base64, switch direction, and inspect the result immediately. Everything runs in the browser.</p>
     </section>
 
     <section class="tool-shell">
-      <div class="tool-meta">
-        Switch direction depending on whether you start with plain text or Base64. The page uses the browser only and does not submit input to a backend service.
-      </div>
       <div class="toolbar">
-        <div class="toolbar-row segmented">
-          <button class="active" type="button" data-mode="encode">Encode to Base64</button>
-          <button type="button" data-mode="decode">Decode from Base64</button>
-        </div>
-        <div class="example-actions">
-          <button type="button" data-example="json">JSON payload</button>
-          <button type="button" data-example="url">URL value</button>
-          <button type="button" data-example="base64">Encoded sample</button>
+        <div class="toolbar-row toolbar-primary">
+          <div class="segmented">
+            <button class="active" type="button" data-mode="encode">Encode to Base64</button>
+            <button type="button" data-mode="decode">Decode from Base64</button>
+          </div>
+          <div class="example-actions compact">
+            <button type="button" data-example="json">JSON payload</button>
+            <button type="button" data-example="url">URL value</button>
+            <button type="button" data-example="base64">Encoded sample</button>
+          </div>
         </div>
       </div>
       <div class="tool-panels">

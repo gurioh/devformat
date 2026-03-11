@@ -66,26 +66,43 @@
       <span>/</span>
       <span aria-current="page">Quote Each Line Online</span>
     </nav>
-    <section class="hero compact">
+    <section class="hero compact hero-slim">
       <span class="hero-kicker">String Format</span>
       <h1>Quote each line online for SQL, JavaScript, or CSV output.</h1>
-      <p>This page is useful when you already have a clean list of values but need to wrap them for SQL, code, or markdown. It also works in reverse when you receive a quoted list and want plain values again.</p>
-      <div class="chip-row">
-        <span class="chip">Single quotes</span>
-        <span class="chip">Double quotes</span>
-        <span class="chip">Backticks</span>
-        <span class="chip">CSV output</span>
-      </div>
+      <p>Paste values, choose a quote preset, and copy the result. Open advanced settings only when you need a custom quote or delimiter.</p>
     </section>
 
     <section class="tool-shell">
-      <div class="tool-meta">
-        Choose whether you are quoting or unquoting, then pick the quote character and output delimiter that fits your workflow.
-      </div>
       <div class="toolbar">
-        <div class="toolbar-row segmented">
-          <button class="active" type="button" data-mode="quote">Quote lines</button>
-          <button type="button" data-mode="unquote">Unquote lines</button>
+        <div class="toolbar-row toolbar-primary">
+          <div class="segmented">
+            <button class="active" type="button" data-mode="quote">Quote lines</button>
+            <button type="button" data-mode="unquote">Unquote lines</button>
+          </div>
+          <details class="toolbar-details" id="advancedPanel">
+            <summary>Advanced settings</summary>
+            <div class="toolbar-detail-body">
+              <div class="toolbar-grid compact">
+                <div class="field">
+                  <label for="quoteChar">Quote character</label>
+                  <input class="input" id="quoteChar" value="'">
+                </div>
+                <div class="field">
+                  <label for="delimiter">Output delimiter</label>
+                  <input class="input" id="delimiter" value="\n">
+                </div>
+              </div>
+              <div class="toolbar-row compact">
+                <label class="chip"><input id="trimLines" type="checkbox" checked> Trim values</label>
+                <label class="chip"><input id="skipEmpty" type="checkbox" checked> Skip empty lines</label>
+              </div>
+              <div class="example-actions compact">
+                <button type="button" data-example="env">Environment keys</button>
+                <button type="button" data-example="emails">Email values</button>
+                <button type="button" data-example="quoted">Quoted CSV</button>
+              </div>
+            </div>
+          </details>
         </div>
         <div class="toolbar-row" id="presetBar">
           <button class="preset-chip active" type="button" data-preset="single-lines">' quoted lines</button>
@@ -94,25 +111,6 @@
           <button class="preset-chip" type="button" data-preset="csv-double">CSV double quotes</button>
           <button class="preset-chip" type="button" data-preset="backticks">Backticks</button>
           <button class="preset-chip" type="button" data-preset="custom">Custom</button>
-        </div>
-        <div class="toolbar-grid">
-          <div class="field">
-            <label for="quoteChar">Quote character</label>
-            <input class="input" id="quoteChar" value="'">
-          </div>
-          <div class="field">
-            <label for="delimiter">Output delimiter</label>
-            <input class="input" id="delimiter" value="\n">
-          </div>
-        </div>
-        <div class="toolbar-row">
-          <label class="chip"><input id="trimLines" type="checkbox" checked> Trim values</label>
-          <label class="chip"><input id="skipEmpty" type="checkbox" checked> Skip empty lines</label>
-        </div>
-        <div class="example-actions">
-          <button type="button" data-example="env">Environment keys</button>
-          <button type="button" data-example="emails">Email values</button>
-          <button type="button" data-example="quoted">Quoted CSV</button>
         </div>
       </div>
 
@@ -217,6 +215,7 @@
     const delimiter = document.getElementById('delimiter');
     const trimLines = document.getElementById('trimLines');
     const skipEmpty = document.getElementById('skipEmpty');
+    const advancedPanel = document.getElementById('advancedPanel');
     let mode = 'quote';
     let activePreset = 'single-lines';
 
@@ -234,6 +233,7 @@
     function applyPreset(key) {
       const preset = presets[key];
       markPreset(key);
+      if (key === 'custom') advancedPanel.open = true;
       if (!preset) return;
       quoteChar.value = preset.quoteChar;
       delimiter.value = preset.delimiter;
@@ -245,6 +245,7 @@
       if (!preset) return;
       if (quoteChar.value !== preset.quoteChar || delimiter.value !== preset.delimiter) {
         markPreset('custom');
+        advancedPanel.open = true;
       }
     }
 

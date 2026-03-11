@@ -66,26 +66,39 @@
       <span>/</span>
       <span aria-current="page">Newline to Comma Separated List</span>
     </nav>
-    <section class="hero compact">
+    <section class="hero compact hero-slim">
       <span class="hero-kicker">Text Transform</span>
       <h1>Turn newline text into a comma-separated list or split it back.</h1>
-      <p>Use this tool when the values are already clean and you only need to reshape the delimiter. It covers comma, pipe, tab, space, newline, and custom separators, with reverse mode for quick cleanup.</p>
-      <div class="chip-row">
-        <span class="chip">Comma</span>
-        <span class="chip">Pipe</span>
-        <span class="chip">Tab</span>
-        <span class="chip">Custom separator</span>
-      </div>
+      <p>Paste clean values, choose a separator preset, and copy the result. Open advanced settings only when you need a custom separator or cleanup toggles.</p>
     </section>
 
     <section class="tool-shell">
-      <div class="tool-meta">
-        This page is lighter than the multiline preset tool. It focuses on delimiter changes without quoting or wrapper rules.
-      </div>
       <div class="toolbar">
-        <div class="toolbar-row segmented">
-          <button class="active" type="button" data-mode="join">Join lines</button>
-          <button type="button" data-mode="split">Split string</button>
+        <div class="toolbar-row toolbar-primary">
+          <div class="segmented">
+            <button class="active" type="button" data-mode="join">Join lines</button>
+            <button type="button" data-mode="split">Split string</button>
+          </div>
+          <details class="toolbar-details" id="advancedPanel">
+            <summary>Advanced settings</summary>
+            <div class="toolbar-detail-body">
+              <div class="toolbar-grid compact">
+                <div class="field">
+                  <label for="separator">Separator</label>
+                  <input class="input" id="separator" value=", ">
+                </div>
+              </div>
+              <div class="toolbar-row compact">
+                <label class="chip"><input id="trimValues" type="checkbox" checked> Trim values</label>
+                <label class="chip"><input id="skipEmpty" type="checkbox" checked> Skip empty values</label>
+              </div>
+              <div class="example-actions compact">
+                <button type="button" data-example="names">Team names</button>
+                <button type="button" data-example="pipes">Pipe separated</button>
+                <button type="button" data-example="tabs">Tab separated</button>
+              </div>
+            </div>
+          </details>
         </div>
         <div class="toolbar-row" id="presetBar">
           <button class="preset-chip active" type="button" data-preset="comma">Comma</button>
@@ -94,21 +107,6 @@
           <button class="preset-chip" type="button" data-preset="space">Space</button>
           <button class="preset-chip" type="button" data-preset="newline">Newline</button>
           <button class="preset-chip" type="button" data-preset="custom">Custom</button>
-        </div>
-        <div class="toolbar-grid">
-          <div class="field">
-            <label for="separator">Separator</label>
-            <input class="input" id="separator" value=", ">
-          </div>
-        </div>
-        <div class="toolbar-row">
-          <label class="chip"><input id="trimValues" type="checkbox" checked> Trim values</label>
-          <label class="chip"><input id="skipEmpty" type="checkbox" checked> Skip empty values</label>
-        </div>
-        <div class="example-actions">
-          <button type="button" data-example="names">Team names</button>
-          <button type="button" data-example="pipes">Pipe separated</button>
-          <button type="button" data-example="tabs">Tab separated</button>
         </div>
       </div>
 
@@ -211,6 +209,7 @@
     const separator = document.getElementById('separator');
     const trimValues = document.getElementById('trimValues');
     const skipEmpty = document.getElementById('skipEmpty');
+    const advancedPanel = document.getElementById('advancedPanel');
     let mode = 'join';
     let activePreset = 'comma';
 
@@ -227,6 +226,7 @@
 
     function applyPreset(key) {
       markPreset(key);
+      if (key === 'custom') advancedPanel.open = true;
       if (presets[key] !== null) {
         separator.value = presets[key];
       }
@@ -236,6 +236,7 @@
     function markCustomIfNeeded() {
       if (presets[activePreset] !== null && separator.value !== presets[activePreset]) {
         markPreset('custom');
+        advancedPanel.open = true;
       }
     }
 

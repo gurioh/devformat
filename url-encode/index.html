@@ -66,30 +66,24 @@
       <span>/</span>
       <span aria-current="page">URL Encode Query Parameter Online</span>
     </nav>
-    <section class="hero compact">
+    <section class="hero compact hero-slim">
       <span class="hero-kicker">Encoding</span>
       <h1>Encode a query parameter or decode URL-encoded text.</h1>
-      <p>Paste the part of a URL that needs cleanup, then switch direction depending on whether you are preparing a request or inspecting an encoded value you already received.</p>
-      <div class="chip-row">
-        <span class="chip">Query parameter safe</span>
-        <span class="chip">Decode mode</span>
-        <span class="chip">Browser only</span>
-      </div>
+      <p>Paste a raw value or encoded fragment, switch direction, and copy the cleaned result without leaving the browser.</p>
     </section>
 
     <section class="tool-shell">
-      <div class="tool-meta">
-        This page uses <code>encodeURIComponent</code> and <code>decodeURIComponent</code>, so it is ideal for query parameter values and small request payload inspection.
-      </div>
       <div class="toolbar">
-        <div class="toolbar-row segmented">
-          <button class="active" type="button" data-mode="encode">Encode</button>
-          <button type="button" data-mode="decode">Decode</button>
-        </div>
-        <div class="example-actions">
-          <button type="button" data-example="query">Query value</button>
-          <button type="button" data-example="url">Full URL fragment</button>
-          <button type="button" data-example="encoded">Encoded sample</button>
+        <div class="toolbar-row toolbar-primary">
+          <div class="segmented">
+            <button class="active" type="button" data-mode="encode">Encode</button>
+            <button type="button" data-mode="decode">Decode</button>
+          </div>
+          <div class="example-actions compact">
+            <button type="button" data-example="query">Query value</button>
+            <button type="button" data-example="url">Full URL fragment</button>
+            <button type="button" data-example="encoded">Encoded sample</button>
+          </div>
         </div>
       </div>
       <div class="tool-panels">

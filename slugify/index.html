@@ -67,34 +67,28 @@
       <span aria-current="page">Slugify Text and Convert Case</span>
     </nav>
 
-    <section class="hero compact">
+    <section class="hero compact hero-slim">
       <span class="hero-kicker">String Format</span>
       <h1>Turn raw text into slugs and code-friendly cases.</h1>
-      <p>Use this page to generate a slug, kebab-case, snake_case, camelCase, PascalCase, or CONSTANT_CASE from labels, headings, issue names, or copied UI strings.</p>
-      <div class="chip-row">
-        <span class="chip">Slugify text online</span>
-        <span class="chip">kebab-case</span>
-        <span class="chip">snake_case</span>
-      </div>
+      <p>Paste a label, choose the output style, and copy the converted identifier or slug immediately.</p>
     </section>
 
     <section class="tool-shell">
-      <div class="tool-meta">
-        Choose the output style that matches your target: URL slug, file name, variable name, or constant identifier.
-      </div>
       <div class="toolbar">
-        <div class="toolbar-row segmented" id="modeBar">
-          <button class="active" type="button" data-mode="slug">Slug</button>
-          <button type="button" data-mode="kebab">kebab-case</button>
-          <button type="button" data-mode="snake">snake_case</button>
-          <button type="button" data-mode="camel">camelCase</button>
-          <button type="button" data-mode="pascal">PascalCase</button>
-          <button type="button" data-mode="constant">CONSTANT_CASE</button>
-        </div>
-        <div class="example-actions">
-          <button type="button" data-example="title">Blog title</button>
-          <button type="button" data-example="issue">Issue label</button>
-          <button type="button" data-example="feature">Feature flag</button>
+        <div class="toolbar-row toolbar-primary">
+          <div class="segmented" id="modeBar">
+            <button class="active" type="button" data-mode="slug">Slug</button>
+            <button type="button" data-mode="kebab">kebab-case</button>
+            <button type="button" data-mode="snake">snake_case</button>
+            <button type="button" data-mode="camel">camelCase</button>
+            <button type="button" data-mode="pascal">PascalCase</button>
+            <button type="button" data-mode="constant">CONSTANT_CASE</button>
+          </div>
+          <div class="example-actions compact">
+            <button type="button" data-example="title">Blog title</button>
+            <button type="button" data-example="issue">Issue label</button>
+            <button type="button" data-example="feature">Feature flag</button>
+          </div>
         </div>
       </div>
 

@@ -67,35 +67,29 @@
       <span aria-current="page">Escape String for JSON</span>
     </nav>
 
-    <section class="hero compact">
+    <section class="hero compact hero-slim">
       <span class="hero-kicker">String Format</span>
       <h1>Escape a string for JSON, JavaScript, or regex-safe output.</h1>
-      <p>Use this page when raw text needs newline escapes, quote escaping, slash escaping, or regex-safe output before it moves into code, config, or payload fields.</p>
-      <div class="chip-row">
-        <span class="chip">Escape string for JSON</span>
-        <span class="chip">JavaScript string escapes</span>
-        <span class="chip">Regex-safe output</span>
-      </div>
+      <p>Paste raw text, choose the target preset, and copy the escaped result. Switch direction only when you already start with escaped content.</p>
     </section>
 
     <section class="tool-shell">
-      <div class="tool-meta">
-        Pick an escape preset, then switch between escape and unescape depending on whether you start with raw text or an already escaped value.
-      </div>
       <div class="toolbar">
-        <div class="toolbar-row segmented">
-          <button class="active" type="button" data-mode="escape">Escape text</button>
-          <button type="button" data-mode="unescape">Unescape text</button>
+        <div class="toolbar-row toolbar-primary">
+          <div class="segmented">
+            <button class="active" type="button" data-mode="escape">Escape text</button>
+            <button type="button" data-mode="unescape">Unescape text</button>
+          </div>
+          <div class="example-actions compact">
+            <button type="button" data-example="json">JSON payload text</button>
+            <button type="button" data-example="javascript">JavaScript string</button>
+            <button type="button" data-example="regex">Regex characters</button>
+          </div>
         </div>
         <div class="toolbar-row" id="presetBar">
           <button class="preset-chip active" type="button" data-preset="json">JSON string</button>
           <button class="preset-chip" type="button" data-preset="javascript">JavaScript string</button>
           <button class="preset-chip" type="button" data-preset="regex">Regex safe</button>
-        </div>
-        <div class="example-actions">
-          <button type="button" data-example="json">JSON payload text</button>
-          <button type="button" data-example="javascript">JavaScript string</button>
-          <button type="button" data-example="regex">Regex characters</button>
         </div>
       </div>
 
