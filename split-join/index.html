@@ -138,7 +138,9 @@
       <div class="stat-grid">
         <article class="stat-card"><span>Mode</span><strong id="modeStat">Join</strong></article>
         <article class="stat-card"><span>Values</span><strong id="itemStat">0</strong></article>
-        <article class="stat-card"><span>Characters</span><strong id="charStat">0</strong></article>
+        <article class="stat-card"><span>Input chars</span><strong id="inputCharStat">0</strong></article>
+        <article class="stat-card"><span>Output chars</span><strong id="charStat">0</strong></article>
+        <article class="stat-card"><span>Delta</span><strong id="deltaStat">0</strong></article>
       </div>
     </section>
 
@@ -244,17 +246,24 @@
       return values;
     }
 
-    function updateStats(items, chars) {
+    function formatDelta(delta) {
+      if (delta > 0) return '+' + delta;
+      return String(delta);
+    }
+
+    function updateStats(items, inputChars, outputChars) {
       document.getElementById('modeStat').textContent = mode === 'join' ? 'Join' : 'Split';
       document.getElementById('itemStat').textContent = String(items);
-      document.getElementById('charStat').textContent = String(chars);
+      document.getElementById('inputCharStat').textContent = String(inputChars);
+      document.getElementById('charStat').textContent = String(outputChars);
+      document.getElementById('deltaStat').textContent = formatDelta(outputChars - inputChars);
     }
 
     function convert() {
       const raw = input.value;
       if (!raw.trim()) {
         output.value = '';
-        updateStats(0, 0);
+        updateStats(0, 0, 0);
         return;
       }
       const delimiter = parseEscapes(separator.value);
@@ -268,7 +277,7 @@
         result = values.join('\n');
       }
       output.value = result;
-      updateStats(values.length, result.length);
+      updateStats(values.length, raw.length, result.length);
       DevFormat.trackEvent('tool_convert', { tool: 'split_join', mode: mode, preset: activePreset });
     }
 
@@ -310,7 +319,7 @@
     document.getElementById('clearButton').addEventListener('click', function () {
       input.value = '';
       output.value = '';
-      updateStats(0, 0);
+      updateStats(0, 0, 0);
       input.focus();
     });
 

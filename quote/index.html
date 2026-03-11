@@ -142,7 +142,9 @@
       <div class="stat-grid">
         <article class="stat-card"><span>Mode</span><strong id="modeStat">Quote</strong></article>
         <article class="stat-card"><span>Items</span><strong id="itemStat">0</strong></article>
-        <article class="stat-card"><span>Characters</span><strong id="charStat">0</strong></article>
+        <article class="stat-card"><span>Input chars</span><strong id="inputCharStat">0</strong></article>
+        <article class="stat-card"><span>Output chars</span><strong id="charStat">0</strong></article>
+        <article class="stat-card"><span>Delta</span><strong id="deltaStat">0</strong></article>
       </div>
     </section>
 
@@ -246,10 +248,17 @@
       }
     }
 
-    function updateStats(items, chars) {
+    function formatDelta(delta) {
+      if (delta > 0) return '+' + delta;
+      return String(delta);
+    }
+
+    function updateStats(items, inputChars, outputChars) {
       document.getElementById('modeStat').textContent = mode === 'quote' ? 'Quote' : 'Unquote';
       document.getElementById('itemStat').textContent = String(items);
-      document.getElementById('charStat').textContent = String(chars);
+      document.getElementById('inputCharStat').textContent = String(inputChars);
+      document.getElementById('charStat').textContent = String(outputChars);
+      document.getElementById('deltaStat').textContent = formatDelta(outputChars - inputChars);
     }
 
     function quoteLines(raw) {
@@ -258,7 +267,7 @@
       if (skipEmpty.checked) lines = lines.filter(function (line) { return line.length > 0; });
       const result = lines.map(function (line) { return quoteChar.value + line + quoteChar.value; }).join(parseEscapes(delimiter.value));
       output.value = result;
-      updateStats(lines.length, result.length);
+      updateStats(lines.length, raw.length, result.length);
     }
 
     function unquoteLines(raw) {
@@ -273,14 +282,14 @@
       if (skipEmpty.checked) parts = parts.filter(function (part) { return part.length > 0; });
       const result = parts.join('\n');
       output.value = result;
-      updateStats(parts.length, result.length);
+      updateStats(parts.length, raw.length, result.length);
     }
 
     function convert() {
       const raw = input.value;
       if (!raw.trim()) {
         output.value = '';
-        updateStats(0, 0);
+        updateStats(0, 0, 0);
         return;
       }
       if (mode === 'quote') {
@@ -330,7 +339,7 @@
     document.getElementById('clearButton').addEventListener('click', function () {
       input.value = '';
       output.value = '';
-      updateStats(0, 0);
+      updateStats(0, 0, 0);
       input.focus();
     });
 
