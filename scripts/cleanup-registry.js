@@ -313,9 +313,9 @@ const cleanupTools = [
       'How do I turn mixed content into one URL per line?'
     ],
     example: {
-      input: 'Primary: https://devformat.dev/multiline/\nFallback: https://devformat.dev/escape/\nAgain: https://devformat.dev/multiline/',
+      input: 'Primary: https://gurioh.github.io/devformat/multiline/\nFallback: https://gurioh.github.io/devformat/escape/\nAgain: https://gurioh.github.io/devformat/multiline/',
       outputTitle: 'Extracted URLs',
-      output: 'https://devformat.dev/multiline/\nhttps://devformat.dev/escape/'
+      output: 'https://gurioh.github.io/devformat/multiline/\nhttps://gurioh.github.io/devformat/escape/'
     },
     faq: [
       { q: 'Can I remove duplicate URLs?', a: 'Yes. Keep unique-only enabled to output each link once.' },
@@ -335,10 +335,10 @@ const cleanupTools = [
       modeLabel: 'Extract URLs',
       inputHint: 'Paste mixed text, logs, or notes',
       outputHint: 'One URL per line',
-      placeholder: 'Primary: https://devformat.dev/multiline/\nFallback: https://devformat.dev/escape/',
+      placeholder: 'Primary: https://gurioh.github.io/devformat/multiline/\nFallback: https://gurioh.github.io/devformat/escape/',
       copySuccess: 'Extracted URLs copied.',
       examples: {
-        logs: 'Primary: https://devformat.dev/multiline/\nFallback: https://devformat.dev/escape/\nAgain: https://devformat.dev/multiline/',
+        logs: 'Primary: https://gurioh.github.io/devformat/multiline/\nFallback: https://gurioh.github.io/devformat/escape/\nAgain: https://gurioh.github.io/devformat/multiline/',
         docs: 'Read https://example.com/docs and also visit www.example.org/help',
         markdown: '[Docs](https://example.com/docs) and https://status.example.com'
       },
@@ -444,7 +444,7 @@ const cleanupTools = [
 ];
 
 module.exports = {
-  domain: 'https://devformat.dev',
+  domain: 'https://gurioh.github.io/devformat',
   cleanupTools,
   cleanupHub: {
     title: 'Text Cleanup & Extraction Tools | DevFormat',
