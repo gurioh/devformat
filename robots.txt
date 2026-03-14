@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gurioh.github.io/devformat/sitemap.xml
+Sitemap: https://devformat.dev/sitemap.xml
