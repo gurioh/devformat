@@ -26,13 +26,13 @@
 
   let activePreset = 'sql-in';
 
-  function convert() {
+  function render() {
     const raw = input.value;
     if (!raw.trim()) {
       output.value = '';
       itemStat.textContent = '0';
       charStat.textContent = '0';
-      return;
+      return null;
     }
 
     const preset = presets[activePreset];
@@ -51,13 +51,24 @@
     itemStat.textContent = String(values.length);
     charStat.textContent = String(result.length);
 
+    return {
+      values: values,
+      raw: raw,
+      result: result
+    };
+  }
+
+  function convert() {
+    const rendered = render();
+    if (!rendered) return;
+
     DevFormat.trackEvent('tool_convert', {
       tool: 'home_sql_widget',
       preset: activePreset,
-      item_count: values.length,
-      line_count: raw ? raw.split('\n').length : 0,
-      input_chars: raw.length,
-      output_chars: result.length,
+      item_count: rendered.values.length,
+      line_count: rendered.raw ? rendered.raw.split('\n').length : 0,
+      input_chars: rendered.raw.length,
+      output_chars: rendered.result.length,
       page: 'catalog'
     });
   }
@@ -94,7 +105,17 @@
   input.addEventListener('input', convert);
 
   copyButton.addEventListener('click', function () {
-    DevFormat.copyText(output.value, 'Homepage output copied.');
+    if (!output.value) return;
+    navigator.clipboard.writeText(output.value).then(function () {
+      DevFormat.showToast('Homepage output copied.');
+      DevFormat.trackEvent('copy_output', {
+        tool: 'home_sql_widget',
+        length: output.value.length,
+        page: 'catalog'
+      });
+    }).catch(function () {
+      DevFormat.showToast('Clipboard access failed.');
+    });
   });
 
   clearButton.addEventListener('click', function () {
@@ -108,5 +129,5 @@
   input.value = examples.ids;
   presetLabel.textContent = presets[activePreset].label;
   presetLabelCard.textContent = presets[activePreset].label;
-  convert();
+  render();
 })();
