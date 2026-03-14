@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare Two Lists Online | DevFormat</title>
+  <meta name="description" content="Compare two newline lists and return common values, only-in-A values, and only-in-B values. Useful for IDs, exports, tags, and config diffs.">
+  <meta name="keywords" content="compare two lists online, list difference tool, compare newline lists, common values between two lists">
+  <meta property="og:title" content="Compare Two Lists Online | DevFormat">
+  <meta property="og:description" content="Compare two newline lists and return common values, only-in-A values, and only-in-B values. Useful for IDs, exports, tags, and config diffs.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://devformat.dev/compare-two-lists/">
+  <link rel="canonical" href="https://devformat.dev/compare-two-lists/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Compare Two Lists Online",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "url": "https://devformat.dev/compare-two-lists/",
+  "description": "Compare two newline lists and return common values, only-in-A values, and only-in-B values. Useful for IDs, exports, tags, and config diffs.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "DevFormat Tools",
+      "item": "https://devformat.dev/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cleanup & Extraction",
+      "item": "https://devformat.dev/cleanup/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Compare Two Lists Online",
+      "item": "https://devformat.dev/compare-two-lists/"
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="compare-two-lists" data-layout="tool">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
+        <div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="cleanup" href="../cleanup/">Cleanup</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <a href="../cleanup/">Cleanup</a>
+      <span>/</span>
+      <span aria-current="page">Compare Two Lists Online</span>
+    </nav>
+    <section class="hero compact hero-slim">
+      <span class="hero-kicker">Cleanup &amp; Extraction</span>
+      <h1>Compare Two Lists Online</h1>
+      <p>Paste two newline lists, compare them in the browser, and copy shared values or differences for debugging, QA, and export cleanup.</p>
+    </section>
+    <section class="content-card answer-summary">
+      <h2>Quick answer</h2>
+      <p>This page compares two newline lists and shows three results: values in both lists, values only in list A, and values only in list B.</p><p>It works well for IDs, exported rows, tag lists, feature flags, and support/debugging workflows.</p>
+    </section>
+    <section class="tool-shell compare-shell">
+      <div class="toolbar">
+        <div class="toolbar-row toolbar-primary">
+          <div class="chip-row compact"><span class="chip active">Compare lists</span></div>
+          <details class="toolbar-details" id="advancedPanel">
+            <summary>Advanced settings</summary>
+            <div class="toolbar-detail-body">
+              <div class="toolbar-row compact cleanup-toggle-row">
+                <label class="chip"><input id="trimValues" type="checkbox" checked> Trim values</label>
+                <label class="chip"><input id="skipEmpty" type="checkbox" checked> Skip empty lines</label>
+              </div>
+              <div class="example-actions compact"><button type="button" data-example="ids">Record IDs</button><button type="button" data-example="env">Env keys</button><button type="button" data-example="emails">Emails</button></div>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="compare-grid">
+        <section class="tool-panel">
+          <div class="panel-head"><div><strong>List A</strong><span>One value per line</span></div><button class="copy-button" type="button" id="clearAButton">Clear</button></div>
+          <textarea class="textarea" id="inputA" placeholder="1001&#10;1002&#10;1003"></textarea>
+        </section>
+        <section class="tool-panel">
+          <div class="panel-head"><div><strong>List B</strong><span>One value per line</span></div><button class="copy-button" type="button" id="clearBButton">Clear</button></div>
+          <textarea class="textarea" id="inputB" placeholder="1003&#10;1004&#10;1005"></textarea>
+        </section>
+      </div>
+      <div class="compare-results-grid">
+        <section class="tool-panel result-panel">
+          <div class="panel-head"><div><strong>Common values</strong><span>Values found in both lists</span></div><button class="copy-button" type="button" data-copy-result="common">Copy</button></div>
+          <textarea class="textarea" id="commonOutput" readonly></textarea>
+        </section>
+        <section class="tool-panel result-panel">
+          <div class="panel-head"><div><strong>Only in A</strong><span>Values only in list A</span></div><button class="copy-button" type="button" data-copy-result="only-a">Copy</button></div>
+          <textarea class="textarea" id="onlyAOutput" readonly></textarea>
+        </section>
+        <section class="tool-panel result-panel">
+          <div class="panel-head"><div><strong>Only in B</strong><span>Values only in list B</span></div><button class="copy-button" type="button" data-copy-result="only-b">Copy</button></div>
+          <textarea class="textarea" id="onlyBOutput" readonly></textarea>
+        </section>
+      </div>
+      <div class="stat-grid">
+        <article class="stat-card"><span>List A</span><strong data-stat="totalA">0</strong></article><article class="stat-card"><span>List B</span><strong data-stat="totalB">0</strong></article><article class="stat-card"><span>Common</span><strong data-stat="commonCount">0</strong></article><article class="stat-card"><span>Only A</span><strong data-stat="onlyACount">0</strong></article><article class="stat-card"><span>Only B</span><strong data-stat="onlyBCount">0</strong></article><article class="stat-card"><span>Unique overlap</span><strong data-stat="commonUnique">0</strong></article>
+      </div>
+    </section>
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>How to use</h2>
+        <ol>
+          <li>Paste one list into A and the other into B.</li><li>Choose whether to trim values or ignore empty lines.</li><li>Copy the shared list or either side-only result.</li>
+        </ol>
+      </article>
+      <article class="content-card">
+        <h2>Common questions this page answers</h2>
+        <ul class="question-list">
+          <li>How do I compare two newline lists online?</li><li>How do I find values only in one list?</li><li>How do I get the intersection between two copied lists?</li>
+        </ul>
+      </article>
+    </section>
+    <section class="section-stack">
+      <article class="content-card">
+        <h2>Example input and output</h2>
+        <div class="example-grid compare-example-grid">
+          <div class="example-block">
+            <h3>List A</h3>
+            <pre><code>1001
+1002
+1003
+1004</code></pre>
+          </div>
+          <div class="example-block">
+            <h3>List B</h3>
+            <pre><code>1003
+1004
+1005
+1006</code></pre>
+          </div>
+          <div class="example-block">
+            <h3>Common values</h3>
+            <pre><code>1003
+1004</code></pre>
+          </div>
+          <div class="example-block">
+            <h3>Only in A</h3>
+            <pre><code>1001
+1002</code></pre>
+          </div>
+          <div class="example-block">
+            <h3>Only in B</h3>
+            <pre><code>1005
+1006</code></pre>
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item"><h3>Does it keep the original order?</h3><p>Yes. Each result keeps the order from its source list while filtering by membership.</p></article><article class="faq-item"><h3>Can I ignore blank lines?</h3><p>Yes. Leave skip-empty enabled to drop blank values before comparison.</p></article><article class="faq-item"><h3>Can I trim whitespace before comparing?</h3><p>Yes. Turn on trim to compare normalized values.</p></article>
+      </div>
+    </section>
+    <footer class="page-footer">
+      <p>Move between cleanup, extraction, and transform tools without leaving the browser.</p>
+      <nav><a href="../remove-duplicate-lines/">Remove Duplicate Lines</a><a href="../sort-lines/">Sort Lines</a><a href="../extract-emails/">Extract Emails</a><a href="../split-join/">Split / Join</a></nav>
+    </footer>
+  </main>
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+  <script>
+    window.DevFormatCompareConfig = {
+  "toolKey": "compare-two-lists",
+  "inputAHint": "One value per line",
+  "inputBHint": "One value per line",
+  "commonHint": "Values found in both lists",
+  "onlyAHint": "Values only in list A",
+  "onlyBHint": "Values only in list B",
+  "copySuccess": "Compared list copied.",
+  "examples": {
+    "ids": {
+      "left": "1001\n1002\n1003\n1004",
+      "right": "1003\n1004\n1005\n1006"
+    },
+    "env": {
+      "left": "API_KEY\nAPI_SECRET\nAPI_HOST\nLOG_LEVEL",
+      "right": "API_HOST\nAPI_TIMEOUT\nLOG_LEVEL\nPORT"
+    },
+    "emails": {
+      "left": "hello@example.com\nops@example.com\nsupport@example.com",
+      "right": "ops@example.com\nfinance@example.com\nsupport@example.com"
+    }
+  },
+  "exampleButtons": [
+    {
+      "key": "ids",
+      "label": "Record IDs"
+    },
+    {
+      "key": "env",
+      "label": "Env keys"
+    },
+    {
+      "key": "emails",
+      "label": "Emails"
+    }
+  ],
+  "defaultExample": "ids",
+  "controls": {
+    "trim": true,
+    "skipEmpty": true
+  },
+  "stats": [
+    {
+      "key": "totalA",
+      "label": "List A",
+      "defaultValue": "0"
+    },
+    {
+      "key": "totalB",
+      "label": "List B",
+      "defaultValue": "0"
+    },
+    {
+      "key": "commonCount",
+      "label": "Common",
+      "defaultValue": "0"
+    },
+    {
+      "key": "onlyACount",
+      "label": "Only A",
+      "defaultValue": "0"
+    },
+    {
+      "key": "onlyBCount",
+      "label": "Only B",
+      "defaultValue": "0"
+    },
+    {
+      "key": "commonUnique",
+      "label": "Unique overlap",
+      "defaultValue": "0"
+    }
+  ]
+};
+  </script>
+  <script src="../assets/compare-tool.js"></script>
+</body>
+</html>

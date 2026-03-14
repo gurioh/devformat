@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sort Lines Online | DevFormat</title>
+  <meta name="description" content="Sort lines alphabetically or numerically, then copy the cleaned result. Useful for IDs, tags, env vars, hostnames, and plain text exports.">
+  <meta name="keywords" content="sort lines online, alphabetical sort text, numeric sort lines, sort multiline text">
+  <meta property="og:title" content="Sort Lines Online | DevFormat">
+  <meta property="og:description" content="Sort lines alphabetically or numerically, then copy the cleaned result. Useful for IDs, tags, env vars, hostnames, and plain text exports.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://devformat.dev/sort-lines/">
+  <link rel="canonical" href="https://devformat.dev/sort-lines/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Sort Lines Online",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "url": "https://devformat.dev/sort-lines/",
+  "description": "Sort lines alphabetically or numerically, then copy the cleaned result. Useful for IDs, tags, env vars, hostnames, and plain text exports.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "DevFormat Tools",
+      "item": "https://devformat.dev/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cleanup & Extraction",
+      "item": "https://devformat.dev/cleanup/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Sort Lines Online",
+      "item": "https://devformat.dev/sort-lines/"
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="sort-lines" data-layout="tool">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
+        <div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="cleanup" href="../cleanup/">Cleanup</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <a href="../cleanup/">Cleanup</a>
+      <span>/</span>
+      <span aria-current="page">Sort Lines Online</span>
+    </nav>
+    <section class="hero compact hero-slim">
+      <span class="hero-kicker">Cleanup &amp; Extraction</span>
+      <h1>Sort Lines Online</h1>
+      <p>Sort one value per line by alphabetical or numeric order, clean copied lists, and copy a stable output for configs, spreadsheets, and debugging.</p>
+    </section>
+    <section class="content-card answer-summary">
+      <h2>Quick answer</h2>
+      <p>This page sorts newline text in ascending or descending order and keeps the result as one value per line.</p><p>It is useful for config keys, IDs, tag lists, exports, and any list that becomes easier to scan after sorting.</p>
+    </section>
+    <section class="tool-shell">
+      <div class="toolbar">
+        <div class="toolbar-row toolbar-primary">
+          <div class="segmented cleanup-segmented"><button class="active" type="button" data-preset="alpha-asc">A → Z</button><button type="button" data-preset="alpha-desc">Z → A</button><button type="button" data-preset="numeric-asc">0 → 9</button><button type="button" data-preset="numeric-desc">9 → 0</button></div>
+          <details class="toolbar-details" id="advancedPanel">
+            <summary>Advanced settings</summary>
+            <div class="toolbar-detail-body">
+              <div class="toolbar-row compact cleanup-toggle-row">
+                <label class="chip"><input id="trimValues" type="checkbox" checked> Trim values</label>
+                <label class="chip"><input id="skipEmpty" type="checkbox" checked> Skip empty lines</label>
+              </div>
+              <div class="example-actions compact"><button type="button" data-example="names">Names</button><button type="button" data-example="numbers">Numbers</button><button type="button" data-example="hosts">Hostnames</button></div>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="tool-panels">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong>Input</strong><span id="inputHint">One value per line</span></div>
+            <button class="copy-button" type="button" id="clearButton">Clear</button>
+          </div>
+          <textarea class="textarea" id="input" placeholder="gamma
+alpha
+delta
+beta"></textarea>
+        </section>
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong>Output</strong><span id="outputHint">Sorted lines</span></div>
+            <button class="copy-button" type="button" id="copyButton">Copy</button>
+          </div>
+          <textarea class="textarea" id="output" readonly></textarea>
+        </section>
+      </div>
+      <div class="stat-grid">
+        <article class="stat-card"><span>Mode</span><strong data-stat="modeLabel">Sort</strong></article><article class="stat-card"><span>Total lines</span><strong data-stat="totalLines">0</strong></article><article class="stat-card"><span>Unique lines</span><strong data-stat="uniqueLines">0</strong></article><article class="stat-card"><span>Duplicates</span><strong data-stat="duplicatesRemoved">0</strong></article><article class="stat-card"><span>Empty lines</span><strong data-stat="emptyLines">0</strong></article><article class="stat-card"><span>Output lines</span><strong data-stat="outputLines">0</strong></article><article class="stat-card"><span>Input chars</span><strong data-stat="inputChars">0</strong></article><article class="stat-card"><span>Output chars</span><strong data-stat="outputChars">0</strong></article>
+      </div>
+    </section>
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>How to use</h2>
+        <ol>
+          <li>Paste one value per line into the input box.</li><li>Choose alphabetical or numeric sorting.</li><li>Copy the sorted output.</li>
+        </ol>
+      </article>
+      <article class="content-card">
+        <h2>Common questions this page answers</h2>
+        <ul class="question-list">
+          <li>How do I sort lines alphabetically online?</li><li>How do I sort a list of numeric strings?</li><li>How do I normalize and sort copied values before comparing them?</li>
+        </ul>
+      </article>
+    </section>
+    <section class="section-stack">
+      <article class="content-card">
+        <h2>Example input and output</h2>
+        <div class="example-grid">
+          <div class="example-block">
+            <h3>Input</h3>
+            <pre><code>gamma
+alpha
+delta
+beta</code></pre>
+          </div>
+          <div class="example-block">
+            <h3>Output sorted A to Z</h3>
+            <pre><code>alpha
+beta
+delta
+gamma</code></pre>
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item"><h3>Can I sort numbers numerically instead of alphabetically?</h3><p>Yes. Use the numeric presets when your lines contain numeric strings like IDs or counters.</p></article><article class="faq-item"><h3>Will it remove blank lines?</h3><p>It can. Leave skip-empty enabled if you want blank rows removed before sorting.</p></article><article class="faq-item"><h3>Can I trim whitespace before sorting?</h3><p>Yes. Turn on trim to sort based on normalized values.</p></article>
+      </div>
+    </section>
+    <footer class="page-footer">
+      <p>Move between cleanup, extraction, and transform tools without leaving the browser.</p>
+      <nav><a href="../remove-duplicate-lines/">Remove Duplicate Lines</a><a href="../line-counter/">Line Counter</a><a href="../compare-two-lists/">Compare Two Lists</a><a href="../split-join/">Split / Join</a></nav>
+    </footer>
+  </main>
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+  <script>
+    window.DevFormatListCleanupConfig = {
+  "toolKey": "sort-lines",
+  "operation": "sort",
+  "modeLabel": "Sort",
+  "inputHint": "One value per line",
+  "outputHint": "Sorted lines",
+  "placeholder": "gamma\nalpha\ndelta\nbeta",
+  "copySuccess": "Sorted lines copied.",
+  "examples": {
+    "names": "gamma\nalpha\ndelta\nbeta",
+    "numbers": "42\n7\n105\n13\n9",
+    "hosts": "api-3\napi-1\napi-2\napi-10"
+  },
+  "exampleButtons": [
+    {
+      "key": "names",
+      "label": "Names"
+    },
+    {
+      "key": "numbers",
+      "label": "Numbers"
+    },
+    {
+      "key": "hosts",
+      "label": "Hostnames"
+    }
+  ],
+  "defaultExample": "names",
+  "presets": [
+    {
+      "key": "alpha-asc",
+      "label": "A → Z"
+    },
+    {
+      "key": "alpha-desc",
+      "label": "Z → A"
+    },
+    {
+      "key": "numeric-asc",
+      "label": "0 → 9"
+    },
+    {
+      "key": "numeric-desc",
+      "label": "9 → 0"
+    }
+  ],
+  "defaultPreset": "alpha-asc",
+  "controls": {
+    "trim": true,
+    "skipEmpty": true
+  },
+  "stats": [
+    {
+      "key": "modeLabel",
+      "label": "Mode",
+      "defaultValue": "Sort"
+    },
+    {
+      "key": "totalLines",
+      "label": "Total lines",
+      "defaultValue": "0"
+    },
+    {
+      "key": "uniqueLines",
+      "label": "Unique lines",
+      "defaultValue": "0"
+    },
+    {
+      "key": "duplicatesRemoved",
+      "label": "Duplicates",
+      "defaultValue": "0"
+    },
+    {
+      "key": "emptyLines",
+      "label": "Empty lines",
+      "defaultValue": "0"
+    },
+    {
+      "key": "outputLines",
+      "label": "Output lines",
+      "defaultValue": "0"
+    },
+    {
+      "key": "inputChars",
+      "label": "Input chars",
+      "defaultValue": "0"
+    },
+    {
+      "key": "outputChars",
+      "label": "Output chars",
+      "defaultValue": "0"
+    }
+  ]
+};
+  </script>
+  <script src="../assets/list-cleanup-tool.js"></script>
+</body>
+</html>

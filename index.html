@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Developer Text Tools Online | DevFormat</title>
-  <meta name="description" content="Developer text tools for SQL lists, quoted strings, delimiter cleanup, Base64 decoding, URL encoding, JSON formatting, escaping, and slug generation.">
-  <meta name="keywords" content="developer text tools online, newline to comma separated list, quote each line online, base64 decode string online, url encode query parameter online, json formatter online">
+  <meta name="description" content="Developer text tools for SQL lists, quoted strings, delimiter cleanup, duplicate removal, extraction, Base64 decoding, URL encoding, JSON formatting, escaping, and slug generation.">
+  <meta name="keywords" content="developer text tools online, remove duplicate lines online, extract emails from text, compare two lists online, newline to comma separated list, quote each line online">
   <meta property="og:title" content="Developer Text Tools Online | DevFormat">
-  <meta property="og:description" content="Search-friendly text workflow tools for developers: SQL IN clause conversion, quoting, escaping, encoding, slugify, and JSON formatting.">
+  <meta property="og:description" content="Search-friendly text workflow tools for developers: SQL IN clause conversion, duplicate cleanup, extraction, quoting, escaping, encoding, slugify, and JSON formatting.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://devformat.dev/">
   <meta name="google-site-verification" content="AiQYZSuuzlRJAO75KV0EwQpBN9O54K70X_4qlmVGNiU">
@@ -20,7 +20,7 @@
     "@type": "WebSite",
     "name": "DevFormat",
     "url": "https://devformat.dev/",
-    "description": "Search-friendly developer text tools for formatting, escaping, encoding, and cleanup.",
+    "description": "Search-friendly developer text tools for formatting, cleanup, extraction, escaping, encoding, and structured text workflows.",
     "inLanguage": "en"
   }
   </script>
@@ -40,6 +40,7 @@
         <a data-page-link="multiline" href="./multiline/">Multiline</a>
         <a data-page-link="quote" href="./quote/">Quote</a>
         <a data-page-link="split-join" href="./split-join/">Split / Join</a>
+        <a data-page-link="cleanup" href="./cleanup/">Cleanup</a>
         <a data-page-link="escape" href="./escape/">Escape</a>
         <a data-page-link="base64" href="./base64/">Base64</a>
         <a data-page-link="url-encode" href="./url-encode/">URL Encode</a>
@@ -117,13 +118,26 @@
           <article class="stat-card"><span>Items</span><strong id="homeItemStat">0</strong></article>
           <article class="stat-card"><span>Output chars</span><strong id="homeCharStat">0</strong></article>
         </div>
+        <div class="cleanup-link-row">
+          <span>More text cleanup tools</span>
+          <a class="tool-link" href="./cleanup/">Cleanup hub</a>
+          <a class="tool-link" href="./remove-duplicate-lines/">Remove duplicates</a>
+          <a class="tool-link" href="./sort-lines/">Sort lines</a>
+          <a class="tool-link" href="./extract-emails/">Extract emails</a>
+          <a class="tool-link" href="./compare-two-lists/">Compare lists</a>
+        </div>
       </section>
     </section>
 
     <section id="why-devformat" class="section-stack landing-stack">
       <article class="content-card">
         <h2>Why DevFormat</h2>
-        <p>DevFormat should feel like a focused workbench, not a directory of disconnected utilities. The home page now starts with a usable tool and explains why the rest of the cluster matters.</p>
+        <p>DevFormat should feel like a focused workbench, not a directory of disconnected utilities. The home page starts with a usable tool, then shows the product axes that connect the rest of the cluster.</p>
+        <div class="category-pill-row">
+          <span class="chip active">Text Transform</span>
+          <span class="chip">Encoding &amp; Structured Text</span>
+          <span class="chip">Cleanup &amp; Extraction</span>
+        </div>
       </article>
       <div class="workflow-grid why-grid">
         <article class="workflow-card">
@@ -137,6 +151,10 @@
         <article class="workflow-card">
           <h3>Related tasks stay connected</h3>
           <p>A user who starts with quoting often also needs joining, escaping, JSON validation, or URL encoding in the same session.</p>
+        </article>
+        <article class="workflow-card">
+          <h3>Cleanup before transform</h3>
+          <p>Repeated values, mixed notes, and side-by-side list checks now have their own cleanup category before you move into formatting or encoding.</p>
         </article>
       </div>
     </section>
@@ -171,6 +189,15 @@
             <a class="tool-link" href="./split-join/">Split / Join</a>
             <a class="tool-link" href="./slugify/">Slugify</a>
             <a class="tool-link" href="./json/">JSON</a>
+          </div>
+        </article>
+        <article class="workflow-card">
+          <h3>Clean exports and compare noisy lists</h3>
+          <p>Remove duplicate lines, sort a pasted list, extract emails or URLs, and compare two lists before the next transform step.</p>
+          <div class="workflow-links">
+            <a class="tool-link" href="./cleanup/">Cleanup hub</a>
+            <a class="tool-link" href="./remove-duplicate-lines/">Remove duplicates</a>
+            <a class="tool-link" href="./compare-two-lists/">Compare lists</a>
           </div>
         </article>
       </div>
@@ -291,6 +318,48 @@
           </ul>
           <div class="tool-card-footer">
             <a class="tool-link" href="./json/">Open JSON tool</a>
+          </div>
+        </article>
+
+        <article class="tool-card">
+          <span class="hero-kicker">Cleanup &amp; Extraction</span>
+          <h3>Remove Duplicate Lines</h3>
+          <p>Keep the first occurrence of each value and drop repeated lines from copied text, exports, and config lists.</p>
+          <ul>
+            <li>Popular intent: remove duplicate lines online</li>
+            <li>Order-preserving output</li>
+            <li>Trim and skip-empty cleanup</li>
+          </ul>
+          <div class="tool-card-footer">
+            <a class="tool-link" href="./remove-duplicate-lines/">Open cleanup tool</a>
+          </div>
+        </article>
+
+        <article class="tool-card">
+          <span class="hero-kicker">Cleanup &amp; Extraction</span>
+          <h3>Extract Emails from Text</h3>
+          <p>Pull email addresses out of mixed notes, logs, CSV exports, and support tickets without sending text to a server.</p>
+          <ul>
+            <li>Popular intent: extract emails from text</li>
+            <li>Unique-only and sort-output toggles</li>
+            <li>One address per line</li>
+          </ul>
+          <div class="tool-card-footer">
+            <a class="tool-link" href="./extract-emails/">Open extraction tool</a>
+          </div>
+        </article>
+
+        <article class="tool-card">
+          <span class="hero-kicker">Cleanup &amp; Extraction</span>
+          <h3>Compare Two Lists</h3>
+          <p>Paste two newline lists and copy common values, only-in-A values, or only-in-B values for debugging and QA.</p>
+          <ul>
+            <li>Popular intent: compare two lists online</li>
+            <li>Intersection and difference output</li>
+            <li>Works with IDs, env keys, and exports</li>
+          </ul>
+          <div class="tool-card-footer">
+            <a class="tool-link" href="./compare-two-lists/">Open compare tool</a>
           </div>
         </article>
       </div>

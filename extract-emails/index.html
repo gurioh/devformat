@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extract Emails from Text | DevFormat</title>
+  <meta name="description" content="Extract email addresses from mixed text, logs, payloads, docs, and copied notes. Keep unique results and copy one address per line.">
+  <meta name="keywords" content="extract emails from text, email extractor online, find email addresses in text">
+  <meta property="og:title" content="Extract Emails from Text | DevFormat">
+  <meta property="og:description" content="Extract email addresses from mixed text, logs, payloads, docs, and copied notes. Keep unique results and copy one address per line.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://devformat.dev/extract-emails/">
+  <link rel="canonical" href="https://devformat.dev/extract-emails/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Extract Emails from Text",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "url": "https://devformat.dev/extract-emails/",
+  "description": "Extract email addresses from mixed text, logs, payloads, docs, and copied notes. Keep unique results and copy one address per line.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "DevFormat Tools",
+      "item": "https://devformat.dev/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cleanup & Extraction",
+      "item": "https://devformat.dev/cleanup/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Extract Emails from Text",
+      "item": "https://devformat.dev/extract-emails/"
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="extract-emails" data-layout="tool">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
+        <div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="cleanup" href="../cleanup/">Cleanup</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <a href="../cleanup/">Cleanup</a>
+      <span>/</span>
+      <span aria-current="page">Extract Emails from Text</span>
+    </nav>
+    <section class="hero compact hero-slim">
+      <span class="hero-kicker">Cleanup &amp; Extraction</span>
+      <h1>Extract Emails from Text</h1>
+      <p>Paste mixed text, pull out email addresses, and copy one clean email per line for support lists, exports, and debugging.</p>
+    </section>
+    <section class="content-card answer-summary">
+      <h2>Quick answer</h2>
+      <p>This page extracts email addresses from mixed text like logs, docs, payloads, copied notes, and spreadsheet exports.</p><p>You can keep unique results only or sort the extracted values before copying them.</p>
+    </section>
+    <section class="tool-shell">
+      <div class="toolbar">
+        <div class="toolbar-row toolbar-primary">
+          <div class="chip-row compact"><span class="chip active">Extract emails</span></div>
+          <details class="toolbar-details" id="advancedPanel">
+            <summary>Advanced settings</summary>
+            <div class="toolbar-detail-body">
+              <div class="toolbar-row compact cleanup-toggle-row">
+                <label class="chip"><input id="uniqueOnly" type="checkbox" checked> Unique only</label>
+                <label class="chip"><input id="sortOutput" type="checkbox" > Sort output</label>
+              </div>
+              <div class="example-actions compact"><button type="button" data-example="tickets">Support tickets</button><button type="button" data-example="csv">CSV export</button><button type="button" data-example="notes">Notes</button></div>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="tool-panels">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong>Input</strong><span id="inputHint">Paste mixed text, docs, or logs</span></div>
+            <button class="copy-button" type="button" id="clearButton">Clear</button>
+          </div>
+          <textarea class="textarea" id="input" placeholder="Owner: hello@example.com
+Backup: ops@example.com"></textarea>
+        </section>
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong>Output</strong><span id="outputHint">One email per line</span></div>
+            <button class="copy-button" type="button" id="copyButton">Copy</button>
+          </div>
+          <textarea class="textarea" id="output" readonly></textarea>
+        </section>
+      </div>
+      <div class="stat-grid">
+        <article class="stat-card"><span>Mode</span><strong data-stat="modeLabel">Extract emails</strong></article><article class="stat-card"><span>Matches</span><strong data-stat="matches">0</strong></article><article class="stat-card"><span>Unique</span><strong data-stat="uniqueMatches">0</strong></article><article class="stat-card"><span>Duplicates</span><strong data-stat="duplicatesRemoved">0</strong></article><article class="stat-card"><span>Output lines</span><strong data-stat="outputLines">0</strong></article><article class="stat-card"><span>Input chars</span><strong data-stat="inputChars">0</strong></article><article class="stat-card"><span>Output chars</span><strong data-stat="outputChars">0</strong></article><article class="stat-card"><span>Delta</span><strong data-stat="deltaChars">0</strong></article>
+      </div>
+    </section>
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>How to use</h2>
+        <ol>
+          <li>Paste any mixed text into the input box.</li><li>Choose whether to keep unique values or sort the output.</li><li>Copy the extracted email list.</li>
+        </ol>
+      </article>
+      <article class="content-card">
+        <h2>Common questions this page answers</h2>
+        <ul class="question-list">
+          <li>How do I extract email addresses from a block of text?</li><li>How do I turn mixed notes into one email per line?</li><li>How do I remove duplicate emails from pasted text?</li>
+        </ul>
+      </article>
+    </section>
+    <section class="section-stack">
+      <article class="content-card">
+        <h2>Example input and output</h2>
+        <div class="example-grid">
+          <div class="example-block">
+            <h3>Input</h3>
+            <pre><code>Owner: hello@example.com
+Backup: ops@example.com
+Escalation: hello@example.com</code></pre>
+          </div>
+          <div class="example-block">
+            <h3>Extracted emails</h3>
+            <pre><code>hello@example.com
+ops@example.com</code></pre>
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item"><h3>Can I remove duplicates from the extracted results?</h3><p>Yes. Keep unique-only enabled to return each email address once.</p></article><article class="faq-item"><h3>Can I sort the results?</h3><p>Yes. Enable sort output if you want the extracted email list in alphabetical order.</p></article><article class="faq-item"><h3>Does this send text to a server?</h3><p>No. Extraction runs in the browser.</p></article>
+      </div>
+    </section>
+    <footer class="page-footer">
+      <p>Move between cleanup, extraction, and transform tools without leaving the browser.</p>
+      <nav><a href="../remove-duplicate-lines/">Remove Duplicate Lines</a><a href="../quote/">Quote</a><a href="../split-join/">Split / Join</a><a href="../compare-two-lists/">Compare Two Lists</a></nav>
+    </footer>
+  </main>
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+  <script>
+    window.DevFormatExtractConfig = {
+  "toolKey": "extract-emails",
+  "extractType": "emails",
+  "modeLabel": "Extract emails",
+  "inputHint": "Paste mixed text, docs, or logs",
+  "outputHint": "One email per line",
+  "placeholder": "Owner: hello@example.com\nBackup: ops@example.com",
+  "copySuccess": "Extracted emails copied.",
+  "examples": {
+    "tickets": "Owner: hello@example.com\nBackup: ops@example.com\nEscalation: hello@example.com",
+    "csv": "name,email\nAlice,alice@example.com\nBob,bob@example.com",
+    "notes": "Reach sales@company.com or support@company.com for help."
+  },
+  "exampleButtons": [
+    {
+      "key": "tickets",
+      "label": "Support tickets"
+    },
+    {
+      "key": "csv",
+      "label": "CSV export"
+    },
+    {
+      "key": "notes",
+      "label": "Notes"
+    }
+  ],
+  "defaultExample": "tickets",
+  "controls": {
+    "uniqueOnly": true,
+    "sortOutput": false
+  },
+  "stats": [
+    {
+      "key": "modeLabel",
+      "label": "Mode",
+      "defaultValue": "Extract emails"
+    },
+    {
+      "key": "matches",
+      "label": "Matches",
+      "defaultValue": "0"
+    },
+    {
+      "key": "uniqueMatches",
+      "label": "Unique",
+      "defaultValue": "0"
+    },
+    {
+      "key": "duplicatesRemoved",
+      "label": "Duplicates",
+      "defaultValue": "0"
+    },
+    {
+      "key": "outputLines",
+      "label": "Output lines",
+      "defaultValue": "0"
+    },
+    {
+      "key": "inputChars",
+      "label": "Input chars",
+      "defaultValue": "0"
+    },
+    {
+      "key": "outputChars",
+      "label": "Output chars",
+      "defaultValue": "0"
+    },
+    {
+      "key": "deltaChars",
+      "label": "Delta",
+      "defaultValue": "0"
+    }
+  ]
+};
+  </script>
+  <script src="../assets/extract-tool.js"></script>
+</body>
+</html>

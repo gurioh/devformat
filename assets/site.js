@@ -56,12 +56,12 @@
     }, 2200);
   };
 
-  namespace.copyText = async function copyText(text, successMessage) {
+  namespace.copyText = async function copyText(text, successMessage, extraParams) {
     if (!text) return false;
     try {
       await navigator.clipboard.writeText(text);
       namespace.showToast(successMessage || 'Copied to clipboard.');
-      namespace.trackEvent('copy_output', { tool: getPageName(), length: text.length });
+      namespace.trackEvent('copy_output', Object.assign({ tool: getPageName(), length: text.length }, extraParams || {}));
       return true;
     } catch (error) {
       namespace.showToast('Clipboard access failed.');

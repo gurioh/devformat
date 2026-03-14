@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remove Duplicate Lines Online | DevFormat</title>
+  <meta name="description" content="Remove duplicate lines from text while keeping the first occurrence. Clean copied IDs, emails, config keys, and spreadsheet exports in your browser.">
+  <meta name="keywords" content="remove duplicate lines online, dedupe text lines, unique lines tool, remove duplicate list items">
+  <meta property="og:title" content="Remove Duplicate Lines Online | DevFormat">
+  <meta property="og:description" content="Remove duplicate lines from text while keeping the first occurrence. Clean copied IDs, emails, config keys, and spreadsheet exports in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://devformat.dev/remove-duplicate-lines/">
+  <link rel="canonical" href="https://devformat.dev/remove-duplicate-lines/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Remove Duplicate Lines Online",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "url": "https://devformat.dev/remove-duplicate-lines/",
+  "description": "Remove duplicate lines from text while keeping the first occurrence. Clean copied IDs, emails, config keys, and spreadsheet exports in your browser.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "DevFormat Tools",
+      "item": "https://devformat.dev/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cleanup & Extraction",
+      "item": "https://devformat.dev/cleanup/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Remove Duplicate Lines Online",
+      "item": "https://devformat.dev/remove-duplicate-lines/"
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="remove-duplicate-lines" data-layout="tool">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
+        <div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="cleanup" href="../cleanup/">Cleanup</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <a href="../cleanup/">Cleanup</a>
+      <span>/</span>
+      <span aria-current="page">Remove Duplicate Lines Online</span>
+    </nav>
+    <section class="hero compact hero-slim">
+      <span class="hero-kicker">Cleanup &amp; Extraction</span>
+      <h1>Remove Duplicate Lines Online</h1>
+      <p>Paste one value per line, remove duplicate entries in original order, and copy a clean list for code, configs, or spreadsheet cleanup.</p>
+    </section>
+    <section class="content-card answer-summary">
+      <h2>Quick answer</h2>
+      <p>This page removes repeated lines from copied text while keeping the first occurrence of each value.</p><p>It works well for IDs, emails, tag lists, config keys, and any text export that needs a stable unique list.</p>
+    </section>
+    <section class="tool-shell">
+      <div class="toolbar">
+        <div class="toolbar-row toolbar-primary">
+          <div class="chip-row compact"><span class="chip active">Dedupe</span></div>
+          <details class="toolbar-details" id="advancedPanel">
+            <summary>Advanced settings</summary>
+            <div class="toolbar-detail-body">
+              <div class="toolbar-row compact cleanup-toggle-row">
+                <label class="chip"><input id="trimValues" type="checkbox" checked> Trim values</label>
+                <label class="chip"><input id="skipEmpty" type="checkbox" checked> Skip empty lines</label>
+              </div>
+              <div class="example-actions compact"><button type="button" data-example="duplicates">Repeated values</button><button type="button" data-example="ids">Record IDs</button><button type="button" data-example="emails">Email list</button></div>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="tool-panels">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong>Input</strong><span id="inputHint">Text with repeated lines</span></div>
+            <button class="copy-button" type="button" id="clearButton">Clear</button>
+          </div>
+          <textarea class="textarea" id="input" placeholder="apple
+banana
+apple
+cherry"></textarea>
+        </section>
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong>Output</strong><span id="outputHint">Unique lines in original order</span></div>
+            <button class="copy-button" type="button" id="copyButton">Copy</button>
+          </div>
+          <textarea class="textarea" id="output" readonly></textarea>
+        </section>
+      </div>
+      <div class="stat-grid">
+        <article class="stat-card"><span>Mode</span><strong data-stat="modeLabel">Dedupe</strong></article><article class="stat-card"><span>Total lines</span><strong data-stat="totalLines">0</strong></article><article class="stat-card"><span>Unique lines</span><strong data-stat="uniqueLines">0</strong></article><article class="stat-card"><span>Removed</span><strong data-stat="duplicatesRemoved">0</strong></article><article class="stat-card"><span>Empty lines</span><strong data-stat="emptyLines">0</strong></article><article class="stat-card"><span>Output lines</span><strong data-stat="outputLines">0</strong></article><article class="stat-card"><span>Input chars</span><strong data-stat="inputChars">0</strong></article><article class="stat-card"><span>Output chars</span><strong data-stat="outputChars">0</strong></article>
+      </div>
+    </section>
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>How to use</h2>
+        <ol>
+          <li>Paste your values into the input box.</li><li>Keep trim or skip-empty enabled if the copied data is messy.</li><li>Copy the deduplicated result.</li>
+        </ol>
+      </article>
+      <article class="content-card">
+        <h2>Common questions this page answers</h2>
+        <ul class="question-list">
+          <li>How do I remove duplicate lines online?</li><li>How do I keep only the first occurrence of each value?</li><li>How do I clean repeated IDs or emails before pasting into code?</li>
+        </ul>
+      </article>
+    </section>
+    <section class="section-stack">
+      <article class="content-card">
+        <h2>Example input and output</h2>
+        <div class="example-grid">
+          <div class="example-block">
+            <h3>Input</h3>
+            <pre><code>apple
+banana
+apple
+cherry
+banana</code></pre>
+          </div>
+          <div class="example-block">
+            <h3>Output with duplicate lines removed</h3>
+            <pre><code>apple
+banana
+cherry</code></pre>
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item"><h3>Does it keep the original order?</h3><p>Yes. The tool keeps the first occurrence of each value and preserves that order in the output.</p></article><article class="faq-item"><h3>Can I ignore empty lines?</h3><p>Yes. Leave skip-empty enabled to drop blank rows before deduplication.</p></article><article class="faq-item"><h3>Can I trim whitespace before comparing values?</h3><p>Yes. Turn on trim to normalize copied values like ` apple ` and `apple` before removing duplicates.</p></article>
+      </div>
+    </section>
+    <footer class="page-footer">
+      <p>Move between cleanup, extraction, and transform tools without leaving the browser.</p>
+      <nav><a href="../split-join/">Split / Join</a><a href="../multiline/">Multiline</a><a href="../line-counter/">Line Counter</a><a href="../compare-two-lists/">Compare Two Lists</a></nav>
+    </footer>
+  </main>
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+  <script>
+    window.DevFormatListCleanupConfig = {
+  "toolKey": "remove-duplicate-lines",
+  "operation": "dedupe",
+  "modeLabel": "Dedupe",
+  "inputHint": "Text with repeated lines",
+  "outputHint": "Unique lines in original order",
+  "placeholder": "apple\nbanana\napple\ncherry",
+  "copySuccess": "Unique lines copied.",
+  "examples": {
+    "duplicates": "apple\nbanana\napple\ncherry\nbanana",
+    "ids": "1001\n1002\n1002\n1003\n1001",
+    "emails": "hello@example.com\nops@example.com\nhello@example.com\nsupport@example.com"
+  },
+  "exampleButtons": [
+    {
+      "key": "duplicates",
+      "label": "Repeated values"
+    },
+    {
+      "key": "ids",
+      "label": "Record IDs"
+    },
+    {
+      "key": "emails",
+      "label": "Email list"
+    }
+  ],
+  "defaultExample": "duplicates",
+  "controls": {
+    "trim": true,
+    "skipEmpty": true
+  },
+  "stats": [
+    {
+      "key": "modeLabel",
+      "label": "Mode",
+      "defaultValue": "Dedupe"
+    },
+    {
+      "key": "totalLines",
+      "label": "Total lines",
+      "defaultValue": "0"
+    },
+    {
+      "key": "uniqueLines",
+      "label": "Unique lines",
+      "defaultValue": "0"
+    },
+    {
+      "key": "duplicatesRemoved",
+      "label": "Removed",
+      "defaultValue": "0"
+    },
+    {
+      "key": "emptyLines",
+      "label": "Empty lines",
+      "defaultValue": "0"
+    },
+    {
+      "key": "outputLines",
+      "label": "Output lines",
+      "defaultValue": "0"
+    },
+    {
+      "key": "inputChars",
+      "label": "Input chars",
+      "defaultValue": "0"
+    },
+    {
+      "key": "outputChars",
+      "label": "Output chars",
+      "defaultValue": "0"
+    }
+  ]
+};
+  </script>
+  <script src="../assets/list-cleanup-tool.js"></script>
+</body>
+</html>

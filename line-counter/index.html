@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Line Counter Online | DevFormat</title>
+  <meta name="description" content="Count lines, words, characters, unique lines, and empty lines in copied text. Generate a clean summary report directly in the browser.">
+  <meta name="keywords" content="line counter online, text line count, count words and characters, unique line count">
+  <meta property="og:title" content="Line Counter Online | DevFormat">
+  <meta property="og:description" content="Count lines, words, characters, unique lines, and empty lines in copied text. Generate a clean summary report directly in the browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://devformat.dev/line-counter/">
+  <link rel="canonical" href="https://devformat.dev/line-counter/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Line Counter Online",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "url": "https://devformat.dev/line-counter/",
+  "description": "Count lines, words, characters, unique lines, and empty lines in copied text. Generate a clean summary report directly in the browser.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "DevFormat Tools",
+      "item": "https://devformat.dev/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cleanup & Extraction",
+      "item": "https://devformat.dev/cleanup/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Line Counter Online",
+      "item": "https://devformat.dev/line-counter/"
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="line-counter" data-layout="tool">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
+        <div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="cleanup" href="../cleanup/">Cleanup</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <a href="../cleanup/">Cleanup</a>
+      <span>/</span>
+      <span aria-current="page">Line Counter Online</span>
+    </nav>
+    <section class="hero compact hero-slim">
+      <span class="hero-kicker">Cleanup &amp; Extraction</span>
+      <h1>Line Counter Online</h1>
+      <p>Count lines, words, characters, unique lines, and empty lines in copied text. Useful for logs, snippets, exports, docs, and payload inspection.</p>
+    </section>
+    <section class="content-card answer-summary">
+      <h2>Quick answer</h2>
+      <p>This page counts lines, words, characters, unique lines, and empty lines from any pasted text.</p><p>It also generates a copyable summary, which is useful for debugging, QA notes, and quick text inspection.</p>
+    </section>
+    <section class="tool-shell">
+      <div class="toolbar">
+        <div class="toolbar-row toolbar-primary">
+          <div class="chip-row compact"><span class="chip active">Count</span></div>
+          <details class="toolbar-details" id="advancedPanel">
+            <summary>Advanced settings</summary>
+            <div class="toolbar-detail-body">
+              <div class="toolbar-row compact cleanup-toggle-row">
+                <label class="chip"><input id="trimValues" type="checkbox" checked> Trim values</label>
+                
+              </div>
+              <div class="example-actions compact"><button type="button" data-example="sample">Sample text</button><button type="button" data-example="logs">Log lines</button><button type="button" data-example="paragraph">Paragraph</button></div>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="tool-panels">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong>Input</strong><span id="inputHint">Paste any text</span></div>
+            <button class="copy-button" type="button" id="clearButton">Clear</button>
+          </div>
+          <textarea class="textarea" id="input" placeholder="alpha
+
+beta gamma
+alpha"></textarea>
+        </section>
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong>Output</strong><span id="outputHint">Copyable summary report</span></div>
+            <button class="copy-button" type="button" id="copyButton">Copy</button>
+          </div>
+          <textarea class="textarea" id="output" readonly></textarea>
+        </section>
+      </div>
+      <div class="stat-grid">
+        <article class="stat-card"><span>Mode</span><strong data-stat="modeLabel">Count</strong></article><article class="stat-card"><span>Total lines</span><strong data-stat="totalLines">0</strong></article><article class="stat-card"><span>Non-empty</span><strong data-stat="nonEmptyLines">0</strong></article><article class="stat-card"><span>Empty</span><strong data-stat="emptyLines">0</strong></article><article class="stat-card"><span>Words</span><strong data-stat="wordCount">0</strong></article><article class="stat-card"><span>Characters</span><strong data-stat="characters">0</strong></article><article class="stat-card"><span>Unique lines</span><strong data-stat="uniqueLines">0</strong></article><article class="stat-card"><span>Longest line</span><strong data-stat="longestLine">0</strong></article>
+      </div>
+    </section>
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>How to use</h2>
+        <ol>
+          <li>Paste any text into the input box.</li><li>Optionally trim lines before counting.</li><li>Review the stats or copy the generated summary report.</li>
+        </ol>
+      </article>
+      <article class="content-card">
+        <h2>Common questions this page answers</h2>
+        <ul class="question-list">
+          <li>How many lines are in this text?</li><li>How many words and characters does this text have?</li><li>How many unique lines or blank rows are included?</li>
+        </ul>
+      </article>
+    </section>
+    <section class="section-stack">
+      <article class="content-card">
+        <h2>Example input and output</h2>
+        <div class="example-grid">
+          <div class="example-block">
+            <h3>Input</h3>
+            <pre><code>alpha
+
+beta gamma
+alpha</code></pre>
+          </div>
+          <div class="example-block">
+            <h3>Generated summary report</h3>
+            <pre><code>Lines: 4
+Non-empty lines: 3
+Empty lines: 1
+Words: 4
+Characters: 23
+Unique lines: 3</code></pre>
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item"><h3>Does it count blank lines?</h3><p>Yes. Empty lines are tracked separately so you can see both total lines and non-empty lines.</p></article><article class="faq-item"><h3>Can I normalize whitespace first?</h3><p>Yes. Enable trim to count lines after leading and trailing whitespace is removed.</p></article><article class="faq-item"><h3>What does the output box contain?</h3><p>It contains a copyable summary report built from the current text.</p></article>
+      </div>
+    </section>
+    <footer class="page-footer">
+      <p>Move between cleanup, extraction, and transform tools without leaving the browser.</p>
+      <nav><a href="../remove-duplicate-lines/">Remove Duplicate Lines</a><a href="../sort-lines/">Sort Lines</a><a href="../extract-emails/">Extract Emails</a><a href="../extract-urls/">Extract URLs</a></nav>
+    </footer>
+  </main>
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+  <script>
+    window.DevFormatListCleanupConfig = {
+  "toolKey": "line-counter",
+  "operation": "count",
+  "modeLabel": "Count",
+  "inputHint": "Paste any text",
+  "outputHint": "Copyable summary report",
+  "placeholder": "alpha\n\nbeta gamma\nalpha",
+  "copySuccess": "Summary report copied.",
+  "examples": {
+    "sample": "alpha\n\nbeta gamma\nalpha",
+    "logs": "INFO request started\nWARN retry scheduled\nINFO request started\nERROR timeout",
+    "paragraph": "One paragraph with several words.\nAnd a second line for counting."
+  },
+  "exampleButtons": [
+    {
+      "key": "sample",
+      "label": "Sample text"
+    },
+    {
+      "key": "logs",
+      "label": "Log lines"
+    },
+    {
+      "key": "paragraph",
+      "label": "Paragraph"
+    }
+  ],
+  "defaultExample": "sample",
+  "controls": {
+    "trim": true,
+    "skipEmpty": false
+  },
+  "stats": [
+    {
+      "key": "modeLabel",
+      "label": "Mode",
+      "defaultValue": "Count"
+    },
+    {
+      "key": "totalLines",
+      "label": "Total lines",
+      "defaultValue": "0"
+    },
+    {
+      "key": "nonEmptyLines",
+      "label": "Non-empty",
+      "defaultValue": "0"
+    },
+    {
+      "key": "emptyLines",
+      "label": "Empty",
+      "defaultValue": "0"
+    },
+    {
+      "key": "wordCount",
+      "label": "Words",
+      "defaultValue": "0"
+    },
+    {
+      "key": "characters",
+      "label": "Characters",
+      "defaultValue": "0"
+    },
+    {
+      "key": "uniqueLines",
+      "label": "Unique lines",
+      "defaultValue": "0"
+    },
+    {
+      "key": "longestLine",
+      "label": "Longest line",
+      "defaultValue": "0"
+    }
+  ]
+};
+  </script>
+  <script src="../assets/list-cleanup-tool.js"></script>
+</body>
+</html>
