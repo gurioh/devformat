@@ -19,5 +19,170 @@
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
 </head>
 <body data-page="quote" data-layout="tool">
-  <header class="site-header"><div class="site-header-inner"><a class="brand" href="../"><div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div><div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div></a><nav class="site-nav"><a data-page-link="catalog" href="../">Tools</a><a data-page-link="multiline" href="../multiline/">Multiline</a><a data-page-link="quote" href="../quote/">Quote</a><a data-page-link="split-join" href="../split-join/">Split / Join</a><a data-page-link="escape" href="../escape/">Escape</a><a data-page-link="base64" href="../base64/">Base64</a><a data-page-link="url-encode" href="../url-encode/">URL Encode</a><a data-page-link="slugify" href="../slugify/">Slugify</a><a data-page-link="json" href="../json/">JSON</a></nav></div></header>
-  <main class="page-shell"><section class="hero compact hero-slim"><span class="hero-kicker">String Format</span><h1>Quote Each Line Online</h1><p>Wrap each line with single quotes, double quotes, backticks, or CSV delimiters, then reverse the process when needed.</p></section><nav class="language-switcher" aria-label="Language selector"><span>Available in</span><a class="active" aria-current="page" href="../quote/">English</a><a href="../ja/quote-each-line/">日本語</a><a href="../ko/quote-each-line/">한국어</a></nav><section class="tool-shell"><div class="toolbar"><div class="toolbar-row toolbar-primary"><div class="segmented"><button class="active" type="button" data-mode="quote">Quote lines</button><button type="button" data-mode="unquote">Unquote lines</button></div><details class="toolbar-details" id="advancedPanel"><summary>Advanced settings</summary><div class="toolbar-detail-body"><div class="toolbar-grid compact"><div class="field"><label for="quoteChar">Quote character</label><input class="input" id="quoteChar" value="'"></div><div class="field"><label for="delimiter">Output delimiter</label><input class="input" id="delimiter" value="\n"></div></div><div class="toolbar-row compact"><label class="chip"><input id="trimLines" type="checkbox" checked> Trim values</label><label class="chip"><input id="skipEmpty" type="checkbox" checked> Skip empty lines</label></div><div class="example-actions compact"><button type="button" data-example="env">Environment keys</button><button type="button" data-example="emails">Email values</button><button type="button" data-example="quoted">Quoted CSV</button></div></div></details></div><div class="toolbar-row" id="presetBar"><button class="preset-chip active" type="button" data-preset="single-lines">' quoted lines</button><button class="preset-chip" type="button" data-preset="double-lines">" quoted lines</button><button class="preset-chip" type="button" data-preset="csv-single">CSV single quotes</button><button class="preset-chip" type="button" data-preset="csv-double">CSV double quotes</button><button class="preset-chip" type="button" data-preset="backticks">Backticks</button><button class="preset-chip" type="button" data-preset="custom">Custom</button></div></div><div class="tool-panels"><section class="tool-panel"><div class="panel-head"><div><strong id="inputLabel">Input</strong><span id="inputHint">Multiline values</span></div><button class="copy-button" type="button" id="clearButton">Clear</button></div><textarea class="textarea" id="input" placeholder="API_KEY&#10;API_SECRET&#10;API_HOST"></textarea></section><section class="tool-panel"><div class="panel-head"><div><strong>Output</strong><span>Formatted list</span></div><button class="copy-button" type="button" id="copyButton">Copy</button></div><textarea class="textarea" id="output" readonly></textarea></section></div><div class="stat-grid"><article class="stat-card"><span>Mode</span><strong id="modeStat">Quote</strong></article><article class="stat-card"><span>Items</span><strong id="itemStat">0</strong></article><article class="stat-card"><span>Input lines</span><strong id="lineStat">0</strong></article><article class="stat-card"><span>Unique</span><strong id="uniqueStat">0</strong></article><article class="stat-card"><span>Duplicates</span><strong id="duplicateStat">0</strong></article><article class="stat-card"><span>Input chars</span><strong id="inputCharStat">0</strong></article><article class="stat-card"><span>Output chars</span><strong id="charStat">0</strong></article><article class="stat-card"><span>Delta</span><strong id="deltaStat">0</strong></article></div></section><section class="split-layout"><article class="content-card"><h2>Common use cases</h2><ul><li>Add quotes around IDs or keys for SQL and config reviews</li><li>Build inline lists for JavaScript or CSV-style output</li><li>Reverse copied quoted rows back into raw values</li></ul></article><article class="content-card"><h2>FAQ</h2><ul><li>Switch between single quotes, double quotes, backticks, and CSV presets.</li><li>Unquote mode can split comma-separated quoted input back into lines.</li><li>Use <code>\n</code> as the delimiter when you want one quoted value per line.</li></ul></article></section><footer class="page-footer"><p>Common next steps after quoting: join the list, turn it into a SQL IN clause, or encode it for a request.</p><nav><a href="../multiline/">Multiline</a><a href="../split-join/">Split / Join</a><a href="../escape/">Escape</a><a href="../url-encode/">URL Encode</a><a href="../quote-each-line-for-javascript-array/">JS Array Guide</a></nav></footer></main><div class="toast" id="toast">Ready.</div><script src="../assets/site.js"></script><script>window.DevFormatQuoteConfig={defaultExample:'env',defaultPreset:'single-lines',defaultMode:'quote',strings:{modeQuote:'Quote',modeUnquote:'Unquote',inputHintQuote:'Multiline values',inputHintUnquote:'Quoted list or quoted rows',copySuccess:'Quoted output copied.'}};</script><script src="../assets/quote-tool.js"></script></body></html>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
+        <div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page-shell">
+    <section class="hero compact hero-slim">
+      <span class="hero-kicker">String Format</span>
+      <h1>Quote Each Line Online</h1>
+      <p>Wrap each line with single quotes, double quotes, backticks, or CSV delimiters, then reverse the process when needed.</p>
+    </section>
+    <nav class="language-switcher" aria-label="Language selector">
+      <span>Available in</span>
+      <a class="active" aria-current="page" href="../quote/">English</a>
+      <a href="../ja/quote-each-line/">日本語</a>
+      <a href="../ko/quote-each-line/">한국어</a>
+    </nav>
+    <section class="content-card answer-summary">
+      <h2>Quick answer</h2>
+      <p>This page adds quotes around each line, joins the result with a delimiter, and can reverse quoted rows back into raw values.</p>
+      <p>It is useful for SQL values, JavaScript arrays, CSV-style rows, config keys, and copied spreadsheet content.</p>
+    </section>
+    <section class="tool-shell">
+      <div class="toolbar">
+        <div class="toolbar-row toolbar-primary">
+          <div class="segmented">
+            <button class="active" type="button" data-mode="quote">Quote lines</button>
+            <button type="button" data-mode="unquote">Unquote lines</button>
+          </div>
+          <details class="toolbar-details" id="advancedPanel">
+            <summary>Advanced settings</summary>
+            <div class="toolbar-detail-body">
+              <div class="toolbar-grid compact">
+                <div class="field"><label for="quoteChar">Quote character</label><input class="input" id="quoteChar" value="'"></div>
+                <div class="field"><label for="delimiter">Output delimiter</label><input class="input" id="delimiter" value="\n"></div>
+              </div>
+              <div class="toolbar-row compact">
+                <label class="chip"><input id="trimLines" type="checkbox" checked> Trim values</label>
+                <label class="chip"><input id="skipEmpty" type="checkbox" checked> Skip empty lines</label>
+              </div>
+              <div class="example-actions compact">
+                <button type="button" data-example="env">Environment keys</button>
+                <button type="button" data-example="emails">Email values</button>
+                <button type="button" data-example="quoted">Quoted CSV</button>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div class="toolbar-row" id="presetBar">
+          <button class="preset-chip active" type="button" data-preset="single-lines">' quoted lines</button>
+          <button class="preset-chip" type="button" data-preset="double-lines">" quoted lines</button>
+          <button class="preset-chip" type="button" data-preset="csv-single">CSV single quotes</button>
+          <button class="preset-chip" type="button" data-preset="csv-double">CSV double quotes</button>
+          <button class="preset-chip" type="button" data-preset="backticks">Backticks</button>
+          <button class="preset-chip" type="button" data-preset="custom">Custom</button>
+        </div>
+      </div>
+      <div class="tool-panels">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong id="inputLabel">Input</strong><span id="inputHint">Multiline values</span></div>
+            <button class="copy-button" type="button" id="clearButton">Clear</button>
+          </div>
+          <textarea class="textarea" id="input" placeholder="API_KEY&#10;API_SECRET&#10;API_HOST"></textarea>
+        </section>
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong>Output</strong><span>Formatted list</span></div>
+            <button class="copy-button" type="button" id="copyButton">Copy</button>
+          </div>
+          <textarea class="textarea" id="output" readonly></textarea>
+        </section>
+      </div>
+      <div class="stat-grid">
+        <article class="stat-card"><span>Mode</span><strong id="modeStat">Quote</strong></article>
+        <article class="stat-card"><span>Items</span><strong id="itemStat">0</strong></article>
+        <article class="stat-card"><span>Input lines</span><strong id="lineStat">0</strong></article>
+        <article class="stat-card"><span>Unique</span><strong id="uniqueStat">0</strong></article>
+        <article class="stat-card"><span>Duplicates</span><strong id="duplicateStat">0</strong></article>
+        <article class="stat-card"><span>Input chars</span><strong id="inputCharStat">0</strong></article>
+        <article class="stat-card"><span>Output chars</span><strong id="charStat">0</strong></article>
+        <article class="stat-card"><span>Delta</span><strong id="deltaStat">0</strong></article>
+      </div>
+    </section>
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>How to use</h2>
+        <ol>
+          <li>Paste one value per line or a quoted list into the input box.</li>
+          <li>Choose Quote or Unquote, then pick a preset if needed.</li>
+          <li>Copy the formatted result.</li>
+        </ol>
+      </article>
+      <article class="content-card">
+        <h2>Common questions this page answers</h2>
+        <ul class="question-list">
+          <li>How do I quote each line online?</li>
+          <li>How do I turn values into a quoted CSV row?</li>
+          <li>How do I unquote a copied list back into plain values?</li>
+        </ul>
+      </article>
+    </section>
+    <section class="section-stack">
+      <article class="content-card">
+        <h2>Example input and output</h2>
+        <div class="example-grid">
+          <div class="example-block">
+            <h3>Input</h3>
+            <pre><code>API_KEY
+API_SECRET
+API_HOST</code></pre>
+          </div>
+          <div class="example-block">
+            <h3>Output with single-line preset</h3>
+            <pre><code>'API_KEY'
+'API_SECRET'
+'API_HOST'</code></pre>
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item"><h3>Which quote styles are supported?</h3><p>You can switch between single quotes, double quotes, backticks, and CSV-style presets.</p></article>
+        <article class="faq-item"><h3>Can unquote mode split a comma-separated row?</h3><p>Yes. Unquote mode can turn a copied comma-separated quoted list back into one value per line.</p></article>
+        <article class="faq-item"><h3>How do I keep one quoted value per line?</h3><p>Use <code>\n</code> as the delimiter when you want one quoted value on each line.</p></article>
+      </div>
+    </section>
+    <footer class="page-footer">
+      <p>Common next steps after quoting: join the list, turn it into a SQL IN clause, or encode it for a request.</p>
+      <nav><a href="../multiline/">Multiline</a><a href="../split-join/">Split / Join</a><a href="../escape/">Escape</a><a href="../url-encode/">URL Encode</a><a href="../quote-each-line-for-javascript-array/">JS Array Guide</a></nav>
+    </footer>
+  </main>
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+  <script>
+    window.DevFormatQuoteConfig = {
+      defaultExample: 'env',
+      defaultPreset: 'single-lines',
+      defaultMode: 'quote',
+      strings: {
+        modeQuote: 'Quote',
+        modeUnquote: 'Unquote',
+        inputHintQuote: 'Multiline values',
+        inputHintUnquote: 'Quoted list or quoted rows',
+        copySuccess: 'Quoted output copied.'
+      }
+    };
+  </script>
+  <script src="../assets/quote-tool.js"></script>
+</body>
+</html>

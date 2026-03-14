@@ -354,6 +354,20 @@ body[data-layout="tool"] .breadcrumb {
   padding: 24px;
 }
 
+.answer-summary {
+  margin: 0 0 16px;
+  display: grid;
+  gap: 12px;
+  border-color: rgba(255, 140, 66, 0.24);
+  background:
+    linear-gradient(180deg, rgba(255, 140, 66, 0.08), rgba(255, 255, 255, 0.02)),
+    var(--surface);
+}
+
+.answer-summary h2 {
+  font-size: 18px;
+}
+
 .tool-grid,
 .related-grid,
 .stat-grid,
@@ -410,6 +424,58 @@ body[data-layout="tool"] .breadcrumb {
   padding-left: 18px;
   display: grid;
   gap: 8px;
+}
+
+.question-list li {
+  list-style: none;
+  position: relative;
+  padding-left: 18px;
+}
+
+.question-list li::before {
+  content: "?";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.example-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.example-block {
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(143, 161, 181, 0.12);
+}
+
+.example-block h3 {
+  margin: 0;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+}
+
+.example-block pre {
+  margin: 0;
+  padding: 14px;
+  overflow: auto;
+  border-radius: 14px;
+  background: rgba(3, 9, 17, 0.56);
+  border: 1px solid rgba(143, 161, 181, 0.12);
+}
+
+.example-block code {
+  display: block;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #d9e7f6;
+  line-height: 1.65;
 }
 
 .tool-card-footer,

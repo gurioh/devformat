@@ -83,6 +83,12 @@
       <a href="../ko/base64-decode/">한국어</a>
     </nav>
 
+    <section class="content-card answer-summary">
+      <h2>Quick answer</h2>
+      <p>This page decodes Base64 strings or encodes UTF-8 text in the browser for quick token checks, payload inspection, and API debugging.</p>
+      <p>It is useful when you want to inspect copied values without switching to a terminal or writing a script.</p>
+    </section>
+
     <section class="tool-shell">
       <div class="toolbar">
         <div class="toolbar-row toolbar-primary">
@@ -128,21 +134,55 @@
 
     <section class="split-layout">
       <article class="content-card">
-        <h2>Common use cases</h2>
-        <ul>
-          <li>Inspect copied tokens and headers</li>
-          <li>Encode small payloads without opening a terminal</li>
-          <li>Check UTF-8 text before it moves to another layer</li>
-        </ul>
+        <h2>How to use</h2>
+        <ol>
+          <li>Paste plain text to encode or a Base64 string to decode.</li>
+          <li>Choose Encode or Decode.</li>
+          <li>Copy the result when the status turns successful.</li>
+        </ol>
       </article>
       <article class="content-card">
-        <h2>FAQ</h2>
-        <ul>
-          <li>This page uses <code>TextEncoder</code> and <code>TextDecoder</code> so UTF-8 characters survive encode and decode cycles.</li>
-          <li>Invalid Base64 is caught and shown as an error instead of breaking the page.</li>
-          <li>It is useful when you are already in the browser and only need a quick conversion.</li>
+        <h2>Common questions this page answers</h2>
+        <ul class="question-list">
+          <li>How do I decode a Base64 string online?</li>
+          <li>How do I encode UTF-8 text to Base64?</li>
+          <li>How do I inspect a copied token or payload in the browser?</li>
         </ul>
       </article>
+    </section>
+
+    <section class="section-stack">
+      <article class="content-card">
+        <h2>Example input and output</h2>
+        <div class="example-grid">
+          <div class="example-block">
+            <h3>Input for decode</h3>
+            <pre><code>eyJyb2xlIjoiYWRtaW4iLCJhY3RpdmUiOnRydWV9</code></pre>
+          </div>
+          <div class="example-block">
+            <h3>Output</h3>
+            <pre><code>{"role":"admin","active":true}</code></pre>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>Does this page handle UTF-8 text safely?</h3>
+          <p>Yes. It uses <code>TextEncoder</code> and <code>TextDecoder</code> so non-ASCII characters survive encode and decode cycles.</p>
+        </article>
+        <article class="faq-item">
+          <h3>What happens if the Base64 string is invalid?</h3>
+          <p>Invalid input is caught and shown as an error instead of breaking the page.</p>
+        </article>
+        <article class="faq-item">
+          <h3>When is this more useful than a terminal command?</h3>
+          <p>It is useful when you already have the value in the browser and only need a fast inspection or conversion.</p>
+        </article>
+      </div>
     </section>
 
     <footer class="page-footer">

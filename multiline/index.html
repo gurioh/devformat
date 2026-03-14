@@ -83,12 +83,18 @@
       <a href="../ko/sql-in-clause/">한국어</a>
     </nav>
 
+    <section class="content-card answer-summary">
+      <h2>Quick answer</h2>
+      <p>This tool converts newline text into a SQL IN clause, JavaScript array, Python list, CSV row, or simple joined string directly in the browser.</p>
+      <p>It works well for copied spreadsheet rows, ID lists, email lists, and quick query-building tasks. Pasted text stays in the browser and is not sent to a server.</p>
+    </section>
+
     <section class="tool-shell">
       <div class="toolbar">
         <div class="toolbar-row toolbar-primary">
           <div class="segmented">
-            <button class="active" type="button" data-direction="forward">Multi -> Single</button>
-            <button type="button" data-direction="reverse">Single -> Multi</button>
+            <button class="active" type="button" data-direction="forward">Multi -&gt; Single</button>
+            <button type="button" data-direction="reverse">Single -&gt; Multi</button>
           </div>
           <details class="toolbar-details" id="advancedPanel">
             <summary>Advanced settings</summary>
@@ -180,12 +186,30 @@
         </ol>
       </article>
       <article class="content-card">
-        <h2>Common use cases</h2>
-        <ul>
-          <li>Convert spreadsheet rows to a SQL IN clause</li>
-          <li>Wrap IDs or emails with single quotes</li>
-          <li>Build JavaScript arrays and Python lists for debugging</li>
+        <h2>Common questions this page answers</h2>
+        <ul class="question-list">
+          <li>How do I convert newline text to a SQL IN clause?</li>
+          <li>How do I turn text into a JavaScript array or Python list?</li>
+          <li>How do I join copied spreadsheet values into one line?</li>
         </ul>
+      </article>
+    </section>
+
+    <section class="section-stack">
+      <article class="content-card">
+        <h2>Example input and output</h2>
+        <div class="example-grid">
+          <div class="example-block">
+            <h3>Input</h3>
+            <pre><code>apple
+banana
+cherry</code></pre>
+          </div>
+          <div class="example-block">
+            <h3>Output with SQL IN preset</h3>
+            <pre><code>('apple', 'banana', 'cherry')</code></pre>
+          </div>
+        </div>
       </article>
     </section>
 
@@ -203,6 +227,10 @@
         <article class="faq-item">
           <h3>Can I output JavaScript arrays or Python lists?</h3>
           <p>Yes. Use the related preset options to switch the delimiter, quote character, and wrapper.</p>
+        </article>
+        <article class="faq-item">
+          <h3>What kind of values can I paste here?</h3>
+          <p>You can paste IDs, emails, SKUs, spreadsheet rows, or any plain-text values that should become a quoted list or joined string.</p>
         </article>
       </div>
     </section>

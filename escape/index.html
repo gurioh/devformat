@@ -83,6 +83,12 @@
       <a href="../ko/escape-json-string/">한국어</a>
     </nav>
 
+    <section class="content-card answer-summary">
+      <h2>Quick answer</h2>
+      <p>This tool escapes or unescapes text for JSON strings, JavaScript strings, and regex-safe output directly in the browser.</p>
+      <p>Use it when a copied payload contains quotes, tabs, backslashes, or newlines that should be preserved safely inside another string value.</p>
+    </section>
+
     <section class="tool-shell">
       <div class="toolbar">
         <div class="toolbar-row toolbar-primary">
@@ -135,21 +141,56 @@
 
     <section class="split-layout">
       <article class="content-card">
-        <h2>Common use cases</h2>
-        <ul>
-          <li>Escape a raw message before storing it as a JSON string value</li>
-          <li>Prepare text for a JavaScript literal without manual slash edits</li>
-          <li>Make copied input safe for regex matching</li>
-        </ul>
+        <h2>How to use</h2>
+        <ol>
+          <li>Paste raw text or an escaped string into the input box.</li>
+          <li>Choose Escape or Unescape, then pick the JSON, JavaScript, or Regex preset.</li>
+          <li>Copy the converted result.</li>
+        </ol>
       </article>
       <article class="content-card">
-        <h2>FAQ</h2>
-        <ul>
-          <li>This tool runs in the browser and does not send pasted text to a server.</li>
-          <li>Unescape mode handles common sequences such as <code>\n</code>, <code>\t</code>, <code>\r</code>, quotes, and backslashes.</li>
-          <li>Regex mode escapes metacharacters before user text is inserted into a pattern.</li>
+        <h2>Common questions this page answers</h2>
+        <ul class="question-list">
+          <li>How do I escape a string for JSON?</li>
+          <li>How do I unescape <code>\n</code>, <code>\t</code>, or backslashes?</li>
+          <li>How do I make copied text safe for a regex pattern?</li>
         </ul>
       </article>
+    </section>
+
+    <section class="section-stack">
+      <article class="content-card">
+        <h2>Example input and output</h2>
+        <div class="example-grid">
+          <div class="example-block">
+            <h3>Input</h3>
+            <pre><code>He said "hello"
+Path: C:\temp</code></pre>
+          </div>
+          <div class="example-block">
+            <h3>Output with JSON preset</h3>
+            <pre><code>He said \"hello\"\nPath: C:\\temp</code></pre>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>Does this tool send pasted text to a server?</h3>
+          <p>No. The conversion runs in the browser and keeps your text on the device.</p>
+        </article>
+        <article class="faq-item">
+          <h3>What escape sequences can unescape mode handle?</h3>
+          <p>It handles common sequences such as <code>\n</code>, <code>\t</code>, <code>\r</code>, quotes, and backslashes.</p>
+        </article>
+        <article class="faq-item">
+          <h3>When should I use the regex preset?</h3>
+          <p>Use it when user text will be inserted into a regex pattern and special regex characters should be escaped first.</p>
+        </article>
+      </div>
     </section>
 
     <footer class="page-footer">
