@@ -1003,3 +1003,140 @@ code {
     min-height: 260px;
   }
 }
+
+.landing-hero {
+  padding: 44px 0 28px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.landing-copy {
+  display: grid;
+  gap: 18px;
+  padding-top: 8px;
+}
+
+.landing-copy h1 {
+  margin: 0;
+  max-width: 720px;
+  font-size: clamp(38px, 5vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+}
+
+.landing-copy p {
+  margin: 0;
+  max-width: 680px;
+  color: var(--text-dim);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.hero-demo {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+  background: linear-gradient(180deg, rgba(24, 34, 51, 0.94), rgba(12, 18, 28, 0.92));
+  border: 1px solid rgba(143, 161, 181, 0.2);
+  border-radius: calc(var(--radius-lg) + 4px);
+  box-shadow: var(--shadow);
+}
+
+.hero-demo-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.hero-demo-head strong {
+  display: block;
+  font-size: 18px;
+  letter-spacing: -0.03em;
+}
+
+.hero-demo-head span {
+  display: block;
+  margin-top: 6px;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+.hero-demo-toolbar {
+  display: grid;
+  gap: 10px;
+}
+
+.hero-demo-panels {
+  border-radius: 18px;
+}
+
+.hero-demo .tool-panel {
+  min-height: 280px;
+}
+
+.hero-demo .panel-head {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.hero-demo-stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hero-demo-stats .stat-card {
+  min-height: 0;
+}
+
+.landing-stack {
+  margin-top: 16px;
+}
+
+.why-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1080px) {
+  .landing-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-copy {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-demo-head {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 720px) {
+  .landing-hero {
+    padding-top: 28px;
+    gap: 18px;
+  }
+
+  .landing-copy h1 {
+    font-size: clamp(32px, 10vw, 52px);
+  }
+
+  .landing-copy p {
+    font-size: 16px;
+  }
+
+  .hero-demo {
+    padding: 16px;
+  }
+
+  .hero-demo .tool-panel {
+    min-height: 240px;
+  }
+
+  .hero-demo-stats,
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+}
