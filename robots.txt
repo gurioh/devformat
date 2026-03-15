@@ -3,3 +3,4 @@ Allow: /
 
 Sitemap: https://gurioh.github.io/devformat/sitemap.xml
 Sitemap: https://gurioh.github.io/devformat/sitemap_index.xml
+Sitemap: https://gurioh.github.io/devformat/sitemap_simple.xml
