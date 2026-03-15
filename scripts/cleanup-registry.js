@@ -742,7 +742,62 @@ module.exports = {
   cleanupTools,
   cleanupHub: {
     title: 'Text Cleanup & Extraction Tools | DevFormat',
-    description: 'Cleanup and extraction tools for duplicate lines, sorting, counting, extracting emails, extracting URLs, and comparing two lists.',
-    keywords: 'text cleanup tools, extraction tools online, remove duplicate lines, sort lines, compare two lists'
+    description: 'Cleanup and extraction tools for duplicate lines, sorting, counting, extracting emails, extracting URLs, CSV column cleanup, and comparing two lists.',
+    keywords: 'text cleanup tools, extraction tools online, remove duplicate lines, sort lines, compare two lists, remove empty lines, extract numbers, csv column to lines',
+    heroTitle: 'Text cleanup and extraction tools for lists, logs, exports, and pasted notes.',
+    heroText: 'Use this category when the job is not formatting one value, but cleaning a full set of values: remove duplicates, sort lines, delete blank rows, extract emails, extract URLs, pull out numbers, extract a CSV column, or compare two lists.',
+    heroPrimary: { href: '../remove-duplicate-lines/', label: 'Start with duplicate cleanup' },
+    heroSecondary: { href: '../compare-two-lists/', label: 'Compare two lists' },
+    introTitle: 'What belongs here',
+    introText: 'This category covers list cleanup, text inspection, value extraction, and side-by-side comparison. It is the next step after text transform when copied data is noisy, mixed, or spread across multiple rows.',
+    nextStepsTitle: 'Good next steps',
+    nextSteps: [
+      'Use cleanup first when the copied text is messy, duplicated, or mixed with other content.',
+      'Move to quote, multiline, split/join, or URL encode once the values are clean.',
+      'Use related links and guides to chain tasks without losing your place.'
+    ],
+    searchQuestions: [
+      'How do I remove duplicate lines online?',
+      'How do I remove empty lines from copied text?',
+      'How do I trim whitespace from each line before dedupe?',
+      'How do I extract emails, URLs, or numbers from mixed text?',
+      'How do I compare two lists and find differences?',
+      'How do I extract one column from CSV into lines?'
+    ],
+    workflows: [
+      {
+        title: 'Clean a copied list before the next transform',
+        body: 'Remove empty lines, trim whitespace, and dedupe values before quoting, joining, or turning them into SQL or code output.',
+        links: [
+          { href: '../remove-empty-lines/', label: 'Remove empty lines' },
+          { href: '../trim-whitespace/', label: 'Trim whitespace' },
+          { href: '../remove-duplicate-lines/', label: 'Remove duplicates' }
+        ]
+      },
+      {
+        title: 'Extract one signal from messy text',
+        body: 'Pull emails, URLs, or numbers out of mixed logs, notes, payloads, and exports, then reuse the clean output in other tools.',
+        links: [
+          { href: '../extract-emails/', label: 'Extract emails' },
+          { href: '../extract-urls/', label: 'Extract URLs' },
+          { href: '../extract-numbers/', label: 'Extract numbers' }
+        ]
+      },
+      {
+        title: 'Prepare export data for a focused workflow',
+        body: 'Extract one CSV column into lines, sort the result, and compare lists before it moves into quoting, encoding, or request-building tools.',
+        links: [
+          { href: '../csv-column-to-lines/', label: 'CSV column to lines' },
+          { href: '../sort-lines/', label: 'Sort lines' },
+          { href: '../compare-two-lists/', label: 'Compare lists' }
+        ]
+      }
+    ],
+    guides: [
+      { href: '../how-to-remove-empty-lines/', label: 'Remove empty lines from text', body: 'Delete blank rows from copied notes, logs, and exports before the next cleanup or transform step.' },
+      { href: '../how-to-trim-whitespace/', label: 'Trim whitespace from lines', body: 'Normalize copied values by removing leading and trailing spaces before dedupe or comparison.' },
+      { href: '../how-to-extract-numbers-from-text/', label: 'Extract numbers from text', body: 'Pull integers and decimals out of mixed text for debugging, spreadsheet cleanup, or list comparison.' },
+      { href: '../how-to-extract-a-column-from-csv/', label: 'Extract a column from CSV', body: 'Turn delimited rows into one value per line by choosing a column and copying the cleaned result.' }
+    ]
   }
 };

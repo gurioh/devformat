@@ -671,29 +671,57 @@ ${jsonScript(pageJson)}
   <main class="page-shell">
     <section class="hero compact">
       <span class="hero-kicker">Cleanup & Extraction</span>
-      <h1>Text cleanup and extraction tools for lists, logs, exports, and pasted notes.</h1>
-      <p>Use this category when the job is not formatting one value, but cleaning a full set of values: remove duplicates, sort lines, count text, extract emails, extract URLs, or compare two lists.</p>
+      <h1>${escapeHtml(cleanupHub.heroTitle)}</h1>
+      <p>${escapeHtml(cleanupHub.heroText)}</p>
       <div class="hero-actions">
-        <a class="button primary" href="../remove-duplicate-lines/">Start with duplicate cleanup</a>
-        <a class="button" href="../compare-two-lists/">Compare two lists</a>
+        <a class="button primary" href="${cleanupHub.heroPrimary.href}">${escapeHtml(cleanupHub.heroPrimary.label)}</a>
+        <a class="button" href="${cleanupHub.heroSecondary.href}">${escapeHtml(cleanupHub.heroSecondary.label)}</a>
       </div>
     </section>
     <section class="split-layout">
       <article class="content-card">
-        <h2>What belongs here</h2>
-        <p>This category covers list cleanup, text inspection, value extraction, and side-by-side comparison. It is the next step after text transform when copied data is noisy or mixed.</p>
+        <h2>${escapeHtml(cleanupHub.introTitle)}</h2>
+        <p>${escapeHtml(cleanupHub.introText)}</p>
       </article>
       <article class="content-card">
-        <h2>Good next steps</h2>
+        <h2>${escapeHtml(cleanupHub.nextStepsTitle)}</h2>
         <ul>
-          <li>Use cleanup first when the copied text is messy.</li>
-          <li>Move to quote, multiline, or URL encode once the values are clean.</li>
-          <li>Use related links to chain tasks without losing your place.</li>
+          ${cleanupHub.nextSteps.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
         </ul>
       </article>
     </section>
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>Common cleanup questions</h2>
+        <ul class="question-list">
+          ${cleanupHub.searchQuestions.map((question) => `<li>${escapeHtml(question)}</li>`).join('')}
+        </ul>
+      </article>
+      <article class="content-card">
+        <h2>Use cleanup before transform</h2>
+        <p>Most people do not start with formatting. They start with messy input. This hub is for the stage where rows are duplicated, blank, badly spaced, or buried inside mixed text and CSV exports.</p>
+      </article>
+    </section>
+    <section class="section-stack landing-stack">
+      <article class="content-card">
+        <h2>Popular cleanup workflows</h2>
+        <p>These grouped jobs match the way users actually work through copied data before they move into quoting, joining, encoding, or comparison.</p>
+      </article>
+      <div class="workflow-grid">
+        ${cleanupHub.workflows.map((workflow) => `<article class="workflow-card"><h3>${escapeHtml(workflow.title)}</h3><p>${escapeHtml(workflow.body)}</p><div class="workflow-links">${workflow.links.map((link) => `<a class="tool-link" href="${link.href}">${escapeHtml(link.label)}</a>`).join('')}</div></article>`).join('')}
+      </div>
+    </section>
     <section class="catalog-grid cleanup-catalog-grid">
       ${cleanupTools.map((tool) => `<article class="tool-card"><span class="hero-kicker">${escapeHtml(tool.kicker)}</span><h3>${escapeHtml(tool.h1)}</h3><p>${escapeHtml(tool.description)}</p><div class="tool-card-footer"><a class="tool-link" href="../${tool.slug}/">Open tool</a></div></article>`).join('')}
+    </section>
+    <section class="section-stack">
+      <article class="content-card">
+        <h2>How-to guides for cleanup intent</h2>
+        <p>These guide pages target people searching for a concrete cleanup task rather than a specific tool name.</p>
+      </article>
+      <div class="workflow-grid">
+        ${cleanupHub.guides.map((guide) => `<article class="workflow-card"><h3>${escapeHtml(guide.label)}</h3><p>${escapeHtml(guide.body)}</p><div class="workflow-links"><a class="tool-link" href="${guide.href}">Open guide</a></div></article>`).join('')}
+      </div>
     </section>
   </main>
   <script src="../assets/site.js"></script>
