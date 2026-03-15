@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extract Numbers from Text Guide | DevFormat</title>
+  <meta name="description" content="Extract integers and decimals from mixed text, logs, copied notes, and exports with a browser-based number extractor and copy-ready output.">
+  <meta name="keywords" content="extract numbers from text, number extractor online, find numbers in text">
+  <meta property="og:title" content="Extract Numbers from Text Guide | DevFormat">
+  <meta property="og:description" content="Pull numeric values out of mixed text and copy them one per line in your browser.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/how-to-extract-numbers-from-text/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/how-to-extract-numbers-from-text/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Extract Numbers from Text Guide",
+    "description": "Pull numeric values out of mixed text and copy them one per line in your browser.",
+    "author": {"@type": "Organization", "name": "DevFormat"},
+    "publisher": {"@type": "Organization", "name": "DevFormat"},
+    "mainEntityOfPage": "https://gurioh.github.io/devformat/how-to-extract-numbers-from-text/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "DevFormat Tools", "item": "https://gurioh.github.io/devformat/"},
+      {"@type": "ListItem", "position": 2, "name": "Extract Numbers from Text Guide", "item": "https://gurioh.github.io/devformat/how-to-extract-numbers-from-text/"}
+    ]
+  }
+  </script>
+</head>
+<body data-page="catalog">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
+        <div class="brand-copy">
+          <strong>DevFormat</strong>
+          <span>Preset-driven text tools for developers</span>
+        </div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="cleanup" href="../cleanup/">Cleanup</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <span aria-current="page">Extract Numbers from Text Guide</span>
+    </nav>
+
+    <section class="hero compact">
+      <span class="hero-kicker">Guide</span>
+      <h1>Extract numbers from mixed text</h1>
+      <p>Pull integers and decimals out of logs, notes, copied exports, or payloads, then copy one clean number per line for the next step.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="../extract-numbers/">Open number extractor</a>
+        <a class="button" href="../compare-two-lists/">Open compare tool</a>
+      </div>
+    </section>
+
+    <section class="section-stack">
+      <article class="content-card">
+        <h2>Example input</h2>
+        <p><code>Order 1001 failed after 3 retries and 12.5 seconds. Retry at 14:30.</code></p>
+      </article>
+      <article class="content-card">
+        <h2>Expected output</h2>
+        <p><code>1001<br>3<br>12.5<br>14<br>30</code></p>
+      </article>
+      <article class="content-card">
+        <h2>Steps</h2>
+        <ol>
+          <li>Open <a class="text-accent" href="../extract-numbers/">Extract Numbers from Text</a>.</li>
+          <li>Paste the mixed text that contains the values you need.</li>
+          <li>Enable unique-only or sort-output if the list should be cleaned further.</li>
+          <li>Copy the numeric result into comparison, formatting, or spreadsheet workflows.</li>
+        </ol>
+      </article>
+    </section>
+
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>Typical use cases</h2>
+        <ul>
+          <li>Pull IDs out of support notes or tickets</li>
+          <li>Extract metrics from logs and monitoring snippets</li>
+          <li>Turn mixed exports into a clean list for comparison</li>
+        </ul>
+      </article>
+      <article class="content-card">
+        <h2>Related tools</h2>
+        <p>After extracting numbers, the next common steps are <a class="text-accent" href="../sort-lines/">sorting the list</a>, <a class="text-accent" href="../remove-duplicate-lines/">removing duplicates</a>, or <a class="text-accent" href="../compare-two-lists/">comparing two numeric lists</a>.</p>
+      </article>
+    </section>
+
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>Does it support decimals?</h3>
+          <p>Yes. The extractor handles integers and decimal values.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can I dedupe the extracted output?</h3>
+          <p>Yes. Turn on unique-only if repeated numbers should appear once.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Will it preserve one number per line?</h3>
+          <p>Yes. The output is formatted as one numeric value per line for easy reuse.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <p>This guide explains the extraction workflow. The actual number parsing happens in the tool page.</p>
+      <nav>
+        <a href="../extract-numbers/">Extract Numbers Tool</a>
+        <a href="../sort-lines/">Sort Lines Tool</a>
+        <a href="../remove-duplicate-lines/">Remove Duplicate Lines Tool</a>
+      </nav>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

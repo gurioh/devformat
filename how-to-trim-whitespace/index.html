@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trim Whitespace from Lines Guide | DevFormat</title>
+  <meta name="description" content="Trim leading and trailing whitespace from each line of copied text with a browser-based cleanup tool and examples for IDs, env keys, and notes.">
+  <meta name="keywords" content="trim whitespace from lines, remove leading trailing spaces online, trim text lines">
+  <meta property="og:title" content="Trim Whitespace from Lines Guide | DevFormat">
+  <meta property="og:description" content="Normalize pasted text by trimming each line before dedupe, compare, or quoting steps.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/how-to-trim-whitespace/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/how-to-trim-whitespace/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Trim Whitespace from Lines Guide",
+    "description": "Normalize pasted text by trimming each line before dedupe, compare, or quoting steps.",
+    "author": {"@type": "Organization", "name": "DevFormat"},
+    "publisher": {"@type": "Organization", "name": "DevFormat"},
+    "mainEntityOfPage": "https://gurioh.github.io/devformat/how-to-trim-whitespace/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "DevFormat Tools", "item": "https://gurioh.github.io/devformat/"},
+      {"@type": "ListItem", "position": 2, "name": "Trim Whitespace from Lines Guide", "item": "https://gurioh.github.io/devformat/how-to-trim-whitespace/"}
+    ]
+  }
+  </script>
+</head>
+<body data-page="catalog">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
+        <div class="brand-copy">
+          <strong>DevFormat</strong>
+          <span>Preset-driven text tools for developers</span>
+        </div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="cleanup" href="../cleanup/">Cleanup</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <span aria-current="page">Trim Whitespace from Lines Guide</span>
+    </nav>
+
+    <section class="hero compact">
+      <span class="hero-kicker">Guide</span>
+      <h1>Trim whitespace from each line</h1>
+      <p>Normalize copied values by removing leading and trailing spaces before you dedupe, compare, quote, slugify, or join the result.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="../trim-whitespace/">Open trim whitespace tool</a>
+        <a class="button" href="../remove-empty-lines/">Open remove empty lines tool</a>
+      </div>
+    </section>
+
+    <section class="section-stack">
+      <article class="content-card">
+        <h2>Example input</h2>
+        <p><code>&nbsp;&nbsp;alpha&nbsp;&nbsp;<br>&nbsp;beta<br><br>gamma&nbsp;&nbsp;&nbsp;</code></p>
+      </article>
+      <article class="content-card">
+        <h2>Expected output</h2>
+        <p><code>alpha<br>beta<br><br>gamma</code></p>
+      </article>
+      <article class="content-card">
+        <h2>Steps</h2>
+        <ol>
+          <li>Open <a class="text-accent" href="../trim-whitespace/">Trim Whitespace from Lines Online</a>.</li>
+          <li>Paste the copied values with uneven spacing.</li>
+          <li>Optionally remove empty rows after trimming.</li>
+          <li>Copy the normalized result into the next step of your workflow.</li>
+        </ol>
+      </article>
+    </section>
+
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>Common follow-up tasks</h2>
+        <ul>
+          <li>Remove duplicate lines after values are normalized</li>
+          <li>Compare two lists where extra spaces cause false mismatches</li>
+          <li>Quote or join cleaned values for SQL, CSV, or code</li>
+        </ul>
+      </article>
+      <article class="content-card">
+        <h2>Related tools</h2>
+        <p>Whitespace cleanup pairs well with <a class="text-accent" href="../remove-duplicate-lines/">Remove Duplicate Lines</a>, <a class="text-accent" href="../compare-two-lists/">Compare Two Lists</a>, and <a class="text-accent" href="../quote/">Quote Each Line Online</a>.</p>
+      </article>
+    </section>
+
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>Does it remove spaces inside a line too?</h3>
+          <p>No. It trims only the start and end of each line, not spaces inside the value.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can I remove empty rows after trimming?</h3>
+          <p>Yes. Use the skip-empty option if blank lines should disappear after normalization.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Why trim before comparing lists?</h3>
+          <p>Extra spaces can make identical values look different. Trimming first avoids false differences.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <p>This guide explains when and why to trim whitespace. The actual cleanup happens in the tool page.</p>
+      <nav>
+        <a href="../trim-whitespace/">Trim Whitespace Tool</a>
+        <a href="../remove-empty-lines/">Remove Empty Lines Tool</a>
+        <a href="../compare-two-lists/">Compare Two Lists Tool</a>
+      </nav>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

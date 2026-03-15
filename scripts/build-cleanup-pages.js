@@ -41,9 +41,10 @@ function nav(prefix, withAbout) {
 }
 
 function pageFooter(tool) {
+  const navItems = tool.guide ? [{ href: tool.guide.href, label: tool.guide.label || 'Guide' }, ...tool.related] : tool.related;
   return `<footer class="page-footer">
       <p>${escapeHtml(tool.footerText || 'Move between cleanup, extraction, and transform tools without leaving the browser.')}</p>
-      <nav>${tool.related.map((item) => `<a href="${item.href}">${escapeHtml(item.label)}</a>`).join('')}</nav>
+      <nav>${navItems.map((item) => `<a href="${item.href}">${escapeHtml(item.label)}</a>`).join('')}</nav>
     </footer>`;
 }
 

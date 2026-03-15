@@ -393,6 +393,7 @@ const cleanupTools = [
       { q: 'Does it change the order of the remaining lines?', a: 'No. It only removes empty rows and keeps the remaining lines in the same order.' },
       { q: 'What should I use after cleanup?', a: 'Move to quote, multiline, compare, or join tools once the empty rows are gone.' }
     ],
+    guide: { href: '../how-to-remove-empty-lines/', label: 'Guide' },
     related: [
       { href: '../trim-whitespace/', label: 'Trim Whitespace' },
       { href: '../remove-duplicate-lines/', label: 'Remove Duplicate Lines' },
@@ -464,6 +465,7 @@ const cleanupTools = [
       { q: 'Will it change the order of the lines?', a: 'No. It only trims whitespace around each line.' },
       { q: 'What tool should I use next?', a: 'Trim first, then dedupe, compare, quote, or join the cleaned values.' }
     ],
+    guide: { href: '../how-to-trim-whitespace/', label: 'Guide' },
     related: [
       { href: '../remove-empty-lines/', label: 'Remove Empty Lines' },
       { href: '../remove-duplicate-lines/', label: 'Remove Duplicate Lines' },
@@ -535,6 +537,7 @@ const cleanupTools = [
       { q: 'Can I remove duplicate values?', a: 'Yes. Keep unique-only enabled to output each value once.' },
       { q: 'Can I sort the extracted output?', a: 'Yes. Turn on sort output if you want the number list ordered before copying.' }
     ],
+    guide: { href: '../how-to-extract-numbers-from-text/', label: 'Guide' },
     related: [
       { href: '../remove-duplicate-lines/', label: 'Remove Duplicate Lines' },
       { href: '../sort-lines/', label: 'Sort Lines' },
@@ -606,6 +609,7 @@ const cleanupTools = [
       { q: 'Does it support quoted CSV cells?', a: 'Yes. The parser handles quoted cells and escaped double quotes inside a row.' },
       { q: 'Can I skip the header row?', a: 'Yes. Keep skip-header enabled when the first row contains column names.' }
     ],
+    guide: { href: '../how-to-extract-a-column-from-csv/', label: 'Guide' },
     related: [
       { href: '../extract-emails/', label: 'Extract Emails' },
       { href: '../remove-empty-lines/', label: 'Remove Empty Lines' },

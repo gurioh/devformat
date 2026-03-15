@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extract a Column from CSV Guide | DevFormat</title>
+  <meta name="description" content="Extract one column from CSV, TSV, or delimited text and turn it into one value per line with a browser-based column picker.">
+  <meta name="keywords" content="extract a column from csv, csv column to lines, extract csv column online, tsv column extractor">
+  <meta property="og:title" content="Extract a Column from CSV Guide | DevFormat">
+  <meta property="og:description" content="Pull one column from CSV or TSV data and copy the result as one value per line.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/how-to-extract-a-column-from-csv/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/how-to-extract-a-column-from-csv/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Extract a Column from CSV Guide",
+    "description": "Pull one column from CSV or TSV data and copy the result as one value per line.",
+    "author": {"@type": "Organization", "name": "DevFormat"},
+    "publisher": {"@type": "Organization", "name": "DevFormat"},
+    "mainEntityOfPage": "https://gurioh.github.io/devformat/how-to-extract-a-column-from-csv/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "DevFormat Tools", "item": "https://gurioh.github.io/devformat/"},
+      {"@type": "ListItem", "position": 2, "name": "Extract a Column from CSV Guide", "item": "https://gurioh.github.io/devformat/how-to-extract-a-column-from-csv/"}
+    ]
+  }
+  </script>
+</head>
+<body data-page="catalog">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
+        <div class="brand-copy">
+          <strong>DevFormat</strong>
+          <span>Preset-driven text tools for developers</span>
+        </div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="cleanup" href="../cleanup/">Cleanup</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <span aria-current="page">Extract a Column from CSV Guide</span>
+    </nav>
+
+    <section class="hero compact">
+      <span class="hero-kicker">Guide</span>
+      <h1>Extract one column from CSV into lines</h1>
+      <p>Turn a CSV, TSV, or delimited export into a single-column text list so you can clean, compare, quote, or transform the values next.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="../csv-column-to-lines/">Open CSV column tool</a>
+        <a class="button" href="../extract-emails/">Open email extractor</a>
+      </div>
+    </section>
+
+    <section class="section-stack">
+      <article class="content-card">
+        <h2>Example input</h2>
+        <p><code>name,email,team<br>Alice,alice@example.com,Sales<br>Bob,bob@example.com,Support</code></p>
+      </article>
+      <article class="content-card">
+        <h2>Expected output for column 2</h2>
+        <p><code>alice@example.com<br>bob@example.com</code></p>
+      </article>
+      <article class="content-card">
+        <h2>Steps</h2>
+        <ol>
+          <li>Open <a class="text-accent" href="../csv-column-to-lines/">CSV Column to Lines Online</a>.</li>
+          <li>Paste the CSV, TSV, or delimited rows.</li>
+          <li>Choose the delimiter and column number, then decide whether to skip the header row.</li>
+          <li>Copy the extracted values as one item per line.</li>
+        </ol>
+      </article>
+    </section>
+
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>When this is useful</h2>
+        <ul>
+          <li>Pull email, ID, or SKU columns from spreadsheet exports</li>
+          <li>Turn copied tables into one clean list</li>
+          <li>Prepare one field for dedupe, compare, or quoting</li>
+        </ul>
+      </article>
+      <article class="content-card">
+        <h2>Related tools</h2>
+        <p>After extracting the column, the next common steps are <a class="text-accent" href="../remove-empty-lines/">removing empty lines</a>, <a class="text-accent" href="../remove-duplicate-lines/">removing duplicates</a>, or <a class="text-accent" href="../quote/">quoting each line</a>.</p>
+      </article>
+    </section>
+
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>Can I use TSV or pipe-delimited text too?</h3>
+          <p>Yes. Choose the matching delimiter before extracting the column.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Does it handle quoted CSV cells?</h3>
+          <p>Yes. The tool supports quoted cells and escaped double quotes inside a row.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can I skip the header row?</h3>
+          <p>Yes. Keep the header toggle enabled when the first row contains column names.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <p>This guide explains the CSV-column workflow. The actual extraction happens in the tool page.</p>
+      <nav>
+        <a href="../csv-column-to-lines/">CSV Column Tool</a>
+        <a href="../remove-empty-lines/">Remove Empty Lines Tool</a>
+        <a href="../remove-duplicate-lines/">Remove Duplicate Lines Tool</a>
+      </nav>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+</body>
+</html>
