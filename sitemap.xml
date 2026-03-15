@@ -31,13 +31,17 @@
   <url><loc>https://gurioh.github.io/devformat/ja/quote-each-line/</loc><lastmod>2026-03-11</lastmod><changefreq>weekly</changefreq><priority>0.7</priority><xhtml:link rel="alternate" hreflang="en" href="https://gurioh.github.io/devformat/quote/" /><xhtml:link rel="alternate" hreflang="ja" href="https://gurioh.github.io/devformat/ja/quote-each-line/" /><xhtml:link rel="alternate" hreflang="ko" href="https://gurioh.github.io/devformat/ko/quote-each-line/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://gurioh.github.io/devformat/quote/" /></url>
   <url><loc>https://gurioh.github.io/devformat/ko/quote-each-line/</loc><lastmod>2026-03-11</lastmod><changefreq>weekly</changefreq><priority>0.7</priority><xhtml:link rel="alternate" hreflang="en" href="https://gurioh.github.io/devformat/quote/" /><xhtml:link rel="alternate" hreflang="ja" href="https://gurioh.github.io/devformat/ja/quote-each-line/" /><xhtml:link rel="alternate" hreflang="ko" href="https://gurioh.github.io/devformat/ko/quote-each-line/" /><xhtml:link rel="alternate" hreflang="x-default" href="https://gurioh.github.io/devformat/quote/" /></url>
 
-  <url><loc>https://gurioh.github.io/devformat/cleanup/</loc><lastmod>2026-03-14</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://gurioh.github.io/devformat/remove-duplicate-lines/</loc><lastmod>2026-03-14</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://gurioh.github.io/devformat/sort-lines/</loc><lastmod>2026-03-14</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://gurioh.github.io/devformat/line-counter/</loc><lastmod>2026-03-14</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://gurioh.github.io/devformat/extract-emails/</loc><lastmod>2026-03-14</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://gurioh.github.io/devformat/extract-urls/</loc><lastmod>2026-03-14</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://gurioh.github.io/devformat/compare-two-lists/</loc><lastmod>2026-03-14</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://gurioh.github.io/devformat/cleanup/</loc><lastmod>2026-03-15</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://gurioh.github.io/devformat/remove-duplicate-lines/</loc><lastmod>2026-03-15</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://gurioh.github.io/devformat/sort-lines/</loc><lastmod>2026-03-15</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://gurioh.github.io/devformat/line-counter/</loc><lastmod>2026-03-15</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://gurioh.github.io/devformat/extract-emails/</loc><lastmod>2026-03-15</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://gurioh.github.io/devformat/extract-urls/</loc><lastmod>2026-03-15</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://gurioh.github.io/devformat/remove-empty-lines/</loc><lastmod>2026-03-15</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://gurioh.github.io/devformat/trim-whitespace/</loc><lastmod>2026-03-15</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://gurioh.github.io/devformat/extract-numbers/</loc><lastmod>2026-03-15</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://gurioh.github.io/devformat/csv-column-to-lines/</loc><lastmod>2026-03-15</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://gurioh.github.io/devformat/compare-two-lists/</loc><lastmod>2026-03-15</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
 
   <url><loc>https://gurioh.github.io/devformat/split-join/</loc><lastmod>2026-03-11</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://gurioh.github.io/devformat/slugify/</loc><lastmod>2026-03-11</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>

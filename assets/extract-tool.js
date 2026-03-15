@@ -28,7 +28,8 @@
 
   const patterns = {
     emails: /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,
-    urls: /(https?:\/\/[^\s"'<>]+|www\.[^\s"'<>]+)/gi
+    urls: /(https?:\/\/[^\s"'<>]+|www\.[^\s"'<>]+)/gi,
+    numbers: /[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/g
   };
 
   function updateStats(metrics) {
@@ -59,7 +60,7 @@
     if (uniqueOnly.checked) {
       const seen = new Set();
       values = values.filter(function (value) {
-        const normalized = value.toLowerCase();
+        const normalized = String(value).toLowerCase();
         if (seen.has(normalized)) return false;
         seen.add(normalized);
         return true;
@@ -74,7 +75,7 @@
       metrics: {
         modeLabel: config.modeLabel,
         matches: matches.length,
-        uniqueMatches: new Set(matches.map(function (value) { return value.toLowerCase(); })).size,
+        uniqueMatches: new Set(matches.map(function (value) { return String(value).toLowerCase(); })).size,
         duplicatesRemoved: Math.max(0, matches.length - values.length),
         outputLines: values.length,
         inputChars: raw.length,

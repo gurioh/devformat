@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSV Column to Lines Online | DevFormat</title>
+  <meta name="description" content="Extract one column from CSV, TSV, or delimited text and turn it into one value per line. Useful for exports, copied tables, and spreadsheet cleanup.">
+  <meta name="keywords" content="csv column to lines, extract csv column online, csv to one column list, tsv column extractor">
+  <meta property="og:title" content="CSV Column to Lines Online | DevFormat">
+  <meta property="og:description" content="Extract one column from CSV, TSV, or delimited text and turn it into one value per line. Useful for exports, copied tables, and spreadsheet cleanup.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/csv-column-to-lines/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/csv-column-to-lines/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "CSV Column to Lines Online",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "url": "https://gurioh.github.io/devformat/csv-column-to-lines/",
+  "description": "Extract one column from CSV, TSV, or delimited text and turn it into one value per line. Useful for exports, copied tables, and spreadsheet cleanup.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "DevFormat Tools",
+      "item": "https://gurioh.github.io/devformat/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cleanup & Extraction",
+      "item": "https://gurioh.github.io/devformat/cleanup/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "CSV Column to Lines Online",
+      "item": "https://gurioh.github.io/devformat/csv-column-to-lines/"
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="csv-column-to-lines" data-layout="tool">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
+        <div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="cleanup" href="../cleanup/">Cleanup</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <a href="../cleanup/">Cleanup</a>
+      <span>/</span>
+      <span aria-current="page">CSV Column to Lines Online</span>
+    </nav>
+    <section class="hero compact hero-slim">
+      <span class="hero-kicker">Cleanup &amp; Extraction</span>
+      <h1>CSV Column to Lines Online</h1>
+      <p>Extract a single column from CSV, TSV, semicolon, or pipe-delimited rows and copy one clean value per line.</p>
+    </section>
+    <section class="content-card answer-summary">
+      <h2>Quick answer</h2>
+      <p>This page extracts one column from delimited rows and converts it into a newline list.</p><p>It works well for CSV exports, copied tables, TSV data, and quick spreadsheet cleanup before the next transform step.</p>
+    </section>
+    <section class="tool-shell">
+      <div class="toolbar">
+        <div class="toolbar-row toolbar-primary">
+          <div class="segmented cleanup-segmented"><button class="active" type="button" data-preset="comma">Comma</button><button type="button" data-preset="tab">Tab</button><button type="button" data-preset="semicolon">Semicolon</button><button type="button" data-preset="pipe">Pipe</button></div>
+          <details class="toolbar-details" id="advancedPanel">
+            <summary>Advanced settings</summary>
+            <div class="toolbar-detail-body">
+              <div class="toolbar-grid compact">
+                <div class="field">
+                  <label for="columnIndex">Column number</label>
+                  <input class="input" id="columnIndex" type="number" min="1" value="1">
+                </div>
+              </div>
+              <div class="toolbar-row compact cleanup-toggle-row">
+                <label class="chip"><input id="trimValues" type="checkbox" checked> Trim values</label>
+                <label class="chip"><input id="skipEmpty" type="checkbox" checked> Skip empty values</label>
+                <label class="chip"><input id="hasHeader" type="checkbox" checked> Skip header row</label>
+              </div>
+              <div class="example-actions compact"><button type="button" data-example="csv">CSV export</button><button type="button" data-example="tsv">TSV export</button><button type="button" data-example="pipe">Pipe export</button></div>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="tool-panels">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong>Input</strong><span id="inputHint">CSV, TSV, or delimited rows</span></div>
+            <button class="copy-button" type="button" id="clearButton">Clear</button>
+          </div>
+          <textarea class="textarea" id="input" placeholder="name,email,team
+Alice,alice@example.com,Sales
+Bob,bob@example.com,Support"></textarea>
+        </section>
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong>Output</strong><span id="outputHint">One extracted value per line</span></div>
+            <button class="copy-button" type="button" id="copyButton">Copy</button>
+          </div>
+          <textarea class="textarea" id="output" readonly></textarea>
+        </section>
+      </div>
+      <div class="stat-grid">
+        <article class="stat-card"><span>Mode</span><strong data-stat="modeLabel">Extract column</strong></article><article class="stat-card"><span>Total rows</span><strong data-stat="totalRows">0</strong></article><article class="stat-card"><span>Data rows</span><strong data-stat="dataRows">0</strong></article><article class="stat-card"><span>Column</span><strong data-stat="columnNumber">1</strong></article><article class="stat-card"><span>Extracted</span><strong data-stat="extractedValues">0</strong></article><article class="stat-card"><span>Empty values</span><strong data-stat="emptyValues">0</strong></article><article class="stat-card"><span>Input chars</span><strong data-stat="inputChars">0</strong></article><article class="stat-card"><span>Output chars</span><strong data-stat="outputChars">0</strong></article>
+      </div>
+    </section>
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>How to use</h2>
+        <ol>
+          <li>Paste CSV, TSV, or delimited text into the input box.</li><li>Choose the delimiter and column number, then decide whether to skip the header row.</li><li>Copy the extracted column as one value per line.</li>
+        </ol>
+      </article>
+      <article class="content-card">
+        <h2>Common questions this page answers</h2>
+        <ul class="question-list">
+          <li>How do I extract one CSV column into lines online?</li><li>How do I turn a spreadsheet export into a one-column text list?</li><li>How do I pull the email or ID column out of CSV data?</li>
+        </ul>
+      </article>
+    </section>
+    <section class="section-stack">
+      <article class="content-card">
+        <h2>Example input and output</h2>
+        <div class="example-grid">
+          <div class="example-block">
+            <h3>Input</h3>
+            <pre><code>name,email,team
+Alice,alice@example.com,Sales
+Bob,bob@example.com,Support</code></pre>
+          </div>
+          <div class="example-block">
+            <h3>Output for column 2</h3>
+            <pre><code>alice@example.com
+bob@example.com</code></pre>
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item"><h3>Can I use TSV or pipe-delimited data?</h3><p>Yes. Choose the matching delimiter preset before extracting the column.</p></article><article class="faq-item"><h3>Does it support quoted CSV cells?</h3><p>Yes. The parser handles quoted cells and escaped double quotes inside a row.</p></article><article class="faq-item"><h3>Can I skip the header row?</h3><p>Yes. Keep skip-header enabled when the first row contains column names.</p></article>
+      </div>
+    </section>
+    <footer class="page-footer">
+      <p>Move between cleanup, extraction, and transform tools without leaving the browser.</p>
+      <nav><a href="../extract-emails/">Extract Emails</a><a href="../remove-empty-lines/">Remove Empty Lines</a><a href="../split-join/">Split / Join</a><a href="../multiline/">Multiline</a></nav>
+    </footer>
+  </main>
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+  <script>
+    window.DevFormatCsvColumnConfig = {
+  "toolKey": "csv-column-to-lines",
+  "modeLabel": "Extract column",
+  "inputHint": "CSV, TSV, or delimited rows",
+  "outputHint": "One extracted value per line",
+  "placeholder": "name,email,team\nAlice,alice@example.com,Sales\nBob,bob@example.com,Support",
+  "copySuccess": "Column values copied.",
+  "examples": {
+    "csv": "name,email,team\nAlice,alice@example.com,Sales\nBob,bob@example.com,Support",
+    "tsv": "id\tstatus\tnote\n1001\topen\tNeeds review\n1002\tclosed\tDone",
+    "pipe": "sku|price|region\nsku-1|12.5|APAC\nsku-2|9.8|US"
+  },
+  "exampleButtons": [
+    {
+      "key": "csv",
+      "label": "CSV export"
+    },
+    {
+      "key": "tsv",
+      "label": "TSV export"
+    },
+    {
+      "key": "pipe",
+      "label": "Pipe export"
+    }
+  ],
+  "defaultExample": "csv",
+  "presets": [
+    {
+      "key": "comma",
+      "label": "Comma"
+    },
+    {
+      "key": "tab",
+      "label": "Tab"
+    },
+    {
+      "key": "semicolon",
+      "label": "Semicolon"
+    },
+    {
+      "key": "pipe",
+      "label": "Pipe"
+    }
+  ],
+  "defaultPreset": "comma",
+  "controls": {
+    "trim": true,
+    "skipEmpty": true,
+    "hasHeader": true
+  },
+  "stats": [
+    {
+      "key": "modeLabel",
+      "label": "Mode",
+      "defaultValue": "Extract column"
+    },
+    {
+      "key": "totalRows",
+      "label": "Total rows",
+      "defaultValue": "0"
+    },
+    {
+      "key": "dataRows",
+      "label": "Data rows",
+      "defaultValue": "0"
+    },
+    {
+      "key": "columnNumber",
+      "label": "Column",
+      "defaultValue": "1"
+    },
+    {
+      "key": "extractedValues",
+      "label": "Extracted",
+      "defaultValue": "0"
+    },
+    {
+      "key": "emptyValues",
+      "label": "Empty values",
+      "defaultValue": "0"
+    },
+    {
+      "key": "inputChars",
+      "label": "Input chars",
+      "defaultValue": "0"
+    },
+    {
+      "key": "outputChars",
+      "label": "Output chars",
+      "defaultValue": "0"
+    }
+  ]
+};
+  </script>
+  <script src="../assets/csv-column-tool.js"></script>
+</body>
+</html>

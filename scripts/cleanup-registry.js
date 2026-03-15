@@ -362,6 +362,296 @@ const cleanupTools = [
     }
   },
   {
+    slug: 'remove-empty-lines',
+    title: 'Remove Empty Lines Online | DevFormat',
+    description: 'Remove blank lines from copied text, logs, exports, and config lists. Keep only meaningful rows and copy the cleaned output in your browser.',
+    keywords: 'remove empty lines online, remove blank lines from text, delete blank lines tool',
+    kicker: 'Cleanup & Extraction',
+    h1: 'Remove Empty Lines Online',
+    heroText: 'Drop blank rows from copied text before you quote, compare, or turn it into a request-ready list.',
+    quickAnswer: [
+      'This page removes blank lines from pasted text and keeps only rows that contain actual values.',
+      'It is useful when copied lists, logs, exports, or notes include empty rows that break the next transform step.'
+    ],
+    howTo: [
+      'Paste the text that contains blank rows.',
+      'Enable trim if whitespace-only rows should count as empty too.',
+      'Copy the cleaned output without empty lines.'
+    ],
+    questions: [
+      'How do I remove empty lines online?',
+      'How do I delete blank rows from copied text?',
+      'How do I clean whitespace-only lines before using another tool?'
+    ],
+    example: {
+      input: 'alpha\n\nbeta\n   \ngamma',
+      outputTitle: 'Output without empty lines',
+      output: 'alpha\nbeta\ngamma'
+    },
+    faq: [
+      { q: 'Can it remove whitespace-only rows too?', a: 'Yes. Keep trim enabled if rows with only spaces should be treated as empty.' },
+      { q: 'Does it change the order of the remaining lines?', a: 'No. It only removes empty rows and keeps the remaining lines in the same order.' },
+      { q: 'What should I use after cleanup?', a: 'Move to quote, multiline, compare, or join tools once the empty rows are gone.' }
+    ],
+    related: [
+      { href: '../trim-whitespace/', label: 'Trim Whitespace' },
+      { href: '../remove-duplicate-lines/', label: 'Remove Duplicate Lines' },
+      { href: '../split-join/', label: 'Split / Join' },
+      { href: '../multiline/', label: 'Multiline' }
+    ],
+    engine: 'list-cleanup',
+    config: {
+      toolKey: 'remove-empty-lines',
+      operation: 'remove-empty',
+      modeLabel: 'Remove empty',
+      inputHint: 'Text with blank rows',
+      outputHint: 'Clean lines without blanks',
+      placeholder: 'alpha\n\nbeta\n   \ngamma',
+      copySuccess: 'Cleaned lines copied.',
+      examples: {
+        notes: 'alpha\n\nbeta\n   \ngamma',
+        logs: 'INFO started\n\nWARN retry\n\nERROR timeout',
+        csv: 'name,email\n\nAlice,alice@example.com\n\nBob,bob@example.com'
+      },
+      exampleButtons: [
+        { key: 'notes', label: 'Notes' },
+        { key: 'logs', label: 'Logs' },
+        { key: 'csv', label: 'CSV rows' }
+      ],
+      defaultExample: 'notes',
+      controls: { trim: true, skipEmpty: false },
+      stats: [
+        { key: 'modeLabel', label: 'Mode', defaultValue: 'Remove empty' },
+        { key: 'totalLines', label: 'Total lines', defaultValue: '0' },
+        { key: 'emptyLines', label: 'Empty lines', defaultValue: '0' },
+        { key: 'removedLines', label: 'Removed', defaultValue: '0' },
+        { key: 'outputLines', label: 'Output lines', defaultValue: '0' },
+        { key: 'inputChars', label: 'Input chars', defaultValue: '0' },
+        { key: 'outputChars', label: 'Output chars', defaultValue: '0' },
+        { key: 'deltaChars', label: 'Delta', defaultValue: '0' }
+      ]
+    }
+  },
+  {
+    slug: 'trim-whitespace',
+    title: 'Trim Whitespace from Lines Online | DevFormat',
+    description: 'Trim leading and trailing whitespace from each line of text. Clean copied values before dedupe, comparison, quoting, or encoding.',
+    keywords: 'trim whitespace from lines online, trim spaces from text, remove leading trailing whitespace lines',
+    kicker: 'Cleanup & Extraction',
+    h1: 'Trim Whitespace from Lines Online',
+    heroText: 'Normalize copied lines by trimming leading and trailing spaces before the next tool in your workflow.',
+    quickAnswer: [
+      'This page trims leading and trailing whitespace from each line while preserving the line order.',
+      'It is useful before dedupe, comparison, quoting, slugifying, or turning copied exports into clean lists.'
+    ],
+    howTo: [
+      'Paste the text with uneven spacing into the input box.',
+      'Optionally remove empty rows after trimming.',
+      'Copy the normalized output.'
+    ],
+    questions: [
+      'How do I trim whitespace from each line online?',
+      'How do I remove leading and trailing spaces from copied values?',
+      'How do I normalize text before deduping or comparing it?'
+    ],
+    example: {
+      input: '  alpha  \n beta\n\ngamma   ',
+      outputTitle: 'Trimmed output',
+      output: 'alpha\nbeta\n\ngamma'
+    },
+    faq: [
+      { q: 'Does it keep blank lines?', a: 'Yes by default. Enable skip-empty if you want blank rows removed after trimming.' },
+      { q: 'Will it change the order of the lines?', a: 'No. It only trims whitespace around each line.' },
+      { q: 'What tool should I use next?', a: 'Trim first, then dedupe, compare, quote, or join the cleaned values.' }
+    ],
+    related: [
+      { href: '../remove-empty-lines/', label: 'Remove Empty Lines' },
+      { href: '../remove-duplicate-lines/', label: 'Remove Duplicate Lines' },
+      { href: '../compare-two-lists/', label: 'Compare Two Lists' },
+      { href: '../quote/', label: 'Quote' }
+    ],
+    engine: 'list-cleanup',
+    config: {
+      toolKey: 'trim-whitespace',
+      operation: 'trim-whitespace',
+      modeLabel: 'Trim whitespace',
+      inputHint: 'Text with uneven spacing',
+      outputHint: 'Whitespace-trimmed lines',
+      placeholder: '  alpha  \n beta\n\ngamma   ',
+      copySuccess: 'Trimmed lines copied.',
+      examples: {
+        values: '  alpha  \n beta\n\ngamma   ',
+        ids: ' 1001 \n1002\n 1003 ',
+        env: ' API_KEY \n API_SECRET\n\n API_HOST '
+      },
+      exampleButtons: [
+        { key: 'values', label: 'Values' },
+        { key: 'ids', label: 'Record IDs' },
+        { key: 'env', label: 'Env keys' }
+      ],
+      defaultExample: 'values',
+      controls: { trim: false, skipEmpty: true },
+      stats: [
+        { key: 'modeLabel', label: 'Mode', defaultValue: 'Trim whitespace' },
+        { key: 'totalLines', label: 'Total lines', defaultValue: '0' },
+        { key: 'trimmedLines', label: 'Changed lines', defaultValue: '0' },
+        { key: 'emptyLines', label: 'Empty lines', defaultValue: '0' },
+        { key: 'outputLines', label: 'Output lines', defaultValue: '0' },
+        { key: 'inputChars', label: 'Input chars', defaultValue: '0' },
+        { key: 'outputChars', label: 'Output chars', defaultValue: '0' },
+        { key: 'deltaChars', label: 'Delta', defaultValue: '0' }
+      ]
+    }
+  },
+  {
+    slug: 'extract-numbers',
+    title: 'Extract Numbers from Text | DevFormat',
+    description: 'Extract numbers from mixed text, logs, copied notes, payloads, and exports. Keep unique values or sort the numeric output before copying.',
+    keywords: 'extract numbers from text, number extractor online, find numbers in text',
+    kicker: 'Cleanup & Extraction',
+    h1: 'Extract Numbers from Text',
+    heroText: 'Pull integers and decimals out of mixed text, then copy one value per line for debugging, spreadsheet cleanup, or further formatting.',
+    quickAnswer: [
+      'This page extracts numeric values from mixed text like logs, notes, payloads, and exported rows.',
+      'You can keep unique values only or sort the extracted numbers before sending them into another tool.'
+    ],
+    howTo: [
+      'Paste mixed text that contains numbers into the input box.',
+      'Choose whether to keep unique values or sort the output.',
+      'Copy the extracted number list.'
+    ],
+    questions: [
+      'How do I extract numbers from text online?',
+      'How do I turn mixed notes into one number per line?',
+      'How do I remove duplicate numbers from copied text?'
+    ],
+    example: {
+      input: 'Order 1001 failed after 3 retries and 12.5 seconds. Order 1001 retried at 14:30.',
+      outputTitle: 'Extracted numbers',
+      output: '1001\n3\n12.5\n14\n30'
+    },
+    faq: [
+      { q: 'Does it extract decimals?', a: 'Yes. Integers and decimal values are both supported.' },
+      { q: 'Can I remove duplicate values?', a: 'Yes. Keep unique-only enabled to output each value once.' },
+      { q: 'Can I sort the extracted output?', a: 'Yes. Turn on sort output if you want the number list ordered before copying.' }
+    ],
+    related: [
+      { href: '../remove-duplicate-lines/', label: 'Remove Duplicate Lines' },
+      { href: '../sort-lines/', label: 'Sort Lines' },
+      { href: '../compare-two-lists/', label: 'Compare Two Lists' },
+      { href: '../multiline/', label: 'Multiline' }
+    ],
+    engine: 'extract',
+    config: {
+      toolKey: 'extract-numbers',
+      extractType: 'numbers',
+      modeLabel: 'Extract numbers',
+      inputHint: 'Paste mixed text, logs, or notes',
+      outputHint: 'One number per line',
+      placeholder: 'Order 1001 failed after 3 retries and 12.5 seconds.',
+      copySuccess: 'Extracted numbers copied.',
+      examples: {
+        orders: 'Order 1001 failed after 3 retries and 12.5 seconds. Order 1001 retried at 14:30.',
+        logs: 'cpu=0.81 mem=512 req=1024 retry=2',
+        notes: 'Budget: 2400, spent: 1300, remaining: 1100'
+      },
+      exampleButtons: [
+        { key: 'orders', label: 'Orders' },
+        { key: 'logs', label: 'Logs' },
+        { key: 'notes', label: 'Notes' }
+      ],
+      defaultExample: 'orders',
+      controls: { uniqueOnly: false, sortOutput: false },
+      stats: [
+        { key: 'modeLabel', label: 'Mode', defaultValue: 'Extract numbers' },
+        { key: 'matches', label: 'Matches', defaultValue: '0' },
+        { key: 'uniqueMatches', label: 'Unique', defaultValue: '0' },
+        { key: 'duplicatesRemoved', label: 'Duplicates', defaultValue: '0' },
+        { key: 'outputLines', label: 'Output lines', defaultValue: '0' },
+        { key: 'inputChars', label: 'Input chars', defaultValue: '0' },
+        { key: 'outputChars', label: 'Output chars', defaultValue: '0' },
+        { key: 'deltaChars', label: 'Delta', defaultValue: '0' }
+      ]
+    }
+  },
+  {
+    slug: 'csv-column-to-lines',
+    title: 'CSV Column to Lines Online | DevFormat',
+    description: 'Extract one column from CSV, TSV, or delimited text and turn it into one value per line. Useful for exports, copied tables, and spreadsheet cleanup.',
+    keywords: 'csv column to lines, extract csv column online, csv to one column list, tsv column extractor',
+    kicker: 'Cleanup & Extraction',
+    h1: 'CSV Column to Lines Online',
+    heroText: 'Extract a single column from CSV, TSV, semicolon, or pipe-delimited rows and copy one clean value per line.',
+    quickAnswer: [
+      'This page extracts one column from delimited rows and converts it into a newline list.',
+      'It works well for CSV exports, copied tables, TSV data, and quick spreadsheet cleanup before the next transform step.'
+    ],
+    howTo: [
+      'Paste CSV, TSV, or delimited text into the input box.',
+      'Choose the delimiter and column number, then decide whether to skip the header row.',
+      'Copy the extracted column as one value per line.'
+    ],
+    questions: [
+      'How do I extract one CSV column into lines online?',
+      'How do I turn a spreadsheet export into a one-column text list?',
+      'How do I pull the email or ID column out of CSV data?'
+    ],
+    example: {
+      input: 'name,email,team\nAlice,alice@example.com,Sales\nBob,bob@example.com,Support',
+      outputTitle: 'Output for column 2',
+      output: 'alice@example.com\nbob@example.com'
+    },
+    faq: [
+      { q: 'Can I use TSV or pipe-delimited data?', a: 'Yes. Choose the matching delimiter preset before extracting the column.' },
+      { q: 'Does it support quoted CSV cells?', a: 'Yes. The parser handles quoted cells and escaped double quotes inside a row.' },
+      { q: 'Can I skip the header row?', a: 'Yes. Keep skip-header enabled when the first row contains column names.' }
+    ],
+    related: [
+      { href: '../extract-emails/', label: 'Extract Emails' },
+      { href: '../remove-empty-lines/', label: 'Remove Empty Lines' },
+      { href: '../split-join/', label: 'Split / Join' },
+      { href: '../multiline/', label: 'Multiline' }
+    ],
+    engine: 'csv-column',
+    config: {
+      toolKey: 'csv-column-to-lines',
+      modeLabel: 'Extract column',
+      inputHint: 'CSV, TSV, or delimited rows',
+      outputHint: 'One extracted value per line',
+      placeholder: 'name,email,team\nAlice,alice@example.com,Sales\nBob,bob@example.com,Support',
+      copySuccess: 'Column values copied.',
+      examples: {
+        csv: 'name,email,team\nAlice,alice@example.com,Sales\nBob,bob@example.com,Support',
+        tsv: 'id\tstatus\tnote\n1001\topen\tNeeds review\n1002\tclosed\tDone',
+        pipe: 'sku|price|region\nsku-1|12.5|APAC\nsku-2|9.8|US'
+      },
+      exampleButtons: [
+        { key: 'csv', label: 'CSV export' },
+        { key: 'tsv', label: 'TSV export' },
+        { key: 'pipe', label: 'Pipe export' }
+      ],
+      defaultExample: 'csv',
+      presets: [
+        { key: 'comma', label: 'Comma' },
+        { key: 'tab', label: 'Tab' },
+        { key: 'semicolon', label: 'Semicolon' },
+        { key: 'pipe', label: 'Pipe' }
+      ],
+      defaultPreset: 'comma',
+      controls: { trim: true, skipEmpty: true, hasHeader: true },
+      stats: [
+        { key: 'modeLabel', label: 'Mode', defaultValue: 'Extract column' },
+        { key: 'totalRows', label: 'Total rows', defaultValue: '0' },
+        { key: 'dataRows', label: 'Data rows', defaultValue: '0' },
+        { key: 'columnNumber', label: 'Column', defaultValue: '1' },
+        { key: 'extractedValues', label: 'Extracted', defaultValue: '0' },
+        { key: 'emptyValues', label: 'Empty values', defaultValue: '0' },
+        { key: 'inputChars', label: 'Input chars', defaultValue: '0' },
+        { key: 'outputChars', label: 'Output chars', defaultValue: '0' }
+      ]
+    }
+  },
+  {
     slug: 'compare-two-lists',
     title: 'Compare Two Lists Online | DevFormat',
     description: 'Compare two newline lists and return common values, only-in-A values, and only-in-B values. Useful for IDs, exports, tags, and config diffs.',

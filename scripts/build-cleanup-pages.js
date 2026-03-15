@@ -3,7 +3,7 @@ const path = require('path');
 const { domain, cleanupTools, cleanupHub } = require('./cleanup-registry');
 
 const root = path.resolve(__dirname, '..');
-const lastmod = '2026-03-14';
+const lastmod = '2026-03-15';
 
 function writeFile(relPath, contents) {
   const target = path.join(root, relPath);
@@ -377,6 +377,131 @@ ${jsonScript(breadcrumbJson)}
 </html>`;
 }
 
+function renderCsvToolPage(tool) {
+  const config = tool.config;
+  const pageUrl = `${domain}/${tool.slug}/`;
+  const appJson = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: tool.h1,
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Any',
+    url: pageUrl,
+    description: tool.description,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
+  };
+  const breadcrumbJson = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'DevFormat Tools', item: `${domain}/` },
+      { '@type': 'ListItem', position: 2, name: 'Cleanup & Extraction', item: `${domain}/cleanup/` },
+      { '@type': 'ListItem', position: 3, name: tool.h1, item: pageUrl }
+    ]
+  };
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${escapeHtml(tool.title)}</title>
+  <meta name="description" content="${escapeHtml(tool.description)}">
+  <meta name="keywords" content="${escapeHtml(tool.keywords)}">
+  <meta property="og:title" content="${escapeHtml(tool.title)}">
+  <meta property="og:description" content="${escapeHtml(tool.description)}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="${pageUrl}">
+  <link rel="canonical" href="${pageUrl}">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">
+${jsonScript(appJson)}
+  </script>
+  <script type="application/ld+json">
+${jsonScript(breadcrumbJson)}
+  </script>
+</head>
+<body data-page="${escapeHtml(config.toolKey)}" data-layout="tool">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
+        <div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div>
+      </a>
+      ${nav('../', false)}
+    </div>
+  </header>
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <a href="../cleanup/">Cleanup</a>
+      <span>/</span>
+      <span aria-current="page">${escapeHtml(tool.h1)}</span>
+    </nav>
+    <section class="hero compact hero-slim">
+      <span class="hero-kicker">${escapeHtml(tool.kicker)}</span>
+      <h1>${escapeHtml(tool.h1)}</h1>
+      <p>${escapeHtml(tool.heroText)}</p>
+    </section>
+    ${renderQuickAnswer(tool)}
+    <section class="tool-shell">
+      <div class="toolbar">
+        <div class="toolbar-row toolbar-primary">
+          <div class="segmented cleanup-segmented">${config.presets.map((preset, index) => `<button ${index === 0 ? 'class="active" ' : ''}type="button" data-preset="${escapeHtml(preset.key)}">${escapeHtml(preset.label)}</button>`).join('')}</div>
+          <details class="toolbar-details" id="advancedPanel">
+            <summary>Advanced settings</summary>
+            <div class="toolbar-detail-body">
+              <div class="toolbar-grid compact">
+                <div class="field">
+                  <label for="columnIndex">Column number</label>
+                  <input class="input" id="columnIndex" type="number" min="1" value="1">
+                </div>
+              </div>
+              <div class="toolbar-row compact cleanup-toggle-row">
+                <label class="chip"><input id="trimValues" type="checkbox" checked> Trim values</label>
+                <label class="chip"><input id="skipEmpty" type="checkbox" checked> Skip empty values</label>
+                <label class="chip"><input id="hasHeader" type="checkbox" checked> Skip header row</label>
+              </div>
+              <div class="example-actions compact">${config.exampleButtons.map((button) => `<button type="button" data-example="${escapeHtml(button.key)}">${escapeHtml(button.label)}</button>`).join('')}</div>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="tool-panels">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong>Input</strong><span id="inputHint">${escapeHtml(config.inputHint)}</span></div>
+            <button class="copy-button" type="button" id="clearButton">Clear</button>
+          </div>
+          <textarea class="textarea" id="input" placeholder="${escapeHtml(config.placeholder)}"></textarea>
+        </section>
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong>Output</strong><span id="outputHint">${escapeHtml(config.outputHint)}</span></div>
+            <button class="copy-button" type="button" id="copyButton">Copy</button>
+          </div>
+          <textarea class="textarea" id="output" readonly></textarea>
+        </section>
+      </div>
+      ${renderStats(config.stats)}
+    </section>
+    ${renderHowTo(tool)}
+    ${renderExample(tool)}
+    ${renderFaq(tool)}
+    ${pageFooter(tool)}
+  </main>
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+  <script>
+    window.DevFormatCsvColumnConfig = ${jsonScript(config)};
+  </script>
+  <script src="../assets/csv-column-tool.js"></script>
+</body>
+</html>`;
+}
+
 function renderCompareToolPage(tool) {
   const config = tool.config;
   const pageUrl = `${domain}/${tool.slug}/`;
@@ -581,7 +706,9 @@ cleanupTools.forEach((tool) => {
     ? renderCompareToolPage(tool)
     : tool.engine === 'extract'
       ? renderExtractToolPage(tool)
-      : renderListToolPage(tool);
+      : tool.engine === 'csv-column'
+        ? renderCsvToolPage(tool)
+        : renderListToolPage(tool);
   writeFile(`${tool.slug}/index.html`, html);
 });
 

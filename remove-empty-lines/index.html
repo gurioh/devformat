@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remove Empty Lines Online | DevFormat</title>
+  <meta name="description" content="Remove blank lines from copied text, logs, exports, and config lists. Keep only meaningful rows and copy the cleaned output in your browser.">
+  <meta name="keywords" content="remove empty lines online, remove blank lines from text, delete blank lines tool">
+  <meta property="og:title" content="Remove Empty Lines Online | DevFormat">
+  <meta property="og:description" content="Remove blank lines from copied text, logs, exports, and config lists. Keep only meaningful rows and copy the cleaned output in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/remove-empty-lines/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/remove-empty-lines/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Remove Empty Lines Online",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "url": "https://gurioh.github.io/devformat/remove-empty-lines/",
+  "description": "Remove blank lines from copied text, logs, exports, and config lists. Keep only meaningful rows and copy the cleaned output in your browser.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "DevFormat Tools",
+      "item": "https://gurioh.github.io/devformat/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cleanup & Extraction",
+      "item": "https://gurioh.github.io/devformat/cleanup/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Remove Empty Lines Online",
+      "item": "https://gurioh.github.io/devformat/remove-empty-lines/"
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="remove-empty-lines" data-layout="tool">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
+        <div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="cleanup" href="../cleanup/">Cleanup</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <a href="../cleanup/">Cleanup</a>
+      <span>/</span>
+      <span aria-current="page">Remove Empty Lines Online</span>
+    </nav>
+    <section class="hero compact hero-slim">
+      <span class="hero-kicker">Cleanup &amp; Extraction</span>
+      <h1>Remove Empty Lines Online</h1>
+      <p>Drop blank rows from copied text before you quote, compare, or turn it into a request-ready list.</p>
+    </section>
+    <section class="content-card answer-summary">
+      <h2>Quick answer</h2>
+      <p>This page removes blank lines from pasted text and keeps only rows that contain actual values.</p><p>It is useful when copied lists, logs, exports, or notes include empty rows that break the next transform step.</p>
+    </section>
+    <section class="tool-shell">
+      <div class="toolbar">
+        <div class="toolbar-row toolbar-primary">
+          <div class="chip-row compact"><span class="chip active">Remove empty</span></div>
+          <details class="toolbar-details" id="advancedPanel">
+            <summary>Advanced settings</summary>
+            <div class="toolbar-detail-body">
+              <div class="toolbar-row compact cleanup-toggle-row">
+                <label class="chip"><input id="trimValues" type="checkbox" checked> Trim values</label>
+                
+              </div>
+              <div class="example-actions compact"><button type="button" data-example="notes">Notes</button><button type="button" data-example="logs">Logs</button><button type="button" data-example="csv">CSV rows</button></div>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="tool-panels">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong>Input</strong><span id="inputHint">Text with blank rows</span></div>
+            <button class="copy-button" type="button" id="clearButton">Clear</button>
+          </div>
+          <textarea class="textarea" id="input" placeholder="alpha
+
+beta
+   
+gamma"></textarea>
+        </section>
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong>Output</strong><span id="outputHint">Clean lines without blanks</span></div>
+            <button class="copy-button" type="button" id="copyButton">Copy</button>
+          </div>
+          <textarea class="textarea" id="output" readonly></textarea>
+        </section>
+      </div>
+      <div class="stat-grid">
+        <article class="stat-card"><span>Mode</span><strong data-stat="modeLabel">Remove empty</strong></article><article class="stat-card"><span>Total lines</span><strong data-stat="totalLines">0</strong></article><article class="stat-card"><span>Empty lines</span><strong data-stat="emptyLines">0</strong></article><article class="stat-card"><span>Removed</span><strong data-stat="removedLines">0</strong></article><article class="stat-card"><span>Output lines</span><strong data-stat="outputLines">0</strong></article><article class="stat-card"><span>Input chars</span><strong data-stat="inputChars">0</strong></article><article class="stat-card"><span>Output chars</span><strong data-stat="outputChars">0</strong></article><article class="stat-card"><span>Delta</span><strong data-stat="deltaChars">0</strong></article>
+      </div>
+    </section>
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>How to use</h2>
+        <ol>
+          <li>Paste the text that contains blank rows.</li><li>Enable trim if whitespace-only rows should count as empty too.</li><li>Copy the cleaned output without empty lines.</li>
+        </ol>
+      </article>
+      <article class="content-card">
+        <h2>Common questions this page answers</h2>
+        <ul class="question-list">
+          <li>How do I remove empty lines online?</li><li>How do I delete blank rows from copied text?</li><li>How do I clean whitespace-only lines before using another tool?</li>
+        </ul>
+      </article>
+    </section>
+    <section class="section-stack">
+      <article class="content-card">
+        <h2>Example input and output</h2>
+        <div class="example-grid">
+          <div class="example-block">
+            <h3>Input</h3>
+            <pre><code>alpha
+
+beta
+   
+gamma</code></pre>
+          </div>
+          <div class="example-block">
+            <h3>Output without empty lines</h3>
+            <pre><code>alpha
+beta
+gamma</code></pre>
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item"><h3>Can it remove whitespace-only rows too?</h3><p>Yes. Keep trim enabled if rows with only spaces should be treated as empty.</p></article><article class="faq-item"><h3>Does it change the order of the remaining lines?</h3><p>No. It only removes empty rows and keeps the remaining lines in the same order.</p></article><article class="faq-item"><h3>What should I use after cleanup?</h3><p>Move to quote, multiline, compare, or join tools once the empty rows are gone.</p></article>
+      </div>
+    </section>
+    <footer class="page-footer">
+      <p>Move between cleanup, extraction, and transform tools without leaving the browser.</p>
+      <nav><a href="../trim-whitespace/">Trim Whitespace</a><a href="../remove-duplicate-lines/">Remove Duplicate Lines</a><a href="../split-join/">Split / Join</a><a href="../multiline/">Multiline</a></nav>
+    </footer>
+  </main>
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+  <script>
+    window.DevFormatListCleanupConfig = {
+  "toolKey": "remove-empty-lines",
+  "operation": "remove-empty",
+  "modeLabel": "Remove empty",
+  "inputHint": "Text with blank rows",
+  "outputHint": "Clean lines without blanks",
+  "placeholder": "alpha\n\nbeta\n   \ngamma",
+  "copySuccess": "Cleaned lines copied.",
+  "examples": {
+    "notes": "alpha\n\nbeta\n   \ngamma",
+    "logs": "INFO started\n\nWARN retry\n\nERROR timeout",
+    "csv": "name,email\n\nAlice,alice@example.com\n\nBob,bob@example.com"
+  },
+  "exampleButtons": [
+    {
+      "key": "notes",
+      "label": "Notes"
+    },
+    {
+      "key": "logs",
+      "label": "Logs"
+    },
+    {
+      "key": "csv",
+      "label": "CSV rows"
+    }
+  ],
+  "defaultExample": "notes",
+  "controls": {
+    "trim": true,
+    "skipEmpty": false
+  },
+  "stats": [
+    {
+      "key": "modeLabel",
+      "label": "Mode",
+      "defaultValue": "Remove empty"
+    },
+    {
+      "key": "totalLines",
+      "label": "Total lines",
+      "defaultValue": "0"
+    },
+    {
+      "key": "emptyLines",
+      "label": "Empty lines",
+      "defaultValue": "0"
+    },
+    {
+      "key": "removedLines",
+      "label": "Removed",
+      "defaultValue": "0"
+    },
+    {
+      "key": "outputLines",
+      "label": "Output lines",
+      "defaultValue": "0"
+    },
+    {
+      "key": "inputChars",
+      "label": "Input chars",
+      "defaultValue": "0"
+    },
+    {
+      "key": "outputChars",
+      "label": "Output chars",
+      "defaultValue": "0"
+    },
+    {
+      "key": "deltaChars",
+      "label": "Delta",
+      "defaultValue": "0"
+    }
+  ]
+};
+  </script>
+  <script src="../assets/list-cleanup-tool.js"></script>
+</body>
+</html>

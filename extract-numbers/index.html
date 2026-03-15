@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extract Numbers from Text | DevFormat</title>
+  <meta name="description" content="Extract numbers from mixed text, logs, copied notes, payloads, and exports. Keep unique values or sort the numeric output before copying.">
+  <meta name="keywords" content="extract numbers from text, number extractor online, find numbers in text">
+  <meta property="og:title" content="Extract Numbers from Text | DevFormat">
+  <meta property="og:description" content="Extract numbers from mixed text, logs, copied notes, payloads, and exports. Keep unique values or sort the numeric output before copying.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/extract-numbers/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/extract-numbers/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Extract Numbers from Text",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "url": "https://gurioh.github.io/devformat/extract-numbers/",
+  "description": "Extract numbers from mixed text, logs, copied notes, payloads, and exports. Keep unique values or sort the numeric output before copying.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "DevFormat Tools",
+      "item": "https://gurioh.github.io/devformat/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cleanup & Extraction",
+      "item": "https://gurioh.github.io/devformat/cleanup/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Extract Numbers from Text",
+      "item": "https://gurioh.github.io/devformat/extract-numbers/"
+    }
+  ]
+}
+  </script>
+</head>
+<body data-page="extract-numbers" data-layout="tool">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="../">
+        <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
+        <div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div>
+      </a>
+      <nav class="site-nav">
+        <a data-page-link="catalog" href="../">Tools</a>
+        <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="quote" href="../quote/">Quote</a>
+        <a data-page-link="split-join" href="../split-join/">Split / Join</a>
+        <a data-page-link="cleanup" href="../cleanup/">Cleanup</a>
+        <a data-page-link="escape" href="../escape/">Escape</a>
+        <a data-page-link="base64" href="../base64/">Base64</a>
+        <a data-page-link="url-encode" href="../url-encode/">URL Encode</a>
+        <a data-page-link="slugify" href="../slugify/">Slugify</a>
+        <a data-page-link="json" href="../json/">JSON</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../">Tools</a>
+      <span>/</span>
+      <a href="../cleanup/">Cleanup</a>
+      <span>/</span>
+      <span aria-current="page">Extract Numbers from Text</span>
+    </nav>
+    <section class="hero compact hero-slim">
+      <span class="hero-kicker">Cleanup &amp; Extraction</span>
+      <h1>Extract Numbers from Text</h1>
+      <p>Pull integers and decimals out of mixed text, then copy one value per line for debugging, spreadsheet cleanup, or further formatting.</p>
+    </section>
+    <section class="content-card answer-summary">
+      <h2>Quick answer</h2>
+      <p>This page extracts numeric values from mixed text like logs, notes, payloads, and exported rows.</p><p>You can keep unique values only or sort the extracted numbers before sending them into another tool.</p>
+    </section>
+    <section class="tool-shell">
+      <div class="toolbar">
+        <div class="toolbar-row toolbar-primary">
+          <div class="chip-row compact"><span class="chip active">Extract numbers</span></div>
+          <details class="toolbar-details" id="advancedPanel">
+            <summary>Advanced settings</summary>
+            <div class="toolbar-detail-body">
+              <div class="toolbar-row compact cleanup-toggle-row">
+                <label class="chip"><input id="uniqueOnly" type="checkbox" > Unique only</label>
+                <label class="chip"><input id="sortOutput" type="checkbox" > Sort output</label>
+              </div>
+              <div class="example-actions compact"><button type="button" data-example="orders">Orders</button><button type="button" data-example="logs">Logs</button><button type="button" data-example="notes">Notes</button></div>
+            </div>
+          </details>
+        </div>
+      </div>
+      <div class="tool-panels">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong>Input</strong><span id="inputHint">Paste mixed text, logs, or notes</span></div>
+            <button class="copy-button" type="button" id="clearButton">Clear</button>
+          </div>
+          <textarea class="textarea" id="input" placeholder="Order 1001 failed after 3 retries and 12.5 seconds."></textarea>
+        </section>
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div><strong>Output</strong><span id="outputHint">One number per line</span></div>
+            <button class="copy-button" type="button" id="copyButton">Copy</button>
+          </div>
+          <textarea class="textarea" id="output" readonly></textarea>
+        </section>
+      </div>
+      <div class="stat-grid">
+        <article class="stat-card"><span>Mode</span><strong data-stat="modeLabel">Extract numbers</strong></article><article class="stat-card"><span>Matches</span><strong data-stat="matches">0</strong></article><article class="stat-card"><span>Unique</span><strong data-stat="uniqueMatches">0</strong></article><article class="stat-card"><span>Duplicates</span><strong data-stat="duplicatesRemoved">0</strong></article><article class="stat-card"><span>Output lines</span><strong data-stat="outputLines">0</strong></article><article class="stat-card"><span>Input chars</span><strong data-stat="inputChars">0</strong></article><article class="stat-card"><span>Output chars</span><strong data-stat="outputChars">0</strong></article><article class="stat-card"><span>Delta</span><strong data-stat="deltaChars">0</strong></article>
+      </div>
+    </section>
+    <section class="split-layout">
+      <article class="content-card">
+        <h2>How to use</h2>
+        <ol>
+          <li>Paste mixed text that contains numbers into the input box.</li><li>Choose whether to keep unique values or sort the output.</li><li>Copy the extracted number list.</li>
+        </ol>
+      </article>
+      <article class="content-card">
+        <h2>Common questions this page answers</h2>
+        <ul class="question-list">
+          <li>How do I extract numbers from text online?</li><li>How do I turn mixed notes into one number per line?</li><li>How do I remove duplicate numbers from copied text?</li>
+        </ul>
+      </article>
+    </section>
+    <section class="section-stack">
+      <article class="content-card">
+        <h2>Example input and output</h2>
+        <div class="example-grid">
+          <div class="example-block">
+            <h3>Input</h3>
+            <pre><code>Order 1001 failed after 3 retries and 12.5 seconds. Order 1001 retried at 14:30.</code></pre>
+          </div>
+          <div class="example-block">
+            <h3>Extracted numbers</h3>
+            <pre><code>1001
+3
+12.5
+14
+30</code></pre>
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="faq-card">
+      <h2>FAQ</h2>
+      <div class="faq-list">
+        <article class="faq-item"><h3>Does it extract decimals?</h3><p>Yes. Integers and decimal values are both supported.</p></article><article class="faq-item"><h3>Can I remove duplicate values?</h3><p>Yes. Keep unique-only enabled to output each value once.</p></article><article class="faq-item"><h3>Can I sort the extracted output?</h3><p>Yes. Turn on sort output if you want the number list ordered before copying.</p></article>
+      </div>
+    </section>
+    <footer class="page-footer">
+      <p>Move between cleanup, extraction, and transform tools without leaving the browser.</p>
+      <nav><a href="../remove-duplicate-lines/">Remove Duplicate Lines</a><a href="../sort-lines/">Sort Lines</a><a href="../compare-two-lists/">Compare Two Lists</a><a href="../multiline/">Multiline</a></nav>
+    </footer>
+  </main>
+  <div class="toast" id="toast">Ready.</div>
+  <script src="../assets/site.js"></script>
+  <script>
+    window.DevFormatExtractConfig = {
+  "toolKey": "extract-numbers",
+  "extractType": "numbers",
+  "modeLabel": "Extract numbers",
+  "inputHint": "Paste mixed text, logs, or notes",
+  "outputHint": "One number per line",
+  "placeholder": "Order 1001 failed after 3 retries and 12.5 seconds.",
+  "copySuccess": "Extracted numbers copied.",
+  "examples": {
+    "orders": "Order 1001 failed after 3 retries and 12.5 seconds. Order 1001 retried at 14:30.",
+    "logs": "cpu=0.81 mem=512 req=1024 retry=2",
+    "notes": "Budget: 2400, spent: 1300, remaining: 1100"
+  },
+  "exampleButtons": [
+    {
+      "key": "orders",
+      "label": "Orders"
+    },
+    {
+      "key": "logs",
+      "label": "Logs"
+    },
+    {
+      "key": "notes",
+      "label": "Notes"
+    }
+  ],
+  "defaultExample": "orders",
+  "controls": {
+    "uniqueOnly": false,
+    "sortOutput": false
+  },
+  "stats": [
+    {
+      "key": "modeLabel",
+      "label": "Mode",
+      "defaultValue": "Extract numbers"
+    },
+    {
+      "key": "matches",
+      "label": "Matches",
+      "defaultValue": "0"
+    },
+    {
+      "key": "uniqueMatches",
+      "label": "Unique",
+      "defaultValue": "0"
+    },
+    {
+      "key": "duplicatesRemoved",
+      "label": "Duplicates",
+      "defaultValue": "0"
+    },
+    {
+      "key": "outputLines",
+      "label": "Output lines",
+      "defaultValue": "0"
+    },
+    {
+      "key": "inputChars",
+      "label": "Input chars",
+      "defaultValue": "0"
+    },
+    {
+      "key": "outputChars",
+      "label": "Output chars",
+      "defaultValue": "0"
+    },
+    {
+      "key": "deltaChars",
+      "label": "Delta",
+      "defaultValue": "0"
+    }
+  ]
+};
+  </script>
+  <script src="../assets/extract-tool.js"></script>
+</body>
+</html>

@@ -69,6 +69,20 @@
     };
   }
 
+  function getForcedTrimLines(raw, dropEmpty) {
+    const originalLines = raw.split('\n');
+    let lines = originalLines.map(function (line) { return line.trim(); });
+    if (dropEmpty) {
+      lines = lines.filter(function (line) { return line.length > 0; });
+    }
+    return {
+      originalLines: originalLines,
+      lines: lines,
+      emptyLines: originalLines.filter(function (line) { return line.trim().length === 0; }).length,
+      rawLength: raw.length
+    };
+  }
+
   function renderSummary(metrics) {
     return [
       'Lines: ' + metrics.totalLines,
@@ -104,9 +118,14 @@
   }
 
   function compute(raw) {
-    const prepared = getLines(raw);
+    const prepared = config.operation === 'trim-whitespace'
+      ? getForcedTrimLines(raw, Boolean(skipEmpty && skipEmpty.checked))
+      : getLines(raw);
     const lines = prepared.lines;
     const uniqueCount = new Set(lines).size;
+    const trimmedLineCount = prepared.originalLines.filter(function (line) {
+      return line !== line.trim();
+    }).length;
     let outputLines = [];
     let modeLabel = config.modeLabel;
 
@@ -121,6 +140,13 @@
       outputLines = sortValues(lines);
       const preset = (config.presets || []).find(function (item) { return item.key === activePreset; });
       if (preset) modeLabel = preset.label;
+    } else if (config.operation === 'remove-empty') {
+      outputLines = prepared.originalLines.filter(function (line) {
+        const next = trimValues && trimValues.checked ? line.trim() : line;
+        return next.length > 0;
+      });
+    } else if (config.operation === 'trim-whitespace') {
+      outputLines = lines.slice();
     } else if (config.operation === 'count') {
       const metrics = {
         modeLabel: config.modeLabel,
@@ -147,6 +173,8 @@
         totalLines: prepared.originalLines.length,
         uniqueLines: uniqueCount,
         duplicatesRemoved: Math.max(0, lines.length - uniqueCount),
+        removedLines: Math.max(0, prepared.originalLines.length - outputLines.length),
+        trimmedLines: trimmedLineCount,
         emptyLines: prepared.emptyLines,
         outputLines: outputLines.length,
         inputChars: raw.length,
