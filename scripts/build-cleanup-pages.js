@@ -5,6 +5,19 @@ const { domain, cleanupTools, cleanupHub } = require('./cleanup-registry');
 const root = path.resolve(__dirname, '..');
 const lastmod = '2026-03-15';
 
+function orderCleanupToolsForHub(tools, featuredSlugs) {
+  if (!Array.isArray(featuredSlugs) || !featuredSlugs.length) return tools;
+
+  const order = new Map(featuredSlugs.map((slug, index) => [slug, index]));
+  return tools.slice().sort((left, right) => {
+    const leftIndex = order.has(left.slug) ? order.get(left.slug) : Number.MAX_SAFE_INTEGER;
+    const rightIndex = order.has(right.slug) ? order.get(right.slug) : Number.MAX_SAFE_INTEGER;
+
+    if (leftIndex !== rightIndex) return leftIndex - rightIndex;
+    return left.slug.localeCompare(right.slug);
+  });
+}
+
 function writeFile(relPath, contents) {
   const target = path.join(root, relPath);
   fs.mkdirSync(path.dirname(target), { recursive: true });
@@ -634,6 +647,7 @@ ${jsonScript(breadcrumbJson)}
 }
 
 function renderHubPage() {
+  const orderedTools = orderCleanupToolsForHub(cleanupTools, cleanupHub.featuredSlugs);
   const pageUrl = `${domain}/cleanup/`;
   const pageJson = {
     '@context': 'https://schema.org',
@@ -716,7 +730,7 @@ ${jsonScript(pageJson)}
       </div>
     </section>
     <section class="catalog-grid cleanup-catalog-grid">
-      ${cleanupTools.map((tool) => `<article class="tool-card"><span class="hero-kicker">${escapeHtml(tool.kicker)}</span><h3>${escapeHtml(tool.h1)}</h3><p>${escapeHtml(tool.description)}</p><div class="tool-card-footer"><a class="tool-link" href="../${tool.slug}/">Open tool</a></div></article>`).join('')}
+      ${orderedTools.map((tool) => `<article class="tool-card"><span class="hero-kicker">${escapeHtml(tool.kicker)}</span><h3>${escapeHtml(tool.h1)}</h3><p>${escapeHtml(tool.description)}</p><div class="tool-card-footer"><a class="tool-link" href="../${tool.slug}/">Open tool</a></div></article>`).join('')}
     </section>
     <section class="section-stack">
       <article class="content-card">

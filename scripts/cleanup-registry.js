@@ -746,8 +746,16 @@ module.exports = {
     keywords: 'text cleanup tools, extraction tools online, remove duplicate lines, sort lines, compare two lists, remove empty lines, extract numbers, csv column to lines',
     heroTitle: 'Text cleanup and extraction tools for lists, logs, exports, and pasted notes.',
     heroText: 'Use this category when the job is not formatting one value, but cleaning a full set of values: remove duplicates, sort lines, delete blank rows, extract emails, extract URLs, pull out numbers, extract a CSV column, or compare two lists.',
-    heroPrimary: { href: '../remove-duplicate-lines/', label: 'Start with duplicate cleanup' },
-    heroSecondary: { href: '../compare-two-lists/', label: 'Compare two lists' },
+    heroPrimary: { href: '../remove-empty-lines/', label: 'Start with blank-line cleanup' },
+    heroSecondary: { href: '../extract-numbers/', label: 'Extract numbers from text' },
+    featuredSlugs: [
+      'remove-empty-lines',
+      'extract-numbers',
+      'remove-duplicate-lines',
+      'compare-two-lists',
+      'trim-whitespace',
+      'csv-column-to-lines'
+    ],
     introTitle: 'What belongs here',
     introText: 'This category covers list cleanup, text inspection, value extraction, and side-by-side comparison. It is the next step after text transform when copied data is noisy, mixed, or spread across multiple rows.',
     nextStepsTitle: 'Good next steps',
@@ -770,17 +778,17 @@ module.exports = {
         body: 'Remove empty lines, trim whitespace, and dedupe values before quoting, joining, or turning them into SQL or code output.',
         links: [
           { href: '../remove-empty-lines/', label: 'Remove empty lines' },
-          { href: '../trim-whitespace/', label: 'Trim whitespace' },
-          { href: '../remove-duplicate-lines/', label: 'Remove duplicates' }
+          { href: '../remove-duplicate-lines/', label: 'Remove duplicates' },
+          { href: '../trim-whitespace/', label: 'Trim whitespace' }
         ]
       },
       {
         title: 'Extract one signal from messy text',
         body: 'Pull emails, URLs, or numbers out of mixed logs, notes, payloads, and exports, then reuse the clean output in other tools.',
         links: [
+          { href: '../extract-numbers/', label: 'Extract numbers' },
           { href: '../extract-emails/', label: 'Extract emails' },
-          { href: '../extract-urls/', label: 'Extract URLs' },
-          { href: '../extract-numbers/', label: 'Extract numbers' }
+          { href: '../extract-urls/', label: 'Extract URLs' }
         ]
       },
       {
