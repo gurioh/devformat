@@ -36,6 +36,11 @@
     hasHeader: Boolean(config.controls.hasHeader),
     columnIndex: '1'
   });
+  storedSettings.preset = DevFormat.readQueryValue('preset', storedSettings.preset);
+  storedSettings.trim = DevFormat.readQueryBool('trim', storedSettings.trim);
+  storedSettings.skipEmpty = DevFormat.readQueryBool('skip', storedSettings.skipEmpty);
+  storedSettings.hasHeader = DevFormat.readQueryBool('header', storedSettings.hasHeader);
+  storedSettings.columnIndex = DevFormat.readQueryValue('col', storedSettings.columnIndex);
 
   let activePreset = storedSettings.preset || config.defaultPreset || (config.presets[0] && config.presets[0].key) || 'comma';
   if (config.presets.length && !config.presets.some(function (item) { return item.key === activePreset; })) {
@@ -199,4 +204,19 @@
   });
   updateStats(emptyMetrics());
   convert();
+  persistSettings();
+
+  DevFormat.wireShareButton('shareSettingsButton', {
+    tool: config.toolKey,
+    successMessage: 'Settings link copied.',
+    getParams: function () {
+      return {
+        preset: activePreset,
+        trim: trimValues.checked ? 1 : 0,
+        skip: skipEmpty.checked ? 1 : 0,
+        header: hasHeader.checked ? 1 : 0,
+        col: columnIndex.value || '1'
+      };
+    }
+  });
 })();

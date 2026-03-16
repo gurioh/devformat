@@ -31,6 +31,8 @@
     trim: Boolean(config.controls.trim),
     skipEmpty: Boolean(config.controls.skipEmpty)
   });
+  storedSettings.trim = DevFormat.readQueryBool('trim', storedSettings.trim);
+  storedSettings.skipEmpty = DevFormat.readQueryBool('skip', storedSettings.skipEmpty);
 
   function persistSettings() {
     DevFormat.saveToolSettings(config.toolKey, {
@@ -152,4 +154,16 @@
   skipEmpty.checked = Boolean(storedSettings.skipEmpty);
   updateStats(emptyMetrics());
   loadExample(config.defaultExample);
+  persistSettings();
+
+  DevFormat.wireShareButton('shareSettingsButton', {
+    tool: config.toolKey,
+    successMessage: 'Settings link copied.',
+    getParams: function () {
+      return {
+        trim: trimValues.checked ? 1 : 0,
+        skip: skipEmpty.checked ? 1 : 0
+      };
+    }
+  });
 })();

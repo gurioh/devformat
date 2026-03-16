@@ -97,6 +97,53 @@
     }
   };
 
+  namespace.readQueryValue = function readQueryValue(key, fallback) {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const value = params.get(key);
+      return value === null ? fallback : value;
+    } catch (error) {
+      return fallback;
+    }
+  };
+
+  namespace.readQueryBool = function readQueryBool(key, fallback) {
+    const value = namespace.readQueryValue(key, null);
+    if (value === null) return fallback;
+    if (value === '1' || value === 'true') return true;
+    if (value === '0' || value === 'false') return false;
+    return fallback;
+  };
+
+  namespace.buildShareUrl = function buildShareUrl(params) {
+    const next = new URL(window.location.href);
+    next.search = '';
+    Object.keys(params || {}).forEach(function (key) {
+      const value = params[key];
+      if (value === undefined || value === null || value === '') return;
+      next.searchParams.set(key, String(value));
+    });
+    next.hash = '';
+    return next.toString();
+  };
+
+  namespace.wireShareButton = function wireShareButton(buttonId, options) {
+    const button = document.getElementById(buttonId);
+    if (!button || !options || typeof options.getParams !== 'function') return;
+
+    button.addEventListener('click', function () {
+      const params = options.getParams() || {};
+      const shareUrl = namespace.buildShareUrl(params);
+      namespace.copyText(shareUrl, options.successMessage || 'Settings link copied.', {
+        tool: options.tool || getPageName(),
+        action: 'share_settings'
+      });
+      namespace.trackEvent('share_settings', {
+        tool: options.tool || getPageName()
+      });
+    });
+  };
+
   namespace.setActiveNav = function setActiveNav() {
     const current = document.body.dataset.page;
     if (!current) return;

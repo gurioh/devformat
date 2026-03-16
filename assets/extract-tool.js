@@ -30,6 +30,8 @@
     uniqueOnly: Boolean(config.controls.uniqueOnly),
     sortOutput: Boolean(config.controls.sortOutput)
   });
+  storedSettings.uniqueOnly = DevFormat.readQueryBool('unique', storedSettings.uniqueOnly);
+  storedSettings.sortOutput = DevFormat.readQueryBool('sort', storedSettings.sortOutput);
 
   function persistSettings() {
     DevFormat.saveToolSettings(config.toolKey, {
@@ -154,4 +156,16 @@
   sortOutput.checked = Boolean(storedSettings.sortOutput);
   updateStats(emptyMetrics());
   convert();
+  persistSettings();
+
+  DevFormat.wireShareButton('shareSettingsButton', {
+    tool: config.toolKey,
+    successMessage: 'Settings link copied.',
+    getParams: function () {
+      return {
+        unique: uniqueOnly.checked ? 1 : 0,
+        sort: sortOutput.checked ? 1 : 0
+      };
+    }
+  });
 })();

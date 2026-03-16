@@ -150,6 +150,7 @@ function renderListToolbar(tool) {
                 ${controls.skipEmpty ? `<label class="chip"><input id="skipEmpty" type="checkbox" checked> Skip empty lines</label>` : ''}
               </div>
               ${examples.length ? `<div class="example-actions compact">${examples.map((button) => `<button type="button" data-example="${escapeHtml(button.key)}">${escapeHtml(button.label)}</button>`).join('')}</div>` : ''}
+              <div class="toolbar-row compact"><button class="button" type="button" id="shareSettingsButton">Copy settings link</button></div>
             </div>
           </details>
         </div>
@@ -341,6 +342,7 @@ ${jsonScript(breadcrumbJson)}
                 <label class="chip"><input id="sortOutput" type="checkbox" ${config.controls.sortOutput ? 'checked' : ''}> Sort output</label>
               </div>
               <div class="example-actions compact">${config.exampleButtons.map((button) => `<button type="button" data-example="${escapeHtml(button.key)}">${escapeHtml(button.label)}</button>`).join('')}</div>
+              <div class="toolbar-row compact"><button class="button" type="button" id="shareSettingsButton">Copy settings link</button></div>
             </div>
           </details>
         </div>
@@ -466,6 +468,7 @@ ${jsonScript(breadcrumbJson)}
                 <label class="chip"><input id="hasHeader" type="checkbox" checked> Skip header row</label>
               </div>
               <div class="example-actions compact">${config.exampleButtons.map((button) => `<button type="button" data-example="${escapeHtml(button.key)}">${escapeHtml(button.label)}</button>`).join('')}</div>
+              <div class="toolbar-row compact"><button class="button" type="button" id="shareSettingsButton">Copy settings link</button></div>
             </div>
           </details>
         </div>
@@ -584,6 +587,7 @@ ${jsonScript(breadcrumbJson)}
                 <label class="chip"><input id="skipEmpty" type="checkbox" ${config.controls.skipEmpty ? 'checked' : ''}> Skip empty lines</label>
               </div>
               <div class="example-actions compact">${config.exampleButtons.map((button) => `<button type="button" data-example="${escapeHtml(button.key)}">${escapeHtml(button.label)}</button>`).join('')}</div>
+              <div class="toolbar-row compact"><button class="button" type="button" id="shareSettingsButton">Copy settings link</button></div>
             </div>
           </details>
         </div>

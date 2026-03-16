@@ -34,6 +34,9 @@
     trim: Boolean(config.controls.trim),
     skipEmpty: Boolean(config.controls.skipEmpty)
   });
+  storedSettings.preset = DevFormat.readQueryValue('preset', storedSettings.preset);
+  storedSettings.trim = DevFormat.readQueryBool('trim', storedSettings.trim);
+  storedSettings.skipEmpty = DevFormat.readQueryBool('skip', storedSettings.skipEmpty);
 
   let activePreset = storedSettings.preset || config.defaultPreset || (config.presets[0] && config.presets[0].key) || '';
   if (config.presets.length && !config.presets.some(function (item) { return item.key === activePreset; })) {
@@ -276,4 +279,17 @@
   });
   updateStats(emptyMetrics());
   convert();
+  persistSettings();
+
+  DevFormat.wireShareButton('shareSettingsButton', {
+    tool: config.toolKey,
+    successMessage: 'Settings link copied.',
+    getParams: function () {
+      return {
+        preset: activePreset || '',
+        trim: trimValues && trimValues.checked ? 1 : 0,
+        skip: skipEmpty && skipEmpty.checked ? 1 : 0
+      };
+    }
+  });
 })();
