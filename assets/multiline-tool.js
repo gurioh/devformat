@@ -57,6 +57,29 @@
     reversed: false,
     activePreset: defaultPreset
   };
+  const storedSettings = DevFormat.loadToolSettings('multiline', {
+    reversed: false,
+    preset: defaultPreset,
+    delimiter: (presets[defaultPreset] && presets[defaultPreset].delimiter) || ', ',
+    quote: (presets[defaultPreset] && presets[defaultPreset].quoteChar) || '',
+    wrapStart: (presets[defaultPreset] && presets[defaultPreset].wrapStart) || '',
+    wrapEnd: (presets[defaultPreset] && presets[defaultPreset].wrapEnd) || '',
+    trim: true,
+    skip: true
+  });
+
+  function persistSettings() {
+    DevFormat.saveToolSettings('multiline', {
+      reversed: state.reversed,
+      preset: state.activePreset,
+      delimiter: delimiter.value,
+      quote: quoteChar.value,
+      wrapStart: wrapStart.value,
+      wrapEnd: wrapEnd.value,
+      trim: trimLines.checked,
+      skip: skipEmpty.checked
+    });
+  }
 
   function parseEscapes(value) {
     return value.replace(/\\t/g, '\t').replace(/\\n/g, '\n');
@@ -83,6 +106,7 @@
     quoteChar.value = preset.quoteChar;
     wrapStart.value = preset.wrapStart;
     wrapEnd.value = preset.wrapEnd;
+    persistSettings();
     convert();
   }
 
@@ -195,6 +219,7 @@
       document.querySelectorAll('[data-direction]').forEach(function (node) {
         node.classList.toggle('active', node === button);
       });
+      persistSettings();
       syncHints();
       input.value = output.value;
       output.value = '';
@@ -212,12 +237,16 @@
   [delimiter, quoteChar, wrapStart, wrapEnd].forEach(function (field) {
     field.addEventListener('input', function () {
       markCustomIfNeeded();
+      persistSettings();
       convert();
     });
   });
 
   [trimLines, skipEmpty, input].forEach(function (field) {
-    field.addEventListener(field === input ? 'input' : 'change', convert);
+    field.addEventListener(field === input ? 'input' : 'change', function () {
+      if (field !== input) persistSettings();
+      convert();
+    });
   });
 
   copyButton.addEventListener('click', function () {
@@ -236,7 +265,37 @@
     convert();
   });
 
+  state.reversed = DevFormat.readQueryBool('rev', storedSettings.reversed);
+  state.activePreset = DevFormat.readQueryValue('preset', storedSettings.preset);
+  trimLines.checked = DevFormat.readQueryBool('trim', storedSettings.trim);
+  skipEmpty.checked = DevFormat.readQueryBool('skip', storedSettings.skip);
+  document.querySelectorAll('[data-direction]').forEach(function (node) {
+    node.classList.toggle('active', node.dataset.direction === (state.reversed ? 'reverse' : 'forward'));
+  });
   syncHints();
+  if (!presets[state.activePreset]) state.activePreset = defaultPreset;
+  applyPreset(state.activePreset);
+  delimiter.value = DevFormat.readQueryValue('delimiter', storedSettings.delimiter);
+  quoteChar.value = DevFormat.readQueryValue('quote', storedSettings.quote);
+  wrapStart.value = DevFormat.readQueryValue('wrapStart', storedSettings.wrapStart);
+  wrapEnd.value = DevFormat.readQueryValue('wrapEnd', storedSettings.wrapEnd);
+  if (state.activePreset !== 'custom') markCustomIfNeeded();
+  DevFormat.wireShareButton('shareSettingsButton', {
+    tool: 'multiline',
+    getParams: function () {
+      return {
+        rev: state.reversed ? 1 : 0,
+        preset: state.activePreset,
+        delimiter: delimiter.value,
+        quote: quoteChar.value,
+        wrapStart: wrapStart.value,
+        wrapEnd: wrapEnd.value,
+        trim: trimLines.checked ? 1 : 0,
+        skip: skipEmpty.checked ? 1 : 0
+      };
+    }
+  });
+  persistSettings();
   input.value = examples[defaultExample] || '';
-  applyPreset(defaultPreset);
+  convert();
 })();

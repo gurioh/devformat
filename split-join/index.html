@@ -98,6 +98,9 @@
                 <button type="button" data-example="pipes">Pipe separated</button>
                 <button type="button" data-example="tabs">Tab separated</button>
               </div>
+              <div class="toolbar-row compact">
+                <button class="button" type="button" id="shareSettingsButton">Copy settings link</button>
+              </div>
             </div>
           </details>
         </div>
@@ -214,8 +217,25 @@
     const trimValues = document.getElementById('trimValues');
     const skipEmpty = document.getElementById('skipEmpty');
     const advancedPanel = document.getElementById('advancedPanel');
-    let mode = 'join';
-    let activePreset = 'comma';
+    const storedSettings = DevFormat.loadToolSettings('split_join', {
+      mode: 'join',
+      preset: 'comma',
+      separator: ', ',
+      trim: true,
+      skip: true
+    });
+    let mode = DevFormat.readQueryValue('mode', storedSettings.mode) === 'split' ? 'split' : 'join';
+    let activePreset = DevFormat.readQueryValue('preset', storedSettings.preset);
+
+    function persistSettings() {
+      DevFormat.saveToolSettings('split_join', {
+        mode: mode,
+        preset: activePreset,
+        separator: separator.value,
+        trim: trimValues.checked,
+        skip: skipEmpty.checked
+      });
+    }
 
     function parseEscapes(value) {
       return value.replace(/\\t/g, '\t').replace(/\\n/g, '\n');
@@ -234,6 +254,7 @@
       if (presets[key] !== null) {
         separator.value = presets[key];
       }
+      persistSettings();
       convert();
     }
 
@@ -314,14 +335,19 @@
       });
     }
 
+    function syncModeButtons() {
+      document.querySelectorAll('[data-mode]').forEach(function (node) {
+        node.classList.toggle('active', node.dataset.mode === mode);
+      });
+      document.getElementById('inputHint').textContent = mode === 'join' ? 'Multiline text' : 'Delimited string';
+      document.getElementById('outputHint').textContent = mode === 'join' ? 'Joined string' : 'One value per line';
+    }
+
     document.querySelectorAll('[data-mode]').forEach(function (button) {
       button.addEventListener('click', function () {
         mode = button.dataset.mode;
-        document.querySelectorAll('[data-mode]').forEach(function (node) {
-          node.classList.toggle('active', node === button);
-        });
-        document.getElementById('inputHint').textContent = mode === 'join' ? 'Multiline text' : 'Delimited string';
-        document.getElementById('outputHint').textContent = mode === 'join' ? 'Joined string' : 'One value per line';
+        syncModeButtons();
+        persistSettings();
         input.value = output.value;
         output.value = '';
         convert();
@@ -337,11 +363,15 @@
 
     separator.addEventListener('input', function () {
       markCustomIfNeeded();
+      persistSettings();
       convert();
     });
 
     [trimValues, skipEmpty].forEach(function (field) {
-      field.addEventListener('change', convert);
+      field.addEventListener('change', function () {
+        persistSettings();
+        convert();
+      });
     });
     input.addEventListener('input', convert);
 
@@ -360,28 +390,44 @@
       input.value = examples[key] || '';
       if (key === 'pipes') {
         mode = 'split';
-        document.querySelectorAll('[data-mode]').forEach(function (node) {
-          node.classList.toggle('active', node.dataset.mode === 'split');
-        });
+        syncModeButtons();
         applyPreset('pipe');
       } else if (key === 'tabs') {
         mode = 'split';
-        document.querySelectorAll('[data-mode]').forEach(function (node) {
-          node.classList.toggle('active', node.dataset.mode === 'split');
-        });
+        syncModeButtons();
         applyPreset('tab');
       } else {
         mode = 'join';
-        document.querySelectorAll('[data-mode]').forEach(function (node) {
-          node.classList.toggle('active', node.dataset.mode === 'join');
-        });
+        syncModeButtons();
         applyPreset('comma');
       }
+      persistSettings();
       convert();
     });
 
+    trimValues.checked = DevFormat.readQueryBool('trim', storedSettings.trim);
+    skipEmpty.checked = DevFormat.readQueryBool('skip', storedSettings.skip);
+    separator.value = DevFormat.readQueryValue('separator', storedSettings.separator);
+    syncModeButtons();
+    if (!presets.hasOwnProperty(activePreset)) activePreset = 'comma';
+    applyPreset(activePreset);
+    separator.value = DevFormat.readQueryValue('separator', storedSettings.separator);
+    if (activePreset !== 'custom') markCustomIfNeeded();
+    DevFormat.wireShareButton('shareSettingsButton', {
+      tool: 'split_join',
+      getParams: function () {
+        return {
+          mode: mode,
+          preset: activePreset,
+          separator: separator.value,
+          trim: trimValues.checked ? 1 : 0,
+          skip: skipEmpty.checked ? 1 : 0
+        };
+      }
+    });
+    persistSettings();
     input.value = examples.names;
-    applyPreset('comma');
+    convert();
   </script>
 </body>
 </html>

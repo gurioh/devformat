@@ -45,6 +45,26 @@
 
   if (!input || !output || !quoteChar || !delimiter || !trimLines || !skipEmpty || !advancedPanel || !inputHint || !copyButton || !clearButton) return;
 
+  const storedSettings = DevFormat.loadToolSettings('quote', {
+    mode: config.defaultMode || defaults.defaultMode,
+    preset: config.defaultPreset || defaults.defaultPreset,
+    quote: (presets[config.defaultPreset || defaults.defaultPreset] && presets[config.defaultPreset || defaults.defaultPreset].quoteChar) || "'",
+    delimiter: (presets[config.defaultPreset || defaults.defaultPreset] && presets[config.defaultPreset || defaults.defaultPreset].delimiter) || '\\n',
+    trim: true,
+    skip: true
+  });
+
+  function persistSettings() {
+    DevFormat.saveToolSettings('quote', {
+      mode: mode,
+      preset: activePreset,
+      quote: quoteChar.value,
+      delimiter: delimiter.value,
+      trim: trimLines.checked,
+      skip: skipEmpty.checked
+    });
+  }
+
   function parseEscapes(value) {
     return value.replace(/\\t/g, '\t').replace(/\\n/g, '\n');
   }
@@ -63,6 +83,7 @@
     if (!preset) return;
     quoteChar.value = preset.quoteChar;
     delimiter.value = preset.delimiter;
+    persistSettings();
     convert();
   }
 
@@ -158,6 +179,7 @@
       document.querySelectorAll('[data-mode]').forEach(function (node) {
         node.classList.toggle('active', node === button);
       });
+      persistSettings();
       input.value = output.value;
       output.value = '';
       convert();
@@ -174,12 +196,16 @@
   [quoteChar, delimiter].forEach(function (field) {
     field.addEventListener('input', function () {
       markCustomIfNeeded();
+      persistSettings();
       convert();
     });
   });
 
   [trimLines, skipEmpty].forEach(function (field) {
-    field.addEventListener('change', convert);
+    field.addEventListener('change', function () {
+      persistSettings();
+      convert();
+    });
   });
   input.addEventListener('input', convert);
 
@@ -208,9 +234,36 @@
       });
       applyPreset(config.defaultPreset || defaults.defaultPreset);
     }
+    persistSettings();
     convert();
   });
 
+  mode = DevFormat.readQueryValue('mode', storedSettings.mode) === 'unquote' ? 'unquote' : 'quote';
+  activePreset = DevFormat.readQueryValue('preset', storedSettings.preset);
+  trimLines.checked = DevFormat.readQueryBool('trim', storedSettings.trim);
+  skipEmpty.checked = DevFormat.readQueryBool('skip', storedSettings.skip);
+  document.querySelectorAll('[data-mode]').forEach(function (node) {
+    node.classList.toggle('active', node.dataset.mode === mode);
+  });
   input.value = examples[config.defaultExample || defaults.defaultExample] || examples.env;
-  applyPreset(config.defaultPreset || defaults.defaultPreset);
+  if (!presets[activePreset]) activePreset = config.defaultPreset || defaults.defaultPreset;
+  applyPreset(activePreset);
+  quoteChar.value = DevFormat.readQueryValue('quote', storedSettings.quote);
+  delimiter.value = DevFormat.readQueryValue('delimiter', storedSettings.delimiter);
+  if (activePreset !== 'custom') markCustomIfNeeded();
+  DevFormat.wireShareButton('shareSettingsButton', {
+    tool: 'quote',
+    getParams: function () {
+      return {
+        mode: mode,
+        preset: activePreset,
+        quote: quoteChar.value,
+        delimiter: delimiter.value,
+        trim: trimLines.checked ? 1 : 0,
+        skip: skipEmpty.checked ? 1 : 0
+      };
+    }
+  });
+  persistSettings();
+  convert();
 })();

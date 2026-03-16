@@ -33,6 +33,18 @@
 
   if (!input || !output || !inputHint || !copyButton || !clearButton) return;
 
+  const storedSettings = DevFormat.loadToolSettings('escape', {
+    mode: config.defaultMode || defaults.defaultMode,
+    preset: config.defaultPreset || defaults.defaultPreset
+  });
+
+  function persistSettings() {
+    DevFormat.saveToolSettings('escape', {
+      mode: mode,
+      preset: preset
+    });
+  }
+
   function escapeJson(value) {
     return value
       .replace(/\\/g, '\\\\')
@@ -121,6 +133,7 @@
       document.querySelectorAll('[data-mode]').forEach(function (node) {
         node.classList.toggle('active', node === button);
       });
+      persistSettings();
       input.value = output.value;
       output.value = '';
       convert();
@@ -133,6 +146,7 @@
       document.querySelectorAll('[data-preset]').forEach(function (node) {
         node.classList.toggle('active', node === button);
       });
+      persistSettings();
       convert();
       DevFormat.trackEvent('preset_select', { tool: 'escape', preset: preset });
     });
@@ -154,6 +168,30 @@
     convert();
   });
 
+  mode = DevFormat.readQueryValue('mode', storedSettings.mode) === 'unescape' ? 'unescape' : 'escape';
+  preset = DevFormat.readQueryValue('preset', storedSettings.preset);
+  document.querySelectorAll('[data-mode]').forEach(function (node) {
+    node.classList.toggle('active', node.dataset.mode === mode);
+  });
+  document.querySelectorAll('[data-preset]').forEach(function (node) {
+    node.classList.toggle('active', node.dataset.preset === preset);
+  });
+  if (!document.querySelector('[data-preset].active')) {
+    preset = config.defaultPreset || defaults.defaultPreset;
+    document.querySelectorAll('[data-preset]').forEach(function (node) {
+      node.classList.toggle('active', node.dataset.preset === preset);
+    });
+  }
+  DevFormat.wireShareButton('shareSettingsButton', {
+    tool: 'escape',
+    getParams: function () {
+      return {
+        mode: mode,
+        preset: preset
+      };
+    }
+  });
+  persistSettings();
   input.value = examples[config.defaultExample || 'json'] || examples.json;
   updateStats();
   convert();
