@@ -2,6 +2,7 @@
   const GA_ID = 'G-VRRM1M4TJY';
   const namespace = {};
   const eventTimers = {};
+  const SETTINGS_PREFIX = 'devformat:tool-settings:';
 
   function emitEvent(eventName, params) {
     if (typeof window.gtag === 'function') {
@@ -66,6 +67,33 @@
     } catch (error) {
       namespace.showToast('Clipboard access failed.');
       return false;
+    }
+  };
+
+  namespace.loadToolSettings = function loadToolSettings(toolKey, defaults) {
+    if (!toolKey || typeof window.localStorage === 'undefined') {
+      return Object.assign({}, defaults || {});
+    }
+
+    try {
+      const raw = window.localStorage.getItem(SETTINGS_PREFIX + toolKey);
+      if (!raw) return Object.assign({}, defaults || {});
+      const parsed = JSON.parse(raw);
+      if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+        return Object.assign({}, defaults || {});
+      }
+      return Object.assign({}, defaults || {}, parsed);
+    } catch (error) {
+      return Object.assign({}, defaults || {});
+    }
+  };
+
+  namespace.saveToolSettings = function saveToolSettings(toolKey, settings) {
+    if (!toolKey || typeof window.localStorage === 'undefined') return;
+    try {
+      window.localStorage.setItem(SETTINGS_PREFIX + toolKey, JSON.stringify(settings || {}));
+    } catch (error) {
+      // Ignore storage failures so tools continue working in restrictive browsers.
     }
   };
 

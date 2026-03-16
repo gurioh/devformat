@@ -29,7 +29,28 @@
 
   if (!input || !output || !copyButton || !clearButton || !trimValues || !skipEmpty || !hasHeader || !columnIndex) return;
 
-  let activePreset = config.defaultPreset || (config.presets[0] && config.presets[0].key) || 'comma';
+  const storedSettings = DevFormat.loadToolSettings(config.toolKey, {
+    preset: config.defaultPreset || 'comma',
+    trim: Boolean(config.controls.trim),
+    skipEmpty: Boolean(config.controls.skipEmpty),
+    hasHeader: Boolean(config.controls.hasHeader),
+    columnIndex: '1'
+  });
+
+  let activePreset = storedSettings.preset || config.defaultPreset || (config.presets[0] && config.presets[0].key) || 'comma';
+  if (config.presets.length && !config.presets.some(function (item) { return item.key === activePreset; })) {
+    activePreset = config.defaultPreset || config.presets[0].key;
+  }
+
+  function persistSettings() {
+    DevFormat.saveToolSettings(config.toolKey, {
+      preset: activePreset,
+      trim: Boolean(trimValues.checked),
+      skipEmpty: Boolean(skipEmpty.checked),
+      hasHeader: Boolean(hasHeader.checked),
+      columnIndex: columnIndex.value || '1'
+    });
+  }
 
   function updateStats(metrics) {
     document.querySelectorAll('[data-stat]').forEach(function (node) {
@@ -132,14 +153,21 @@
         node.classList.toggle('active', node === button);
       });
       DevFormat.trackEvent('preset_select', { tool: config.toolKey, preset: activePreset });
+      persistSettings();
       convert();
     });
   });
 
   [trimValues, skipEmpty, hasHeader].forEach(function (field) {
-    field.addEventListener('change', convert);
+    field.addEventListener('change', function () {
+      persistSettings();
+      convert();
+    });
   });
-  columnIndex.addEventListener('input', convert);
+  columnIndex.addEventListener('input', function () {
+    persistSettings();
+    convert();
+  });
   input.addEventListener('input', convert);
 
   DevFormat.wireExampleButtons(function (key) {
@@ -162,7 +190,13 @@
   if (outputHint) outputHint.textContent = config.outputHint;
   input.placeholder = config.placeholder;
   input.value = config.examples[config.defaultExample] || '';
-  columnIndex.value = '1';
+  trimValues.checked = Boolean(storedSettings.trim);
+  skipEmpty.checked = Boolean(storedSettings.skipEmpty);
+  hasHeader.checked = Boolean(storedSettings.hasHeader);
+  columnIndex.value = storedSettings.columnIndex || '1';
+  document.querySelectorAll('[data-preset]').forEach(function (node) {
+    node.classList.toggle('active', node.dataset.preset === activePreset);
+  });
   updateStats(emptyMetrics());
   convert();
 })();

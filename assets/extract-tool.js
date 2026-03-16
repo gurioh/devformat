@@ -26,6 +26,18 @@
 
   if (!input || !output || !copyButton || !clearButton || !uniqueOnly || !sortOutput) return;
 
+  const storedSettings = DevFormat.loadToolSettings(config.toolKey, {
+    uniqueOnly: Boolean(config.controls.uniqueOnly),
+    sortOutput: Boolean(config.controls.sortOutput)
+  });
+
+  function persistSettings() {
+    DevFormat.saveToolSettings(config.toolKey, {
+      uniqueOnly: Boolean(uniqueOnly.checked),
+      sortOutput: Boolean(sortOutput.checked)
+    });
+  }
+
   const patterns = {
     emails: /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,
     urls: /(https?:\/\/[^\s"'<>]+|www\.[^\s"'<>]+)/gi,
@@ -108,8 +120,14 @@
     });
   }
 
-  uniqueOnly.addEventListener('change', convert);
-  sortOutput.addEventListener('change', convert);
+  uniqueOnly.addEventListener('change', function () {
+    persistSettings();
+    convert();
+  });
+  sortOutput.addEventListener('change', function () {
+    persistSettings();
+    convert();
+  });
   input.addEventListener('input', convert);
 
   DevFormat.wireExampleButtons(function (key) {
@@ -132,8 +150,8 @@
   if (outputHint) outputHint.textContent = config.outputHint;
   input.placeholder = config.placeholder;
   input.value = config.examples[config.defaultExample] || '';
-  uniqueOnly.checked = Boolean(config.controls.uniqueOnly);
-  sortOutput.checked = Boolean(config.controls.sortOutput);
+  uniqueOnly.checked = Boolean(storedSettings.uniqueOnly);
+  sortOutput.checked = Boolean(storedSettings.sortOutput);
   updateStats(emptyMetrics());
   convert();
 })();

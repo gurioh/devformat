@@ -27,6 +27,18 @@
 
   if (!inputA || !inputB || !commonOutput || !onlyAOutput || !onlyBOutput || !trimValues || !skipEmpty || !clearAButton || !clearBButton) return;
 
+  const storedSettings = DevFormat.loadToolSettings(config.toolKey, {
+    trim: Boolean(config.controls.trim),
+    skipEmpty: Boolean(config.controls.skipEmpty)
+  });
+
+  function persistSettings() {
+    DevFormat.saveToolSettings(config.toolKey, {
+      trim: Boolean(trimValues.checked),
+      skipEmpty: Boolean(skipEmpty.checked)
+    });
+  }
+
   function updateStats(metrics) {
     document.querySelectorAll('[data-stat]').forEach(function (node) {
       const key = node.dataset.stat;
@@ -99,8 +111,14 @@
 
   inputA.addEventListener('input', compare);
   inputB.addEventListener('input', compare);
-  trimValues.addEventListener('change', compare);
-  skipEmpty.addEventListener('change', compare);
+  trimValues.addEventListener('change', function () {
+    persistSettings();
+    compare();
+  });
+  skipEmpty.addEventListener('change', function () {
+    persistSettings();
+    compare();
+  });
 
   DevFormat.wireExampleButtons(function (key) {
     loadExample(key);
@@ -130,8 +148,8 @@
     inputB.focus();
   });
 
-  trimValues.checked = Boolean(config.controls.trim);
-  skipEmpty.checked = Boolean(config.controls.skipEmpty);
+  trimValues.checked = Boolean(storedSettings.trim);
+  skipEmpty.checked = Boolean(storedSettings.skipEmpty);
   updateStats(emptyMetrics());
   loadExample(config.defaultExample);
 })();

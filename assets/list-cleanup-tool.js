@@ -29,7 +29,24 @@
 
   if (!input || !output || !copyButton || !clearButton || !advancedPanel) return;
 
-  let activePreset = config.defaultPreset || (config.presets[0] && config.presets[0].key) || '';
+  const storedSettings = DevFormat.loadToolSettings(config.toolKey, {
+    preset: config.defaultPreset || '',
+    trim: Boolean(config.controls.trim),
+    skipEmpty: Boolean(config.controls.skipEmpty)
+  });
+
+  let activePreset = storedSettings.preset || config.defaultPreset || (config.presets[0] && config.presets[0].key) || '';
+  if (config.presets.length && !config.presets.some(function (item) { return item.key === activePreset; })) {
+    activePreset = config.defaultPreset || config.presets[0].key;
+  }
+
+  function persistSettings() {
+    DevFormat.saveToolSettings(config.toolKey, {
+      preset: activePreset || '',
+      trim: Boolean(trimValues && trimValues.checked),
+      skipEmpty: Boolean(skipEmpty && skipEmpty.checked)
+    });
+  }
 
   function updateStats(metrics) {
     document.querySelectorAll('[data-stat]').forEach(function (node) {
@@ -217,12 +234,19 @@
         node.classList.toggle('active', node === button);
       });
       DevFormat.trackEvent('preset_select', { tool: config.toolKey, preset: activePreset });
+      persistSettings();
       convert();
     });
   });
 
-  if (trimValues) trimValues.addEventListener('change', convert);
-  if (skipEmpty) skipEmpty.addEventListener('change', convert);
+  if (trimValues) trimValues.addEventListener('change', function () {
+    persistSettings();
+    convert();
+  });
+  if (skipEmpty) skipEmpty.addEventListener('change', function () {
+    persistSettings();
+    convert();
+  });
   input.addEventListener('input', convert);
 
   DevFormat.wireExampleButtons(function (key) {
@@ -244,7 +268,12 @@
   if (inputHint) inputHint.textContent = config.inputHint;
   if (outputHint) outputHint.textContent = config.outputHint;
   input.placeholder = config.placeholder;
+  if (trimValues) trimValues.checked = Boolean(storedSettings.trim);
+  if (skipEmpty) skipEmpty.checked = Boolean(storedSettings.skipEmpty);
   input.value = config.examples[config.defaultExample] || '';
+  document.querySelectorAll('[data-preset]').forEach(function (node) {
+    node.classList.toggle('active', node.dataset.preset === activePreset);
+  });
   updateStats(emptyMetrics());
   convert();
 })();
