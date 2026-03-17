@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text to Env Var List Guide | DevFormat</title>
+  <meta name="description" content="Convert newline text into an env var style list in your browser. Useful for allowlists, IDs, feature flags, and comma-separated config values.">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="Text to Env Var List Guide | DevFormat">
+  <meta property="og:description" content="Turn one value per line into an env var style list for config files and deployment workflows.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/text-to-env-var-list/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/text-to-env-var-list/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Text to Env Var List Guide","description":"Convert newline text into an env var style list in your browser.","author":{"@type":"Organization","name":"DevFormat"},"publisher":{"@type":"Organization","name":"DevFormat"},"mainEntityOfPage":"https://gurioh.github.io/devformat/text-to-env-var-list/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DevFormat Tools","item":"https://gurioh.github.io/devformat/"},{"@type":"ListItem","position":2,"name":"Text to Env Var List Guide","item":"https://gurioh.github.io/devformat/text-to-env-var-list/"}]}</script>
+</head>
+<body data-page="guide-env-vars">
+  <header class="site-header"><div class="site-header-inner"><a class="brand" href="../"><div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div><div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div></a><nav class="site-nav"><a data-page-link="catalog" href="../">Tools</a><a data-page-link="multiline" href="../multiline/">Multiline</a><a data-page-link="quote" href="../quote/">Quote</a><a data-page-link="split-join" href="../split-join/">Split / Join</a><a data-page-link="cleanup" href="../cleanup/">Cleanup</a><a data-page-link="escape" href="../escape/">Escape</a><a data-page-link="base64" href="../base64/">Base64</a><a data-page-link="url-encode" href="../url-encode/">URL Encode</a><a data-page-link="slugify" href="../slugify/">Slugify</a><a data-page-link="json" href="../json/">JSON</a></nav></div></header>
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../">Tools</a><span>/</span><span aria-current="page">Text to Env Var List Guide</span></nav>
+    <section class="hero compact"><span class="hero-kicker">Guide</span><h1>Convert text to an env var list</h1><p>Paste one value per line and turn it into a single env var style string that is easy to drop into config files, deployment settings, or local `.env` values.</p><div class="hero-actions"><a class="button primary" href="../multiline/">Open multiline tool</a><a class="button" href="../split-join/">Open split / join tool</a></div></section>
+    <section class="section-stack"><article class="content-card"><h2>Example input</h2><p><code>feature_a<br>feature_b<br>feature_c</code></p></article><article class="content-card"><h2>Expected output</h2><p><code>feature_a,feature_b,feature_c</code></p></article><article class="content-card"><h2>Steps</h2><ol><li>Open the <a class="text-accent" href="../multiline/">multiline converter</a>.</li><li>Paste one value per line.</li><li>Select the <code>Env Var List</code> preset.</li><li>Copy the generated output into your config or deployment environment.</li></ol></article></section>
+    <section class="split-layout"><article class="content-card"><h2>When this is useful</h2><ul><li>Creating allowlists for environment variables</li><li>Preparing comma-separated feature flag values</li><li>Turning copied IDs into a deployment-ready config string</li></ul></article><article class="content-card"><h2>Related tools</h2><p>If you need quotes or wrappers too, use the <a class="text-accent" href="../quote/">quote tool</a>. If you need to split the config string back into rows, use <a class="text-accent" href="../split-join/">split / join</a>.</p></article></section>
+    <section class="faq-card"><h2>FAQ</h2><div class="faq-list"><article class="faq-item"><h3>Can I use comma-space instead of plain commas?</h3><p>Yes. Switch to a custom delimiter if your env var format expects spaces after commas.</p></article><article class="faq-item"><h3>Can I quote each value for .env files?</h3><p>Yes. Use the quote tool or a custom multiline preset if your config needs quoted values.</p></article><article class="faq-item"><h3>Can I reverse the env var list back into lines later?</h3><p>Yes. The split / join tool can break a comma-separated env var string back into one value per line.</p></article></div></section>
+    <footer class="page-footer"><p>This guide focuses on configuration-friendly output. The actual transform happens in the multiline tool.</p><nav><a href="../multiline/">Multiline Tool</a><a href="../split-join/">Split / Join Tool</a><a href="../quote/">Quote Tool</a></nav></footer>
+  </main>
+  <script src="../assets/site.js"></script>
+</body>
+</html>
