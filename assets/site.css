@@ -368,6 +368,33 @@ body[data-layout="tool"] .breadcrumb {
   font-size: 18px;
 }
 
+.recipe-manager {
+  margin: 0 0 16px;
+  display: grid;
+  gap: 14px;
+}
+
+.recipe-manager h2 {
+  font-size: 18px;
+}
+
+.recipe-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.recipe-select {
+  min-width: min(100%, 260px);
+  flex: 1 1 260px;
+}
+
+.recipe-note {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
 .tool-grid,
 .related-grid,
 .stat-grid,

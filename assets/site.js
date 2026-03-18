@@ -3,6 +3,7 @@
   const namespace = {};
   const eventTimers = {};
   const SETTINGS_PREFIX = 'devformat:tool-settings:';
+  const RECIPES_PREFIX = 'devformat:recipes:';
 
   function emitEvent(eventName, params) {
     if (typeof window.gtag === 'function') {
@@ -92,6 +93,27 @@
     if (!toolKey || typeof window.localStorage === 'undefined') return;
     try {
       window.localStorage.setItem(SETTINGS_PREFIX + toolKey, JSON.stringify(settings || {}));
+    } catch (error) {
+      // Ignore storage failures so tools continue working in restrictive browsers.
+    }
+  };
+
+  namespace.loadRecipes = function loadRecipes(toolKey) {
+    if (!toolKey || typeof window.localStorage === 'undefined') return [];
+    try {
+      const raw = window.localStorage.getItem(RECIPES_PREFIX + toolKey);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+      return [];
+    }
+  };
+
+  namespace.saveRecipes = function saveRecipes(toolKey, recipes) {
+    if (!toolKey || typeof window.localStorage === 'undefined') return;
+    try {
+      window.localStorage.setItem(RECIPES_PREFIX + toolKey, JSON.stringify(Array.isArray(recipes) ? recipes : []));
     } catch (error) {
       // Ignore storage failures so tools continue working in restrictive browsers.
     }

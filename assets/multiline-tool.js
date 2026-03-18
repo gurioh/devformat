@@ -5,6 +5,8 @@
       'js-array': { delimiter: ', ', quoteChar: '"', wrapStart: '[', wrapEnd: ']' },
       'python-list': { delimiter: ', ', quoteChar: "'", wrapStart: '[', wrapEnd: ']' },
       'csv': { delimiter: ',', quoteChar: '', wrapStart: '', wrapEnd: '' },
+      'env-var': { delimiter: ',', quoteChar: '', wrapStart: '', wrapEnd: '' },
+      'markdown-bullet': { delimiter: '\n- ', quoteChar: '', wrapStart: '- ', wrapEnd: '' },
       'comma': { delimiter: ', ', quoteChar: '', wrapStart: '', wrapEnd: '' },
       'pipe': { delimiter: ' | ', quoteChar: '', wrapStart: '', wrapEnd: '' },
       'tab': { delimiter: '\\t', quoteChar: '', wrapStart: '', wrapEnd: '' },
@@ -29,6 +31,7 @@
   };
 
   const config = window.DevFormatMultilineConfig || {};
+  const toolKey = config.toolKey || 'multiline';
   const strings = Object.assign({}, defaults.strings, config.strings || {});
   const presets = config.presets || defaults.presets;
   const examples = config.examples || defaults.examples;
@@ -57,7 +60,7 @@
     reversed: false,
     activePreset: defaultPreset
   };
-  const storedSettings = DevFormat.loadToolSettings('multiline', {
+  const storedSettings = DevFormat.loadToolSettings(toolKey, {
     reversed: false,
     preset: defaultPreset,
     delimiter: (presets[defaultPreset] && presets[defaultPreset].delimiter) || ', ',
@@ -69,7 +72,7 @@
   });
 
   function persistSettings() {
-    DevFormat.saveToolSettings('multiline', {
+    DevFormat.saveToolSettings(toolKey, {
       reversed: state.reversed,
       preset: state.activePreset,
       delimiter: delimiter.value,
@@ -200,7 +203,7 @@
     const metrics = state.reversed ? convertReverse(raw) : convertForward(raw);
     updateStats(metrics);
     DevFormat.trackEvent('tool_convert', {
-      tool: 'multiline',
+      tool: toolKey,
       mode: state.reversed ? 'reverse' : 'forward',
       preset: state.activePreset,
       item_count: metrics.items,
@@ -230,7 +233,7 @@
   document.querySelectorAll('[data-preset]').forEach(function (button) {
     button.addEventListener('click', function () {
       applyPreset(button.dataset.preset);
-      DevFormat.trackEvent('preset_select', { tool: 'multiline', preset: button.dataset.preset });
+      DevFormat.trackEvent('preset_select', { tool: toolKey, preset: button.dataset.preset });
     });
   });
 
@@ -281,7 +284,7 @@
   wrapEnd.value = DevFormat.readQueryValue('wrapEnd', storedSettings.wrapEnd);
   if (state.activePreset !== 'custom') markCustomIfNeeded();
   DevFormat.wireShareButton('shareSettingsButton', {
-    tool: 'multiline',
+    tool: toolKey,
     getParams: function () {
       return {
         rev: state.reversed ? 1 : 0,

@@ -3,29 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Newline to SQL IN Clause Online | DevFormat</title>
-  <meta name="description" content="Convert multiline text into a SQL IN clause online. Paste IDs, emails, or values and generate query-ready output in your browser.">
-  <meta name="keywords" content="newline to sql in clause, text to sql in clause, text to javascript array, python list converter, newline to comma separated list">
-  <meta property="og:title" content="Newline to SQL IN Clause Online | DevFormat">
-  <meta property="og:description" content="Convert multiline text into SQL IN clauses, JS arrays, Python lists, and CSV rows.">
+  <title>Create a Custom Text Formatter | DevFormat</title>
+  <meta name="description" content="Build your own text formatter with custom delimiters, quotes, wrappers, and saved recipes. Convert pasted values into reusable output formats in your browser.">
+  <meta name="keywords" content="custom text formatter, create a formatter, text formatter builder, newline formatter, saved text recipe">
+  <meta property="og:title" content="Create a Custom Text Formatter | DevFormat">
+  <meta property="og:description" content="Create your own reusable text formatting recipe with custom delimiters, quotes, wrappers, and browser-only saved recipes.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://gurioh.github.io/devformat/multiline/">
-  <link rel="canonical" href="https://gurioh.github.io/devformat/multiline/">
-  <link rel="alternate" hreflang="en" href="https://gurioh.github.io/devformat/multiline/">
-  <link rel="alternate" hreflang="ja" href="https://gurioh.github.io/devformat/ja/sql-in-clause/">
-  <link rel="alternate" hreflang="ko" href="https://gurioh.github.io/devformat/ko/sql-in-clause/">
-  <link rel="alternate" hreflang="x-default" href="https://gurioh.github.io/devformat/multiline/">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/formatter/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/formatter/">
   <link rel="stylesheet" href="../assets/site.css">
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Newline to SQL IN Clause Online",
+    "name": "Create a Custom Text Formatter",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
-    "url": "https://gurioh.github.io/devformat/multiline/",
-    "description": "Convert newline text into SQL IN clauses, JavaScript arrays, Python lists, and CSV rows with workflow presets.",
+    "url": "https://gurioh.github.io/devformat/formatter/",
+    "description": "Create your own text formatting recipe with custom delimiters, quotes, wrappers, and saved browser-only settings.",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
@@ -35,12 +31,12 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       {"@type": "ListItem", "position": 1, "name": "DevFormat Tools", "item": "https://gurioh.github.io/devformat/"},
-      {"@type": "ListItem", "position": 2, "name": "Newline to SQL IN Clause Online", "item": "https://gurioh.github.io/devformat/multiline/"}
+      {"@type": "ListItem", "position": 2, "name": "Create a Custom Text Formatter", "item": "https://gurioh.github.io/devformat/formatter/"}
     ]
   }
   </script>
 </head>
-<body data-page="multiline" data-layout="tool">
+<body data-page="formatter" data-layout="tool">
   <header class="site-header">
     <div class="site-header-inner">
       <a class="brand" href="../">
@@ -53,6 +49,7 @@
       <nav class="site-nav">
         <a data-page-link="catalog" href="../">Tools</a>
         <a data-page-link="multiline" href="../multiline/">Multiline</a>
+        <a data-page-link="formatter" href="../formatter/">Formatter</a>
         <a data-page-link="quote" href="../quote/">Quote</a>
         <a data-page-link="split-join" href="../split-join/">Split / Join</a>
         <a data-page-link="cleanup" href="../cleanup/">Cleanup</a>
@@ -69,25 +66,33 @@
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="../">Tools</a>
       <span>/</span>
-      <span aria-current="page">Newline to SQL IN Clause Online</span>
+      <span aria-current="page">Create a custom text formatter</span>
     </nav>
-    <section class="hero compact hero-slim">
-      <span class="hero-kicker">Text Transform</span>
-      <h1>Newline to SQL IN Clause Online</h1>
-      <p>Paste one value per line and generate a query-ready SQL IN clause, JavaScript array, Python list, or CSV row without leaving the browser.</p>
-    </section>
 
-    <nav class="language-switcher" aria-label="Language selector">
-      <span>Available in</span>
-      <a class="active" aria-current="page" href="../multiline/">English</a>
-      <a href="../ja/sql-in-clause/">日本語</a>
-      <a href="../ko/sql-in-clause/">한국어</a>
-    </nav>
+    <section class="hero compact hero-slim">
+      <span class="hero-kicker">Formatter Builder</span>
+      <h1>Create a custom text formatter</h1>
+      <p>Start from a preset or build your own output format with custom delimiters, quotes, wrappers, and reusable saved recipes.</p>
+    </section>
 
     <section class="content-card answer-summary">
       <h2>Quick answer</h2>
-      <p>This tool converts newline text into a SQL IN clause, JavaScript array, Python list, CSV row, or simple joined string directly in the browser.</p>
-      <p>It works well for copied spreadsheet rows, ID lists, email lists, and quick query-building tasks. Pasted text stays in the browser and is not sent to a server.</p>
+      <p>This formatter lets you turn pasted newline values into reusable output formats like SQL lists, env var lists, Markdown bullets, JavaScript arrays, Python lists, or your own custom shape.</p>
+      <p>Recipes are saved locally in the browser, settings links are shareable, and pasted input text is never stored.</p>
+    </section>
+
+    <section class="content-card recipe-manager">
+      <h2>Saved recipes</h2>
+      <div class="recipe-row">
+        <button class="button primary" type="button" id="saveRecipeButton">Save recipe</button>
+        <select class="select recipe-select" id="recipeSelect">
+          <option value="">No saved recipes yet</option>
+        </select>
+        <button class="button" type="button" id="applyRecipeButton">Apply recipe</button>
+        <button class="button" type="button" id="deleteRecipeButton">Delete recipe</button>
+        <button class="button" type="button" id="shareSettingsButton">Copy recipe link</button>
+      </div>
+      <p class="recipe-note">Recipes store formatter settings only. Input values are never saved.</p>
     </section>
 
     <section class="tool-shell">
@@ -97,8 +102,8 @@
             <button class="active" type="button" data-direction="forward">Multi -&gt; Single</button>
             <button type="button" data-direction="reverse">Single -&gt; Multi</button>
           </div>
-          <details class="toolbar-details" id="advancedPanel">
-            <summary>Advanced settings</summary>
+          <details class="toolbar-details" id="advancedPanel" open>
+            <summary>Formatter settings</summary>
             <div class="toolbar-detail-body">
               <div class="toolbar-grid compact">
                 <div class="field">
@@ -107,15 +112,15 @@
                 </div>
                 <div class="field">
                   <label for="quoteChar">Quote</label>
-                  <input class="input" id="quoteChar" value="'">
+                  <input class="input" id="quoteChar" value="">
                 </div>
                 <div class="field">
                   <label for="wrapStart">Wrap start</label>
-                  <input class="input" id="wrapStart" value="(">
+                  <input class="input" id="wrapStart" value="">
                 </div>
                 <div class="field">
                   <label for="wrapEnd">Wrap end</label>
-                  <input class="input" id="wrapEnd" value=")">
+                  <input class="input" id="wrapEnd" value="">
                 </div>
               </div>
               <div class="toolbar-row compact">
@@ -127,14 +132,11 @@
                 <button type="button" data-example="ids">Record IDs</button>
                 <button type="button" data-example="emails">Email list</button>
               </div>
-              <div class="toolbar-row compact">
-                <button class="button" type="button" id="shareSettingsButton">Copy settings link</button>
-              </div>
             </div>
           </details>
         </div>
         <div class="toolbar-row" id="presetBar">
-          <button class="preset-chip active" type="button" data-preset="sql-in">SQL IN</button>
+          <button class="preset-chip" type="button" data-preset="sql-in">SQL IN</button>
           <button class="preset-chip" type="button" data-preset="js-array">JS Array</button>
           <button class="preset-chip" type="button" data-preset="python-list">Python List</button>
           <button class="preset-chip" type="button" data-preset="csv">CSV Row</button>
@@ -143,7 +145,7 @@
           <button class="preset-chip" type="button" data-preset="comma">Comma Join</button>
           <button class="preset-chip" type="button" data-preset="pipe">Pipe</button>
           <button class="preset-chip" type="button" data-preset="tab">Tab</button>
-          <button class="preset-chip" type="button" data-preset="custom">Custom</button>
+          <button class="preset-chip active" type="button" data-preset="custom">Custom</button>
         </div>
       </div>
 
@@ -156,7 +158,7 @@
             </div>
             <button class="copy-button" type="button" id="clearButton">Clear</button>
           </div>
-          <textarea class="textarea" id="input" placeholder="apple&#10;banana&#10;cherry"></textarea>
+          <textarea class="textarea" id="input" placeholder="feature_alpha&#10;feature_beta&#10;feature_gamma"></textarea>
         </section>
         <section class="tool-panel">
           <div class="panel-head">
@@ -186,17 +188,17 @@
       <article class="content-card">
         <h2>How to use</h2>
         <ol>
-          <li>Paste your multiline values into the input box.</li>
-          <li>Select the SQL IN clause preset or another output format.</li>
-          <li>Copy the generated output.</li>
+          <li>Paste one value per line.</li>
+          <li>Choose a preset or tune the formatter settings directly.</li>
+          <li>Save a recipe if you expect to reuse the same output format.</li>
         </ol>
       </article>
       <article class="content-card">
         <h2>Common questions this page answers</h2>
         <ul class="question-list">
-          <li>How do I convert newline text to a SQL IN clause?</li>
-          <li>How do I turn text into a JavaScript array or Python list?</li>
-          <li>How do I join copied spreadsheet values into one line?</li>
+          <li>How do I create my own reusable text formatting preset?</li>
+          <li>How do I share the same formatter settings with someone else?</li>
+          <li>How do I turn newline text into bullets, env vars, or custom wrapped output?</li>
         </ul>
       </article>
     </section>
@@ -207,13 +209,15 @@
         <div class="example-grid">
           <div class="example-block">
             <h3>Input</h3>
-            <pre><code>apple
-banana
-cherry</code></pre>
+            <pre><code>feature_alpha
+feature_beta
+feature_gamma</code></pre>
           </div>
           <div class="example-block">
-            <h3>Output with SQL IN preset</h3>
-            <pre><code>('apple', 'banana', 'cherry')</code></pre>
+            <h3>Output with Markdown Bullet recipe</h3>
+            <pre><code>- feature_alpha
+- feature_beta
+- feature_gamma</code></pre>
           </div>
         </div>
       </article>
@@ -222,58 +226,50 @@ cherry</code></pre>
     <section class="faq-card">
       <h2>FAQ</h2>
       <div class="faq-list">
-        <article class="faq-item">
-          <h3>Does this tool send text to a server?</h3>
-          <p>No. This tool runs in the browser and keeps the pasted text on your device.</p>
-        </article>
-        <article class="faq-item">
-          <h3>Can I remove empty lines?</h3>
-          <p>Yes. Keep trim and skip-empty enabled before copying the output.</p>
-        </article>
-        <article class="faq-item">
-          <h3>Can I output JavaScript arrays or Python lists?</h3>
-          <p>Yes. Use the related preset options to switch the delimiter, quote character, and wrapper.</p>
-        </article>
-        <article class="faq-item">
-          <h3>What kind of values can I paste here?</h3>
-          <p>You can paste IDs, emails, SKUs, spreadsheet rows, or any plain-text values that should become a quoted list or joined string.</p>
-        </article>
+        <details>
+          <summary>Does this save my pasted text?</summary>
+          <p>No. Recipes store settings only. Pasted input is not saved in recipes and is not sent to a server.</p>
+        </details>
+        <details>
+          <summary>Can I start from a preset and then customize it?</summary>
+          <p>Yes. Pick a preset like SQL IN or Markdown Bullet, then adjust the delimiter, quote, or wrapper fields and save it as your own recipe.</p>
+        </details>
+        <details>
+          <summary>Can I share my formatter with a teammate?</summary>
+          <p>Yes. Use <strong>Copy recipe link</strong> to share the current settings without including the actual input values.</p>
+        </details>
       </div>
     </section>
 
     <footer class="page-footer">
-      <p>Related next steps: quoting values, joining by a delimiter, or encoding a payload before it leaves your editor.</p>
-      <nav>
-        <a href="../quote/">Quote / Unquote</a>
+      <div class="footer-links">
+        <a href="../multiline/">Multiline presets</a>
+        <a href="../quote/">Quote lines</a>
         <a href="../split-join/">Split / Join</a>
-        <a href="../escape/">Escape</a>
-        <a href="../url-encode/">URL Encode</a>
-        <a href="../newline-text-to-sql-in-clause/">SQL IN Guide</a>
-        <a href="../text-to-python-list/">Python List Guide</a>
-        <a href="../newline-text-to-csv-row/">CSV Row Guide</a>
-        <a href="../text-to-env-var-list/">Env Var Guide</a>
-        <a href="../newline-to-markdown-bullet-list/">Markdown Bullet Guide</a>
-      </nav>
+        <a href="../text-to-env-var-list/">Text to env var list</a>
+        <a href="../newline-to-markdown-bullet-list/">Newline to markdown bullet list</a>
+      </div>
+      <p>Need a fixed workflow instead of a custom recipe? Start from the multiline presets, then come back here when you need your own formatter.</p>
     </footer>
   </main>
 
-  <div class="toast" id="toast">Ready.</div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="../assets/site.js"></script>
   <script>
     window.DevFormatMultilineConfig = {
-      defaultExample: 'fruit',
-      defaultPreset: 'sql-in',
+      toolKey: 'formatter',
+      defaultExample: 'ids',
+      defaultPreset: 'custom',
       strings: {
-        modeForward: 'Forward',
-        modeReverse: 'Reverse',
-        inputHintForward: 'Paste multiline text',
-        inputHintReverse: 'Paste a joined string',
-        outputHintForward: 'Copy ready result',
-        outputHintReverse: 'Rows split by delimiter',
-        copySuccess: 'Output copied.'
+        copySuccess: 'Output copied.',
+        inputHintForward: 'Paste multiline values',
+        inputHintReverse: 'Paste a formatted string',
+        outputHintForward: 'Copy formatted result',
+        outputHintReverse: 'Rows split by delimiter'
       }
     };
   </script>
   <script src="../assets/multiline-tool.js"></script>
+  <script src="../assets/formatter-tool.js"></script>
 </body>
 </html>
