@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create a Custom Text Formatter Guide | DevFormat</title>
+  <meta name="description" content="Create a custom text formatter in your browser with delimiters, quotes, wrappers, and saved recipes. Useful for SQL lists, env vars, bullets, and reusable copy-ready output.">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="Create a Custom Text Formatter Guide | DevFormat">
+  <meta property="og:description" content="Build your own reusable text formatter for SQL, Markdown, env vars, and custom copy-paste workflows.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://gurioh.github.io/devformat/create-custom-text-formatter/">
+  <link rel="canonical" href="https://gurioh.github.io/devformat/create-custom-text-formatter/">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=20260311">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Create a Custom Text Formatter Guide","description":"Create a custom text formatter in your browser with delimiters, quotes, wrappers, and saved recipes.","author":{"@type":"Organization","name":"DevFormat"},"publisher":{"@type":"Organization","name":"DevFormat"},"mainEntityOfPage":"https://gurioh.github.io/devformat/create-custom-text-formatter/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DevFormat Tools","item":"https://gurioh.github.io/devformat/"},{"@type":"ListItem","position":2,"name":"Create a Custom Text Formatter Guide","item":"https://gurioh.github.io/devformat/create-custom-text-formatter/"}]}</script>
+</head>
+<body data-page="guide-formatter-create">
+  <header class="site-header"><div class="site-header-inner"><a class="brand" href="../"><div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div><div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div></a><nav class="site-nav"><a data-page-link="catalog" href="../">Tools</a><a data-page-link="multiline" href="../multiline/">Multiline</a><a data-page-link="formatter" href="../formatter/">Formatter</a><a data-page-link="quote" href="../quote/">Quote</a><a data-page-link="split-join" href="../split-join/">Split / Join</a><a data-page-link="cleanup" href="../cleanup/">Cleanup</a><a data-page-link="escape" href="../escape/">Escape</a><a data-page-link="base64" href="../base64/">Base64</a><a data-page-link="url-encode" href="../url-encode/">URL Encode</a><a data-page-link="slugify" href="../slugify/">Slugify</a><a data-page-link="json" href="../json/">JSON</a></nav></div></header>
+  <main class="page-shell">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../">Tools</a><span>/</span><span aria-current="page">Create a Custom Text Formatter Guide</span></nav>
+    <section class="hero compact"><span class="hero-kicker">Guide</span><h1>Create a custom text formatter</h1><p>Use DevFormat to build your own reusable formatter with custom delimiters, quotes, wrappers, and saved recipes for repeated copy-and-paste workflows.</p><div class="hero-actions"><a class="button primary" href="../formatter/">Open formatter</a><a class="button" href="../multiline/">Open multiline presets</a></div></section>
+    <section class="section-stack"><article class="content-card"><h2>Example input</h2><p><code>feature_alpha<br>feature_beta<br>feature_gamma</code></p></article><article class="content-card"><h2>Expected output</h2><p><code>- feature_alpha<br>- feature_beta<br>- feature_gamma</code></p></article><article class="content-card"><h2>Steps</h2><ol><li>Open the <a class="text-accent" href="../formatter/">custom formatter</a>.</li><li>Choose a preset like SQL IN, Env Var, or Markdown Bullet as a starting point.</li><li>Adjust delimiter, quote, wrap start, and wrap end until the output matches your workflow.</li><li>Save the configuration as a recipe so you can reuse it later.</li></ol></article></section>
+    <section class="split-layout"><article class="content-card"><h2>When this is useful</h2><ul><li>Building a formatter for internal team conventions</li><li>Creating env var or feature flag output repeatedly</li><li>Saving Markdown, SQL, or custom wrapper recipes for later use</li></ul></article><article class="content-card"><h2>Related tools</h2><p>If a built-in preset already fits, start with <a class="text-accent" href="../multiline/">multiline</a>. If you need line quoting only, jump to <a class="text-accent" href="../quote/">quote</a>. If you need to split a formatted row back into lines, use <a class="text-accent" href="../split-join/">split / join</a>.</p></article></section>
+    <section class="faq-card"><h2>FAQ</h2><div class="faq-list"><article class="faq-item"><h3>Does the formatter save my pasted values?</h3><p>No. Recipes save formatter settings only. Input text is not stored in recipes and is not sent to a server.</p></article><article class="faq-item"><h3>Can I start from a preset and then customize it?</h3><p>Yes. That's the fastest workflow. Start with a close preset, then adjust the details and save your own version.</p></article><article class="faq-item"><h3>Can I make more than one recipe?</h3><p>Yes. You can save multiple recipes locally and switch between them when you need different output formats.</p></article></div></section>
+    <footer class="page-footer"><p>This guide focuses on building reusable formatter recipes. The actual output is generated in the formatter tool.</p><nav><a href="../formatter/">Formatter Tool</a><a href="../multiline/">Multiline Tool</a><a href="../quote/">Quote Tool</a></nav></footer>
+  </main>
+  <script src="../assets/site.js"></script>
+</body>
+</html>
