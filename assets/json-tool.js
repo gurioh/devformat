@@ -35,6 +35,16 @@
 
   if (!input || !output || !outputHint || !copyButton || !clearButton) return;
 
+  const storedSettings = DevFormat.loadToolSettings('json', {
+    action: config.defaultAction || defaults.defaultAction
+  });
+
+  function persistSettings() {
+    DevFormat.saveToolSettings('json', {
+      action: action
+    });
+  }
+
   function actionLabel() {
     if (action === 'minify') return strings.actionMinify;
     if (action === 'validate') return strings.actionValidate;
@@ -85,6 +95,8 @@
       document.querySelectorAll('[data-action]').forEach(function (node) {
         node.classList.toggle('active', node === button);
       });
+      persistSettings();
+      DevFormat.trackEvent('preset_select', { tool: 'json', preset: action });
       run();
     });
   });
@@ -105,6 +117,25 @@
     run();
   });
 
+  action = DevFormat.readQueryValue('action', storedSettings.action);
+  document.querySelectorAll('[data-action]').forEach(function (node) {
+    node.classList.toggle('active', node.dataset.action === action);
+  });
+  if (!document.querySelector('[data-action].active')) {
+    action = config.defaultAction || defaults.defaultAction;
+    document.querySelectorAll('[data-action]').forEach(function (node) {
+      node.classList.toggle('active', node.dataset.action === action);
+    });
+  }
+  DevFormat.wireShareButton('shareSettingsButton', {
+    tool: 'json',
+    getParams: function () {
+      return {
+        action: action
+      };
+    }
+  });
+  persistSettings();
   input.value = examples[config.defaultExample || defaults.defaultExample] || examples.payload;
   updateStats(strings.statusReady);
   run();
