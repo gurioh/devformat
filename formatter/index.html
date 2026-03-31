@@ -81,18 +81,22 @@
       <p>Recipes are saved locally in the browser, settings links are shareable, and pasted input text is never stored.</p>
     </section>
 
-    <section class="content-card recipe-manager">
-      <h2>Saved recipes</h2>
-      <div class="recipe-row">
-        <button class="button primary" type="button" id="saveRecipeButton">Save recipe</button>
-        <select class="select recipe-select" id="recipeSelect">
-          <option value="">No saved recipes yet</option>
-        </select>
-        <button class="button" type="button" id="applyRecipeButton">Apply recipe</button>
-        <button class="button" type="button" id="deleteRecipeButton">Delete recipe</button>
-        <button class="button" type="button" id="shareSettingsButton">Copy recipe link</button>
-      </div>
-      <p class="recipe-note">Recipes store formatter settings only. Input values are never saved.</p>
+    <section class="content-card recipe-manager recipe-manager-collapsed">
+      <details class="utility-fold">
+        <summary>Saved recipes and sharing</summary>
+        <div class="utility-fold-body">
+          <div class="recipe-row">
+            <button class="button primary" type="button" id="saveRecipeButton">Save recipe</button>
+            <select class="select recipe-select" id="recipeSelect">
+              <option value="">No saved recipes yet</option>
+            </select>
+            <button class="button" type="button" id="applyRecipeButton">Apply recipe</button>
+            <button class="button" type="button" id="deleteRecipeButton">Delete recipe</button>
+            <button class="button" type="button" id="shareSettingsButton">Copy recipe link</button>
+          </div>
+          <p class="recipe-note">Recipes store formatter settings only. Input values are never saved.</p>
+        </div>
+      </details>
     </section>
 
     <section class="tool-shell">
@@ -102,7 +106,7 @@
             <button class="active" type="button" data-direction="forward">Multi -&gt; Single</button>
             <button type="button" data-direction="reverse">Single -&gt; Multi</button>
           </div>
-          <details class="toolbar-details" id="advancedPanel" open>
+          <details class="toolbar-details" id="advancedPanel">
             <summary>Formatter settings</summary>
             <div class="toolbar-detail-body">
               <div class="toolbar-grid compact">
@@ -172,16 +176,19 @@
         </section>
       </div>
 
-      <div class="stat-grid">
-        <article class="stat-card"><span>Mode</span><strong id="modeStat">Forward</strong></article>
-        <article class="stat-card"><span>Items</span><strong id="itemStat">0</strong></article>
-        <article class="stat-card"><span>Input lines</span><strong id="lineStat">0</strong></article>
-        <article class="stat-card"><span>Unique</span><strong id="uniqueStat">0</strong></article>
-        <article class="stat-card"><span>Duplicates</span><strong id="duplicateStat">0</strong></article>
-        <article class="stat-card"><span>Input chars</span><strong id="inputCharStat">0</strong></article>
-        <article class="stat-card"><span>Output chars</span><strong id="charStat">0</strong></article>
-        <article class="stat-card"><span>Delta</span><strong id="deltaStat">0</strong></article>
-      </div>
+      <details class="utility-fold tool-metrics">
+        <summary>Usage stats</summary>
+        <div class="stat-grid">
+          <article class="stat-card"><span>Mode</span><strong id="modeStat">Forward</strong></article>
+          <article class="stat-card"><span>Items</span><strong id="itemStat">0</strong></article>
+          <article class="stat-card"><span>Input lines</span><strong id="lineStat">0</strong></article>
+          <article class="stat-card"><span>Unique</span><strong id="uniqueStat">0</strong></article>
+          <article class="stat-card"><span>Duplicates</span><strong id="duplicateStat">0</strong></article>
+          <article class="stat-card"><span>Input chars</span><strong id="inputCharStat">0</strong></article>
+          <article class="stat-card"><span>Output chars</span><strong id="charStat">0</strong></article>
+          <article class="stat-card"><span>Delta</span><strong id="deltaStat">0</strong></article>
+        </div>
+      </details>
     </section>
 
     <section class="split-layout">

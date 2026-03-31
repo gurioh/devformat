@@ -374,6 +374,17 @@ body[data-layout="tool"] .breadcrumb {
   gap: 14px;
 }
 
+.recipe-manager-collapsed {
+  padding: 0;
+  overflow: hidden;
+}
+
+.recipe-manager-collapsed .utility-fold {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
 .recipe-manager h2 {
   font-size: 18px;
 }
@@ -605,6 +616,51 @@ body[data-layout="tool"] #presetBar {
   border-top: 1px solid rgba(143, 161, 181, 0.12);
 }
 
+.utility-fold {
+  border: 1px solid rgba(143, 161, 181, 0.14);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.025);
+  overflow: hidden;
+}
+
+.utility-fold > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
+.utility-fold > summary::-webkit-details-marker {
+  display: none;
+}
+
+.utility-fold > summary::after {
+  content: "+";
+  font-size: 18px;
+  line-height: 1;
+  color: var(--text);
+}
+
+.utility-fold[open] > summary {
+  border-bottom: 1px solid rgba(143, 161, 181, 0.12);
+}
+
+.utility-fold[open] > summary::after {
+  content: "−";
+}
+
+.utility-fold-body {
+  padding: 16px 18px 18px;
+  display: grid;
+  gap: 12px;
+}
+
 .field {
   display: grid;
   gap: 6px;
@@ -730,6 +786,14 @@ body[data-layout="tool"] .stat-grid {
   grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
   padding: 10px 12px 12px;
   gap: 8px;
+}
+
+body[data-layout="tool"] .tool-metrics {
+  margin: 0 12px 12px;
+}
+
+body[data-layout="tool"] .tool-metrics .stat-grid {
+  padding: 12px;
 }
 
 .stat-card {
@@ -1073,7 +1137,7 @@ code {
 
 .hero-demo-head {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 16px;
   align-items: flex-start;
 }
@@ -1109,7 +1173,7 @@ code {
 }
 
 .hero-demo-stats {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .hero-demo-stats .stat-card {
