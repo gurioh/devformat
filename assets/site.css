@@ -149,6 +149,26 @@ a {
   transition: 160ms ease;
 }
 
+.site-nav a[data-page-link="quote"],
+.site-nav a[data-page-link="split-join"],
+.site-nav a[data-page-link="escape"],
+.site-nav a[data-page-link="base64"],
+.site-nav a[data-page-link="url-encode"],
+.site-nav a[data-page-link="slugify"],
+.site-nav a[data-page-link="about"] {
+  display: none;
+}
+
+body[data-page="quote"] .site-nav a[data-page-link="quote"],
+body[data-page="split-join"] .site-nav a[data-page-link="split-join"],
+body[data-page="escape"] .site-nav a[data-page-link="escape"],
+body[data-page="base64"] .site-nav a[data-page-link="base64"],
+body[data-page="url-encode"] .site-nav a[data-page-link="url-encode"],
+body[data-page="slugify"] .site-nav a[data-page-link="slugify"],
+body[data-page="about"] .site-nav a[data-page-link="about"] {
+  display: inline-flex;
+}
+
 .site-nav a:hover,
 .site-nav a.active {
   color: var(--text);
@@ -374,6 +394,10 @@ body[data-layout="tool"] .breadcrumb {
   gap: 14px;
 }
 
+.tool-shell + .recipe-manager {
+  margin-top: 16px;
+}
+
 .recipe-manager-collapsed {
   padding: 0;
   overflow: hidden;
@@ -553,6 +577,56 @@ body[data-layout="tool"] .example-actions button {
 
 body[data-layout="tool"] #presetBar {
   gap: 6px;
+}
+
+.preset-row {
+  align-items: center;
+}
+
+.preset-more {
+  position: relative;
+}
+
+.preset-more summary {
+  list-style: none;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 8px 11px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 160ms ease;
+}
+
+.preset-more summary::-webkit-details-marker {
+  display: none;
+}
+
+.preset-more summary:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-1px);
+}
+
+.preset-more summary::after {
+  content: " +";
+  color: var(--text-dim);
+}
+
+.preset-more[open] summary::after {
+  content: " -";
+}
+
+.preset-more-panel {
+  margin-top: 8px;
+  padding: 10px;
+  border: 1px solid rgba(143, 161, 181, 0.14);
+  border-radius: var(--radius-md);
+  background: rgba(7, 12, 19, 0.92);
+}
+
+body[data-layout="tool"] .preset-more-panel .preset-chip {
+  padding: 7px 10px;
 }
 
 .toolbar-primary {
