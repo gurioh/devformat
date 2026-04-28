@@ -224,11 +224,20 @@
     });
   };
 
+  namespace.openActivePresetGroups = function openActivePresetGroups() {
+    document.querySelectorAll('.preset-more').forEach(function (group) {
+      if (group.querySelector('[data-preset].active')) {
+        group.open = true;
+      }
+    });
+  };
+
   window.DevFormat = namespace;
 
   document.addEventListener('DOMContentLoaded', function () {
     namespace.initAnalytics();
     namespace.setActiveNav();
     namespace.collapseToolSections();
+    namespace.openActivePresetGroups();
   });
 })();

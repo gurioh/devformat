@@ -84,12 +84,6 @@
       <a href="../ko/sql-in-clause/">한국어</a>
     </nav>
 
-    <section class="content-card answer-summary">
-      <h2>Quick answer</h2>
-      <p>This tool converts newline text into a SQL IN clause, JavaScript array, Python list, CSV row, or simple joined string directly in the browser.</p>
-      <p>It works well for copied spreadsheet rows, ID lists, email lists, and quick query-building tasks. Pasted text stays in the browser and is not sent to a server.</p>
-    </section>
-
     <section class="tool-shell">
       <div class="toolbar">
         <div class="toolbar-row toolbar-primary">
@@ -133,17 +127,22 @@
             </div>
           </details>
         </div>
-        <div class="toolbar-row" id="presetBar">
+        <div class="toolbar-row preset-row" id="presetBar">
           <button class="preset-chip active" type="button" data-preset="sql-in">SQL IN</button>
           <button class="preset-chip" type="button" data-preset="js-array">JS Array</button>
-          <button class="preset-chip" type="button" data-preset="python-list">Python List</button>
           <button class="preset-chip" type="button" data-preset="csv">CSV Row</button>
-          <button class="preset-chip" type="button" data-preset="env-var">Env Var</button>
-          <button class="preset-chip" type="button" data-preset="markdown-bullet">Markdown Bullet</button>
           <button class="preset-chip" type="button" data-preset="comma">Comma Join</button>
-          <button class="preset-chip" type="button" data-preset="pipe">Pipe</button>
-          <button class="preset-chip" type="button" data-preset="tab">Tab</button>
           <button class="preset-chip" type="button" data-preset="custom">Custom</button>
+          <details class="preset-more">
+            <summary>More presets</summary>
+            <div class="toolbar-row compact preset-more-panel">
+              <button class="preset-chip" type="button" data-preset="python-list">Python List</button>
+              <button class="preset-chip" type="button" data-preset="env-var">Env Var</button>
+              <button class="preset-chip" type="button" data-preset="markdown-bullet">Markdown Bullet</button>
+              <button class="preset-chip" type="button" data-preset="pipe">Pipe</button>
+              <button class="preset-chip" type="button" data-preset="tab">Tab</button>
+            </div>
+          </details>
         </div>
       </div>
 
@@ -170,16 +169,25 @@
         </section>
       </div>
 
-      <div class="stat-grid">
-        <article class="stat-card"><span>Mode</span><strong id="modeStat">Forward</strong></article>
-        <article class="stat-card"><span>Items</span><strong id="itemStat">0</strong></article>
-        <article class="stat-card"><span>Input lines</span><strong id="lineStat">0</strong></article>
-        <article class="stat-card"><span>Unique</span><strong id="uniqueStat">0</strong></article>
-        <article class="stat-card"><span>Duplicates</span><strong id="duplicateStat">0</strong></article>
-        <article class="stat-card"><span>Input chars</span><strong id="inputCharStat">0</strong></article>
-        <article class="stat-card"><span>Output chars</span><strong id="charStat">0</strong></article>
-        <article class="stat-card"><span>Delta</span><strong id="deltaStat">0</strong></article>
-      </div>
+      <details class="utility-fold tool-metrics">
+        <summary>Usage stats</summary>
+        <div class="stat-grid">
+          <article class="stat-card"><span>Mode</span><strong id="modeStat">Forward</strong></article>
+          <article class="stat-card"><span>Items</span><strong id="itemStat">0</strong></article>
+          <article class="stat-card"><span>Input lines</span><strong id="lineStat">0</strong></article>
+          <article class="stat-card"><span>Unique</span><strong id="uniqueStat">0</strong></article>
+          <article class="stat-card"><span>Duplicates</span><strong id="duplicateStat">0</strong></article>
+          <article class="stat-card"><span>Input chars</span><strong id="inputCharStat">0</strong></article>
+          <article class="stat-card"><span>Output chars</span><strong id="charStat">0</strong></article>
+          <article class="stat-card"><span>Delta</span><strong id="deltaStat">0</strong></article>
+        </div>
+      </details>
+    </section>
+
+    <section class="content-card answer-summary">
+      <h2>Quick answer</h2>
+      <p>This tool converts newline text into a SQL IN clause, JavaScript array, Python list, CSV row, or simple joined string directly in the browser.</p>
+      <p>It works well for copied spreadsheet rows, ID lists, email lists, and quick query-building tasks. Pasted text stays in the browser and is not sent to a server.</p>
     </section>
 
     <section class="split-layout">

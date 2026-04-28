@@ -73,12 +73,6 @@
       <p>Paste clean values, choose a separator preset, and copy the result. Open advanced settings only when you need a custom separator or cleanup toggles.</p>
     </section>
 
-    <section class="content-card answer-summary">
-      <h2>Quick answer</h2>
-      <p>This tool joins newline text into comma-separated, pipe-separated, tab-delimited, space-delimited, or custom output directly in the browser.</p>
-      <p>It also splits comma-separated and other delimited strings back into one value per line, which is useful before cleanup, dedupe, quoting, or export edits.</p>
-    </section>
-
     <section class="tool-shell">
       <div class="toolbar">
         <div class="toolbar-row toolbar-primary">
@@ -143,16 +137,25 @@
         </section>
       </div>
 
-      <div class="stat-grid">
-        <article class="stat-card"><span>Mode</span><strong id="modeStat">Join</strong></article>
-        <article class="stat-card"><span>Values</span><strong id="itemStat">0</strong></article>
-        <article class="stat-card"><span>Input lines</span><strong id="lineStat">0</strong></article>
-        <article class="stat-card"><span>Unique</span><strong id="uniqueStat">0</strong></article>
-        <article class="stat-card"><span>Duplicates</span><strong id="duplicateStat">0</strong></article>
-        <article class="stat-card"><span>Input chars</span><strong id="inputCharStat">0</strong></article>
-        <article class="stat-card"><span>Output chars</span><strong id="charStat">0</strong></article>
-        <article class="stat-card"><span>Delta</span><strong id="deltaStat">0</strong></article>
-      </div>
+      <details class="utility-fold tool-metrics">
+        <summary>Usage stats</summary>
+        <div class="stat-grid">
+          <article class="stat-card"><span>Mode</span><strong id="modeStat">Join</strong></article>
+          <article class="stat-card"><span>Values</span><strong id="itemStat">0</strong></article>
+          <article class="stat-card"><span>Input lines</span><strong id="lineStat">0</strong></article>
+          <article class="stat-card"><span>Unique</span><strong id="uniqueStat">0</strong></article>
+          <article class="stat-card"><span>Duplicates</span><strong id="duplicateStat">0</strong></article>
+          <article class="stat-card"><span>Input chars</span><strong id="inputCharStat">0</strong></article>
+          <article class="stat-card"><span>Output chars</span><strong id="charStat">0</strong></article>
+          <article class="stat-card"><span>Delta</span><strong id="deltaStat">0</strong></article>
+        </div>
+      </details>
+    </section>
+
+    <section class="content-card answer-summary">
+      <h2>Quick answer</h2>
+      <p>This tool joins newline text into comma-separated, pipe-separated, tab-delimited, space-delimited, or custom output directly in the browser.</p>
+      <p>It also splits comma-separated and other delimited strings back into one value per line, which is useful before cleanup, dedupe, quoting, or export edits.</p>
     </section>
 
     <section class="split-layout">

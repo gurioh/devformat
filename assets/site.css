@@ -398,6 +398,10 @@ body[data-layout="tool"] .breadcrumb {
   margin-top: 16px;
 }
 
+.tool-shell + .answer-summary {
+  margin-top: 16px;
+}
+
 .recipe-manager-collapsed {
   padding: 0;
   overflow: hidden;
