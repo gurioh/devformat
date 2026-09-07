@@ -1245,3 +1245,52 @@ code {
     grid-template-columns: 1fr;
   }
 }
+
+/* A quieter work surface, with the result beside the input. */
+body { background: #0c121b; }
+body::before { display: none; }
+:root { --radius-lg: 16px; --radius-md: 12px; --shadow: 0 12px 32px rgba(0,0,0,.16); }
+.site-header-inner { gap: 16px; }
+.site-nav { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; max-width: 100%; padding: 4px 0; }
+.site-nav a { white-space: nowrap; padding: 9px 11px; }
+.brand { flex-shrink: 0; }
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
+button:disabled { opacity: .45; cursor: not-allowed; }
+.landing-hero { grid-template-columns: 1fr; gap: 24px; padding-top: 30px; }
+.landing-copy { padding: 0; max-width: 850px; }
+.landing-copy h1 { font-size: clamp(32px, 5vw, 52px); margin: 10px 0; }
+.landing-copy p { max-width: 720px; font-size: 17px; }
+.landing-copy .hero-actions { margin-top: 16px; }
+.landing-copy .chip-row { margin-top: 14px; }
+.hero-demo { box-shadow: none; }
+.instant-tool { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: #111b28; margin-bottom: 24px; }
+.instant-toolbar, .instant-options, .instant-status { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; }
+.instant-toolbar { justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--border); }
+.instant-options label { display: inline-flex; align-items: center; gap: 8px; min-height: 36px; font-size: 14px; cursor: pointer; }
+.instant-options input { accent-color: var(--teal); width: 16px; height: 16px; }
+.instant-tool .panel-head { min-height: 52px; padding: 10px 16px; }
+.instant-tool .panel-head label { font-size: 13px; color: var(--text-dim); }
+body[data-layout="tool"] .instant-tool .tool-panel { min-height: 300px; }
+.instant-tool .copy-button:not(:disabled) { background: var(--accent); color: #111; border-color: var(--accent); }
+.instant-status { justify-content: space-between; padding: 14px 18px; color: var(--text-dim); font-size: 13px; border-top: 1px solid var(--border); }
+.skip-link { position: fixed; top: -100px; left: 16px; z-index: 100; padding: 12px 20px; background: var(--text); color: var(--bg); border-radius: 8px; }
+.skip-link:focus { top: 12px; }
+@media (max-width: 900px) {
+  .site-header-inner { flex-direction: column; align-items: flex-start; padding: 12px 0 0; gap: 8px; }
+  .brand-copy span { display: none; }
+  .site-nav { width: 100%; padding-bottom: 8px; }
+  .site-header { position: relative; }
+}
+@media (max-width: 720px) {
+  .landing-copy .hero-actions { gap: 8px; }
+  .hero-demo-stats { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .instant-tool .tool-panels { grid-template-columns: 1fr; }
+  body[data-layout="tool"] .instant-tool .tool-panel { min-height: 220px; }
+  .instant-tool .tool-panel + .tool-panel { border-left: 0; border-top: 1px solid var(--border); }
+  .instant-toolbar { gap: 8px; padding: 12px; }
+  .instant-status { align-items: flex-start; flex-direction: column; gap: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

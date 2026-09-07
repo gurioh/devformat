@@ -7,7 +7,7 @@
   <meta name="description" content="Developer text tools for SQL lists, quoted strings, duplicate removal, text extraction, Base64 decoding, URL encoding, JSON formatting, escaping, and slug generation.">
   <meta name="keywords" content="developer text tools online, remove duplicate lines online, extract emails from text, compare two lists online, newline to comma separated list, quote each line online">
   <meta property="og:title" content="Developer Text Cleanup and Formatting Tools | DevFormat">
-  <meta property="og:description" content="Search-friendly text workflow tools for developers: SQL IN clause conversion, duplicate cleanup, extraction, quoting, escaping, encoding, slugify, and JSON formatting.">
+  <meta property="og:description" content="Free browser tools for developers: SQL IN clause conversion, duplicate cleanup, extraction, quoting, escaping, encoding, slugify, and JSON formatting.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gurioh.github.io/devformat/">
   <meta name="google-site-verification" content="AiQYZSuuzlRJAO75KV0EwQpBN9O54K70X_4qlmVGNiU">
@@ -20,7 +20,7 @@
     "@type": "WebSite",
     "name": "DevFormat",
     "url": "https://gurioh.github.io/devformat/",
-    "description": "Search-friendly developer text tools for formatting, cleanup, extraction, escaping, encoding, and structured text workflows.",
+    "description": "Free developer text tools for formatting, cleanup, extraction, escaping, encoding, and structured text workflows.",
     "inLanguage": "en"
   }
   </script>
@@ -55,15 +55,15 @@
   <main class="page-shell">
     <section class="landing-hero">
       <article class="landing-copy">
-        <span class="hero-kicker">Tool-first landing page</span>
-        <h1>Developer text tools built for real copy-and-paste workflows.</h1>
-        <p>Convert newline text into SQL IN clauses, quote values for JavaScript arrays, escape JSON strings, inspect Base64 payloads, and clean query parameters without leaving the browser.</p>
+        <span class="hero-kicker">Free developer tools</span>
+        <h1>Paste. Transform. Copy.</h1>
+        <p>Clean up text, format lists, and prepare values for your code. Fast, free, and right in your browser.</p>
         <div class="hero-actions">
           <a class="button primary" href="./multiline/">Open full multiline tool</a>
           <a class="button" href="./formatter/">Create a formatter</a>
-          <a class="button" href="#why-devformat">Why DevFormat</a>
+          <a class="button" href="#tool-cluster">Browse all tools</a>
         </div>
-        <div class="chip-row">
+        <div class="chip-row"><a class="chip" href="./text-to-env-var-list/">Text → env var list ↗</a><a class="chip" href="./newline-text-to-csv-row/">Text → CSV row ↗</a>
           <span class="chip">Newline to SQL IN clause</span>
           <span class="chip">Quote each line online</span>
           <span class="chip">Escape string for JSON</span>
@@ -73,7 +73,7 @@
       <section class="hero-demo" aria-label="Quick SQL IN generator demo">
         <div class="hero-demo-head">
           <div>
-            <strong>Try the homepage widget</strong>
+            <strong>Quick list converter</strong>
             <span>Paste values, choose a preset, copy the result.</span>
           </div>
           <a class="tool-link" href="./multiline/">Need reverse mode or custom delimiters?</a>
@@ -101,7 +101,7 @@
               </div>
               <button class="copy-button" type="button" id="homeSqlClear">Clear</button>
             </div>
-            <textarea class="textarea" id="homeSqlInput" placeholder="1001&#10;1002&#10;1003"></textarea>
+            <textarea class="textarea" id="homeSqlInput" aria-label="Input values, one per line" placeholder="1001&#10;1002&#10;1003"></textarea>
           </section>
           <section class="tool-panel">
             <div class="panel-head">
@@ -111,7 +111,7 @@
               </div>
               <button class="copy-button" type="button" id="homeSqlCopy">Copy</button>
             </div>
-            <textarea class="textarea" id="homeSqlOutput" readonly></textarea>
+            <textarea class="textarea" id="homeSqlOutput" aria-label="Converted output" readonly></textarea>
           </section>
         </div>
 
@@ -131,40 +131,10 @@
       </section>
     </section>
 
-    <section id="why-devformat" class="section-stack landing-stack">
-      <article class="content-card">
-        <h2>Why DevFormat</h2>
-        <p>DevFormat should feel like a focused workbench, not a directory of disconnected utilities. The home page starts with a usable tool, then shows the product axes that connect the rest of the cluster.</p>
-        <div class="category-pill-row">
-          <span class="chip active">Text Transform</span>
-          <span class="chip">Encoding &amp; Structured Text</span>
-          <span class="chip">Cleanup &amp; Extraction</span>
-        </div>
-      </article>
-      <div class="workflow-grid why-grid">
-        <article class="workflow-card">
-          <h3>Preset-driven first</h3>
-          <p>Start with SQL IN, JS Array, JSON escape, or Base64 decode instead of building a format from scratch every time.</p>
-        </article>
-        <article class="workflow-card">
-          <h3>Browser-only workflow</h3>
-          <p>Small text transformations stay local to the browser, which keeps the loop fast and avoids sending copied values to a server.</p>
-        </article>
-        <article class="workflow-card">
-          <h3>Related tasks stay connected</h3>
-          <p>A user who starts with quoting often also needs joining, escaping, JSON validation, or URL encoding in the same session.</p>
-        </article>
-        <article class="workflow-card">
-          <h3>Cleanup before transform</h3>
-          <p>Repeated values, mixed notes, and side-by-side list checks now have their own cleanup category before you move into formatting or encoding.</p>
-        </article>
-      </div>
-    </section>
-
     <section id="popular-workflows" class="section-stack">
       <article class="content-card">
         <h2>Popular workflows</h2>
-        <p>Search traffic is usually tied to a concrete job. These are the strongest entry points for the current tool cluster.</p>
+        <p>Choose the output you need and start with the right tool.</p>
       </article>
       <div class="workflow-grid">
         <article class="workflow-card">
@@ -207,8 +177,8 @@
 
     <section id="tool-cluster" class="section-stack landing-stack">
       <article class="content-card">
-        <h2>Core tool cluster</h2>
-        <p>Once the first transformation is done, users usually need a second or third step. The catalog stays below the hero so the landing page first behaves like a product, then like a directory.</p>
+        <h2>All text tools</h2>
+        <p>Format, encode, compare, or clean up your text.</p>
       </article>
       <div class="catalog-grid">
         <article class="tool-card">
@@ -383,7 +353,7 @@
 
     <section class="split-layout">
       <article class="content-card">
-        <h2>Use cases people actually search for</h2>
+        <h2>Common conversions</h2>
         <ul>
           <li><a class="text-accent" href="./multiline/">Text to JavaScript array</a></li>
           <li><a class="text-accent" href="./split-join/">Newline to comma-separated list</a></li>
@@ -394,15 +364,15 @@
         </ul>
       </article>
       <article class="content-card">
-        <h2>Related tools are the product</h2>
-        <p>Each page is designed to lead to the next likely task. If a user arrives for newline-to-comma conversion, the site should also make it obvious when quoting, escaping, URL encoding, or JSON formatting are natural next steps.</p>
+        <h2>Keep working with your result</h2>
+        <p>Remove duplicates before creating a list, escape a string before adding it to JSON, or decode a URL before inspecting its parameters.</p>
       </article>
     </section>
 
     <section class="section-stack">
       <article class="content-card">
-        <h2>How-to guides for long-tail search</h2>
-        <p>These guides target people searching for a concrete output or cleanup action like a SQL IN clause, JavaScript array, JSON-safe escaped string, blank-line removal, number extraction, or CSV column cleanup.</p>
+        <h2>More formats & practical guides</h2>
+        <p>Find examples and tools for SQL lists, arrays, configuration values, and text cleanup.</p>
       </article>
       <div class="workflow-grid">
         <article class="workflow-card">
@@ -540,8 +510,8 @@
           <p>Because text workflows chain together. A user who quotes values may also need multiline conversion, delimiter cleanup, string escaping, JSON validation, or URL decoding in the same session.</p>
         </article>
         <article class="faq-item">
-          <h3>What should be indexed first?</h3>
-          <p>Index the home page and each tool page separately. The tool pages target concrete search intent, while the home page explains the cluster and routes users toward related tasks.</p>
+          <h3>Do I need an account?</h3>
+          <p>No. Open a tool, paste your text, and copy the result. No registration or installation is needed.</p>
         </article>
       </div>
     </section>

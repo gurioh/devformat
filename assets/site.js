@@ -227,6 +227,16 @@
   window.DevFormat = namespace;
 
   document.addEventListener('DOMContentLoaded', function () {
+    const main = document.querySelector('main');
+    if (main) {
+      main.id = main.id || 'main-content';
+      main.tabIndex = -1;
+      const skip = document.createElement('a');
+      skip.className = 'skip-link';
+      skip.href = '#' + main.id;
+      skip.textContent = document.documentElement.lang === 'ko' ? '본문으로 이동' : document.documentElement.lang === 'ja' ? '本文へ移動' : 'Skip to content';
+      document.body.prepend(skip);
+    }
     namespace.initAnalytics();
     namespace.setActiveNav();
     namespace.collapseToolSections();
