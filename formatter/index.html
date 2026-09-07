@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create a Custom Text Formatter | DevFormat</title>
-  <meta name="description" content="Build your own text formatter with custom delimiters, quotes, wrappers, and saved recipes. Convert pasted values into reusable output formats in your browser.">
+  <title>Custom Text Formatter Online | DevFormat</title>
+  <meta name="description" content="Build a custom text formatter online with your own delimiters, quotes, wrappers, and saved recipes. Convert newline text into reusable output formats in your browser.">
   <meta name="keywords" content="custom text formatter, create a formatter, text formatter builder, newline formatter, saved text recipe">
-  <meta property="og:title" content="Create a Custom Text Formatter | DevFormat">
-  <meta property="og:description" content="Create your own reusable text formatting recipe with custom delimiters, quotes, wrappers, and browser-only saved recipes.">
+  <meta property="og:title" content="Custom Text Formatter Online | DevFormat">
+  <meta property="og:description" content="Create reusable text formatting recipes with custom delimiters, quotes, wrappers, and browser-only saved settings.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://gurioh.github.io/devformat/formatter/">
   <link rel="canonical" href="https://gurioh.github.io/devformat/formatter/">
@@ -17,11 +17,11 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Create a Custom Text Formatter",
+    "name": "Custom Text Formatter Online",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
     "url": "https://gurioh.github.io/devformat/formatter/",
-    "description": "Create your own text formatting recipe with custom delimiters, quotes, wrappers, and saved browser-only settings.",
+    "description": "Build reusable text formatting recipes with custom delimiters, quotes, wrappers, and saved browser-only settings.",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
@@ -31,7 +31,7 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       {"@type": "ListItem", "position": 1, "name": "DevFormat Tools", "item": "https://gurioh.github.io/devformat/"},
-      {"@type": "ListItem", "position": 2, "name": "Create a Custom Text Formatter", "item": "https://gurioh.github.io/devformat/formatter/"}
+      {"@type": "ListItem", "position": 2, "name": "Custom Text Formatter Online", "item": "https://gurioh.github.io/devformat/formatter/"}
     ]
   }
   </script>
@@ -66,13 +66,13 @@
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="../">Tools</a>
       <span>/</span>
-      <span aria-current="page">Create a custom text formatter</span>
+      <span aria-current="page">Custom text formatter online</span>
     </nav>
 
     <section class="hero compact hero-slim">
       <span class="hero-kicker">Formatter Builder</span>
-      <h1>Create a custom text formatter</h1>
-      <p>Start from a preset or build your own output format with custom delimiters, quotes, wrappers, and reusable saved recipes.</p>
+      <h1>Custom text formatter online</h1>
+      <p>Start from a preset or build your own output format with custom delimiters, quotes, wrappers, and reusable saved recipes for newline text and joined strings.</p>
     </section>
 
     <section class="content-card answer-summary">
@@ -81,18 +81,22 @@
       <p>Recipes are saved locally in the browser, settings links are shareable, and pasted input text is never stored.</p>
     </section>
 
-    <section class="content-card recipe-manager">
-      <h2>Saved recipes</h2>
-      <div class="recipe-row">
-        <button class="button primary" type="button" id="saveRecipeButton">Save recipe</button>
-        <select class="select recipe-select" id="recipeSelect">
-          <option value="">No saved recipes yet</option>
-        </select>
-        <button class="button" type="button" id="applyRecipeButton">Apply recipe</button>
-        <button class="button" type="button" id="deleteRecipeButton">Delete recipe</button>
-        <button class="button" type="button" id="shareSettingsButton">Copy recipe link</button>
-      </div>
-      <p class="recipe-note">Recipes store formatter settings only. Input values are never saved.</p>
+    <section class="content-card recipe-manager recipe-manager-collapsed">
+      <details class="utility-fold">
+        <summary>Saved recipes and sharing</summary>
+        <div class="utility-fold-body">
+          <div class="recipe-row">
+            <button class="button primary" type="button" id="saveRecipeButton">Save recipe</button>
+            <select class="select recipe-select" id="recipeSelect">
+              <option value="">No saved recipes yet</option>
+            </select>
+            <button class="button" type="button" id="applyRecipeButton">Apply recipe</button>
+            <button class="button" type="button" id="deleteRecipeButton">Delete recipe</button>
+            <button class="button" type="button" id="shareSettingsButton">Copy recipe link</button>
+          </div>
+          <p class="recipe-note">Recipes store formatter settings only. Input values are never saved.</p>
+        </div>
+      </details>
     </section>
 
     <section class="tool-shell">
@@ -102,7 +106,7 @@
             <button class="active" type="button" data-direction="forward">Multi -&gt; Single</button>
             <button type="button" data-direction="reverse">Single -&gt; Multi</button>
           </div>
-          <details class="toolbar-details" id="advancedPanel" open>
+          <details class="toolbar-details" id="advancedPanel">
             <summary>Formatter settings</summary>
             <div class="toolbar-detail-body">
               <div class="toolbar-grid compact">
@@ -172,16 +176,19 @@
         </section>
       </div>
 
-      <div class="stat-grid">
-        <article class="stat-card"><span>Mode</span><strong id="modeStat">Forward</strong></article>
-        <article class="stat-card"><span>Items</span><strong id="itemStat">0</strong></article>
-        <article class="stat-card"><span>Input lines</span><strong id="lineStat">0</strong></article>
-        <article class="stat-card"><span>Unique</span><strong id="uniqueStat">0</strong></article>
-        <article class="stat-card"><span>Duplicates</span><strong id="duplicateStat">0</strong></article>
-        <article class="stat-card"><span>Input chars</span><strong id="inputCharStat">0</strong></article>
-        <article class="stat-card"><span>Output chars</span><strong id="charStat">0</strong></article>
-        <article class="stat-card"><span>Delta</span><strong id="deltaStat">0</strong></article>
-      </div>
+      <details class="utility-fold tool-metrics">
+        <summary>Usage stats</summary>
+        <div class="stat-grid">
+          <article class="stat-card"><span>Mode</span><strong id="modeStat">Forward</strong></article>
+          <article class="stat-card"><span>Items</span><strong id="itemStat">0</strong></article>
+          <article class="stat-card"><span>Input lines</span><strong id="lineStat">0</strong></article>
+          <article class="stat-card"><span>Unique</span><strong id="uniqueStat">0</strong></article>
+          <article class="stat-card"><span>Duplicates</span><strong id="duplicateStat">0</strong></article>
+          <article class="stat-card"><span>Input chars</span><strong id="inputCharStat">0</strong></article>
+          <article class="stat-card"><span>Output chars</span><strong id="charStat">0</strong></article>
+          <article class="stat-card"><span>Delta</span><strong id="deltaStat">0</strong></article>
+        </div>
+      </details>
     </section>
 
     <section class="split-layout">
@@ -238,6 +245,10 @@ feature_gamma</code></pre>
           <summary>Can I share my formatter with a teammate?</summary>
           <p>Yes. Use <strong>Copy recipe link</strong> to share the current settings without including the actual input values.</p>
         </details>
+        <details>
+          <summary>How do I format newline text with my own delimiter and wrapper?</summary>
+          <p>Paste one value per line, set the delimiter, quote character, wrap start, and wrap end fields, then copy the generated output or save the setup as a reusable recipe.</p>
+        </details>
       </div>
     </section>
 
@@ -248,6 +259,7 @@ feature_gamma</code></pre>
         <a href="../split-join/">Split / Join</a>
         <a href="../create-custom-text-formatter/">Create formatter guide</a>
         <a href="../share-text-formatter-settings/">Share formatter settings</a>
+        <a href="../newline-text-to-sql-in-clause/">Text to SQL IN clause</a>
         <a href="../text-to-env-var-list/">Text to env var list</a>
         <a href="../newline-to-markdown-bullet-list/">Newline to markdown bullet list</a>
       </div>

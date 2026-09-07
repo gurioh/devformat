@@ -4,11 +4,10 @@
   const copyButton = document.getElementById('homeSqlCopy');
   const clearButton = document.getElementById('homeSqlClear');
   const presetLabel = document.getElementById('homePresetLabel');
-  const presetLabelCard = document.getElementById('homePresetLabelCard');
   const itemStat = document.getElementById('homeItemStat');
   const charStat = document.getElementById('homeCharStat');
 
-  if (!input || !output || !copyButton || !clearButton || !presetLabel || !presetLabelCard || !itemStat || !charStat) {
+  if (!input || !output || !copyButton || !clearButton || !presetLabel || !itemStat || !charStat) {
     return;
   }
 
@@ -47,7 +46,6 @@
 
     output.value = result;
     presetLabel.textContent = preset.label;
-    presetLabelCard.textContent = preset.label;
     itemStat.textContent = String(values.length);
     charStat.textContent = String(result.length);
 
@@ -80,7 +78,6 @@
         node.classList.toggle('active', node === button);
       });
       presetLabel.textContent = presets[activePreset].label;
-      presetLabelCard.textContent = presets[activePreset].label;
       convert();
       DevFormat.trackEvent('preset_select', {
         tool: 'home_sql_widget',
@@ -128,6 +125,5 @@
 
   input.value = examples.ids;
   presetLabel.textContent = presets[activePreset].label;
-  presetLabelCard.textContent = presets[activePreset].label;
   render();
 })();
