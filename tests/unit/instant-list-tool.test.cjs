@@ -21,3 +21,18 @@ test('empty input has no synthetic field', () => {
   assert.deepEqual(convertList('', { ...defaults, skipEmpty: false }), { output: '', count: 0 });
   assert.deepEqual(convertList(' \n ', defaults), { output: '', count: 0 });
 });
+test('dedupe is optional and preserves first-seen order after trimming', () => {
+  assert.deepEqual(convertList(' a\nb\na ', { ...defaults, dedupe: true }), { output: 'a,b', count: 2 });
+  assert.equal(convertList('a\na', defaults).output, 'a,a');
+});
+test('env assignment protects hashes, spaces and dollar signs in quoted values', () => {
+  assert.equal(convertList('hello world\n#tag\n$HOME', { ...defaults, mode: 'env', variable: 'FEATURES' }).output, "FEATURES='hello world,#tag,$HOME'");
+});
+test('env rejects invalid variable names and parser-dependent single quotes', () => {
+  for (const variable of ['1KEY', 'BAD KEY', 'A=B', 'A\nB']) {
+    const result = convertList('value', { ...defaults, mode: 'env', variable });
+    assert.equal(result.output, ''); assert.ok(result.error);
+  }
+  assert.ok(convertList("O'Reilly", { ...defaults, mode: 'env', variable: 'NAME' }).error);
+  assert.equal(convertList("O'Reilly", { ...defaults, mode: 'env' }).output, "O'Reilly");
+});

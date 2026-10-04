@@ -238,6 +238,11 @@
       document.body.prepend(skip);
     }
     namespace.initAnalytics();
+    document.querySelectorAll('.site-nav a[data-page-link]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        namespace.trackEvent('nav_click', { destination: link.dataset.pageLink });
+      });
+    });
     namespace.setActiveNav();
     namespace.collapseToolSections();
   });

@@ -1358,3 +1358,10 @@ body[data-layout="tool"] .instant-tool .tool-panel { min-height: 300px; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+.instant-toolbar #variableName { width: min(100%, 260px); min-height: 42px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font-family: monospace; }
+.instant-toolbar #variableHelp { flex-basis: 100%; color: var(--text-dim); line-height: 1.5; }
+.instant-tool .panel-head { flex-wrap: wrap; }
+.instant-tool .panel-head label { margin-right: auto; }
+.instant-tool #downloadResult { background: transparent; color: var(--text); border-color: var(--border); }
+.instant-tool [aria-invalid="true"] { border-color: var(--danger) !important; }
