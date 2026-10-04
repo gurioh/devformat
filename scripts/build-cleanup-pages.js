@@ -37,20 +37,16 @@ function jsonScript(data) {
   return JSON.stringify(data, null, 2).replace(/</g, '\\u003c');
 }
 
-function nav(prefix, withAbout) {
-  return `<nav class="site-nav">
-        <a data-page-link="catalog" href="${prefix}">Tools</a>
-        <a data-page-link="multiline" href="${prefix}multiline/">Multiline</a>
-        <a data-page-link="quote" href="${prefix}quote/">Quote</a>
-        <a data-page-link="split-join" href="${prefix}split-join/">Split / Join</a>
-        <a data-page-link="cleanup" href="${prefix}cleanup/">Cleanup</a>
-        <a data-page-link="escape" href="${prefix}escape/">Escape</a>
-        <a data-page-link="base64" href="${prefix}base64/">Base64</a>
-        <a data-page-link="url-encode" href="${prefix}url-encode/">URL Encode</a>
-        <a data-page-link="slugify" href="${prefix}slugify/">Slugify</a>
-        <a data-page-link="json" href="${prefix}json/">JSON</a>${withAbout ? `
-        <a data-page-link="about" href="${prefix}about/">About</a>` : ''}
-      </nav>`;
+const PRIMARY_NAV = [
+  ['catalog', '', 'All tools'],
+  ['text-to-env-var-list', 'text-to-env-var-list/', 'Env list'],
+  ['newline-text-to-csv-row', 'newline-text-to-csv-row/', 'CSV row'],
+  ['quote', 'quote/', 'Quote'],
+  ['split-join', 'split-join/', 'Split / Join'],
+];
+
+function nav(prefix) {
+  return `<nav class="site-nav" aria-label="Main navigation">${PRIMARY_NAV.map(([key, href, label]) => `<a data-page-link="${key}" href="${prefix}${href}">${label}</a>`).join('')}</nav>`;
 }
 
 function pageFooter(tool) {
@@ -222,7 +218,7 @@ ${jsonScript(breadcrumbJson)}
         <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
         <div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div>
       </a>
-      ${nav('../', false)}
+      ${nav('../')}
     </div>
   </header>
   <main class="page-shell">
@@ -326,7 +322,7 @@ ${jsonScript(breadcrumbJson)}
         <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
         <div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div>
       </a>
-      ${nav('../', false)}
+      ${nav('../')}
     </div>
   </header>
   <main class="page-shell">
@@ -445,7 +441,7 @@ ${jsonScript(breadcrumbJson)}
         <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
         <div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div>
       </a>
-      ${nav('../', false)}
+      ${nav('../')}
     </div>
   </header>
   <main class="page-shell">
@@ -571,7 +567,7 @@ ${jsonScript(breadcrumbJson)}
         <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
         <div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div>
       </a>
-      ${nav('../', false)}
+      ${nav('../')}
     </div>
   </header>
   <main class="page-shell">
@@ -683,7 +679,7 @@ ${jsonScript(pageJson)}
         <div class="brand-mark"><img src="../assets/devformat-logo.svg?v=20260311" alt="DevFormat logo"></div>
         <div class="brand-copy"><strong>DevFormat</strong><span>Preset-driven text tools for developers</span></div>
       </a>
-      ${nav('../', true)}
+      ${nav('../')}
     </div>
   </header>
   <main class="page-shell">
